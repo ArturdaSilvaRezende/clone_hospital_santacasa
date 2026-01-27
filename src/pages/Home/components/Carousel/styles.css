@@ -1,7 +1,7 @@
 .swiper-pagination-custom {
   pointer-events: auto;
   position: absolute;
-  bottom: 56px;
+  bottom: 56px !important;
 }
 
 .swiper-pagination-custom .swiper-pagination-bullet {
@@ -30,7 +30,7 @@
 }
 
 .swiper-button-prev-custom {
-  left: -12%;
+  left: -13%;
 }
 
 .swiper-button-prev-custom:hover,
@@ -40,5 +40,5 @@
 }
 
 .swiper-button-next-custom {
-  right: -12%;
+  right: -13%;
 }

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import './styles.css'
+import CustomLink from '~/components/CustomComponents/Link'
 
 export default function Carousel() {
   const slides = [
@@ -76,7 +77,7 @@ export default function Carousel() {
               </div>
 
               {/* Conteúdo */}
-              <div className="relative z-10 container mx-auto flex h-full items-center px-20">
+              <div className="relative z-10 container mx-auto flex h-full items-center px-15">
                 <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
                   {/* Texto à esquerda */}
                   <div className="max-w-2xl space-y-6 text-white">
@@ -90,15 +91,12 @@ export default function Carousel() {
                       {slide.description}
                     </p>
 
-                    <div className="pt-4">
-                      <a
-                        href="#contato"
-                        className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-base font-semibold text-white transition-colors duration-300 hover:bg-blue-700 focus:ring-4 focus:ring-blue-500/50 focus:outline-none md:text-lg"
-                        aria-label="Acessar mais informações"
-                      >
-                        Acessar
-                      </a>
-                    </div>
+                    <CustomLink
+                      label="Acessar"
+                      //href="/contato"
+                      classNameContainer="w-[158px] bg-[#FD0003] hover:bg-red-700"
+                      classNameLink="w-full"
+                    />
                   </div>
 
                   {/* Espaço para imagem à direita (em telas grandes) */}
@@ -119,7 +117,7 @@ export default function Carousel() {
             alt="Slide anterior"
             width={14}
             height={7}
-            className="mr-7 ml-auto"
+            className="mr-5 ml-auto"
           />
           <span className="sr-only">Ir para o slide anterior</span>
         </button>
@@ -133,7 +131,7 @@ export default function Carousel() {
             alt="Slide anterior"
             width={14}
             height={7}
-            className="mr-auto ml-7"
+            className="mr-auto ml-5"
           />
           <span className="sr-only">Ir para o próximo slide</span>
         </button>
