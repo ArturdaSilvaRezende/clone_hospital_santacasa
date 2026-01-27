@@ -186,7 +186,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h2 className="mb-4 text-lg font-bold">Segurança</h2>
             <div className="space-y-4">
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
                 <Image
                   src="/certificado-SSL.svg"
                   alt="Site Seguro - Certificado SSL"
