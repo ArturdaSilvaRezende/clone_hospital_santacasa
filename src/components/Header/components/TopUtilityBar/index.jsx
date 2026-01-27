@@ -4,13 +4,13 @@ import React from 'react'
 export default function TopUtilityBar() {
   return (
     <section
-      class="border-b border-gray-200 bg-white"
+      className="border-b border-gray-200 bg-white"
       aria-label="Informações de contato e redes sociais"
     >
-      <div class="mx-auto max-w-7xl px-6 py-3">
-        <div class="flex items-center justify-between">
-          <address class="flex items-center gap-6 text-sm text-gray-500 not-italic">
-            <div class="flex items-center gap-2">
+      <div className="mx-auto max-w-7xl px-6 py-3">
+        <div className="flex items-center justify-between">
+          <address className="flex items-center gap-6 text-sm text-gray-500 not-italic">
+            <div className="flex items-center gap-2">
               <Image
                 src="/phone-icon-gray.svg"
                 alt="ícone de contanto"
@@ -22,8 +22,13 @@ export default function TopUtilityBar() {
               </a>
             </div>
 
-            <div class="flex items-center gap-2">
-              <i class="fas fa-envelope text-gray-400" aria-hidden="true"></i>
+            <div className="flex items-center gap-2">
+              <Image
+                src="/email-icon-gray.svg"
+                alt="ícone de contanto"
+                width={22}
+                height={22}
+              />
               <a
                 href="mailto:contato@santacasago.org.br"
                 aria-label="E-mail da Santa Casa"
@@ -34,16 +39,21 @@ export default function TopUtilityBar() {
           </address>
 
           <nav aria-label="Redes sociais">
-            <ul class="flex items-center gap-3">
-              <li class="text-sm text-gray-500">Redes Sociais</li>
+            <ul className="flex items-center gap-3">
+              <li className="text-sm text-gray-500">Redes Sociais</li>
 
               <li>
                 <a
                   href="#"
                   aria-label="Facebook da Santa Casa"
-                  class="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-600"
                 >
-                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                  <Image
+                    src="/facebook-icon-gray.svg"
+                    alt="ícone de contanto"
+                    width={22}
+                    height={22}
+                  />
                 </a>
               </li>
 
@@ -51,9 +61,14 @@ export default function TopUtilityBar() {
                 <a
                   href="#"
                   aria-label="Instagram da Santa Casa"
-                  class="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-600"
                 >
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
+                  <Image
+                    src="/instagram-icon-gray.svg"
+                    alt="ícone de contanto"
+                    width={22}
+                    height={22}
+                  />
                 </a>
               </li>
 
@@ -61,9 +76,14 @@ export default function TopUtilityBar() {
                 <a
                   href="#"
                   aria-label="YouTube da Santa Casa"
-                  class="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-600"
                 >
-                  <i class="fab fa-youtube" aria-hidden="true"></i>
+                  <Image
+                    src="/youtube-icon-gray.svg"
+                    alt="ícone de contanto"
+                    width={22}
+                    height={22}
+                  />
                 </a>
               </li>
             </ul>
