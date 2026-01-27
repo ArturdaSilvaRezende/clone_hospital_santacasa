@@ -4,7 +4,7 @@ import React from 'react'
 export default function MainNavigationBar() {
   return (
     <nav className="bg-[#727070]" aria-label="Navegação principal">
-      <div className="mx-auto max-w-7xl">
+      <div className="container mx-auto">
         <ul className="align-center flex justify-between">
           <li>
             <a

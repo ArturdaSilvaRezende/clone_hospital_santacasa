@@ -7,7 +7,7 @@ export default function PrimaryBrandingBar() {
       className="border-b border-gray-200 bg-white py-3"
       aria-label="Identidade institucional e ações principais"
     >
-      <div className="mx-auto max-w-7xl px-6 py-4">
+      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div>
             <a href="/" aria-label="Página inicial da Santa Casa">
