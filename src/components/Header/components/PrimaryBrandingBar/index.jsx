@@ -27,42 +27,43 @@ export default function PrimaryBrandingBar() {
           >
             <a
               href="#"
-              className="flex items-center gap-2 rounded-full border-2 border-red-600 px-6 py-3 font-medium text-red-600 hover:bg-red-50"
+              className="flex items-center gap-2 rounded-full border-2 border-[#FD0003] px-6 py-3 text-[14px] font-normal text-[#FD0003] hover:bg-red-50"
               aria-label="Acessar página de transparência"
             >
               <Image
                 src="/search-icon-red.svg"
                 alt="Ícone de busca"
-                width={22}
-                height={22}
+                width={18}
+                height={18}
+                className="group-hover:hidden"
               />
               <span>Transparência</span>
             </a>
 
             <a
               href="#"
-              className="flex items-center gap-2 rounded-full border-2 border-red-600 px-6 py-3 font-medium text-red-600 hover:bg-red-50"
+              className="flex items-center gap-2 rounded-full border-2 border-[#FD0003] px-6 py-3 text-[14px] font-normal text-[#FD0003] hover:bg-red-50"
               aria-label="Acessar informações do banco de sangue"
             >
               <Image
                 src="/bloodtype-icon-red.svg"
                 alt="Ícone de banco de sangue"
-                width={22}
-                height={22}
+                width={18}
+                height={18}
               />
               <span>Banco de Sangue</span>
             </a>
 
             <a
               href="#"
-              className="flex items-center gap-2 rounded-full bg-red-600 px-6 py-3 font-medium text-white hover:bg-red-700"
+              className="flex items-center gap-2 rounded-full bg-[#FD0003] px-6 py-3 text-[14px] font-normal text-white hover:bg-red-600"
               aria-label="Realizar pré-agendamento de atendimento"
             >
               <Image
                 src="/calendar-icon-white.svg"
                 alt="Ícone de banco de sangue"
-                width={20}
-                height={20}
+                width={17}
+                height={17}
               />
               <span>Pré-Agendamento</span>
             </a>

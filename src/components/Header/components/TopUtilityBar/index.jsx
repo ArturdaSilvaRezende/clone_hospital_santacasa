@@ -9,8 +9,8 @@ export default function TopUtilityBar() {
     >
       <div className="mx-auto max-w-7xl px-6 py-3">
         <div className="flex items-center justify-between">
-          <address className="flex items-center gap-6 text-sm text-gray-500 not-italic">
-            <div className="flex items-center gap-2">
+          <address className="flex items-center gap-6 text-sm text-[#A7A7A7] not-italic">
+            <div className="flex items-center gap-2 hover:opacity-80">
               <Image
                 src="/phone-icon-gray.svg"
                 alt="ícone de contanto"
@@ -22,7 +22,7 @@ export default function TopUtilityBar() {
               </a>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hover:opacity-80">
               <Image
                 src="/email-icon-gray.svg"
                 alt="ícone de contanto"
@@ -40,13 +40,13 @@ export default function TopUtilityBar() {
 
           <nav aria-label="Redes sociais">
             <ul className="flex items-center gap-3">
-              <li className="text-sm text-gray-500">Redes Sociais</li>
+              <li className="text-sm text-[#A7A7A7]">Redes Sociais</li>
 
-              <li>
+              <li title="Facebook">
                 <a
                   href="#"
                   aria-label="Facebook da Santa Casa"
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:opacity-80"
                 >
                   <Image
                     src="/facebook-icon-gray.svg"
@@ -57,11 +57,11 @@ export default function TopUtilityBar() {
                 </a>
               </li>
 
-              <li>
+              <li title="Instagram">
                 <a
                   href="#"
                   aria-label="Instagram da Santa Casa"
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:opacity-80"
                 >
                   <Image
                     src="/instagram-icon-gray.svg"
@@ -72,11 +72,11 @@ export default function TopUtilityBar() {
                 </a>
               </li>
 
-              <li>
+              <li title="YouTube">
                 <a
                   href="#"
                   aria-label="YouTube da Santa Casa"
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:opacity-80"
                 >
                   <Image
                     src="/youtube-icon-gray.svg"
