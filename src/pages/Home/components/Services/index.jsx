@@ -101,7 +101,7 @@ export default function ServicesGrid() {
                   </div>
 
                   <div className="absolute inset-0 z-10 flex flex-col justify-end p-6">
-                    <h3 className="mb-2 text-xl leading-tight font-bold text-white transition-all duration-300 group-hover:translate-y-[-2px]">
+                    <h3 className="mb-2 text-xl leading-tight font-bold text-white transition-all duration-300 group-hover:-translate-y-0.5">
                       {service.title}
                     </h3>
                     <p className="mb-4 text-sm leading-relaxed text-gray-200 transition-all duration-300 group-hover:text-white">

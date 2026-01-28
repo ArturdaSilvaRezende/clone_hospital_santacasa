@@ -68,27 +68,27 @@ export default function ReferenceSection() {
         <div className="relative">
           <button
             onClick={() => swiperRef.current?.slidePrev()}
-            className="absolute top-[40%] -left-12 z-10 flex h-12 w-12 -translate-x-4 -translate-y-1/2 items-center justify-center rounded-full bg-black shadow-lg transition-colors hover:bg-gray-800"
+            className="absolute top-[40%] -left-12 z-10 flex h-8.75 w-8.75 -translate-x-4 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
             aria-label="Slide anterior"
           >
             <Image
               src="/icons/arrow-prev-icon-white.svg"
               alt="ícone de seta para a esquerda"
-              width={20}
-              height={20}
+              width={16}
+              height={13}
             />
           </button>
 
           <button
             onClick={() => swiperRef.current?.slideNext()}
-            className="absolute top-[40%] -right-12 z-10 flex h-12 w-12 translate-x-4 -translate-y-1/2 items-center justify-center rounded-full bg-black shadow-lg transition-colors hover:bg-gray-800"
+            className="absolute top-[40%] -right-12 z-10 flex h-8.75 w-8.75 translate-x-4 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
             aria-label="Próximo slide"
           >
             <Image
               src="/icons/arrow-next-icon-white.svg"
               alt="ícone de seta para a direita"
-              width={20}
-              height={20}
+              width={16}
+              height={13}
             />
           </button>
 

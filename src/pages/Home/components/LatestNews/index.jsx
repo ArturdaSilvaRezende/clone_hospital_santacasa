@@ -185,7 +185,7 @@ export default function LatestNews() {
           </Swiper>
 
           <button
-            className="swiper-btn-prev-custom absolute top-1/2 -left-10 z-10 flex h-8.75 w-8.75 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
+            className="swiper-btn-prev-custom absolute top-1/2 -left-10 z-10 flex h-8.75 w-8.75 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
             aria-label="Notícia anterior"
           >
             <span className="sr-only">Anterior</span>
@@ -198,7 +198,7 @@ export default function LatestNews() {
           </button>
 
           <button
-            className="swiper-btn-next-custom absolute top-1/2 -right-10 z-10 flex h-8.75 w-8.75 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
+            className="swiper-btn-next-custom absolute top-1/2 -right-10 z-10 flex h-8.75 w-8.75 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
             aria-label="Próxima notícia"
           >
             <span className="sr-only">Próxima</span>
