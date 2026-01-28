@@ -69,7 +69,7 @@ export default function ServicesGrid() {
   ]
 
   return (
-    <section className="min-h-screen bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white px-4">
       <div className="container mx-auto max-w-285">
         <h2 className="text-center text-[36px] font-normal text-black">
           Um pouquinho de tudo que temos para
