@@ -1,3 +1,4 @@
+import CallToActionSections from './components/CallToAction'
 import Carousel from './components/Carousel'
 import LatestNews from './components/LatestNews'
 import ReferenceSection from './components/References'
@@ -14,6 +15,7 @@ export default function Home() {
       <ServicesGrid />
       <TeachingAndResearch />
       <ReferenceSection />
+      <CallToActionSections />
     </>
   )
 }

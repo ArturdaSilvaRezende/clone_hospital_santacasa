@@ -50,7 +50,7 @@ export default function ReferenceSection() {
         <div className="mb-12 flex flex-wrap gap-6">
           {highlights.map((highlight, index) => (
             <div key={index} className="flex items-center gap-3">
-              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-red-600">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-600">
                 <Image
                   src="/icons/border-check-icon-white.svg"
                   alt="ícone de check"
@@ -120,7 +120,7 @@ export default function ReferenceSection() {
                 slidesPerView: 6
               }
             }}
-            className="!pb-12"
+            className="pb-12!"
           >
             {statsData.map(stat => (
               <SwiperSlide key={stat.id}>

@@ -80,43 +80,45 @@ export default function ServicesGrid() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, index) => (
-            <article
-              key={service.id}
-              className="service-card group animate-fade-in-up cursor-pointer"
-              style={{
-                animationDelay: `${0.3 + index * 0.1}s`,
-                opacity: 0,
-                animationFillMode: 'forwards'
-              }}
-            >
-              <div className="relative h-64 overflow-hidden rounded-3xl transition-all duration-500 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
-                <div className="card-image-wrapper absolute inset-0">
-                  <img
-                    src={service.image}
-                    alt={`${service.title} - ${service.description}`}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                </div>
+          {services.map((service, index) => {
+            return (
+              <article
+                key={service.id}
+                className="service-card group animate-fade-in-up cursor-pointer"
+                style={{
+                  animationDelay: `${0.3 + index * 0.1}s`,
+                  opacity: 0,
+                  animationFillMode: 'forwards'
+                }}
+              >
+                <div className="relative h-64 overflow-hidden rounded-3xl transition-all duration-500 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
+                  <div className="card-image-wrapper absolute inset-0">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} - ${service.description}`}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                  </div>
 
-                <div className="absolute inset-0 z-10 flex flex-col justify-end p-6">
-                  <h3 className="mb-2 text-xl leading-tight font-bold text-white transition-all duration-300 group-hover:translate-y-[-2px]">
-                    {service.title}
-                  </h3>
-                  <p className="mb-4 text-sm leading-relaxed text-gray-200 transition-all duration-300 group-hover:text-white">
-                    {service.description}
-                  </p>
-                  <a
-                    href="#"
-                    aria-label={`${service.action} - ${service.title}`}
-                    className="action-link inline-flex w-fit items-center gap-2 text-sm font-semibold text-white transition-all duration-300 group-hover:gap-3"
-                  >
-                    <span>{service.action}</span>
-                  </a>
+                  <div className="absolute inset-0 z-10 flex flex-col justify-end p-6">
+                    <h3 className="mb-2 text-xl leading-tight font-bold text-white transition-all duration-300 group-hover:translate-y-[-2px]">
+                      {service.title}
+                    </h3>
+                    <p className="mb-4 text-sm leading-relaxed text-gray-200 transition-all duration-300 group-hover:text-white">
+                      {service.description}
+                    </p>
+                    <a
+                      href="#"
+                      aria-label={`${service.action} - ${service.title}`}
+                      className="action-link inline-flex w-fit items-center gap-2 text-sm font-semibold text-white transition-all duration-300 group-hover:gap-3"
+                    >
+                      <span>{service.action}</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>
