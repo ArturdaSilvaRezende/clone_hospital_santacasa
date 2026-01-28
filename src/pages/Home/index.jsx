@@ -1,5 +1,6 @@
 import Carousel from './components/Carousel'
 import LatestNews from './components/LatestNews'
+import ReferenceSection from './components/References'
 import ServicesGrid from './components/Services'
 import TeachingAndResearch from './components/TeachingAndResearch'
 import SantaCasaStats from './components/TotalNumberProcedures'
@@ -12,6 +13,7 @@ export default function Home() {
       <SantaCasaStats />
       <ServicesGrid />
       <TeachingAndResearch />
+      <ReferenceSection />
     </>
   )
 }
