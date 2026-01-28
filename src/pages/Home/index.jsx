@@ -1,11 +1,13 @@
 import Carousel from './components/Carousel'
 import LatestNews from './components/LatestNews'
+import SantaCasaStats from './components/TotalNumberProcedures'
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Carousel />
       <LatestNews />
-    </div>
+      <SantaCasaStats />
+    </>
   )
 }

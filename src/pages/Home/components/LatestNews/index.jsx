@@ -1,10 +1,13 @@
 'use client'
 
-import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import Image from 'next/image'
 import CustomLink from '~/components/CustomComponents/Link'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 const newsData = [
   {
@@ -95,12 +98,9 @@ const newsData = [
 ]
 
 export default function LatestNews() {
-  const prevRef = useRef(null)
-  const nextRef = useRef(null)
-
   return (
-    <section className="mt-24 mb-10" aria-labelledby="latest-news-heading">
-      <div className="container mx-auto max-w-285 px-20">
+    <section className="mt-24 mb-14" aria-labelledby="latest-news-heading">
+      <div className="container mx-auto max-w-285">
         <header className="mb-8">
           <h2
             id="latest-news-heading"
@@ -115,13 +115,10 @@ export default function LatestNews() {
             modules={[Navigation, Pagination]}
             spaceBetween={24}
             slidesPerView={1}
-            onBeforeInit={swiper => {
-              if (typeof swiper.params.navigation !== 'boolean') {
-                swiper.params.navigation.prevEl = prevRef.current
-                swiper.params.navigation.nextEl = nextRef.current
-              }
+            navigation={{
+              prevEl: '.swiper-btn-prev-custom',
+              nextEl: '.swiper-btn-next-custom'
             }}
-            navigation
             breakpoints={{
               640: {
                 slidesPerView: 2
@@ -188,8 +185,7 @@ export default function LatestNews() {
           </Swiper>
 
           <button
-            ref={prevRef}
-            className="swiper-button-prev-custom-latest-news absolute top-1/2 -left-10 z-10 flex h-8.75 w-8.75 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
+            className="swiper-btn-prev-custom absolute top-1/2 -left-10 z-10 flex h-8.75 w-8.75 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
             aria-label="Notícia anterior"
           >
             <span className="sr-only">Anterior</span>
@@ -202,8 +198,7 @@ export default function LatestNews() {
           </button>
 
           <button
-            ref={nextRef}
-            className="swiper-button-next-custom-latest-news absolute top-1/2 -right-10 z-10 flex h-8.75 w-8.75 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
+            className="swiper-btn-next-custom absolute top-1/2 -right-10 z-10 flex h-8.75 w-8.75 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
             aria-label="Próxima notícia"
           >
             <span className="sr-only">Próxima</span>
