@@ -1,5 +1,6 @@
 import Carousel from './components/Carousel'
 import LatestNews from './components/LatestNews'
+import ServicesGrid from './components/Services'
 import SantaCasaStats from './components/TotalNumberProcedures'
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <Carousel />
       <LatestNews />
       <SantaCasaStats />
+      <ServicesGrid />
     </>
   )
 }
