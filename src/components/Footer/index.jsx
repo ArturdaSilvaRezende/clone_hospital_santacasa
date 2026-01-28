@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="mb-6">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
                 <Image
-                  src="/location-icon-black.svg"
+                  src="/icons/location-icon-black.svg"
                   alt="endereço"
                   width={22}
                   height={22}
@@ -27,7 +27,7 @@ export default function Footer() {
             <div className="mb-6">
               <h3 className="mb-3 flex items-center gap-2 text-base font-bold">
                 <Image
-                  src="/phone-icon-black.svg"
+                  src="/icons/phone-icon-black.svg"
                   alt="telefone"
                   width={22}
                   height={22}
@@ -46,7 +46,7 @@ export default function Footer() {
             <div>
               <h3 className="mb-3 flex items-center gap-2 text-base font-bold">
                 <Image
-                  src="/email-icon-black.svg"
+                  src="/icons/email-icon-black.svg"
                   alt="e-mail"
                   width={22}
                   height={22}
@@ -108,7 +108,7 @@ export default function Footer() {
                     className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900"
                   >
                     <Image
-                      src="/cookie-icon-gray.svg"
+                      src="/icons/cookie-icon-gray.svg"
                       alt="política de cookies"
                       width={22}
                       height={22}
@@ -122,7 +122,7 @@ export default function Footer() {
                     className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900"
                   >
                     <Image
-                      src="/key-icon-gray.svg"
+                      src="/icons/key-icon-gray.svg"
                       alt="política de privacidade"
                       width={22}
                       height={22}
@@ -149,7 +149,7 @@ export default function Footer() {
                     aria-label="Visite nosso Instagram (abre em nova aba)"
                   >
                     <Image
-                      src="/instagram-icon-black-gray.svg"
+                      src="/icons/instagram-icon-black-gray.svg"
                       alt="Instagram"
                       width={22}
                       height={22}
@@ -166,7 +166,7 @@ export default function Footer() {
                     aria-label="Visite nosso Facebook (abre em nova aba)"
                   >
                     <Image
-                      src="/facebook-icon-black-gray.svg"
+                      src="/icons/facebook-icon-black-gray.svg"
                       alt="Facebook"
                       width={22}
                       height={22}
@@ -188,7 +188,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex flex-col gap-6">
                 <Image
-                  src="/certificado-SSL.svg"
+                  src="/images/certificado-SSL.svg"
                   alt="Site Seguro - Certificado SSL"
                   width={120}
                   height={40}
@@ -196,7 +196,7 @@ export default function Footer() {
                 />
 
                 <Image
-                  src="/secure-global-sign.svg"
+                  src="/images/secure-global-sign.svg"
                   alt="GlobalSign Secure"
                   width={120}
                   height={40}
@@ -207,7 +207,7 @@ export default function Footer() {
               <div className="mt-6">
                 <h3 className="mb-3 text-base font-bold">Plataforma Brasil</h3>
                 <Image
-                  src="/plataforma-brasil.svg"
+                  src="/images/plataforma-brasil.svg"
                   alt="Plataforma Brasil"
                   width={140}
                   height={50}

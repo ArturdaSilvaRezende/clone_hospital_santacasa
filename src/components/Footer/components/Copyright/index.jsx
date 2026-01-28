@@ -11,7 +11,12 @@ export default function Copyright() {
         </p>
         <div className="flex items-center gap-3">
           <p className="text-[16px] text-[#727070]">Desenvolvido por</p>
-          <Image src="/brand-hmo.svg" alt="logo HMO" width={32} height={32} />
+          <Image
+            src="/images/brand-hmo.svg"
+            alt="logo HMO"
+            width={32}
+            height={32}
+          />
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export default function PrimaryBrandingBar() {
           <div>
             <a href="/" aria-label="Página inicial da Santa Casa">
               <Image
-                src="/brand-santa-casa.svg"
+                src="/images/brand-santa-casa.svg"
                 alt="Logotipo da Santa Casa"
                 width={123}
                 height={54}
@@ -31,7 +31,7 @@ export default function PrimaryBrandingBar() {
               aria-label="Acessar página de transparência"
             >
               <Image
-                src="/search-icon-red.svg"
+                src="/icons/search-icon-red.svg"
                 alt="Ícone de busca"
                 width={18}
                 height={18}
@@ -46,7 +46,7 @@ export default function PrimaryBrandingBar() {
               aria-label="Acessar informações do banco de sangue"
             >
               <Image
-                src="/bloodtype-icon-red.svg"
+                src="/icons/bloodtype-icon-red.svg"
                 alt="Ícone de banco de sangue"
                 width={18}
                 height={18}
@@ -60,7 +60,7 @@ export default function PrimaryBrandingBar() {
               aria-label="Realizar pré-agendamento de atendimento"
             >
               <Image
-                src="/calendar-icon-white.svg"
+                src="/icons/calendar-icon-white.svg"
                 alt="Ícone de banco de sangue"
                 width={17}
                 height={17}

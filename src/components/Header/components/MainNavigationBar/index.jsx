@@ -33,7 +33,7 @@ export default function MainNavigationBar() {
             >
               Institucional
               <Image
-                src="/caret-down-icon-white.svg"
+                src="/icons/caret-down-icon-white.svg"
                 alt="Ícone arrow down"
                 width={22}
                 height={22}
@@ -50,7 +50,7 @@ export default function MainNavigationBar() {
             >
               Pacientes e Familiares
               <Image
-                src="/caret-down-icon-white.svg"
+                src="/icons/caret-down-icon-white.svg"
                 alt="Ícone arrow down"
                 width={22}
                 height={22}
@@ -67,7 +67,7 @@ export default function MainNavigationBar() {
             >
               Hospital Escola
               <Image
-                src="/caret-down-icon-white.svg"
+                src="/icons/caret-down-icon-white.svg"
                 alt="Ícone arrow down"
                 width={22}
                 height={22}
@@ -84,7 +84,7 @@ export default function MainNavigationBar() {
             >
               Como ajudar
               <Image
-                src="/caret-down-icon-white.svg"
+                src="/icons/caret-down-icon-white.svg"
                 alt="Ícone arrow down"
                 width={22}
                 height={22}
@@ -101,7 +101,7 @@ export default function MainNavigationBar() {
             >
               Contato
               <Image
-                src="/caret-down-icon-white.svg"
+                src="/icons/caret-down-icon-white.svg"
                 alt="Ícone arrow down"
                 width={22}
                 height={22}

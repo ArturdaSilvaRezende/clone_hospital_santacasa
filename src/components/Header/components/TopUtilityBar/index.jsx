@@ -12,7 +12,7 @@ export default function TopUtilityBar() {
           <address className="flex items-center gap-6 text-sm text-[#A7A7A7] not-italic">
             <div className="flex items-center gap-2 hover:opacity-80">
               <Image
-                src="/phone-icon-gray.svg"
+                src="/icons/phone-icon-gray.svg"
                 alt="ícone de contanto"
                 width={18}
                 height={18}
@@ -24,7 +24,7 @@ export default function TopUtilityBar() {
 
             <div className="flex items-center gap-2 hover:opacity-80">
               <Image
-                src="/email-icon-gray.svg"
+                src="/icons/email-icon-gray.svg"
                 alt="ícone de contanto"
                 width={22}
                 height={22}
@@ -49,7 +49,7 @@ export default function TopUtilityBar() {
                   className="text-gray-400 hover:opacity-80"
                 >
                   <Image
-                    src="/facebook-icon-gray.svg"
+                    src="/icons/facebook-icon-gray.svg"
                     alt="ícone de contanto"
                     width={22}
                     height={22}
@@ -64,7 +64,7 @@ export default function TopUtilityBar() {
                   className="text-gray-400 hover:opacity-80"
                 >
                   <Image
-                    src="/instagram-icon-gray.svg"
+                    src="/icons/instagram-icon-gray.svg"
                     alt="ícone de contanto"
                     width={22}
                     height={22}
@@ -79,7 +79,7 @@ export default function TopUtilityBar() {
                   className="text-gray-400 hover:opacity-80"
                 >
                   <Image
-                    src="/youtube-icon-gray.svg"
+                    src="/icons/youtube-icon-gray.svg"
                     alt="ícone de contanto"
                     width={22}
                     height={22}
