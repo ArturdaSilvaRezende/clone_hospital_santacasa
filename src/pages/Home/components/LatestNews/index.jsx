@@ -99,9 +99,8 @@ export default function LatestNews() {
   const nextRef = useRef(null)
 
   return (
-    <section className="mt-24 mb-10 px-4" aria-labelledby="latest-news-heading">
-      <div className="mx-auto max-w-7xl px-20">
-        {/* Header */}
+    <section className="mt-24 mb-10" aria-labelledby="latest-news-heading">
+      <div className="container mx-auto max-w-285 px-20">
         <header className="mb-8">
           <h2
             id="latest-news-heading"
@@ -111,15 +110,16 @@ export default function LatestNews() {
           </h2>
         </header>
 
-        {/* Carousel */}
         <div className="relative">
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={24}
             slidesPerView={1}
             onBeforeInit={swiper => {
-              swiper.params.navigation.prevEl = prevRef.current
-              swiper.params.navigation.nextEl = nextRef.current
+              if (typeof swiper.params.navigation !== 'boolean') {
+                swiper.params.navigation.prevEl = prevRef.current
+                swiper.params.navigation.nextEl = nextRef.current
+              }
             }}
             navigation
             breakpoints={{
@@ -138,7 +138,6 @@ export default function LatestNews() {
             {newsData.map(news => (
               <SwiperSlide key={news.id} className="pb-5">
                 <article className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg">
-                  {/* Image */}
                   <div className="relative h-48 w-full bg-gray-200">
                     <Image
                       src={news.image}
@@ -149,9 +148,7 @@ export default function LatestNews() {
                     />
                   </div>
 
-                  {/* Content */}
                   <div className="flex grow flex-col p-6">
-                    {/* Date */}
                     <time
                       dateTime={news.date}
                       className="mb-3 text-sm text-gray-500"
@@ -163,17 +160,14 @@ export default function LatestNews() {
                       })}
                     </time>
 
-                    {/* Title */}
                     <h3 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900">
                       {news.title}
                     </h3>
 
-                    {/* Excerpt */}
                     <p className="mb-4 line-clamp-3 grow text-gray-600">
                       {news.excerpt}
                     </p>
 
-                    {/* Read More Link */}
                     <a
                       href={`/noticias/${news.slug}`}
                       className="group inline-flex items-center gap-2 font-semibold text-red-600 transition-colors hover:text-red-700"
@@ -193,7 +187,6 @@ export default function LatestNews() {
             ))}
           </Swiper>
 
-          {/* Botões de navegação customizados */}
           <button
             ref={prevRef}
             className="swiper-button-prev-custom-latest-news absolute top-1/2 -left-10 z-10 flex h-8.75 w-8.75 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#262626] text-gray-800 shadow-lg transition hover:opacity-75 focus:ring-4 focus:ring-gray-700 focus:outline-none"
@@ -231,7 +224,6 @@ export default function LatestNews() {
         />
       </div>
 
-      {/* Screen Reader Only Styles */}
       <style jsx global>{`
         .sr-only {
           position: absolute;

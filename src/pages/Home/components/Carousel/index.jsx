@@ -77,7 +77,7 @@ export default function Carousel() {
               </div>
 
               {/* Conteúdo */}
-              <div className="relative z-10 container mx-auto flex h-full items-center px-15">
+              <div className="relative z-10 container mx-auto flex h-full max-w-285 items-center">
                 <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
                   {/* Texto à esquerda */}
                   <div className="max-w-2xl space-y-6 text-white">

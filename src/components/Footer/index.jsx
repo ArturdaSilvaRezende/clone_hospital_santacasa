@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-[#EDECEC] py-12 text-[#262626]">
-        <div className="container mx-auto flex justify-between px-6">
+        <div className="container mx-auto flex max-w-285 justify-between">
           <div className="w-70.75 flex-col gap-7.5">
             <div className="mb-6">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">

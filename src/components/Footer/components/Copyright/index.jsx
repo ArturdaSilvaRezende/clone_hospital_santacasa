@@ -4,7 +4,7 @@ export default function Copyright() {
   const date = new Date()
   return (
     <div className="flex h-18 items-center border-t border-gray-300 bg-[#EDECEC]">
-      <div className="container mx-auto flex items-center justify-between px-6">
+      <div className="container mx-auto flex max-w-285 items-center justify-between">
         <p className="text-[#727070]">
           Copyright © {date.getFullYear()} Hospital Santa Casa de Misericórdia
           de Goiânia

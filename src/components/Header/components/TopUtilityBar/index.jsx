@@ -7,7 +7,7 @@ export default function TopUtilityBar() {
       className="border-b border-gray-200 bg-white"
       aria-label="Informações de contato e redes sociais"
     >
-      <div className="container mx-auto px-6 py-3">
+      <div className="container mx-auto max-w-285 py-3">
         <div className="flex items-center justify-between">
           <address className="flex items-center gap-6 text-sm text-[#A7A7A7] not-italic">
             <div className="flex items-center gap-2 hover:opacity-80">
