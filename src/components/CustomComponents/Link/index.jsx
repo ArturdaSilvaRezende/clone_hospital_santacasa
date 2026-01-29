@@ -8,7 +8,7 @@ export default function CustomLink({
 }) {
   return (
     <div
-      className={`cursor-pointer rounded-full px-6 py-3 text-center text-[16px] font-semibold transition-all duration-300 ${classNameContainer}`}
+      className={`flex h-10 w-max cursor-pointer items-center justify-center rounded-full px-6 py-3 text-center text-[15px] transition-all duration-300 ${classNameContainer}`}
     >
       <Link href={`${href}`} className={classNameLink}>
         {label}

@@ -107,7 +107,6 @@ export default function Carousel() {
           </SwiperSlide>
         ))}
 
-        {/* Botões de navegação customizados */}
         <button
           className="swiper-button-prev-custom absolute top-1/2 z-20 flex -translate-y-1/2 items-center justify-center transition-all duration-300"
           aria-label="Slide anterior"
@@ -136,7 +135,6 @@ export default function Carousel() {
           <span className="sr-only">Ir para o próximo slide</span>
         </button>
 
-        {/* Paginação customizada */}
         <div
           className="swiper-pagination-custom z-20 container mx-auto flex justify-end gap-3 px-6"
           role="group"
