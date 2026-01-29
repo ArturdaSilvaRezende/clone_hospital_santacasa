@@ -133,12 +133,12 @@ export default function LatestNews() {
             aria-label="Carrossel de notícias"
           >
             {newsData.map(news => (
-              <SwiperSlide key={news.id} className="pb-5">
-                <article className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg">
+              <SwiperSlide key={news.id} className="px-1 pb-2">
+                <article className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md shadow-black/30 transition-shadow">
                   <div className="relative h-48 w-full bg-gray-200">
                     <Image
                       src={news.image}
-                      alt=""
+                      alt={`thumbnail da notícia: ${news.title}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

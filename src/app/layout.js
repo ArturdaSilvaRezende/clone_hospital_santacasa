@@ -19,8 +19,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${poppins.variable} antialiased`}
+      >
         <Header />
         {children}
         <Footer />
