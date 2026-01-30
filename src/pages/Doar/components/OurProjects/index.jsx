@@ -92,7 +92,7 @@ const projetos = [
 export default function OurProjects() {
   const swiperRef = useRef(null)
   return (
-    <section className="relative overflow-hidden px-4 py-16">
+    <section className="relative mb-24 overflow-hidden px-4 pt-16">
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-red-500/60 via-red-500/30 to-white pb-5" />
 
       <div className="relative mx-auto max-w-241.25">
@@ -131,6 +131,12 @@ export default function OurProjects() {
           autoplay={{
             delay: 3000,
             disableOnInteraction: false
+          }}
+          pagination={{
+            clickable: true,
+            el: '.swiper-pagination-custom-our-projects',
+            bulletActiveClass:
+              'swiper-pagination-bullet-active !bg-red-600 !h-[13px] !w-[48px] !rounded-xl'
           }}
           breakpoints={{
             320: {
@@ -173,7 +179,7 @@ export default function OurProjects() {
                   </p>
 
                   <button
-                    className="h-9.25 w-full rounded-full border-2 border-black bg-white px-6 font-medium text-gray-900 transition-colors duration-200 hover:bg-gray-50"
+                    className="h-9.25 w-full rounded-full border border-black bg-white px-6 font-medium text-gray-900 transition-colors duration-300 hover:border-[#FD0003] hover:bg-[#FD0003] hover:text-white"
                     aria-label={`Doar para o projeto ${projeto.nome}`}
                   >
                     Doar
@@ -182,6 +188,12 @@ export default function OurProjects() {
               </article>
             </SwiperSlide>
           ))}
+
+          <div
+            className="swiper-pagination-custom-our-projects z-20 container mx-auto mt-7 flex justify-center gap-3 px-6"
+            role="group"
+            aria-label="Indicadores de slides"
+          />
         </Swiper>
       </div>
     </section>
