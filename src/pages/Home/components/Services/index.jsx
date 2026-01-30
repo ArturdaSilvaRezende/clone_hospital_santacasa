@@ -8,7 +8,7 @@ export default function ServicesGrid() {
       description: 'Agende sua consulta pelo SUS.',
       action: 'Agendar agora',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://cdn.manualdohomem.com.br/?w=1233&h=772&key=aHR0cHM6Ly9tYW51YWxkb2hvbWVtbW9kZXJuby5jb20uYnI=&u=%2Ffiles%2F2024%2F06%2Fcomo-marcar-consulta-pelo-aplicativo-do-sus-como-marcar-consulta-pelo-aplicativo-do-sus.webp'
     },
     {
       id: 2,
@@ -16,7 +16,8 @@ export default function ServicesGrid() {
       description: 'Conheça nossas áreas médicas.',
       action: 'Ver especialidades',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format&fit=crop&q=80'
+      // médicos + diversidade de áreas
     },
     {
       id: 3,
@@ -24,7 +25,8 @@ export default function ServicesGrid() {
       description: 'Agendamento particular online.',
       action: 'Agendar consulta',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800&auto=format&fit=crop&q=80'
+      // médico + paciente em atendimento direto
     },
     {
       id: 4,
@@ -32,7 +34,7 @@ export default function ServicesGrid() {
       description: 'Laboratório e diagnóstico por imagem.',
       action: 'Consultar exames',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://cdn.pixabay.com/photo/2016/09/27/17/14/heart-1698840_1280.jpg'
     },
     {
       id: 5,
@@ -40,7 +42,8 @@ export default function ServicesGrid() {
       description: 'Faça parte da nossa equipe.',
       action: 'Ver vagas',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://cdn.pixabay.com/photo/2017/08/02/00/49/people-2569234_1280.jpg'
+      // equipe + carreira
     },
     {
       id: 6,
@@ -48,7 +51,8 @@ export default function ServicesGrid() {
       description: 'Canal de comunicação e sugestões.',
       action: 'Entrar em contato',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://images.pexels.com/photos/16129688/pexels-photo-16129688.jpeg?_gl=1*es1361*_ga*OTk3MTg1ODIxLjE3Njk3OTQ4MzA.*_ga_8JE65Q40S6*czE3Njk3OTQ4MzAkbzEkZzEkdDE3Njk3OTQ5OTMkajU5JGwwJGgw'
+      // atendimento / suporte / escuta
     },
     {
       id: 7,
@@ -56,7 +60,8 @@ export default function ServicesGrid() {
       description: 'Seja um voluntário.',
       action: 'Seja voluntário',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=800&auto=format&fit=crop&q=80'
+      // pessoas ajudando pessoas
     },
     {
       id: 8,
@@ -64,7 +69,8 @@ export default function ServicesGrid() {
       description: 'Doe sangue e salve vidas.',
       action: 'Doar sangue',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80'
+        'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=800&auto=format&fit=crop&q=80'
+      // doação de sangue clara e direta
     }
   ]
 
@@ -91,7 +97,7 @@ export default function ServicesGrid() {
                   animationFillMode: 'forwards'
                 }}
               >
-                <div className="relative h-64 overflow-hidden rounded-3xl transition-all duration-500 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
+                <div className="relative h-64 overflow-hidden rounded-3xl transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
                   <div className="card-image-wrapper absolute inset-0">
                     <img
                       src={service.image}
@@ -101,10 +107,10 @@ export default function ServicesGrid() {
                   </div>
 
                   <div className="absolute inset-0 z-10 flex flex-col justify-end p-6">
-                    <h3 className="mb-2 text-xl leading-tight font-bold text-white transition-all duration-300 group-hover:-translate-y-0.5">
+                    <h3 className="text-[16px] leading-tight font-bold text-white transition-all duration-300 group-hover:-translate-y-0.5">
                       {service.title}
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-gray-200 transition-all duration-300 group-hover:text-white">
+                    <p className="mb-2 text-[12px] leading-relaxed text-gray-200 transition-all duration-300 group-hover:text-white">
                       {service.description}
                     </p>
                     <a
