@@ -1,4 +1,5 @@
 import Donations from './components/Donations'
+import OurProjects from './components/OurProjects'
 import TransformLives from './components/TransformLives'
 
 export default function Doar() {
@@ -6,6 +7,7 @@ export default function Doar() {
     <>
       <TransformLives />
       <Donations />
+      <OurProjects />
     </>
   )
 }

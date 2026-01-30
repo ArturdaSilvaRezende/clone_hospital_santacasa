@@ -30,10 +30,7 @@ export default function Donations() {
   }
 
   return (
-    <section
-      className="min-h-screen w-full bg-white p-8"
-      aria-label="Seção Donations"
-    >
+    <section className="w-full bg-white p-8" aria-label="Seção Donations">
       <div className="mx-auto max-w-250">
         <div className="mb-8 flex items-start justify-between">
           <div>
@@ -99,7 +96,6 @@ export default function Donations() {
           })}
         </div>
 
-        {/* Botão Doar */}
         <div className="flex justify-end">
           <button
             onClick={handleDonate}
@@ -110,6 +106,10 @@ export default function Donations() {
           </button>
         </div>
       </div>
+
+      <h2 className="container mx-auto my-7 max-w-285 text-left text-3xl font-bold text-gray-900 md:text-4xl">
+        Nossos Projetos
+      </h2>
     </section>
   )
 }
