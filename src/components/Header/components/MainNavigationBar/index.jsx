@@ -1,15 +1,16 @@
 import Image from 'next/image'
 import React from 'react'
+import './styles.css'
 
 export default function MainNavigationBar() {
   return (
     <nav className="bg-[#727070]" aria-label="Navegação principal">
       <div className="container mx-auto max-w-285">
-        <ul className="align-center flex justify-between">
+        <ul className="align-center animate-fade-in-up flex justify-between">
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 hover:gap-3 focus-visible:outline-none"
             >
               Início
             </a>
@@ -18,7 +19,7 @@ export default function MainNavigationBar() {
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 hover:gap-3 focus-visible:outline-none"
             >
               Especialidades
             </a>
@@ -27,7 +28,7 @@ export default function MainNavigationBar() {
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 focus-visible:outline-none"
               aria-haspopup="true"
               aria-expanded="false"
             >
@@ -44,7 +45,7 @@ export default function MainNavigationBar() {
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 focus-visible:outline-none"
               aria-haspopup="true"
               aria-expanded="false"
             >
@@ -61,7 +62,7 @@ export default function MainNavigationBar() {
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 focus-visible:outline-none"
               aria-haspopup="true"
               aria-expanded="false"
             >
@@ -78,7 +79,7 @@ export default function MainNavigationBar() {
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 focus-visible:outline-none"
               aria-haspopup="true"
               aria-expanded="false"
             >
@@ -95,7 +96,7 @@ export default function MainNavigationBar() {
           <li>
             <a
               href="#"
-              className="flex items-center gap-2 py-4 font-medium text-white hover:bg-gray-600"
+              className="action-link-item flex items-center gap-2 py-4 font-medium text-white transition-all duration-300 focus-visible:outline-none"
               aria-haspopup="true"
               aria-expanded="false"
             >
