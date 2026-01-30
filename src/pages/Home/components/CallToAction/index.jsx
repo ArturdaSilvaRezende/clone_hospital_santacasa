@@ -11,7 +11,7 @@ export default function CallToActionSections() {
         className="flex w-[50%] items-center justify-center bg-[#31313F]"
         aria-labelledby="volunteer-heading"
       >
-        <div className="mx-auto flex h-67 w-110 flex-col items-center justify-center">
+        <div className="mx-auto flex h-67 w-114 flex-col items-center justify-center">
           <h2
             id="volunteer-heading"
             className="mb-5 text-[26px] leading-relaxed font-medium text-white"

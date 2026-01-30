@@ -3,30 +3,139 @@
 import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
+import {
+  FaStethoscope,
+  FaUsers,
+  FaUserMd,
+  FaHeartbeat,
+  FaClock,
+  FaBed,
+  FaChartLine,
+  FaAward,
+  FaHospital,
+  FaTools,
+  FaUserNurse,
+  FaCertificate,
+  FaHospitalAlt,
+  FaTrophy,
+  FaProcedures,
+  FaHeart
+} from 'react-icons/fa'
+
 import Image from 'next/image'
 
 export default function ReferenceSection() {
   const swiperRef = useRef(null)
 
   const statsData = [
-    { id: 1, valor: '+50', rotulo: 'Especialidades Médicas' },
-    { id: 2, valor: '+10.000', rotulo: 'Cirurgias Realizadas' },
-    { id: 3, valor: '+100', rotulo: 'Médicos Especialistas' },
-    { id: 4, valor: '24h', rotulo: 'Atendimento de Urgência' },
-    { id: 5, valor: '+200', rotulo: 'Leitos Disponíveis' },
-    { id: 6, valor: '95%', rotulo: 'Taxa de Sucesso' },
-    { id: 7, valor: '+15', rotulo: 'Anos de Experiência' },
-    { id: 8, valor: '+30', rotulo: 'Convênios Aceitos' },
-    { id: 9, valor: '100%', rotulo: 'Equipamentos Modernos' },
-    { id: 10, valor: '+5.000', rotulo: 'Pacientes por Mês' },
-    { id: 11, valor: '+80', rotulo: 'Profissionais de Saúde' },
-    { id: 12, valor: 'ISO 9001', rotulo: 'Certificação de Qualidade' },
-    { id: 13, valor: '+20', rotulo: 'Salas Cirúrgicas' },
-    { id: 14, valor: '1º', rotulo: 'Ranking Regional' },
-    { id: 15, valor: '+300', rotulo: 'Cirurgias Cardíacas/Ano' },
-    { id: 16, valor: '+150', rotulo: 'Cirurgias Vasculares/Ano' },
-    { id: 17, valor: '24/7', rotulo: 'UTI Disponível' },
-    { id: 18, valor: '+1000', rotulo: 'Vidas Salvas por Ano' }
+    {
+      id: 1,
+      valor: '+50',
+      rotulo: 'Especialidades Médicas',
+      icon: <FaStethoscope size={20} color="#fff" />
+    },
+    {
+      id: 2,
+      valor: '+10.000',
+      rotulo: 'Cirurgias Realizadas',
+      icon: <FaHeartbeat size={20} color="#fff" />
+    },
+    {
+      id: 3,
+      valor: '+100',
+      rotulo: 'Médicos Especialistas',
+      icon: <FaUserMd size={20} color="#fff" />
+    },
+    {
+      id: 4,
+      valor: '24h',
+      rotulo: 'Atendimento de Urgência',
+      icon: <FaClock size={20} color="#fff" />
+    },
+    {
+      id: 5,
+      valor: '+200',
+      rotulo: 'Leitos Disponíveis',
+      icon: <FaBed size={20} color="#fff" />
+    },
+    {
+      id: 6,
+      valor: '95%',
+      rotulo: 'Taxa de Sucesso',
+      icon: <FaChartLine size={20} color="#fff" />
+    },
+    {
+      id: 7,
+      valor: '+15',
+      rotulo: 'Anos de Experiência',
+      icon: <FaAward size={20} color="#fff" />
+    },
+    {
+      id: 8,
+      valor: '+30',
+      rotulo: 'Convênios Aceitos',
+      icon: <FaHospital size={20} color="#fff" />
+    },
+    {
+      id: 9,
+      valor: '100%',
+      rotulo: 'Equipamentos Modernos',
+      icon: <FaTools size={20} color="#fff" />
+    },
+    {
+      id: 10,
+      valor: '+5.000',
+      rotulo: 'Pacientes por Mês',
+      icon: <FaUsers size={20} color="#fff" />
+    },
+    {
+      id: 11,
+      valor: '+80',
+      rotulo: 'Profissionais de Saúde',
+      icon: <FaUserNurse size={20} color="#fff" />
+    },
+    {
+      id: 12,
+      valor: 'ISO 9001',
+      rotulo: 'Certificação de Qualidade',
+      icon: <FaCertificate size={20} color="#fff" />
+    },
+    {
+      id: 13,
+      valor: '+20',
+      rotulo: 'Salas Cirúrgicas',
+      icon: <FaHospitalAlt size={20} color="#fff" />
+    },
+    {
+      id: 14,
+      valor: '1º',
+      rotulo: 'Ranking Regional',
+      icon: <FaTrophy size={20} color="#fff" />
+    },
+    {
+      id: 15,
+      valor: '+300',
+      rotulo: 'Cirurgias Cardíacas/Ano',
+      icon: <FaHeartbeat size={20} color="#fff" />
+    },
+    {
+      id: 16,
+      valor: '+150',
+      rotulo: 'Cirurgias Vasculares/Ano',
+      icon: <FaProcedures size={20} color="#fff" />
+    },
+    {
+      id: 17,
+      valor: '24/7',
+      rotulo: 'UTI Disponível',
+      icon: <FaHospital size={20} color="#fff" />
+    },
+    {
+      id: 18,
+      valor: '+1000',
+      rotulo: 'Vidas Salvas por Ano',
+      icon: <FaHeart size={20} color="#fff" />
+    }
   ]
 
   const highlights = [
@@ -112,21 +221,15 @@ export default function ReferenceSection() {
               }
             }}
             className="pb-12!"
+            aria-roledescription="carrossel"
           >
             {statsData.map(stat => (
               <SwiperSlide key={stat.id}>
                 <article className="relative flex h-58 flex-col items-center justify-center rounded-xl bg-white p-6 shadow-md transition-shadow hover:shadow-xl">
-                  {/* Ícone de Estetoscópio no Canto Superior Direito */}
                   <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-red-600">
-                    <Image
-                      src="/icons/stethoscope-icon-white.svg"
-                      alt="ícone de estetoscópio"
-                      width={20}
-                      height={20}
-                    />
+                    {stat.icon}
                   </div>
 
-                  {/* Conteúdo do Card */}
                   <div className="text-center">
                     <p className="mb-2 text-4xl font-bold text-gray-900">
                       {stat.valor}

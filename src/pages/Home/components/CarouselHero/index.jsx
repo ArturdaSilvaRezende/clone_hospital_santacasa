@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import './styles.css'
 import CustomLink from '~/components/CustomComponents/Link'
+import './styles.css'
 
 export default function CarouselHero() {
   const slides = [
@@ -59,7 +59,6 @@ export default function CarouselHero() {
         {slides.map(slide => (
           <SwiperSlide key={slide.id}>
             <article className="relative h-full w-full">
-              {/* Imagem de fundo */}
               <div className="absolute inset-0 h-full w-full">
                 <Image
                   src={slide.image}
@@ -69,17 +68,15 @@ export default function CarouselHero() {
                   priority={slide.id === 1}
                   quality={90}
                 />
-                {/* Overlay escuro */}
+
                 <div
                   className="absolute inset-0 bg-black/60"
                   aria-hidden="true"
                 />
               </div>
 
-              {/* Conteúdo */}
               <div className="relative z-10 container mx-auto flex h-full max-w-285 items-center">
                 <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-                  {/* Texto à esquerda */}
                   <div className="max-w-2xl space-y-6 text-white">
                     <header>
                       <h1 className="text-4xl text-[32px] leading-tight font-bold">
@@ -99,7 +96,6 @@ export default function CarouselHero() {
                     />
                   </div>
 
-                  {/* Espaço para imagem à direita (em telas grandes) */}
                   <div className="hidden lg:block" aria-hidden="true" />
                 </div>
               </div>
