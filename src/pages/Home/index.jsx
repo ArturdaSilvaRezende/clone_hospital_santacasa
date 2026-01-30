@@ -1,5 +1,5 @@
 import CallToActionSections from './components/CallToAction'
-import Carousel from './components/Carousel'
+import CarouselHero from './components/CarouselHero'
 import LatestNews from './components/LatestNews'
 import ReferenceSection from './components/References'
 import ServicesGrid from './components/Services'
@@ -9,7 +9,7 @@ import SantaCasaStats from './components/TotalNumberProcedures'
 export default function Home() {
   return (
     <>
-      <Carousel />
+      <CarouselHero />
       <LatestNews />
       <SantaCasaStats />
       <ServicesGrid />

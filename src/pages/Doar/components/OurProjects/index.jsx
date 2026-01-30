@@ -123,15 +123,10 @@ export default function OurProjects() {
         </button>
 
         <Swiper
-          modules={[Pagination, Navigation, Autoplay]}
+          modules={[Pagination, Navigation]}
           onSwiper={swiper => (swiperRef.current = swiper)}
           spaceBetween={20}
           slidesPerView={1.5}
-          loop={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false
-          }}
           pagination={{
             clickable: true,
             el: '.swiper-pagination-custom-our-projects',

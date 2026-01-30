@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 import Image from 'next/image'
 
 export default function ReferenceSection() {
@@ -93,19 +93,10 @@ export default function ReferenceSection() {
           </button>
 
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
+            modules={[Navigation, Pagination]}
             onSwiper={swiper => (swiperRef.current = swiper)}
             spaceBetween={20}
             slidesPerView={1.5}
-            loop={true}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false
-            }}
-            // pagination={{
-            //   clickable: true,
-            //   bulletActiveClass: 'swiper-pagination-bullet-active !bg-red-600'
-            // }}
             breakpoints={{
               640: {
                 slidesPerView: 2.5

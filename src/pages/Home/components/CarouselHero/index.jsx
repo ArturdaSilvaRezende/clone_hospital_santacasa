@@ -5,7 +5,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import './styles.css'
 import CustomLink from '~/components/CustomComponents/Link'
 
-export default function Carousel() {
+export default function CarouselHero() {
   const slides = [
     {
       id: 1,
