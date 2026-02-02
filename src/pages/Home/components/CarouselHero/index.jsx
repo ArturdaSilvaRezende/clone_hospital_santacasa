@@ -55,7 +55,7 @@ export default function CarouselHero() {
         }}
         loop={list.length > 1}
         className="h-full w-full"
-        aria-roledescription="carrossel"
+        aria-roledescription="Banner rotativo"
       >
         {list.map((slide, index) => (
           <SwiperSlide key={slide.id}>
@@ -66,6 +66,7 @@ export default function CarouselHero() {
                   alt={slide.title}
                   fill
                   priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
 
                 <div

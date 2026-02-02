@@ -96,7 +96,6 @@ export default function Footer() {
               </ul>
             </nav>
 
-            {/* Coluna 3 - Políticas */}
             <nav aria-labelledby="politicas">
               <h2 id="politicas" className="mb-4 text-lg font-bold">
                 Políticas

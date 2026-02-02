@@ -77,13 +77,10 @@ export default function ServicesGrid() {
   return (
     <section className="min-h-screen bg-white px-4">
       <div className="container mx-auto max-w-285">
-        <h2 className="text-center text-[36px] font-normal text-black">
+        <h2 className="mb-12 text-center text-[36px] font-normal text-black">
           Um pouquinho de tudo que temos para
           <span className="text-[#FD0003]"> você</span>
         </h2>
-        <p className="mb-12 text-center text-[20px] text-[#A7A7A7]">
-          Em 2024 a Santa Casa realizou:
-        </p>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => {
