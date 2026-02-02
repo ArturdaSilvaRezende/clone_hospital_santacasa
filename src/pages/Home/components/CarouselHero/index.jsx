@@ -1,37 +1,38 @@
 'use client'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+
+import { api } from '~/services/api'
+
 import CustomLink from '~/components/CustomComponents/Link'
+
 import './styles.css'
 
 export default function CarouselHero() {
-  const slides = [
-    {
-      id: 1,
-      title: 'Santa Casa lança edital de Aperfeiçoamento em Saúde',
-      description:
-        'O HOSPITAL SANTA CASA DE MISERICÓRDIA DE GOIÂNIA/GO, por intermédio da sua superintendência geral, no uso de suas atribuições legais, mediante as condições estipuladas neste edital, torna público a realização do processo seletivo para provimento do quadro destinado à formação de profissionais de nível superior e técnico interessados em participar dos Cursos de Aperfeiçoamento Profissional – Edição 2026/1.',
-      image: '/banner.jpg',
-      alt: 'Banner principal mostrando nossos serviços'
-    },
-    {
-      id: 2,
-      title: 'Inovação e Tecnologia',
-      description:
-        'Transforme sua empresa com as mais modernas ferramentas do mercado',
-      image: '/banner.jpg',
-      alt: 'Tecnologia e inovação para seu negócio'
-    },
-    {
-      id: 3,
-      title: 'Atendimento Especializado',
-      description:
-        'Nossa equipe está pronta para oferecer o melhor suporte e consultoria',
-      image: '/banner.jpg',
-      alt: 'Equipe especializada em atendimento'
+  const [list, setList] = useState([])
+  const [info, setInfo] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+
+  async function load() {
+    try {
+      setIsLoading(true)
+      const result = await api.get('/news-detach?limit=100')
+
+      if (result.data?.list.length > 0) {
+        setList(result.data?.list || [])
+        setInfo(result.data?.list[0])
+      }
+    } catch (err) {
+    } finally {
+      setIsLoading(false)
     }
-  ]
+  }
+
+  useEffect(() => {
+    load()
+  }, [])
 
   return (
     <section
@@ -52,21 +53,19 @@ export default function CarouselHero() {
           delay: 5000,
           disableOnInteraction: false
         }}
-        loop={true}
+        loop={list.length > 1}
         className="h-full w-full"
         aria-roledescription="carrossel"
       >
-        {slides.map(slide => (
+        {list.map((slide, index) => (
           <SwiperSlide key={slide.id}>
             <article className="relative h-full w-full">
               <div className="absolute inset-0 h-full w-full">
                 <Image
-                  src={slide.image}
-                  alt={slide.alt}
+                  src={slide.url}
+                  alt={slide.title}
                   fill
-                  className="object-cover"
-                  priority={slide.id === 1}
-                  quality={90}
+                  priority={index === 0}
                 />
 
                 <div

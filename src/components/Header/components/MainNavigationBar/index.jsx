@@ -6,7 +6,7 @@ export default function MainNavigationBar() {
   return (
     <nav className="bg-[#727070]" aria-label="Navegação principal">
       <div className="container mx-auto max-w-285">
-        <ul className="align-center animate-fade-in-up flex justify-between">
+        <ul className="align-center flex justify-between">
           <li>
             <a
               href="#"
