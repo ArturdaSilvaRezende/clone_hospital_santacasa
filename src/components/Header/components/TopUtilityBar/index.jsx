@@ -9,35 +9,6 @@ export default function TopUtilityBar() {
     >
       <div className="container mx-auto max-w-285 py-3">
         <div className="flex items-center justify-between">
-          <address className="flex items-center gap-6 text-sm text-[#A7A7A7] not-italic">
-            <div className="flex items-center gap-2 hover:opacity-80">
-              <Image
-                src="/icons/phone-icon-gray.svg"
-                alt="ícone de contanto"
-                width={18}
-                height={18}
-              />
-              <a href="tel:+556232544200" aria-label="Telefone da Santa Casa">
-                (62) 3254-4200
-              </a>
-            </div>
-
-            <div className="flex items-center gap-2 hover:opacity-80">
-              <Image
-                src="/icons/email-icon-gray.svg"
-                alt="ícone de contanto"
-                width={22}
-                height={22}
-              />
-              <a
-                href="mailto:contato@santacasago.org.br"
-                aria-label="E-mail da Santa Casa"
-              >
-                contato@santacasago.org.br
-              </a>
-            </div>
-          </address>
-
           <nav aria-label="Redes sociais">
             <ul className="flex items-center gap-3">
               <li className="text-sm text-[#A7A7A7]">Redes Sociais</li>
@@ -85,6 +56,50 @@ export default function TopUtilityBar() {
                     height={22}
                   />
                 </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Links úteis">
+            <ul className="flex items-center gap-6">
+              <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline">
+                <Image
+                  src="/icons/fluent-patient-icon-red.svg"
+                  alt="Portal do Paciente"
+                  width={22}
+                  height={22}
+                />
+                <span>Portal do Paciente</span>
+              </li>
+
+              <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline">
+                <Image
+                  src="/icons/bloodtype-icon-red.svg"
+                  alt="Banco de Sangue"
+                  width={22}
+                  height={22}
+                />
+                <span>Banco de Sangue</span>
+              </li>
+
+              <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline">
+                <Image
+                  src="/icons/exam-result-icon-red.svg"
+                  alt="Resultado de Exames"
+                  width={22}
+                  height={22}
+                />
+                <span>Resultado de Exames</span>
+              </li>
+
+              <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline">
+                <Image
+                  src="/icons/search-icon-red.svg"
+                  alt="Transparência"
+                  width={22}
+                  height={22}
+                />
+                <span>Transparência</span>
               </li>
             </ul>
           </nav>
