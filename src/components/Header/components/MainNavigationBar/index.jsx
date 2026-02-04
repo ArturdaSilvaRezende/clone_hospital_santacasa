@@ -150,10 +150,13 @@ export default function MainNavigationBar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <button className="flex h-10 w-45.5 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50">
+          <Link
+            href="/pre-agendamento"
+            className="flex h-10 w-45.5 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
+          >
             <PiCalendarCheckLight size={20} />
             <span>Pré-Agendamento SUS</span>
-          </button>
+          </Link>
           <button className="flex h-10 w-39.5 items-center justify-between rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700">
             <BiDonateHeart size={20} />
             <span>Agendar Consulta</span>
