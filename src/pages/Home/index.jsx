@@ -1,7 +1,7 @@
 import CallToActionSections from './components/CallToAction'
 import CarouselHero from './components/CarouselHero'
 import LatestNews from './components/LatestNews'
-import ReferenceSection from './components/References'
+import References from './components/References'
 import ServicesGrid from './components/Services'
 import TeachingAndResearch from './components/TeachingAndResearch'
 import TotalNumberProcedures from './components/TotalNumberProcedures'
@@ -14,7 +14,7 @@ export default function Home() {
       <TotalNumberProcedures />
       <ServicesGrid />
       <TeachingAndResearch />
-      <ReferenceSection />
+      <References />
       <CallToActionSections />
     </>
   )
