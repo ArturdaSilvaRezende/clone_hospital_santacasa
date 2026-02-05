@@ -26,7 +26,10 @@ export default function LatestNews() {
   }, [])
 
   return (
-    <section className="bg-white pt-24 pb-14" aria-label=" Últimas Notícias">
+    <section
+      className="bg-white pt-24 pb-14"
+      aria-labelledby="Últimas Notícias"
+    >
       <div className="container mx-auto max-w-285">
         <h2
           id="latest-news-heading"
