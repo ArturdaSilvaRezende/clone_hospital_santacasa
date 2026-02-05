@@ -1,93 +1,99 @@
-export default function SantaCasaStats() {
-  const statsData = [
+import Image from 'next/image'
+
+export default function TotalNumberProcedures() {
+  const statistics = [
     {
-      id: 1,
-      value: '+593 mil',
-      label: 'procedimentos exclusivamente SUS',
-      ariaLabel:
-        'Quinhentos e noventa e três mil procedimentos exclusivamente SUS'
+      number: '+593 mil',
+      width: 88.5,
+      description: 'procedimentos exclusivamente SUS'
     },
+    { number: '+7 mil', width: 44.75, description: 'internações' },
     {
-      id: 2,
-      value: '+747 mil',
-      label: 'procedimentos diagnósticos',
-      ariaLabel: 'Setecentos e quarenta e sete mil procedimentos diagnósticos'
+      number: '+747 mil',
+      width: 83.75,
+      description: 'procedimentos diagnósticos'
     },
+    { number: '+10 mil', width: 60.75, description: 'sessões de hemodiálise' },
+
     {
-      id: 3,
-      value: '+35 mil',
-      label: 'dispensações de órteses e próteses',
-      ariaLabel: 'Trinta e cinco mil dispensações de órteses e próteses'
-    },
-    {
-      id: 4,
-      value: '+10 mil',
-      label: 'sessões de hemodiálise',
-      ariaLabel: 'Dez mil sessões de hemodiálise'
-    },
-    {
-      id: 5,
-      value: '+7 mil',
-      label: 'internações',
-      ariaLabel: 'Sete mil internações'
+      number: '+35 mil',
+      width: 95.75,
+      description: 'dispensações de órteses e próteses'
     }
   ]
 
   return (
     <section
-      className="mb-14 w-full bg-[#FFE2E2] px-6 py-12"
-      aria-labelledby="hospital-title"
+      className="my-24 bg-[#FAFAFA] pt-10 pb-22"
+      aria-label="Total de Procedimentos Realizados"
     >
       <div className="container mx-auto max-w-285">
-        <div className="mb-10 text-center">
-          <p className="mb-3 text-[16px] font-normal text-[#000000]">
-            O que há de melhor para <span className="text-[#FD0003]">você</span>
-          </p>
-
-          <h2
-            id="hospital-title"
-            className="mb-1 text-2xl leading-tight font-normal text-[#FD0003] md:text-3xl lg:text-4xl"
-          >
-            Hospital Filantrópico Tipo 1 pelo
-          </h2>
-          <h2 className="text-2xl leading-tight font-normal text-[#FD0003] md:text-3xl lg:text-4xl">
-            Ministério da Saúde{' '}
-            <span className="font-bold whitespace-nowrap">
-              99,86% de Atendimento SUS
-            </span>
-          </h2>
-
-          <p className="mt-6 text-[16px] font-semibold text-[#A45757] md:text-base">
-            Em 2024 a Santa Casa realizou:
-          </p>
-        </div>
-
-        <dl
-          className="flex justify-between gap-10"
-          role="list"
-          aria-label="Estatísticas de atendimento da Santa Casa em 2024"
-        >
-          {statsData.map(stat => (
-            <div
-              key={stat.id}
-              className="flex flex-col items-center text-center"
-              role="listitem"
-            >
-              <dt className="sr-only">{stat.label}</dt>
-              <dd>
-                <div
-                  className="mb-2 text-4xl font-light text-[#FD0003] md:text-5xl"
-                  aria-label={stat.ariaLabel}
-                >
-                  {stat.value}
-                </div>
-                <div className="mx-auto max-w-35 text-center text-sm leading-tight text-[#000000] md:text-base">
-                  {stat.label}
-                </div>
-              </dd>
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="relative order-1">
+            <div className="relative overflow-hidden rounded-3xl">
+              <Image
+                src="/images/total-number-procedures-banner.svg"
+                alt="Profissionais de saúde da Santa Casa em atendimento"
+                className="object-cover"
+                width={555}
+                height={333}
+              />
             </div>
-          ))}
-        </dl>
+
+            <nav className="absolute -bottom-14 left-8 max-w-59.75 rounded-2xl bg-[#FD0003] p-2 text-white">
+              <ul className="rounded-2xl bg-red-50/25 p-3">
+                <li className="text-3xl font-bold">99,86%</li>
+                <li className="mb-2 text-[20px] font-medium">
+                  Atendimento SUS
+                </li>
+                <li className="text-[16px] leading-relaxed opacity-95">
+                  Hospital Filantrópico
+                  <span className="font-bold"> Tipo 1</span> pelo
+                  <span className="font-bold"> Ministério da Saúde</span>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div className="order-2">
+            <div>
+              <h2 className="mb-1 text-[22px] leading-tight font-medium text-gray-800">
+                O que há de melhor para você
+              </h2>
+
+              <p className="text-[14px] leading-relaxed font-normal text-[#727070]">
+                Compromisso com a excelência no atendimento à saúde, oferecendo
+                serviços de qualidade e acolhimento humanizado para toda a
+                comunidade.
+              </p>
+
+              <p className="mt-5 mb-2 text-[22px] font-semibold text-[#FD0003]">
+                Em 2024 a Santa Casa realizou:
+              </p>
+            </div>
+
+            <ul
+              className="flex flex-wrap gap-2"
+              role="list"
+              aria-label="Estatísticas de atendimento 2024"
+            >
+              {statistics.map((stat, index) => (
+                <li key={index}>
+                  <div
+                    className={`flex h-10.5 w-${stat.width} items-center gap-1 rounded-full border border-[#FD0003] px-2 transition-colors duration-200 hover:bg-red-50`}
+                  >
+                    <span className="text-[18px] font-bold whitespace-nowrap text-[#FD0003]">
+                      {stat.number}
+                    </span>
+                    <span className="text-sm leading-tight text-[#111032]">
+                      {stat.description}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   )
