@@ -24,7 +24,7 @@ export default function TotalNumberProcedures() {
 
   return (
     <section
-      className="my-24 bg-[#FAFAFA] pt-10 pb-22"
+      className="mt-16 mb-24"
       aria-label="Total de Procedimentos Realizados"
     >
       <div className="container mx-auto max-w-285">

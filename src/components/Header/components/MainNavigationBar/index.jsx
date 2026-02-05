@@ -86,7 +86,7 @@ export default function MainNavigationBar() {
   return (
     <section
       ref={headerRef}
-      className="relative z-50 w-full bg-white shadow-md"
+      className="relative z-50 w-full shadow-md"
       aria-label="Menu de Navegação Principal"
     >
       <div className="container mx-auto flex h-20 max-w-285 items-center justify-between">
@@ -157,9 +157,9 @@ export default function MainNavigationBar() {
             <PiCalendarCheckLight size={20} />
             <span>Pré-Agendamento SUS</span>
           </Link>
-          <button className="flex h-10 w-39.5 items-center justify-between rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700">
+          <button className="flex h-10 w-19.5 items-center justify-between rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700">
             <BiDonateHeart size={20} />
-            <span>Agendar Consulta</span>
+            <span>Doar</span>
           </button>
         </div>
 

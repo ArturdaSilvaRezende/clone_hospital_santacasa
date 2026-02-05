@@ -1,105 +1,95 @@
+import Image from 'next/image'
 import './styles.css'
 
 export default function ServicesGrid() {
   const services = [
     {
       id: 1,
-      title: 'Pré-agendamento SUS',
-      description: 'Agende sua consulta pelo SUS.',
+      title: 'Pré-agendamento',
+      description: 'Faça seu pré-agendamento',
       action: 'Agendar agora',
-      image:
-        'https://cdn.manualdohomem.com.br/?w=1233&h=772&key=aHR0cHM6Ly9tYW51YWxkb2hvbWVtbW9kZXJuby5jb20uYnI=&u=%2Ffiles%2F2024%2F06%2Fcomo-marcar-consulta-pelo-aplicativo-do-sus-como-marcar-consulta-pelo-aplicativo-do-sus.webp'
+      image: '/images/thumb-pre-agendamento.svg'
     },
+
     {
       id: 2,
       title: 'Especialidades',
       description: 'Conheça nossas áreas médicas.',
       action: 'Ver especialidades',
-      image:
-        'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format&fit=crop&q=80'
-      // médicos + diversidade de áreas
+      image: '/images/thumb-especialidades.svg'
     },
     {
       id: 3,
-      title: 'Agendar Consulta Particular',
-      description: 'Agendamento particular online.',
-      action: 'Agendar consulta',
-      image:
-        'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800&auto=format&fit=crop&q=80'
-      // médico + paciente em atendimento direto
+      title: 'Pré-agendamento SUS',
+      description: 'Agende sua consulta pelo SUS.',
+      action: 'Agendar agora',
+      image: '/images/thumb-conecte-sus.jpg'
     },
+
     {
       id: 4,
       title: 'Exames',
       description: 'Laboratório e diagnóstico por imagem.',
       action: 'Consultar exames',
-      image:
-        'https://cdn.pixabay.com/photo/2016/09/27/17/14/heart-1698840_1280.jpg'
+      image: '/images/thumb-exames.svg'
     },
     {
       id: 5,
       title: 'Trabalhe Conosco',
       description: 'Faça parte da nossa equipe.',
       action: 'Ver vagas',
-      image:
-        'https://cdn.pixabay.com/photo/2017/08/02/00/49/people-2569234_1280.jpg'
-      // equipe + carreira
+      image: '/images/thumb-trabalhe-conosco.svg'
     },
     {
       id: 6,
       title: 'Ouvidoria',
       description: 'Canal de comunicação e sugestões.',
       action: 'Entrar em contato',
-      image:
-        'https://images.pexels.com/photos/16129688/pexels-photo-16129688.jpeg?_gl=1*es1361*_ga*OTk3MTg1ODIxLjE3Njk3OTQ4MzA.*_ga_8JE65Q40S6*czE3Njk3OTQ4MzAkbzEkZzEkdDE3Njk3OTQ5OTMkajU5JGwwJGgw'
-      // atendimento / suporte / escuta
+      image: '/images/thumb-ouvidoria.svg'
     },
     {
       id: 7,
       title: 'Voluntariado',
       description: 'Seja um voluntário.',
       action: 'Seja voluntário',
-      image:
-        'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=800&auto=format&fit=crop&q=80'
-      // pessoas ajudando pessoas
+      image: '/images/thumb-voluntariado.svg'
     },
     {
       id: 8,
       title: 'Banco de Sangue',
       description: 'Doe sangue e salve vidas.',
       action: 'Doar sangue',
-      image:
-        'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=800&auto=format&fit=crop&q=80'
-      // doação de sangue clara e direta
+      image: '/images/thumb-banco-de-sangue.svg'
     }
   ]
 
   return (
-    <section className="min-h-screen bg-white px-4">
+    <section className="bg-white py-20" aria-label="Serviços Disponíveis">
       <div className="container mx-auto max-w-285">
         <h2 className="mb-12 text-center text-[36px] font-normal text-black">
           Um pouquinho de tudo que temos para
           <span className="text-[#FD0003]"> você</span>
         </h2>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-wrap gap-4">
           {services.map((service, index) => {
             return (
               <article
                 key={service.id}
-                className="service-card group animate-fade-in-up cursor-pointer"
+                className="service-card group animate-fade-in-up w-66.25 cursor-pointer"
                 style={{
                   animationDelay: `${0.3 + index * 0.1}s`,
                   opacity: 0,
                   animationFillMode: 'forwards'
                 }}
               >
-                <div className="relative h-64 overflow-hidden rounded-3xl transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
+                <div className="relative h-47.5 overflow-hidden rounded-3xl transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
                   <div className="card-image-wrapper absolute inset-0">
-                    <img
+                    <Image
                       src={service.image}
                       alt={`${service.title} - ${service.description}`}
                       className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      fill
                     />
                   </div>
 

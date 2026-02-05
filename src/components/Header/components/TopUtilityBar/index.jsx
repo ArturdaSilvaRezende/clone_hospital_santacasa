@@ -4,7 +4,7 @@ import React from 'react'
 export default function TopUtilityBar() {
   return (
     <section
-      className="border-b border-gray-200 bg-white"
+      className="border-b border-gray-200"
       aria-label="Informações de contato e redes sociais"
     >
       <div className="container mx-auto max-w-285 py-3">

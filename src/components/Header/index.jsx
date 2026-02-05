@@ -3,7 +3,7 @@ import TopUtilityBar from './components/TopUtilityBar'
 
 export default function Header() {
   return (
-    <header>
+    <header className="bg-white">
       <TopUtilityBar />
       <MainNavigationBar />
     </header>

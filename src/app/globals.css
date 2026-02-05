@@ -4,6 +4,10 @@ button {
   cursor: pointer;
 }
 
+body {
+  background-color: #fafafa;
+}
+
 *::-webkit-scrollbar {
   width: 8px;
 }
