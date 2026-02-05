@@ -1,51 +1,71 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import CustomLink from '~/components/CustomComponents/Link'
 
 export default function CallToActionSections() {
   return (
     <section
-      className="flex w-full"
+      className="mt-5 mb-15 w-full"
       aria-label="Chamadas para ação de voluntariado e doação"
     >
-      <article
-        className="flex w-[50%] items-center justify-center bg-[#31313F]"
-        aria-labelledby="volunteer-heading"
-      >
-        <div className="mx-auto flex h-67 w-114 flex-col items-center justify-center">
+      <div className="container mx-auto flex max-w-285 items-center justify-between rounded-[20px] bg-white px-28 py-10">
+        <div
+          className="flex flex-col gap-5"
+          aria-labelledby="volunteer-heading"
+        >
           <h2
             id="volunteer-heading"
-            className="mb-5 text-[26px] leading-relaxed font-medium text-white"
+            className="text-[28px] leading-relaxed font-medium"
           >
-            Para saber como se tornar um voluntário(a) clique no botão abaixo.
+            Junte-se à nossa corrente do bem
           </h2>
-          <CustomLink
-            label="Acessar"
-            classNameContainer="bg-[#FD0003] hover:bg-red-700  text-white px-[49px] mr-auto"
-          />
+          <p className="w-122.75 text-[18px] font-normal text-[#727070]">
+            Existem várias formas de apoiar a Santa Casa. Escolha como você quer
+            fazer a diferença na vida dos pacientes
+          </p>
         </div>
-      </article>
 
-      <article
-        className="flex w-[50%] items-center justify-center bg-[#FDE4E1]"
-        aria-labelledby="donation-heading"
-      >
-        <div className="mx-auto flex h-67 w-96.5 flex-col items-center justify-center">
-          <h2
-            id="donation-heading"
-            className="mb-5 text-[26px] leading-relaxed font-medium text-[#2F2E41]"
+        <div className="flex flex-col gap-5" aria-labelledby="donation-heading">
+          <Link
+            href="/volunteer"
+            className="group flex h-12.5 w-64.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"
+            aria-label="Quero ser voluntário"
           >
-            Transforme vidas com sua doação!{' '}
-            <span className="font-semibold text-red-600">
-              Cada gesto conta.
+            <span>Quero ser voluntário</span>
+            <span
+              className="transition-transform group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              <Image
+                src="/icons/arrow-top-left-icon-red.svg"
+                alt="ícone de seta para indicar link"
+                width={16}
+                height={16}
+              />
             </span>
-          </h2>
+          </Link>
 
-          <CustomLink
-            label="Acessar"
-            classNameContainer="bg-[#FD0003] hover:bg-red-700  text-white px-[49px] mr-auto"
-          />
+          <Link
+            href="/donate"
+            className="group flex h-12.5 w-75.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"
+            aria-label="Quero ser voluntário"
+          >
+            <span>Quero fazer uma doação</span>
+            <span
+              className="transition-transform group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              <Image
+                src="/icons/arrow-top-left-icon-red.svg"
+                alt="ícone de seta para indicar link"
+                width={16}
+                height={16}
+              />
+            </span>
+          </Link>
         </div>
-      </article>
+      </div>
     </section>
   )
 }
