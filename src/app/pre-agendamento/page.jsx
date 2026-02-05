@@ -1,11 +1,10 @@
 'use client'
 
 import { Provider as ReduxProvider } from 'react-redux'
-
+import { Banner } from '~/view/pages/pre-agendamento/Banner'
+import { CurrentStep } from '~/view/pages/pre-agendamento/CurrentStep'
+import { Steps } from '~/view/pages/pre-agendamento/Steps'
 import { store } from './store'
-import { Steps } from '~/pages/pre-agendamento/Steps'
-import { CurrentStep } from '~/pages/pre-agendamento/CurrentStep'
-import { Banner } from '~/pages/pre-agendamento/Banner'
 
 export default function PreAgendamento() {
   return (

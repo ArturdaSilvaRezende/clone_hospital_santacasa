@@ -1,4 +1,4 @@
-import Doar from '~/pages/Doar'
+import Doar from '~/view/pages/doar'
 
 export default function DoarPage() {
   return (
