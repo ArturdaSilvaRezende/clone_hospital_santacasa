@@ -6,7 +6,7 @@ import Select from 'react-select'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { InputMask } from '@react-input/mask'
+import { IMaskInput } from 'react-imask'
 import axios from 'axios'
 import { validateCPF } from '~/utils/validateCPF'
 
@@ -112,15 +112,7 @@ export function SecondStep() {
     setValue
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      birth_date: '',
-      cel_phone: '',
-      tel_phone: '',
-      cpf: '',
-      cns: '',
-      cep: '',
-      ...dataSaved
-    }
+    defaultValues: dataSaved
   })
 
   const [optionsUfList, setOptionsUfList] = useState([])
@@ -185,26 +177,33 @@ export function SecondStep() {
 
   const onSubmit = data => {
     const objData = {
-      fullname: data?.fullname,
-      mother_name: data?.mother_name,
-      prontuario: data?.prontuario,
-      email: data?.email,
-      birth_date: data?.birth_date,
-      cel_phone: data?.cel_phone.replace(/\D/g, ''),
-      tel_phone: data?.tel_phone.replace(/\D/g, ''),
+      fullname: data.fullname,
+      mother_name: data.mother_name,
+      prontuario: data.prontuario,
+      email: data.email,
+      birth_date: data.birth_date,
+
+      cel_phone: data.cel_phone.replace(/\D/g, ''),
+
+      tel_phone: data.tel_phone?.replace(/\D/g, '') || '',
+
       gender: genderOption?.value || null,
 
       father_name: data.father_name,
-      cpf: data.cpf?.replace(/\D/g, ''),
-      cns: data.cns?.replace(/\D/g, ''),
+
+      cpf: data.cpf.replace(/\D/g, ''),
+
+      cns: data.cns?.replace(/\D/g, '') || '',
+
       neighborhood: data.neighborhood,
       address: data.address,
       address_number: data.address_number,
       complement: data.complement,
-      cep: data.cep?.replace(/\D/g, ''),
+
+      cep: data.cep.replace(/\D/g, ''),
+
       city: data.city,
       uf: data.uf,
-      address: data.address,
       address_type: data.address_type
     }
 
@@ -332,27 +331,22 @@ export function SecondStep() {
                   Data nascimento<span className="text-[#FD0003]">*</span>
                 </label>
 
-                <input {...register(objFields.birth_date)} />
-
                 <Controller
                   name={objFields.birth_date}
                   control={control}
+                  rules={{
+                    required: 'Data de nascimento é obrigatória',
+                    validate: value => {
+                      const digits = value.replace(/\D/g, '')
+                      return digits.length === 8 || 'Data incompleta'
+                    }
+                  }}
                   render={({ field }) => (
-                    <InputMask
-                      mask="99/99/9999"
+                    <IMaskInput
+                      {...field}
+                      mask="00/00/0000"
                       placeholder="00/00/0000"
-                      value={field.value}
-                      onChange={e => field.onChange(e.target.value)}
-                      style={{
-                        borderRadius: 5,
-                        border: '1px solid #7D7D7D',
-                        height: 46,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        fontSize: 16,
-                        color: '#262626',
-                        outline: 'none'
-                      }}
+                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
                     />
                   )}
                 />
@@ -367,29 +361,24 @@ export function SecondStep() {
                   Celular<span className="text-[#FD0003]">*</span>
                 </label>
 
-                <input {...register(objFields.cel_phone)} />
-
-                {/* <Controller
+                <Controller
                   name={objFields.cel_phone}
                   control={control}
+                  rules={{
+                    required: 'Celular é obrigatório',
+                    validate: value =>
+                      value.replace(/\D/g, '').length === 11 ||
+                      'Celular inválido'
+                  }}
                   render={({ field }) => (
-                    <InputMask
+                    <IMaskInput
                       {...field}
-                      mask="(99) 99999-9999"
-                      placeholder="DDD+números"
-                      style={{
-                        borderRadius: 5,
-                        border: '1px solid #7D7D7D',
-                        height: 46,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        fontSize: 16,
-                        color: '#262626',
-                        outline: 'none'
-                      }}
+                      mask="(00) 00000-0000"
+                      placeholder="(00) 00000-0000"
+                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
                     />
                   )}
-                /> */}
+                />
 
                 <span className="text-[#ff5d5d]">
                   {errors?.cel_phone?.message}
@@ -405,20 +394,11 @@ export function SecondStep() {
                   name={objFields.tel_phone}
                   control={control}
                   render={({ field }) => (
-                    <InputMask
+                    <IMaskInput
                       {...field}
-                      mask="(99) 99999-9999"
-                      placeholder="DDD+números"
-                      style={{
-                        borderRadius: 5,
-                        border: '1px solid #7D7D7D',
-                        height: 46,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        fontSize: 16,
-                        color: '#262626',
-                        outline: 'none'
-                      }}
+                      mask="(00) 0000-0000"
+                      placeholder="(00) 0000-0000"
+                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
                     />
                   )}
                 />
@@ -463,29 +443,26 @@ export function SecondStep() {
                   CPF<span className="text-[#FD0003]">*</span>
                 </label>
 
-                <input {...register(objFields.cpf)} />
-
-                {/* <Controller
+                <Controller
                   name={objFields.cpf}
                   control={control}
+                  rules={{
+                    required: 'CPF é obrigatório',
+                    validate: value => {
+                      const d = value.replace(/\D/g, '')
+                      if (d.length !== 11) return 'CPF incompleto'
+                      return validateCPF(d) || 'CPF inválido'
+                    }
+                  }}
                   render={({ field }) => (
-                    <InputMask
+                    <IMaskInput
                       {...field}
-                      mask="999.999.999-99"
+                      mask="000.000.000-00"
                       placeholder="000.000.000-00"
-                      style={{
-                        borderRadius: 5,
-                        border: '1px solid #7D7D7D',
-                        height: 46,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        fontSize: 16,
-                        color: '#262626',
-                        outline: 'none'
-                      }}
+                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
                     />
                   )}
-                /> */}
+                />
 
                 <span className="text-[#ff5d5d]">{errors?.cpf?.message}</span>
               </div>
@@ -494,28 +471,24 @@ export function SecondStep() {
                 <label className="text-[1rem] font-[500] text-[#262626]">
                   CNS (Carteira Nacional do SUS)
                 </label>
-                <input {...register(objFields.cns)} />
-                {/* <Controller
+                <Controller
                   name={objFields.cns}
                   control={control}
+                  rules={{
+                    validate: value =>
+                      !value ||
+                      value.replace(/\D/g, '').length === 15 ||
+                      'CNS inválido'
+                  }}
                   render={({ field }) => (
-                    <InputMask
+                    <IMaskInput
                       {...field}
-                      mask="999999999999999"
+                      mask="000000000000000"
                       placeholder="000000000000000"
-                      style={{
-                        borderRadius: 5,
-                        border: '1px solid #7D7D7D',
-                        height: 46,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        fontSize: 16,
-                        color: '#262626',
-                        outline: 'none'
-                      }}
+                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
                     />
                   )}
-                /> */}
+                />
 
                 <span className="text-[#ff5d5d]">{errors?.cns?.message}</span>
               </div>
@@ -596,23 +569,24 @@ export function SecondStep() {
               <label className="text-[1rem] font-[500] text-[#262626]">
                 CEP<span className="text-[#FD0003]">*</span>
               </label>
-              <input {...register(objFields.cep)} />
-              {/* <InputMask
-                mask={'99999-999'}
-                placeholder="00000-000"
-                maskChar=""
-                style={{
-                  borderRadius: 5,
-                  border: '1px solid #7D7D7D',
-                  height: 46,
-                  paddingLeft: 16,
-                  paddingRight: 16,
-                  fontSize: 16,
-                  color: '#262626',
-                  outline: 'none'
+              <Controller
+                name={objFields.cep}
+                control={control}
+                rules={{
+                  required: 'CEP é obrigatório',
+                  validate: value =>
+                    value.replace(/\D/g, '').length === 8 || 'CEP inválido'
                 }}
-                {...register(objFields.cep)}
-              /> */}
+                render={({ field }) => (
+                  <IMaskInput
+                    {...field}
+                    mask="00000-000"
+                    placeholder="00000-000"
+                    className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                  />
+                )}
+              />
+
               <span className="text-[#ff5d5d]">{errors?.cep?.message}</span>
             </div>
             <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[120px_auto] xl:gap-y-0">

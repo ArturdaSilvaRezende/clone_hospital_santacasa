@@ -125,7 +125,14 @@ export function ThirdStep() {
       speciality: data?.speciality,
       new_speciality: data?.new_speciality,
       type_confirm: data?.type_confirm,
-      imagem_pedido: data?.imagem_pedido
+      // imagem_pedido: data?.imagem_pedido
+      imagem_pedido: data?.imagem_pedido?.[0]
+        ? {
+            name: data.imagem_pedido[0].name,
+            size: data.imagem_pedido[0].size,
+            type: data.imagem_pedido[0].type
+          }
+        : null
     }
 
     if (showMarcaPasso && !data?.tipo_marca) {

@@ -86,7 +86,7 @@ export default function MainNavigationBar() {
   return (
     <section
       ref={headerRef}
-      className="relative z-50 w-full shadow-md"
+      className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
     >
       <div className="container mx-auto flex h-20 max-w-285 items-center justify-between">
