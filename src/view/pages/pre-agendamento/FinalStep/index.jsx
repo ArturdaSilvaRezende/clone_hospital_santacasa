@@ -30,8 +30,8 @@ export function FinalStep() {
         </div>
         {isCopied && (
           <div>
-            {/* <Alert severity="success">Protocolo copiado com sucesso!</Alert> */}
-            !!!
+            {/* <Alert severity="success"></Alert> */}
+            Protocolo copiado com sucesso!
           </div>
         )}
       </div>

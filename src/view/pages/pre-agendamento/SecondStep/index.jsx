@@ -9,12 +9,13 @@ import * as yup from 'yup'
 import { IMaskInput } from 'react-imask'
 import axios from 'axios'
 import { validateCPF } from '~/utils/validateCPF'
+import { colourStyles } from '~/utils/select'
 
 import {
   changeScheduleStep,
   saveSecondStepData
 } from '~/app/pre-agendamento/store'
-import { colourStyles } from '~/utils/select'
+import Image from 'next/image'
 
 const optionsPeopleGenderList = [
   { value: 'Masculino', label: 'Masculino' },
@@ -60,28 +61,28 @@ const objFields = {
 }
 
 const schema = yup.object({
-  fullname: yup.string().required('Campo obrigatório'),
-  mother_name: yup.string().required('Campo obrigatório'),
+  fullname: yup.string().required('Esse Campo é obrigatorio'),
+  mother_name: yup.string().required('Esse Campo é obrigatorio'),
   father_name: yup.string(),
   prontuario: yup.string(),
   email: yup.string().email('E-mail inválido'),
-  birth_date: yup.string().required('Campo obrigatório'),
-  cel_phone: yup.string().required('Campo obrigatório'),
+  birth_date: yup.string().required('Esse Campo é obrigatorio'),
+  cel_phone: yup.string().required('Esse Campo é obrigatorio'),
   tel_phone: yup.string(),
   cpf: yup
     .string()
-    .required('Campo obrigatório')
+    .required('Esse Campo é obrigatorio')
     .test('test-invalid-cpf', 'CPF inválido', cpf => validateCPF(cpf)),
   cns: yup.string(),
-  neighborhood: yup.string().required('Campo obrigatório'),
-  address: yup.string().required('Campo obrigatório'),
-  address_number: yup.string().required('Campo obrigatório'),
-  address_type: yup.string().required('Campo obrigatório'),
+  neighborhood: yup.string().required('Esse Campo é obrigatorio'),
+  address: yup.string().required('Esse Campo é obrigatorio'),
+  address_number: yup.string().required('Esse Campo é obrigatorio'),
+  address_type: yup.string().required('Esse Campo é obrigatorio'),
   complement: yup.string(),
-  cep: yup.string().required('Campo obrigatório'),
-  city: yup.string().required('Campo obrigatório'),
-  uf: yup.string().required('Campo obrigatório'),
-  gender: yup.string().required('Campo obrigatório')
+  cep: yup.string().required('Esse Campo é obrigatorio'),
+  city: yup.string().required('Esse Campo é obrigatorio'),
+  uf: yup.string().required('Esse Campo é obrigatorio'),
+  gender: yup.string().required('Esse Campo é obrigatorio')
 })
 
 export function SecondStep() {
@@ -104,22 +105,97 @@ export function SecondStep() {
 
   const [breedOption, setBreedOption] = useState(genderSavedOption || null)
   const dispatch = useDispatch()
+
   const {
     control,
     register,
     handleSubmit,
-    formState: { errors },
-    setValue
+    formState: { errors, dirtyFields },
+    setValue,
+    watch
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: dataSaved
+    defaultValues: dataSaved,
+    mode: 'onChange'
   })
 
   const [optionsUfList, setOptionsUfList] = useState([])
   const [ufOption, setUfOption] = useState({})
-
   const [optionsCityList, setOptionsCityList] = useState([])
   const [cityOption, setCityOption] = useState({})
+
+  const getFieldClass = name => {
+    const baseClass =
+      'h-[46px] w-full rounded-[10px] border px-4 transition-all outline-none'
+    if (errors[name])
+      return `${baseClass} border-[#FD0003] text-[#FD0003] placeholder:text-[#FD0003]`
+    if (dirtyFields[name]) return `${baseClass} border-[#20A36C] text-[#262626]`
+    return `${baseClass} border-[#7D7D7D] text-[#262626]`
+  }
+
+  const getSelectStyles = name => ({
+    control: base => ({
+      ...base,
+      backgroundColor: 'transparent',
+      padding: '0 12px',
+      borderColor: errors[name]
+        ? '#FD0003'
+        : dirtyFields[name]
+          ? '#20A36C'
+          : '#E5E7EB',
+      borderRadius: '10px',
+      boxShadow: 'none',
+      cursor: 'pointer',
+      minHeight: '46px',
+      '&:hover': {
+        borderColor: errors[name] ? '#FD0003' : '#7D7D7D'
+      }
+    }),
+
+    menu: base => ({
+      ...base,
+      borderRadius: '12px',
+      overflow: 'hidden',
+      marginTop: '4px',
+      border: '1px solid #E5E7EB',
+      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+    }),
+
+    menuList: base => ({
+      ...base,
+      padding: 0
+    }),
+
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isSelected ? '#F3F4F6' : 'white',
+      color: '#262626',
+      padding: '12px 16px',
+      cursor: 'pointer',
+
+      borderBottom: '1px solid #F3F4F6',
+      '&:last-child': {
+        borderBottom: 'none'
+      },
+      '&:active': {
+        backgroundColor: '#E5E7EB'
+      },
+      '&:hover': {
+        backgroundColor: '#F9FAFB'
+      }
+    }),
+
+    // Limpeza de indicadores
+    indicatorSeparator: () => ({ display: 'none' }),
+    dropdownIndicator: base => ({
+      ...base,
+      color: '#727070'
+    }),
+    valueContainer: base => ({
+      ...base,
+      paddingLeft: '0px'
+    })
+  })
 
   const onLoadFilterUF = async inputValue => {
     try {
@@ -244,202 +320,229 @@ export function SecondStep() {
   }
 
   return (
-    <div className="mt-[2rem] flex w-full flex-col xl:mt-0">
+    <div className="mt-8 flex w-full flex-col xl:mt-0">
       <div className="flex flex-col gap-y-5 xl:hidden">
         <div className="flex flex-col gap-y-1">
-          <span className="text-[1rem] font-[400] text-[#A3A3A3]">Passo 2</span>
-          <span className="text-[1.2rem] font-[600] text-[#727070]">
+          <span className="text-[1rem] font-normal text-[#A3A3A3]">
+            Passo 2
+          </span>
+          <span className="text-[1.2rem] font-semibold text-[#727070]">
             Dados Paciente
           </span>
         </div>
       </div>
-      <div className="mt-[1rem] xl:mt-0">
+      <div className="mt-4 xl:mt-0">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-y-5">
-            <div className="mb-[1rem] hidden xl:block">
-              <span className="text-[1.2rem] font-[500]">
+            <div className="mb-4 hidden xl:block">
+              <span className="text-[1.2rem] font-medium">
                 Dados do paciente
               </span>
             </div>
+
+            {/*Nome do Paciente */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Nome do Paciente<span className="text-[#FD0003]">*</span>
               </label>
               <input
                 {...register(objFields.fullname)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
-                placeholder="Escrevendo nome do Paciente"
+                className={getFieldClass('fullname')}
+                placeholder="Nome do Paciente"
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.fullname?.message}
-              </span>
+              {errors?.fullname && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.fullname?.message}
+                </span>
+              )}
             </div>
+
+            {/*Nome da Mãe */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Nome da Mãe<span className="text-[#FD0003]">*</span>
               </label>
               <input
                 {...register(objFields.mother_name)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
-                placeholder="Nome Completo"
+                className={getFieldClass('mother_name')}
+                placeholder="Nome da Mãe"
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.mother_name?.message}
-              </span>
+              {errors?.mother_name && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.mother_name?.message}
+                </span>
+              )}
             </div>
+
+            {/*Nome do Pai */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Nome do Pai
               </label>
               <input
                 {...register(objFields.father_name)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
-                placeholder="Nome Completo"
+                className={getFieldClass('father_name')}
+                placeholder="Nome do Pai"
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.father_name?.message}
-              </span>
+              {errors?.father_name && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.father_name?.message}
+                </span>
+              )}
             </div>
+
+            {/* Prontuário */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Prontuário
               </label>
               <input
                 {...register(objFields.prontuario)}
-                type="number"
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
-                placeholder="12345"
+                className={getFieldClass('prontuario')}
+                placeholder="Prontuário"
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.prontuario?.message}
-              </span>
+              {errors?.prontuario && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.prontuario?.message}
+                </span>
+              )}
             </div>
+
+            {/* Email */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 E-mail
               </label>
               <input
                 {...register(objFields.email)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                className={getFieldClass('email')}
                 placeholder="seuemail@gmail.com"
               />
-              <span className="text-[#ff5d5d]">{errors?.email?.message}</span>
+              {errors?.email && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.email?.message}
+                </span>
+              )}
             </div>
-            <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-3 xl:gap-y-0">
-              <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+
+            <div className="flex justify-between gap-x-5">
+              {/* Data Nascimento */}
+              <div className="flex w-full flex-col gap-y-2">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Data nascimento<span className="text-[#FD0003]">*</span>
                 </label>
-
                 <Controller
-                  name={objFields.birth_date}
+                  name="birth_date"
                   control={control}
-                  rules={{
-                    required: 'Data de nascimento é obrigatória',
-                    validate: value => {
-                      const digits = value.replace(/\D/g, '')
-                      return digits.length === 8 || 'Data incompleta'
-                    }
-                  }}
                   render={({ field }) => (
-                    <IMaskInput
-                      {...field}
-                      mask="00/00/0000"
-                      placeholder="00/00/0000"
-                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
-                    />
+                    <div className="relative">
+                      <IMaskInput
+                        {...field}
+                        mask="00/00/0000"
+                        className={getFieldClass('birth_date')}
+                        placeholder="00/00/0000"
+                        onAccept={value => field.onChange(value)}
+                      />
+                      <Image
+                        src="/icons/calendar-month-icon-gray.svg"
+                        alt="Data de nascimento"
+                        height={25}
+                        width={25}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 transform"
+                      />
+                    </div>
                   )}
                 />
-
-                <span className="text-[#ff5d5d]">
-                  {errors?.birth_date?.message}
-                </span>
+                {errors.birth_date && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors.birth_date.message}
+                  </span>
+                )}
               </div>
 
-              <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+              {/* Celular */}
+              <div className="flex w-full flex-col gap-y-2">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Celular<span className="text-[#FD0003]">*</span>
                 </label>
-
                 <Controller
-                  name={objFields.cel_phone}
+                  name="cel_phone"
                   control={control}
-                  rules={{
-                    required: 'Celular é obrigatório',
-                    validate: value =>
-                      value.replace(/\D/g, '').length === 11 ||
-                      'Celular inválido'
-                  }}
                   render={({ field }) => (
                     <IMaskInput
                       {...field}
                       mask="(00) 00000-0000"
-                      placeholder="(00) 00000-0000"
-                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                      className={getFieldClass('cel_phone')}
+                      placeholder="DDD+números"
+                      onAccept={value => field.onChange(value)}
                     />
                   )}
                 />
-
-                <span className="text-[#ff5d5d]">
-                  {errors?.cel_phone?.message}
-                </span>
+                {errors.cel_phone && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors.cel_phone.message}
+                  </span>
+                )}
               </div>
 
-              <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
-                  Telefone (Opcional)
+              {/* Telefone */}
+              <div className="flex w-full flex-col gap-y-2">
+                <label className="text-[1rem] font-medium text-[#262626]">
+                  Telefone
                 </label>
-
                 <Controller
-                  name={objFields.tel_phone}
+                  name="tel_phone"
                   control={control}
                   render={({ field }) => (
                     <IMaskInput
                       {...field}
-                      mask="(00) 0000-0000"
-                      placeholder="(00) 0000-0000"
-                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                      mask="(00) 00000-0000"
+                      className={getFieldClass('tel_phone')}
+                      placeholder="DDD+números"
+                      onAccept={value => field.onChange(value)}
                     />
                   )}
                 />
+                {errors.tel_phone && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors.tel_phone.message}
+                  </span>
+                )}
+              </div>
+            </div>
 
-                <span className="text-[#ff5d5d]">
-                  {errors?.tel_phone?.message}
+            {/* Gênero */}
+            <div className="flex flex-col gap-y-2">
+              <label className="text-[1rem] font-medium text-[#262626]">
+                Gênero*
+              </label>
+              <Controller
+                name="gender"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={optionsPeopleGenderList}
+                    placeholder="Selecione"
+                    styles={getSelectStyles('gender')}
+                    value={optionsPeopleGenderList.find(
+                      c => c.value === field.value
+                    )}
+                    onChange={val => field.onChange(val.value)}
+                  />
+                )}
+              />
+              {errors.gender && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors.gender.message}
                 </span>
-              </div>
+              )}
             </div>
+
+            {/* CPF */}
             <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-2 xl:gap-y-0">
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
-                  Gênero<span className="text-[#FD0003]">*</span>
-                </label>
-                <Select
-                  placeholder="Selecione"
-                  value={genderOption}
-                  options={optionsPeopleGenderList}
-                  styles={colourStyles}
-                  onChange={onChangeGender}
-                />
-                <span className="text-[#ff5d5d]">
-                  {errors?.gender?.message}
-                </span>
-              </div>
-              <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
-                  Raça<span className="text-[#FD0003]">*</span>
-                </label>
-                <Select
-                  placeholder="Selecione"
-                  value={breedOption}
-                  options={optionsBreedList}
-                  styles={colourStyles}
-                  onChange={onChangeBreed}
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-2 xl:gap-y-0">
-              <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   CPF<span className="text-[#FD0003]">*</span>
                 </label>
 
@@ -459,14 +562,17 @@ export function SecondStep() {
                       {...field}
                       mask="000.000.000-00"
                       placeholder="000.000.000-00"
-                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                      className={getFieldClass('cpf')}
                     />
                   )}
                 />
 
-                <span className="text-[#ff5d5d]">{errors?.cpf?.message}</span>
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.cpf?.message}
+                </span>
               </div>
 
+              {/* CNS (Carteira Nacional do SUS) */}
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-[500] text-[#262626]">
                   CNS (Carteira Nacional do SUS)
@@ -485,88 +591,122 @@ export function SecondStep() {
                       {...field}
                       mask="000000000000000"
                       placeholder="000000000000000"
-                      className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                      className={getFieldClass('cns')}
                     />
                   )}
                 />
 
-                <span className="text-[#ff5d5d]">{errors?.cns?.message}</span>
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.cns?.message}
+                </span>
               </div>
             </div>
-            <div className="mt-[1rem] mb-[1rem]">
-              <span className="text-[1.2rem] font-[500]">Endereço</span>
+
+            <div className="mt-4 mb-4">
+              <span className="text-[1.2rem] font-medium">Endereço</span>
             </div>
+
+            {/* Tipo endereço */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
-                Tipo endereço<span className="text-[#FD0003]">*</span>
+              <label className="text-[1rem] font-medium text-[#262626]">
+                Tipo endereço*
               </label>
-              <Select
-                placeholder="Selecione"
-                value={typeAddressOption}
-                options={optionsTipoEnderecoList}
-                styles={colourStyles}
-                onChange={onChangeTypeAddress}
+              <Controller
+                name="address_type"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={optionsTipoEnderecoList}
+                    placeholder="Selecione"
+                    styles={getSelectStyles('address_type')}
+                    value={optionsTipoEnderecoList.find(
+                      c => c.value === field.value
+                    )}
+                    onChange={val => field.onChange(val.value)}
+                  />
+                )}
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.address_type?.message}
-              </span>
+              {errors.address_type && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.address_type?.message}
+                </span>
+              )}
             </div>
+
             <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[auto_130px] xl:gap-y-0">
+              {/*Endereço */}
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Endereço<span className="text-[#FD0003]">*</span>
                 </label>
                 <input
                   {...register(objFields.address)}
-                  className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
-                  placeholder=""
+                  className={getFieldClass('address')}
+                  placeholder="Endereço"
                 />
-                <span className="text-[#ff5d5d]">
-                  {errors?.address?.message}
-                </span>
+                {errors?.address && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors?.address?.message}
+                  </span>
+                )}
               </div>
+
+              {/*NR */}
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Nr<span className="text-[#FD0003]">*</span>
                 </label>
                 <input
                   {...register(objFields.address_number)}
-                  className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                  className={getFieldClass('address_number')}
                   placeholder="S/N"
                 />
-                <span className="text-[#ff5d5d]">
-                  {errors?.address_number?.message}
-                </span>
+                {errors?.address_number && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors?.address_number?.message}
+                  </span>
+                )}
               </div>
             </div>
+
+            {/*Bairro */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Bairro<span className="text-[#FD0003]">*</span>
               </label>
               <input
                 {...register(objFields.neighborhood)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                className={getFieldClass('neighborhood')}
                 placeholder=""
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.neighborhood?.message}
-              </span>
+              {errors?.neighborhood && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.neighborhood?.message}
+                </span>
+              )}
             </div>
+
+            {/*Complemento */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Complemento
               </label>
               <input
                 {...register(objFields.complement)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                className={getFieldClass('complement')}
                 placeholder=""
               />
-              <span className="text-[#ff5d5d]">
-                {errors?.complement?.message}
-              </span>
+              {errors?.complement && (
+                <span className="text-[16px] font-semibold text-[#FD0003]">
+                  {errors?.complement?.message}
+                </span>
+              )}
             </div>
+
+            {/*CEP */}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 CEP<span className="text-[#FD0003]">*</span>
               </label>
               <Controller
@@ -582,54 +722,95 @@ export function SecondStep() {
                     {...field}
                     mask="00000-000"
                     placeholder="00000-000"
-                    className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                    className={getFieldClass('cep')}
                   />
                 )}
               />
 
-              <span className="text-[#ff5d5d]">{errors?.cep?.message}</span>
+              <span className="text-[16px] font-semibold text-[#FD0003]">
+                {errors?.cep?.message}
+              </span>
             </div>
             <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[120px_auto] xl:gap-y-0">
+              {/* UF */}
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Estado<span className="text-[#FD0003]">*</span>
                 </label>
-                <Select
-                  placeholder="Selecione"
-                  value={ufOption}
-                  options={optionsUfList}
-                  styles={colourStyles}
-                  onChange={onChangeUf}
+                <Controller
+                  name="uf"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={optionsUfList}
+                      placeholder="Selecione"
+                      styles={getSelectStyles('uf')}
+                      value={
+                        optionsUfList.find(c => c.value === field.value) || null
+                      }
+                      onChange={val => {
+                        field.onChange(val.value)
+                        onLoadFilterCities(val.value)
+                        setValue('city', '')
+                      }}
+                    />
+                  )}
                 />
-                <span className="text-[#ff5d5d]">{errors?.uf?.message}</span>
+                {errors.uf && (
+                  <span className="text-[14px] font-semibold text-[#FD0003]">
+                    {errors.uf.message}
+                  </span>
+                )}
               </div>
+
+              {/* Cidade */}
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Cidade<span className="text-[#FD0003]">*</span>
                 </label>
-                <Select
-                  placeholder="Selecione"
-                  value={cityOption}
-                  options={optionsCityList}
-                  styles={colourStyles}
-                  onChange={onChangeCity}
+                <Controller
+                  name="city"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={optionsCityList}
+                      placeholder={
+                        optionsCityList.length > 0
+                          ? 'Selecione'
+                          : 'Selecione um estado primeiro'
+                      }
+                      styles={getSelectStyles('city')}
+                      value={
+                        optionsCityList.find(c => c.value === field.value) ||
+                        null
+                      }
+                      onChange={val => field.onChange(val.value)}
+                      isDisabled={optionsCityList.length === 0}
+                    />
+                  )}
                 />
-                <span className="text-[#ff5d5d]">{errors?.city?.message}</span>
+                {errors.city && (
+                  <span className="text-[14px] font-semibold text-[#FD0003]">
+                    {errors.city.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
-          <div className="mt-[3rem] flex w-full flex-row justify-end gap-x-[1rem]">
+          <div className="mt-12 flex w-full flex-row justify-end gap-x-4">
             {currentStep !== 'first' && (
               <button
                 onClick={handleBackStep}
-                className="h-[38px] w-max rounded-full border-[1px] border-[#262626] px-[1.5rem] text-[#262626]"
+                className="h-[49px] w-[223px] rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
               >
                 Voltar
               </button>
             )}
             <button
               type="submit"
-              className="h-[38px] w-max rounded-full bg-black px-[1.5rem] text-white"
+              className="h-[49px] w-[223px] rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
             >
               Confirmar
             </button>

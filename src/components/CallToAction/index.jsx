@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import CustomLink from '~/components/CustomComponents/Link'
 
 export default function CallToActionSections() {
   return (

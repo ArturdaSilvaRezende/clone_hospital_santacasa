@@ -5,6 +5,7 @@ import { CurrentStep } from '~/view/pages/pre-agendamento/CurrentStep'
 import { Steps } from '~/view/pages/pre-agendamento/Steps'
 import { store } from './store'
 import HeroSection from '~/components/HeroSection'
+import CallToActionSections from '~/components/CallToAction'
 
 export default function PreAgendamento() {
   return (
@@ -32,16 +33,27 @@ export default function PreAgendamento() {
         </div>
       </HeroSection>
 
+      <div className="container mx-auto mt-15 max-w-285">
+        <h3 className="text-[32px] font-medium">
+          Formulário para realizar o pré-agendamento
+        </h3>
+        <p className="text-[16px] font-normal text-[#727070]">
+          Preencha as informações abaixo para realizar o seu pré-agendamento.
+        </p>
+      </div>
+
       <div className="container mx-auto flex max-w-285 flex-col items-center">
-        <div className="relative mt-[1.5rem] mb-[5rem] flex w-full flex-col items-center justify-center">
+        <div className="relative mt-6 mb-20 w-full">
           <div className="flex flex-row items-center justify-between">
-            <div className="mt-[0.5rem] flex w-full flex-col gap-x-[4rem] xl:mt-[3rem] xl:flex-row">
+            <div className="mt-2 flex w-full flex-col gap-x-16 xl:mt-12 xl:flex-row">
               <Steps />
               <CurrentStep />
             </div>
           </div>
         </div>
       </div>
+
+      <CallToActionSections />
     </ReduxProvider>
   )
 }

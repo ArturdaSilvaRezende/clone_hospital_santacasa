@@ -1,4 +1,4 @@
-import CallToActionSections from './components/CallToAction'
+import CallToActionSections from '~/components/CallToAction'
 import CarouselHero from './components/CarouselHero'
 import LatestNews from './components/LatestNews'
 import References from './components/References'
