@@ -11,11 +11,13 @@ function isValidFileType(fileName) {
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { IMaskInput } from 'react-imask'
 import * as yup from 'yup'
 import { MdOutlineFileUpload } from 'react-icons/md'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { IoCheckmark } from 'react-icons/io5'
 
 import {
   changeScheduleStep,
@@ -24,6 +26,7 @@ import {
 import { colourStyles } from '~/utils/select'
 
 import { fetchDataMedicalSpecialities } from '~/app/pre-agendamento/store'
+import Image from 'next/image'
 
 const optionsVacancyTypeList = [
   { value: 'Vaga Disponível', label: 'Vaga Disponível' },
@@ -37,14 +40,16 @@ const objFields = {
   type_confirm: 'type_confirm',
   vacancy_type: 'vacancy_type',
   new_speciality: 'new_speciality',
-  imagem_pedido: 'imagem_pedido'
+  imagem_pedido: 'imagem_pedido',
+  add_to_calendar: 'add_to_calendar'
 }
 
 const schema = yup.object({
+  doctor_name: yup.string().required('Campo obrigatório'),
   vacancy_type: yup.string().required('Campo obrigatório'),
-  doctor_name: yup.string(),
   speciality: yup.string().required('Campo obrigatório'),
   type_confirm: yup.string().required('Campo obrigatório'),
+  add_to_calendar: yup.boolean().default(false),
   new_speciality: yup.string(),
   tipo_marca: yup.string(),
   imagem_pedido: yup
@@ -96,9 +101,10 @@ export function ThirdStep() {
     dataSaved?.type_confirm || null
   )
   const {
+    control,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     watch,
     setValue,
     setError
@@ -111,10 +117,116 @@ export function ThirdStep() {
   const [marcaPassoOption, setMarcaPassoOption] = useState(null)
 
   const files = watch('imagem_pedido')
+  const hasFile = files && files.length > 0
+  const fileError = errors?.imagem_pedido
+
+  const uploadBoxClass = `group flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border-[1px] py-[1.5rem] duration-200 ease-in-out ${
+    fileError
+      ? 'border-[#FD0003] bg-[#ffe1e1] hover:bg-[#ffbfbf]' // Estado de Erro
+      : hasFile
+        ? 'border-[#20A36C] bg-[#eafff5] hover:bg-[#d7f7e8]' // Estado Sucesso (Verde)
+        : 'border-[#7D7D7D] bg-gray-50 hover:bg-gray-100' // Estado Inicial
+  }`
 
   function handleChangeConfirmSchedule(value) {
     setConfirmScheduleIn(value)
-    setValue('type_confirm', value)
+    setValue('type_confirm', value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true
+    })
+  }
+
+  const getFieldClass = name => {
+    const baseClass =
+      'h-[46px] w-full rounded-[10px] border px-4 transition-all outline-none'
+    const value = watch(name) // Monitora o valor atual
+
+    // Se houver erro, fica vermelho
+    if (errors[name]) {
+      return `${baseClass} border-[#FD0003] text-[#FD0003] placeholder:text-[#FD0003]`
+    }
+
+    // Se tiver valor e NÃO tiver erro, fica verde
+    if (value && value !== '' && value !== null) {
+      return `${baseClass} border-[#20A36C] text-[#262626]`
+    }
+
+    // Padrão cinza
+    return `${baseClass} border-[#7D7D7D] text-[#262626]`
+  }
+
+  const getSelectStyles = name => {
+    const fieldValue = watch(name)
+
+    return {
+      control: base => ({
+        ...base,
+        backgroundColor: 'transparent',
+        padding: '0 12px',
+        // Lógica de cores: Erro (vermelho) > Tem Valor (verde) > Padrão (cinza)
+        borderColor: errors[name]
+          ? '#FD0003'
+          : fieldValue && fieldValue !== ''
+            ? '#20A36C'
+            : '#7D7D7D',
+        borderRadius: '10px',
+        boxShadow: 'none',
+        cursor: 'pointer',
+        minHeight: '46px',
+        '&:hover': {
+          // No hover, mantemos a lógica de cores
+          borderColor: errors[name]
+            ? '#FD0003'
+            : fieldValue && fieldValue !== ''
+              ? '#20A36C'
+              : '#262626'
+        }
+      }),
+
+      menu: base => ({
+        ...base,
+        borderRadius: '12px',
+        overflow: 'hidden',
+        marginTop: '4px',
+        border: '1px solid #E5E7EB',
+        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+      }),
+
+      menuList: base => ({
+        ...base,
+        padding: 0
+      }),
+
+      option: (base, state) => ({
+        ...base,
+        backgroundColor: state.isSelected ? '#F3F4F6' : 'white',
+        color: '#262626',
+        padding: '12px 16px',
+        cursor: 'pointer',
+
+        borderBottom: '1px solid #F3F4F6',
+        '&:last-child': {
+          borderBottom: 'none'
+        },
+        '&:active': {
+          backgroundColor: '#E5E7EB'
+        },
+        '&:hover': {
+          backgroundColor: '#F9FAFB'
+        }
+      }),
+
+      indicatorSeparator: () => ({ display: 'none' }),
+      dropdownIndicator: base => ({
+        ...base,
+        color: '#727070'
+      }),
+      valueContainer: base => ({
+        ...base,
+        paddingLeft: '0px'
+      })
+    }
   }
 
   const onSubmit = data => {
@@ -152,9 +264,9 @@ export function ThirdStep() {
 
   function onChangeSpeciality(e) {
     setSpecialityOption(e)
-    setValue('tipo_marca', '')
+    setValue('tipo_marca', '', { shouldValidate: true })
     setMarcaPassoOption({})
-    setValue('speciality', e.value)
+    setValue('speciality', e.value, { shouldValidate: true, shouldDirty: true })
 
     const specialityItem = specialityList?.find(item => item.id == e.value)
     const marcaPassoOptions = specialityItem?.marca_passo_list?.map(item => ({
@@ -231,14 +343,14 @@ export function ThirdStep() {
           <div className="flex flex-col gap-y-5">
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-[500] text-[#262626]">
-                Nome do médico
+                Nome do médico<span className="text-[#FD0003]">*</span>
               </label>
               <input
                 {...register(objFields.doctor_name)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                className={getFieldClass('doctor_name')}
                 placeholder="Nome Completo"
               />
-              <span className="text-[#ff5d5d]">
+              <span className="text-[16px] font-semibold text-[#FD0003]">
                 {errors?.doctor_name?.message}
               </span>
             </div>
@@ -250,60 +362,123 @@ export function ThirdStep() {
                 placeholder="Selecione"
                 value={vacancyTypeOption}
                 options={optionsVacancyTypeList}
-                styles={colourStyles}
+                styles={getSelectStyles('vacancy_type')}
                 onChange={onChangeVacancyType}
               />
-              <span className="text-[#ff5d5d]">
+              <span className="text-[16px] font-semibold text-[#FD0003]">
                 {errors?.vacancy_type?.message}
               </span>
             </div>
+
             <input
               {...register('imagem_pedido')}
               type="file"
               className="input-file"
               hidden
             />
+
             {vacancyTypeOption?.value == 'Encaixe' && (
-              <>
-                {files?.length <= 0 ? (
-                  <div
-                    onClick={handleOpenFile}
-                    className="group flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border-[1px] border-[#FD0003] bg-[#ffe1e1] py-[1.5rem] duration-200 ease-in-out hover:bg-[#ffbfbf]"
-                  >
-                    <div className="flex flex-col items-center gap-y-2 text-center">
-                      <MdOutlineFileUpload color="#000" size={50} />
-                      <p>Enviar comprovante</p>
-                      <div className="rounded-[5px] bg-black p-[0.5rem] text-[0.8rem] font-[400] text-white">
-                        <p>Limite 10MB, arquivos .pdf, .png, .jpeg, .jpg</p>
-                      </div>
-                    </div>
+              <div onClick={handleOpenFile} className={uploadBoxClass}>
+                <div className="flex flex-col items-center gap-y-2 text-center">
+                  {!hasFile ? (
+                    <>
+                      <MdOutlineFileUpload
+                        color={fileError ? '#FD0003' : '#000'}
+                        size={50}
+                      />
+                      <p className={fileError ? 'text-[#FD0003]' : ''}>
+                        Enviar comprovante
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <IoMdCheckmarkCircleOutline color="#20A36C" size={50} />
+                      <p className="font-medium text-[#20A36C]">
+                        Arquivo anexado
+                      </p>
+                    </>
+                  )}
+                  <div className="rounded-[5px] bg-black p-[0.5rem] text-[0.8rem] font-[400] text-white">
+                    <p>
+                      {hasFile
+                        ? 'Clique para substituir'
+                        : 'Limite 10MB, arquivos .pdf, .png, .jpeg, .jpg'}
+                    </p>
                   </div>
-                ) : (
-                  <div
-                    onClick={handleOpenFile}
-                    className="group flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border-[1px] border-[#FD0003] bg-[#ffe1e1] py-[1.5rem] duration-200 ease-in-out hover:bg-[#ffbfbf]"
-                  >
-                    <div className="flex flex-col items-center gap-y-2 text-center">
-                      <IoMdCheckmarkCircleOutline color="#000" size={50} />
-                      <p>Arquivo anexado</p>
-                      <div className="rounded-[5px] bg-black p-[0.5rem] text-[0.8rem] font-[400] text-white">
-                        <p>Click para subistituir</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
+                </div>
+              </div>
             )}
-            {/* <div className='grid grid-cols-3 gap-x-5'>
-                            <div className='flex flex-col gap-y-2'>
-                                <label className='text-[#262626] text-[1rem] font-[500]'>Data da ultima consulta <span className='text-[#FD0003]'>*</span></label>
-                                <input {...register(objFields.date_last_consult)} type="date" className='h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]' placeholder='' />
-                            </div>
-                            <div className='flex flex-col gap-y-2'>
-                                <label className='text-[#262626] text-[1rem] font-[500]'>Data da alta internação <span className='text-[#FD0003]'>*</span></label>
-                                <input {...register(objFields.date_last_hospitalization)} type="date" className='h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]' placeholder='' />
-                            </div>
-                        </div> */}
+
+            <div className="flex justify-between gap-10">
+              <div className="flex w-full flex-col gap-y-2">
+                <label className="text-[1rem] font-medium text-[#262626]">
+                  Data da ultima consulta
+                  <span className="text-[#FD0003]">*</span>
+                </label>
+                <Controller
+                  name="birth_date"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="relative">
+                      <IMaskInput
+                        {...field}
+                        mask="00/00/0000"
+                        className={getFieldClass('birth_date')}
+                        placeholder="00/00/0000"
+                        onAccept={value => field.onChange(value)}
+                      />
+                      <Image
+                        src="/icons/calendar-month-icon-gray.svg"
+                        alt="Data de nascimento"
+                        height={25}
+                        width={25}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 transform"
+                      />
+                    </div>
+                  )}
+                />
+                {errors.birth_date && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors.birth_date.message}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex w-full flex-col gap-y-2">
+                <label className="text-[1rem] font-medium text-[#262626]">
+                  Data da alta internação
+                  <span className="text-[#FD0003]">*</span>
+                </label>
+                <Controller
+                  name="discharge_date"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="relative">
+                      <IMaskInput
+                        {...field}
+                        mask="00/00/0000"
+                        className={getFieldClass('discharge_date')}
+                        placeholder="00/00/0000"
+                        onAccept={value => field.onChange(value)}
+                      />
+                      <Image
+                        src="/icons/calendar-month-icon-gray.svg"
+                        alt="Data de nascimento"
+                        height={25}
+                        width={25}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 transform"
+                      />
+                    </div>
+                  )}
+                />
+                {errors.birth_date && (
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
+                    {errors.birth_date.message}
+                  </span>
+                )}
+              </div>
+            </div>
+
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-[500] text-[#262626]">
                 Especialidade<span className="text-[#FD0003]">*</span>
@@ -320,10 +495,10 @@ export function ThirdStep() {
                         value: item.id
                       }))
                 }
-                styles={colourStyles}
+                styles={getSelectStyles('speciality')}
                 onChange={onChangeSpeciality}
               />
-              <span className="text-[#ff5d5d]">
+              <span className="text-[16px] font-semibold text-[#FD0003]">
                 {errors?.speciality?.message}
               </span>
             </div>
@@ -337,10 +512,10 @@ export function ThirdStep() {
                   placeholder="Selecione"
                   value={marcaPassoOption}
                   options={marcaPassoList}
-                  styles={colourStyles}
+                  styles={getSelectStyles('tipo_marca')}
                   onChange={onChangeMarcaPasso}
                 />
-                <span className="text-[#ff5d5d]">
+                <span className="text-[16px] font-semibold text-[#FD0003]">
                   {errors?.tipo_marca?.message}
                 </span>
               </div>
@@ -361,10 +536,10 @@ export function ThirdStep() {
                           ?.filter(item => item.id !== specialityOption.value)
                           ?.map(item => ({ label: item.name, value: item.id }))
                   }
-                  styles={colourStyles}
+                  styles={getSelectStyles('new_speciality')}
                   onChange={onChangeNewSpeciality}
                 />
-                <span className="text-[#ff5d5d]">
+                <span className="text-[16px] font-semibold text-[#FD0003]">
                   {errors?.new_speciality?.message}
                 </span>
               </div>
@@ -373,7 +548,7 @@ export function ThirdStep() {
               <label className="text-[1rem] font-[500] text-[#262626]">
                 Você prefere a confirmação do agendamento por qual meio?
               </label>
-              <div className="flex flex-col items-center gap-y-3 xl:flex-row xl:gap-x-3 xl:gap-y-0">
+              <div className="flex flex-col items-center gap-y-3 xl:flex-row xl:gap-x-10 xl:gap-y-0">
                 <div
                   onClick={() =>
                     handleChangeConfirmSchedule(confirmScheduleInObj.cel_phone)
@@ -385,10 +560,17 @@ export function ThirdStep() {
                   ></div>
                   <span>Celular</span>
                 </div>
-                {/* <div onClick={() => handleChangeConfirmSchedule(confirmScheduleInObj.tel_phone)} className='flex flex-row items-center gap-x-3 cursor-pointer'>
-                                    <div className={`h-[30px] w-[30px] ${confirmScheduleIn == confirmScheduleInObj.tel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}></div>
-                                    <span>Telefone Fixo</span>
-                                </div> */}
+                <div
+                  onClick={() =>
+                    handleChangeConfirmSchedule(confirmScheduleInObj.tel_phone)
+                  }
+                  className="flex cursor-pointer flex-row items-center gap-x-3"
+                >
+                  <div
+                    className={`h-[30px] w-[30px] ${confirmScheduleIn == confirmScheduleInObj.tel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
+                  ></div>
+                  <span>Telefone Fixo</span>
+                </div>
                 <div
                   onClick={() =>
                     handleChangeConfirmSchedule(confirmScheduleInObj.email)
@@ -401,23 +583,47 @@ export function ThirdStep() {
                   <span>E-mail</span>
                 </div>
               </div>
-              <span className="text-[#ff5d5d]">
+              <span className="text-[16px] font-semibold text-[#FD0003]">
                 {errors?.type_confirm?.message}
               </span>
             </div>
           </div>
+
+          <div className="mt-4 flex flex-col gap-y-2">
+            <Controller
+              name="add_to_calendar"
+              control={control}
+              render={({ field }) => (
+                <div
+                  className="group flex w-fit cursor-pointer items-center gap-x-3"
+                  onClick={() => field.onChange(!field.value)}
+                >
+                  <div
+                    className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200 ${field.value ? 'bg-[#20A36C]' : 'bg-[#D9D9D9] group-hover:bg-[#ccc]'} `}
+                  >
+                    {field.value && <IoCheckmark size={21} color="#fff" />}
+                  </div>
+
+                  <span className="text-[1rem] font-[500] text-[#262626]">
+                    Adicionar compromisso no Google Agenda.
+                  </span>
+                </div>
+              )}
+            />
+          </div>
+
           <div className="mt-[3rem] flex w-full flex-row justify-end gap-x-[1rem]">
             {currentStep !== 'first' && (
               <button
                 onClick={handleBackStep}
-                className="h-[38px] w-max rounded-full border-[1px] border-[#262626] px-[1.5rem] text-[#262626]"
+                className="h-[49px] w-[223px] rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
               >
                 Voltar
               </button>
             )}
             <button
               type="submit"
-              className="h-[38px] w-max rounded-full bg-black px-[1.5rem] text-white"
+              className="h-[49px] w-[223px] rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
             >
               Confirmar
             </button>

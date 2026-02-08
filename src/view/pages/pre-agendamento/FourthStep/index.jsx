@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { BiCheck } from 'react-icons/bi'
 import SyncLoader from 'react-spinners/SyncLoader'
+import Image from 'next/image'
 
 import {
   changeScheduleStep,
@@ -16,7 +17,8 @@ import {
 
 const objFields = {
   obs: 'obs',
-  term: 'term'
+  term: 'term',
+  captcha: 'captcha'
 }
 
 const schema = yup.object({
@@ -24,7 +26,8 @@ const schema = yup.object({
   term: yup
     .boolean()
     .required('Campo obrigatório')
-    .isTrue('Essa opção precisa ser marcada para prosseguir!')
+    .isTrue('Essa opção precisa ser marcada para prosseguir!'),
+  captcha: yup.boolean().isTrue('Por favor, confirme que você não é um robô.')
 })
 
 export function FourthStep() {
@@ -39,6 +42,7 @@ export function FourthStep() {
     message
   } = useSelector(store => store.schedule)
   const [acceptTerms, setAcceptTerms] = useState(fourthStepData?.term || false)
+  const [isRobot, setIsRobot] = useState(false)
   const dispatch = useDispatch()
 
   const {
@@ -49,7 +53,10 @@ export function FourthStep() {
     getValues
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: fourthStepData
+    defaultValues: {
+      ...fourthStepData,
+      captcha: false
+    }
   })
 
   const onSubmit = async data => {
@@ -145,6 +152,12 @@ export function FourthStep() {
     )
   }
 
+  function handleToggleCaptcha() {
+    const newValue = !isRobot
+    setIsRobot(newValue)
+    setValue('captcha', newValue, { shouldValidate: true })
+  }
+
   function handleBackStep() {
     const objData = getValues()
     dispatch(saveFouthStepData(objData))
@@ -172,7 +185,8 @@ export function FourthStep() {
       </div>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col gap-y-6">
+            {/* Observações */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-[500] text-[#262626]">
                 Observações e Sugestões<span className="text-[#FD0003]">*</span>
@@ -184,13 +198,14 @@ export function FourthStep() {
               />
               <span className="text-[#ff5d5d]">{errors?.obs?.message}</span>
             </div>
+
             <div
               className="flex cursor-pointer flex-row gap-x-5"
               onClick={handleToggleAcceptTerm}
             >
               <div>
                 <div
-                  className={`flex h-[28px] w-[28px] flex-col items-center justify-center rounded-[8px] ${acceptTerms ? 'bg-[#20A36C]' : 'border-[1px] border-[#262626]'}`}
+                  className={`flex h-[28px] w-[28px] flex-col items-center justify-center rounded-[8px] transition-colors ${acceptTerms ? 'bg-[#20A36C]' : 'border-[1px] border-[#262626]'}`}
                 >
                   <BiCheck size={27} color="#fff" />
                 </div>
@@ -199,46 +214,91 @@ export function FourthStep() {
                 <span className="font-[600]">
                   Aceito o termo e afirmo que as informações são verdadeiras.
                 </span>
-                <p>
-                  {'"'}Este termo visa registrar a manifestação livre, informada
-                  e inequívoca pela qual o usuário concorda com o tratamento de
-                  seus dados pessoais para finalidade específica, em
-                  conformidade com a Lei nº 13.709 - Lei Geral de Proteção de
-                  Dados Pessoais (LGPD){'"'}.
+                <p className="mt-1 text-[0.9rem] leading-tight text-[#727070]">
+                  {'"'}"Este termo visa registrar a manifestação livre,
+                  informada e inequívoca pela qual o usuário concorda com o
+                  tratamento de seus dados pessoais para finalidade específica,
+                  em conformidade com a Lei nº 13.709 - Lei Geral de Proteção de
+                  Dados Pessoais (LGPD)".{'"'}
                 </p>
+                {errors?.term && (
+                  <span className="mt-1 block text-[#ff5d5d]">
+                    {errors?.term?.message}
+                  </span>
+                )}
               </div>
-              <span className="text-[#ff5d5d]">{errors?.term?.message}</span>
             </div>
+
+            {/* --- BLOCO CAPTCHA (AGORA DENTRO DO FLEX GAP-Y-6) --- */}
+            <div className="mt-2 flex flex-col gap-y-2">
+              <div className="flex w-full max-w-[305px] items-center justify-between rounded-[4px] border border-[#d3d3d3] bg-[#f9f9f9] p-[10px] shadow-sm">
+                <div
+                  className="flex cursor-pointer items-center gap-x-3 select-none"
+                  onClick={handleToggleCaptcha}
+                >
+                  <div
+                    className={`flex h-7 w-7 items-center justify-center rounded-[3px] border-[2px] bg-white transition-all ${isRobot ? 'border-[#20A36C]' : 'border-[#c1c1c1]'}`}
+                  >
+                    {isRobot && <BiCheck size={24} color="#20A36C" />}
+                  </div>
+                  <span className="text-[14px] font-[400] text-[#2e2e2e]">
+                    Não sou Robô
+                  </span>
+                </div>
+
+                <div className="ml-4 flex flex-col items-center">
+                  <img
+                    src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+                    alt="reCAPTCHA"
+                    className="h-8 w-8 object-contain opacity-80"
+                  />
+                  <span className="text-[9px] font-medium text-[#7d7d7d]">
+                    reCAPTCHA
+                  </span>
+                  <div className="flex gap-x-1 text-[8px] text-[#9b9b9b]">
+                    <span>Privacidade</span>
+                    <span>-</span>
+                    <span>Termos</span>
+                  </div>
+                </div>
+              </div>
+              {errors?.captcha && (
+                <span className="text-xs font-semibold text-[#ff5d5d]">
+                  {errors?.captcha?.message}
+                </span>
+              )}
+            </div>
+            {/* --- FIM DO CAPTCHA --- */}
           </div>
+
           {error && (
-            <div className="mt-[1rem]">
-              {/* <Alert severity="error">{message}</Alert> */}
-              !!!
+            <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+              Ocorreu um erro ao processar o agendamento. Tente novamente.
             </div>
           )}
+
+          {/* Botões de Ação */}
           <div className="mt-[3rem] flex w-full flex-row justify-end gap-x-[1rem]">
             {currentStep !== 'first' && (
               <button
+                type="button"
                 onClick={handleBackStep}
-                className="h-[38px] w-max rounded-full border-[1px] border-[#262626] px-[1.5rem] text-[#262626]"
+                className="h-[38px] w-max rounded-full border-[1px] border-[#262626] px-[1.5rem] text-[#262626] transition-colors hover:bg-gray-50"
               >
                 Voltar
               </button>
             )}
             <button
               type="submit"
-              className="flex h-[38px] w-max flex-row items-center justify-center gap-x-2 rounded-full bg-black px-[1.5rem] text-white"
+              disabled={create_schedule_status === 'loading'}
+              className="hover:bg-opacity-90 flex h-[38px] min-w-[120px] flex-row items-center justify-center gap-x-2 rounded-full bg-black px-[1.5rem] text-white transition-all disabled:bg-gray-400"
             >
               <SyncLoader
                 color="#E6E6E6"
-                loading={create_schedule_status == 'loading'}
+                loading={create_schedule_status === 'loading'}
                 size={3}
               />
-              {create_schedule_status == 'loading' ? (
-                'Enviando'
-              ) : (
-                <span>Confirmar</span>
-              )}
+              {create_schedule_status === 'loading' ? 'Enviando' : 'Confirmar'}
             </button>
           </div>
         </form>

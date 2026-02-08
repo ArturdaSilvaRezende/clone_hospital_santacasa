@@ -40,10 +40,10 @@ export function FirstStep() {
           className="flex cursor-pointer flex-col items-center gap-y-2 text-center xl:text-start"
         >
           <div
-            className={`rounded-[8px] border-[1px] xl:rounded-[5px] ${returnType == 'return_consult' ? 'border-[#FD0003]' : 'border-[#878787]'} flex h-[237px] w-full flex-col items-center justify-center xl:h-[237px] xl:w-[270px]`}
+            className={`rounded-2xl border-[1px] ${returnType == 'return_consult' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 flex-col items-center justify-center`}
           >
             <svg
-              className="w-[55px] xl:w-[102px]"
+              className="w-15.75"
               width="89"
               height="89"
               viewBox="0 0 89 89"
@@ -52,7 +52,7 @@ export function FirstStep() {
             >
               <g clipPath="url(#clip0_47_436)">
                 <path
-                  fill={returnType == 'return_consult' ? '#FD0003' : '#878787'}
+                  fill={returnType == 'return_consult' ? '#fff' : '#878787'}
                   d="M16.7119 81.0628C15.2481 81.0628 13.9674 80.5139 12.8696 79.4161C11.7718 78.3183 11.2229 77.0376 11.2229 75.5738V18.8546C11.2229 17.3909 11.7718 16.1101 12.8696 15.0124C13.9674 13.9146 15.2481 13.3657 16.7119 13.3657H22.6582V7.87671H28.6046V13.3657H59.7087V7.87671H65.655V13.3657H71.6014C73.0651 13.3657 74.3459 13.9146 75.4437 15.0124C76.5415 16.1101 77.0904 17.3909 77.0904 18.8546V46.2994H71.6014V36.2363H16.7119V75.5738H46.3522V81.0628H16.7119ZM69.7718 88.3814C65.3196 88.3814 61.4316 86.9939 58.1077 84.2189C54.7839 81.444 52.695 77.9524 51.8412 73.7442H57.5131C58.3059 76.4277 59.8154 78.6233 62.0415 80.3309C64.2676 82.0386 66.8443 82.8924 69.7718 82.8924C73.3091 82.8924 76.328 81.6422 78.8285 79.1417C81.3291 76.6411 82.5793 73.6222 82.5793 70.0849C82.5793 66.5476 81.3291 63.5286 78.8285 61.0281C76.328 58.5276 73.3091 57.2773 69.7718 57.2773C68.0031 57.2773 66.3564 57.5975 64.8317 58.2379C63.307 58.8783 61.9653 59.7778 60.8065 60.9366H66.1125V66.4256H51.4752V51.7884H56.9642V57.0029C58.6109 55.4172 60.532 54.1517 62.7276 53.2063C64.9232 52.261 67.2712 51.7884 69.7718 51.7884C74.8338 51.7884 79.1487 53.5723 82.7166 57.1401C86.2844 60.7079 88.0683 65.0228 88.0683 70.0849C88.0683 75.1469 86.2844 79.4618 82.7166 83.0297C79.1487 86.5975 74.8338 88.3814 69.7718 88.3814ZM16.7119 30.7474H71.6014V18.8546H16.7119V30.7474Z"
                 />
               </g>
@@ -79,10 +79,10 @@ export function FirstStep() {
           className="flex cursor-pointer flex-col items-center gap-y-2 text-center xl:text-start"
         >
           <div
-            className={`rounded-[8px] border-[1px] xl:rounded-[5px] ${returnType == 'return_post_hospitalization' ? 'border-[#FD0003]' : 'border-[#878787]'} flex h-[237px] w-full flex-col items-center justify-center xl:h-[237px] xl:w-[270px]`}
+            className={`rounded-2xl border-[1px] ${returnType == 'return_post_hospitalization' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 flex-col items-center justify-center`}
           >
             <svg
-              className="w-[55px] xl:w-[102px]"
+              className="w-15.75"
               width="102"
               height="69"
               viewBox="0 0 102 69"
@@ -92,7 +92,7 @@ export function FirstStep() {
               <path
                 fill={
                   returnType == 'return_post_hospitalization'
-                    ? '#FD0003'
+                    ? '#fff'
                     : '#878787'
                 }
                 d="M0.54126 68.1599V0.741943H7.45592V46.1482H48.1372V10.5377H85.2458C89.8412 10.5377 93.7751 12.1739 97.0475 15.4464C100.32 18.7189 101.956 22.6528 101.956 27.2481V68.1599H95.0416V53.0629H7.45592V68.1599H0.54126ZM27.0475 39.464C23.5901 39.464 20.6898 38.2924 18.3465 35.9491C16.0032 33.6058 14.8316 30.7055 14.8316 27.2481C14.8316 23.7908 16.0032 20.8905 18.3465 18.5472C20.6898 16.2039 23.5901 15.0322 27.0475 15.0322C30.5048 15.0322 33.4051 16.2039 35.7484 18.5472C38.0917 20.8905 39.2633 23.7908 39.2633 27.2481C39.2633 30.7055 38.0917 33.6058 35.7484 35.9491C33.4051 38.2924 30.5048 39.464 27.0475 39.464ZM55.0518 46.1482H95.0416V27.2481C95.0416 24.5543 94.0824 22.2483 92.1641 20.3299C90.2457 18.4115 87.9396 17.4524 85.2458 17.4524H55.0518V46.1482ZM27.0475 32.5494C28.5072 32.5494 29.7557 32.0308 30.7929 30.9936C31.8301 29.9564 32.3487 28.7079 32.3487 27.2481C32.3487 25.7884 31.8301 24.5399 30.7929 23.5027C29.7557 22.4655 28.5072 21.9469 27.0475 21.9469C25.5877 21.9469 24.3392 22.4655 23.302 23.5027C22.2648 24.5399 21.7462 25.7884 21.7462 27.2481C21.7462 28.7079 22.2648 29.9564 23.302 30.9936C24.3392 32.0308 25.5877 32.5494 27.0475 32.5494Z"
@@ -110,10 +110,10 @@ export function FirstStep() {
           className="flex cursor-pointer flex-col items-center gap-y-2 text-center xl:text-start"
         >
           <div
-            className={`rounded-[8px] border-[1px] xl:rounded-[5px] ${returnType == 'internal_routing' ? 'border-[#FD0003]' : 'border-[#878787]'} flex h-[237px] w-full flex-col items-center justify-center xl:h-[237px] xl:w-[270px]`}
+            className={`rounded-2xl border-[1px] ${returnType == 'internal_routing' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 flex-col items-center justify-center`}
           >
             <svg
-              className="h-[55px] w-[55px] xl:h-[102px] xl:w-[102px]"
+              className="h-15.75 w-15.75"
               width="55px"
               height="55px"
               viewBox="0 0 24 24"
@@ -122,9 +122,7 @@ export function FirstStep() {
             >
               <path
                 d="M20 4V20M4 12H16M16 12L12 8M16 12L12 16"
-                stroke={
-                  returnType == 'internal_routing' ? '#FD0003' : '#878787'
-                }
+                stroke={returnType == 'internal_routing' ? '#fff' : '#878787'}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -146,7 +144,7 @@ export function FirstStep() {
         )}
         <button
           onClick={handleGoNextStep}
-          className="h-[38px] w-max rounded-full bg-black px-[1.5rem] text-white"
+          className="h-9.5 w-32.5 rounded-full bg-[#FD0003] px-6 text-white hover:bg-red-700"
         >
           Confirmar
         </button>

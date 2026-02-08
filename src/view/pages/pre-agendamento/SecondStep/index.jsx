@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 import { useForm, Controller } from 'react-hook-form'
@@ -15,7 +16,6 @@ import {
   changeScheduleStep,
   saveSecondStepData
 } from '~/app/pre-agendamento/store'
-import Image from 'next/image'
 
 const optionsPeopleGenderList = [
   { value: 'Masculino', label: 'Masculino' },
@@ -185,7 +185,6 @@ export function SecondStep() {
       }
     }),
 
-    // Limpeza de indicadores
     indicatorSeparator: () => ({ display: 'none' }),
     dropdownIndicator: base => ({
       ...base,
