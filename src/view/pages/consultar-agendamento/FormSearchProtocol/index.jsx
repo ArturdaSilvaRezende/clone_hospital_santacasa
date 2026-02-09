@@ -6,9 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useSelector, useDispatch } from 'react-redux'
 import SyncLoader from 'react-spinners/SyncLoader'
-import { RiErrorWarningLine } from 'react-icons/ri'
 
 import { fetchDataAppointmentOrder } from '~/app/consultar-agendamento/store'
+import ResponseError from '~/components/CustomComponents/ResponseError'
 
 const objFields = {
   protocolo: 'protocolo'
@@ -21,7 +21,6 @@ const schema = yup.object({
 export function FormSearchProtocol() {
   const dispatch = useDispatch()
   const {
-    content,
     request_status: requestStatus,
     response_message: responseMessage,
     response_error: responseError
@@ -74,17 +73,12 @@ export function FormSearchProtocol() {
             </label>
             <input
               {...register(objFields.protocolo)}
-              className="h-11.5 w-full rounded-md border border-[#EDECEC] px-4 font-normal text-[#6D6D6D]"
+              className="h-11.5 w-full rounded-md border border-[#EDECEC] bg-white px-4 font-normal text-[#6D6D6D] placeholder:text-[#6D6D6D] focus:border-gray-300 focus:outline-none"
               placeholder="Digite seu protocolo"
             />
             <span className="text-[#FD0003]">{errors?.protocolo?.message}</span>
           </div>
-          {responseError && (
-            <div className="mt-4 flex h-11.5 flex-row items-center gap-x-2 rounded-md bg-[#FDEDED] px-4 font-normal">
-              <RiErrorWarningLine size={20} className="text-[#FD0003]" />
-              <span className="text-[14px]">{responseMessage}</span>
-            </div>
-          )}
+          {responseError && <ResponseError responseMessage={responseMessage} />}
           <div className="mt-3 flex flex-row items-center justify-between">
             <button
               onClick={() => (window.location.href = '/esqueci-protocolo')}
