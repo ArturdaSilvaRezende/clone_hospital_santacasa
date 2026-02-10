@@ -58,7 +58,7 @@ export function Steps() {
               >
                 {!isLast && (
                   <div
-                    className={`absolute top-10 right-0 h-full w-[3px] ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
+                    className={`absolute top-10 right-0 h-[65px] w-px ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
                   />
                 )}
 

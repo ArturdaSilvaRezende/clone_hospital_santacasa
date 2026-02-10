@@ -14,6 +14,7 @@ export function FirstStep() {
   const dispatch = useDispatch()
 
   function handleChangeReturnType(type) {
+    console.log(type)
     dispatch(changeReturnType(type))
   }
 

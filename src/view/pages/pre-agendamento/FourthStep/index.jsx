@@ -17,8 +17,7 @@ import {
 
 const objFields = {
   obs: 'obs',
-  term: 'term',
-  captcha: 'captcha'
+  term: 'term'
 }
 
 const schema = yup.object({
@@ -26,10 +25,8 @@ const schema = yup.object({
   term: yup
     .boolean()
     .required('Campo obrigatório')
-    .isTrue('Essa opção precisa ser marcada para prosseguir!'),
-  captcha: yup.boolean().isTrue('Por favor, confirme que você não é um robô.')
+    .isTrue('Essa opção precisa ser marcada para prosseguir!')
 })
-
 export function FourthStep() {
   const {
     return_type: returnType,
@@ -41,6 +38,7 @@ export function FourthStep() {
     error,
     message
   } = useSelector(store => store.schedule)
+
   const [acceptTerms, setAcceptTerms] = useState(fourthStepData?.term || false)
   const [isRobot, setIsRobot] = useState(false)
   const dispatch = useDispatch()
@@ -53,10 +51,7 @@ export function FourthStep() {
     getValues
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      ...fourthStepData,
-      captcha: false
-    }
+    defaultValues: fourthStepData
   })
 
   const onSubmit = async data => {
@@ -124,17 +119,17 @@ export function FourthStep() {
     formData.append('tipo_confirmacao_agendamento', thirdStepData?.type_confirm)
     formData.append('observacao', fourthStepData?.obs || objData?.obs || '')
     formData.append('termo', fourthStepData.term || objData.term || false)
-    formData.append('nome_pai', secondStepData.father_name)
-    formData.append('cpf', secondStepData.cpf)
-    formData.append('cns', secondStepData.cns)
-    formData.append('bairro', secondStepData.neighborhood)
-    formData.append('logradouro', secondStepData.address)
-    formData.append('numero', secondStepData.address_number)
-    formData.append('complemento', secondStepData.complement)
-    formData.append('cep', secondStepData.cep)
-    formData.append('cidade', secondStepData.city)
-    formData.append('estado', secondStepData.uf)
-    formData.append('tipo_endereco', secondStepData.address_type)
+    // formData.append('nome_pai', secondStepData.father_name)
+    // formData.append('cpf', secondStepData.cpf)
+    // formData.append('cns', secondStepData.cns)
+    // formData.append('bairro', secondStepData.neighborhood)
+    // formData.append('logradouro', secondStepData.address)
+    // formData.append('numero', secondStepData.address_number)
+    // formData.append('complemento', secondStepData.complement)
+    // formData.append('cep', secondStepData.cep)
+    // formData.append('cidade', secondStepData.city)
+    // formData.append('estado', secondStepData.uf)
+    // formData.append('tipo_endereco', secondStepData.address_type)
 
     if (
       thirdStepData?.vacancy_type == 'Encaixe' &&

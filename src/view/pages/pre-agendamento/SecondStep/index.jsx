@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
@@ -8,9 +8,6 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { IMaskInput } from 'react-imask'
-import axios from 'axios'
-import { validateCPF } from '~/utils/validateCPF'
-import { colourStyles } from '~/utils/select'
 
 import {
   changeScheduleStep,
@@ -23,21 +20,6 @@ const optionsPeopleGenderList = [
   { value: 'Prefiro não responder', label: 'Prefiro não responder' }
 ]
 
-const optionsBreedList = [
-  { value: 'Amarela', label: 'Amarela' },
-  { value: 'Branca', label: 'Branca' },
-  { value: 'Indígena', label: 'Indígena' },
-  { value: 'Parda', label: 'Parda' },
-  { value: 'Preta', label: 'Preta' }
-]
-
-const optionsTipoEnderecoList = [
-  { value: 'Rua', label: 'Rua' },
-  { value: 'Avenida', label: 'Avenida' },
-  { value: 'Via', label: 'Via' },
-  { value: 'Viela', label: 'Viela' }
-]
-
 const objFields = {
   fullname: 'fullname',
   mother_name: 'mother_name',
@@ -45,43 +27,43 @@ const objFields = {
   email: 'email',
   birth_date: 'birth_date',
   cel_phone: 'cel_phone',
-  tel_phone: 'tel_phone',
-  cpf: 'cpf',
-  cns: 'cns',
-  neighborhood: 'neighborhood',
-  address: 'address',
-  address_number: 'address_number',
-  address_type: 'address_type',
-  complement: 'complement',
-  cep: 'cep',
-  father_name: 'father_name',
-  breed: 'breed',
-  uf: 'uf',
-  city: 'city'
+  tel_phone: 'tel_phone'
+  // cpf: 'cpf',
+  // cns: 'cns',
+  // neighborhood: 'neighborhood',
+  // address: 'address',
+  // address_number: 'address_number',
+  // address_type: 'address_type',
+  // complement: 'complement',
+  // cep: 'cep',
+  // father_name: 'father_name',
+  // breed: 'breed',
+  // uf: 'uf',
+  // city: 'city'
 }
 
 const schema = yup.object({
   fullname: yup.string().required('Esse Campo é obrigatorio'),
   mother_name: yup.string().required('Esse Campo é obrigatorio'),
-  father_name: yup.string(),
+  // father_name: yup.string(),
   prontuario: yup.string(),
   email: yup.string().email('E-mail inválido'),
   birth_date: yup.string().required('Esse Campo é obrigatorio'),
   cel_phone: yup.string().required('Esse Campo é obrigatorio'),
   tel_phone: yup.string(),
-  cpf: yup
-    .string()
-    .required('Esse Campo é obrigatorio')
-    .test('test-invalid-cpf', 'CPF inválido', cpf => validateCPF(cpf)),
-  cns: yup.string(),
-  neighborhood: yup.string().required('Esse Campo é obrigatorio'),
-  address: yup.string().required('Esse Campo é obrigatorio'),
-  address_number: yup.string().required('Esse Campo é obrigatorio'),
-  address_type: yup.string().required('Esse Campo é obrigatorio'),
-  complement: yup.string(),
-  cep: yup.string().required('Esse Campo é obrigatorio'),
-  city: yup.string().required('Esse Campo é obrigatorio'),
-  uf: yup.string().required('Esse Campo é obrigatorio'),
+  // cpf: yup
+  //   .string()
+  //   .required('Esse Campo é obrigatorio')
+  //   .test('test-invalid-cpf', 'CPF inválido', cpf => validateCPF(cpf)),
+  // cns: yup.string(),
+  // neighborhood: yup.string().required('Esse Campo é obrigatorio'),
+  // address: yup.string().required('Esse Campo é obrigatorio'),
+  // address_number: yup.string().required('Esse Campo é obrigatorio'),
+  // address_type: yup.string().required('Esse Campo é obrigatorio'),
+  // complement: yup.string(),
+  // cep: yup.string().required('Esse Campo é obrigatorio'),
+  // city: yup.string().required('Esse Campo é obrigatorio'),
+  // uf: yup.string().required('Esse Campo é obrigatorio'),
   gender: yup.string().required('Esse Campo é obrigatorio')
 })
 
@@ -94,35 +76,19 @@ export function SecondStep() {
   const genderSavedOption = optionsPeopleGenderList?.find(
     item => item.value == dataSaved?.gender
   )
-  const [genderOption, setGenderOption] = useState(genderSavedOption || null)
 
-  const typeAddressSavedOption = optionsTipoEnderecoList?.find(
-    item => item.value == dataSaved?.address_type
-  )
-  const [typeAddressOption, setTypeAddressOption] = useState(
-    typeAddressSavedOption || null
-  )
-
-  const [breedOption, setBreedOption] = useState(genderSavedOption || null)
   const dispatch = useDispatch()
 
   const {
     control,
     register,
     handleSubmit,
-    formState: { errors, dirtyFields },
-    setValue,
-    watch
+    formState: { errors, dirtyFields }
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: dataSaved,
     mode: 'onChange'
   })
-
-  const [optionsUfList, setOptionsUfList] = useState([])
-  const [ufOption, setUfOption] = useState({})
-  const [optionsCityList, setOptionsCityList] = useState([])
-  const [cityOption, setCityOption] = useState({})
 
   const getFieldClass = name => {
     const baseClass =
@@ -196,60 +162,6 @@ export function SecondStep() {
     })
   })
 
-  const onLoadFilterUF = async inputValue => {
-    try {
-      const result = await axios.get(
-        'https://servicodados.ibge.gov.br/api/v1/localidades/estados'
-      )
-
-      const list = await Promise.all(
-        result?.data?.map(item => ({ label: item.sigla, value: item.sigla }))
-      )
-
-      setOptionsUfList(list)
-
-      return list
-    } catch (err) {
-      return []
-    }
-  }
-
-  const onLoadFilterCities = async inputValue => {
-    try {
-      const result = await axios.get(
-        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${inputValue}/municipios`
-      )
-
-      const list = await Promise.all(
-        result?.data?.map(item => ({ label: item.nome, value: item.nome }))
-      )
-
-      setOptionsCityList(list)
-
-      return list
-    } catch (err) {
-      return []
-    }
-  }
-
-  useEffect(() => {
-    onLoadFilterUF()
-
-    if (dataSaved?.city) {
-      setCityOption({
-        label: dataSaved.city,
-        value: dataSaved.city
-      })
-    }
-
-    if (dataSaved?.uf) {
-      setUfOption({
-        label: dataSaved.uf,
-        value: dataSaved.uf
-      })
-    }
-  }, [])
-
   const onSubmit = data => {
     const objData = {
       fullname: data.fullname,
@@ -262,24 +174,24 @@ export function SecondStep() {
 
       tel_phone: data.tel_phone?.replace(/\D/g, '') || '',
 
-      gender: genderOption?.value || null,
+      gender: data.gender || null
 
-      father_name: data.father_name,
+      // father_name: data.father_name,
 
-      cpf: data.cpf.replace(/\D/g, ''),
+      // cpf: data.cpf.replace(/\D/g, ''),
 
-      cns: data.cns?.replace(/\D/g, '') || '',
+      // cns: data.cns?.replace(/\D/g, '') || '',
 
-      neighborhood: data.neighborhood,
-      address: data.address,
-      address_number: data.address_number,
-      complement: data.complement,
+      // neighborhood: data.neighborhood,
+      // address: data.address,
+      // address_number: data.address_number,
+      // complement: data.complement,
 
-      cep: data.cep.replace(/\D/g, ''),
+      // cep: data.cep.replace(/\D/g, ''),
 
-      city: data.city,
-      uf: data.uf,
-      address_type: data.address_type
+      // city: data.city,
+      // uf: data.uf,
+      // address_type: data.address_type
     }
 
     dispatch(saveSecondStepData(objData))
@@ -288,34 +200,6 @@ export function SecondStep() {
 
   function handleBackStep() {
     dispatch(changeScheduleStep('first'))
-  }
-
-  function onChangeGender(e) {
-    setGenderOption(e)
-    setValue('gender', e.value)
-  }
-
-  function onChangeBreed(e) {
-    setBreedOption(e)
-  }
-
-  function onChangeTypeAddress(e) {
-    setTypeAddressOption(e)
-
-    setValue('address_type', e.value)
-  }
-
-  function onChangeUf(e) {
-    setUfOption(e)
-    onLoadFilterCities(e.value)
-
-    setValue('uf', e.value)
-  }
-
-  function onChangeCity(e) {
-    setCityOption(e)
-
-    setValue('city', e.value)
   }
 
   return (
@@ -339,7 +223,6 @@ export function SecondStep() {
               </span>
             </div>
 
-            {/*Nome do Paciente */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Nome do Paciente<span className="text-[#FD0003]">*</span>
@@ -356,7 +239,6 @@ export function SecondStep() {
               )}
             </div>
 
-            {/*Nome da Mãe */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Nome da Mãe<span className="text-[#FD0003]">*</span>
@@ -373,8 +255,7 @@ export function SecondStep() {
               )}
             </div>
 
-            {/*Nome do Pai */}
-            <div className="flex flex-col gap-y-2">
+            {/* <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Nome do Pai
               </label>
@@ -388,9 +269,8 @@ export function SecondStep() {
                   {errors?.father_name?.message}
                 </span>
               )}
-            </div>
+            </div> */}
 
-            {/* Prontuário */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Prontuário
@@ -407,7 +287,6 @@ export function SecondStep() {
               )}
             </div>
 
-            {/* Email */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 E-mail
@@ -425,7 +304,6 @@ export function SecondStep() {
             </div>
 
             <div className="flex justify-between gap-x-5">
-              {/* Data Nascimento */}
               <div className="flex w-full flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Data nascimento<span className="text-[#FD0003]">*</span>
@@ -459,7 +337,6 @@ export function SecondStep() {
                 )}
               </div>
 
-              {/* Celular */}
               <div className="flex w-full flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Celular<span className="text-[#FD0003]">*</span>
@@ -484,7 +361,6 @@ export function SecondStep() {
                 )}
               </div>
 
-              {/* Telefone */}
               <div className="flex w-full flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Telefone
@@ -510,7 +386,6 @@ export function SecondStep() {
               </div>
             </div>
 
-            {/* Gênero */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Gênero*
@@ -538,8 +413,7 @@ export function SecondStep() {
               )}
             </div>
 
-            {/* CPF */}
-            <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-2 xl:gap-y-0">
+            {/* <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-2 xl:gap-y-0">
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   CPF<span className="text-[#FD0003]">*</span>
@@ -571,7 +445,7 @@ export function SecondStep() {
                 </span>
               </div>
 
-              {/* CNS (Carteira Nacional do SUS) */}
+             
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-[500] text-[#262626]">
                   CNS (Carteira Nacional do SUS)
@@ -599,14 +473,13 @@ export function SecondStep() {
                   {errors?.cns?.message}
                 </span>
               </div>
-            </div>
+            </div> */}
 
-            <div className="mt-4 mb-4">
+            {/* <div className="mt-4 mb-4">
               <span className="text-[1.2rem] font-medium">Endereço</span>
-            </div>
+            </div> */}
 
-            {/* Tipo endereço */}
-            <div className="flex flex-col gap-y-2">
+            {/* <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Tipo endereço*
               </label>
@@ -631,10 +504,10 @@ export function SecondStep() {
                   {errors?.address_type?.message}
                 </span>
               )}
-            </div>
+            </div> */}
 
-            <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[auto_130px] xl:gap-y-0">
-              {/*Endereço */}
+            {/* <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[auto_130px] xl:gap-y-0">
+            
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Endereço<span className="text-[#FD0003]">*</span>
@@ -651,7 +524,7 @@ export function SecondStep() {
                 )}
               </div>
 
-              {/*NR */}
+           
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Nr<span className="text-[#FD0003]">*</span>
@@ -667,10 +540,9 @@ export function SecondStep() {
                   </span>
                 )}
               </div>
-            </div>
+            </div> */}
 
-            {/*Bairro */}
-            <div className="flex flex-col gap-y-2">
+            {/* <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Bairro<span className="text-[#FD0003]">*</span>
               </label>
@@ -685,8 +557,6 @@ export function SecondStep() {
                 </span>
               )}
             </div>
-
-            {/*Complemento */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 Complemento
@@ -702,8 +572,6 @@ export function SecondStep() {
                 </span>
               )}
             </div>
-
-            {/*CEP */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-medium text-[#262626]">
                 CEP<span className="text-[#FD0003]">*</span>
@@ -729,9 +597,10 @@ export function SecondStep() {
               <span className="text-[16px] font-semibold text-[#FD0003]">
                 {errors?.cep?.message}
               </span>
-            </div>
-            <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[120px_auto] xl:gap-y-0">
-              {/* UF */}
+            </div> */}
+
+            {/* <div className="grid grid-cols-1 gap-x-5 gap-y-5 xl:grid-cols-[120px_auto] xl:gap-y-0">
+             
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Estado<span className="text-[#FD0003]">*</span>
@@ -763,7 +632,7 @@ export function SecondStep() {
                 )}
               </div>
 
-              {/* Cidade */}
+        
               <div className="flex flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Cidade<span className="text-[#FD0003]">*</span>
@@ -796,7 +665,7 @@ export function SecondStep() {
                   </span>
                 )}
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-12 flex w-full flex-row justify-end gap-x-4">
             {currentStep !== 'first' && (
