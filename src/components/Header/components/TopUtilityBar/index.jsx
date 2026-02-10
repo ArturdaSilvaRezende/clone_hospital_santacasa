@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function TopUtilityBar() {
@@ -92,14 +93,16 @@ export default function TopUtilityBar() {
                 <span>Resultado de Exames</span>
               </li>
 
-              <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline">
-                <Image
-                  src="/icons/search-icon-red.svg"
-                  alt="Transparência"
-                  width={22}
-                  height={22}
-                />
-                <span>Transparência</span>
+              <li className="relative cursor-pointer items-center text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline">
+                <Link href="/transparencia" className="flex gap-2">
+                  <Image
+                    src="/icons/search-icon-red.svg"
+                    alt="Transparência"
+                    width={22}
+                    height={22}
+                  />
+                  <span>Transparência</span>
+                </Link>
               </li>
             </ul>
           </nav>
