@@ -128,7 +128,6 @@ export default function MainNavigationBar() {
               className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600 lg:hidden"
             >
               {mobileMenuOpen ? (
-                // <X className="h-6 w-6" />
                 'X'
               ) : (
                 <svg
@@ -153,14 +152,19 @@ export default function MainNavigationBar() {
           <Link
             href="/pre-agendamento"
             className="flex h-10 w-45.5 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
+            target="_blank"
           >
             <PiCalendarCheckLight size={20} />
             <span>Pré-Agendamento SUS</span>
           </Link>
-          <button className="flex h-10 w-19.5 items-center justify-between rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700">
+          <Link
+            href="https://santacasago.colabore.org/doacao/single_step"
+            target="_blank"
+            className="flex h-10 w-19.5 items-center justify-between rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700"
+          >
             <BiDonateHeart size={20} />
             <span>Doar</span>
-          </button>
+          </Link>
         </div>
 
         {activeMenu &&

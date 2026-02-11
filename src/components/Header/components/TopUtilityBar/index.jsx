@@ -94,7 +94,11 @@ export default function TopUtilityBar() {
               </li>
 
               <li className="relative cursor-pointer items-center text-sm text-[#FD0003] after:absolute after:top-1/2 after:-right-3 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline">
-                <Link href="/transparencia" className="flex gap-2">
+                <Link
+                  href="/transparencia"
+                  className="flex gap-2"
+                  target="_blank"
+                >
                   <Image
                     src="/icons/search-icon-red.svg"
                     alt="Transparência"

@@ -50,7 +50,7 @@ export function FilesList({ id = null }) {
             onChange={e => setSearchName(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && onLoad()}
             placeholder="Pesquisar"
-            className="h-[56px] w-full rounded-full border border-[#7270701A] bg-white px-[20px] text-[13px] font-normal text-black focus:border-gray-300 focus:outline-none"
+            className="h-14 w-full rounded-full border border-[#7270701A] bg-white px-5 text-[13px] font-normal text-black focus:border-gray-300 focus:outline-none"
           />
           <button
             onClick={onLoad}
