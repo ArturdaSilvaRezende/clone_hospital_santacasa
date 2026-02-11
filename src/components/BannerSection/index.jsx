@@ -24,8 +24,8 @@ export default function BannerSection({
 
           <nav className="absolute -bottom-14 left-8 max-w-59.75 rounded-2xl bg-[#FD0003] p-2 text-white">
             <ul className="rounded-2xl bg-red-50/25 p-3">
-              <li className="text-3xl font-bold">{title}</li>
-              <li className="mb-2 text-[20px] font-medium">{subtitle}</li>
+              <li className="text-[24px] font-bold">{title}</li>
+              <li className="mb-2 text-[16px] font-medium">{subtitle}</li>
               {description}
             </ul>
           </nav>

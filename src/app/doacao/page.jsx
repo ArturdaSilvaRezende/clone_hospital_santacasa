@@ -2,16 +2,16 @@
 
 import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './store'
-import { Donation } from '~/view/pages/doacao/Donation'
-import { Project } from '~/view/pages/doacao/Project'
+import Banner from '~/view/pages/doacao/Banner'
+import CallToActionSections from '~/components/CallToAction'
+import DonationSection from '~/view/pages/doacao/DonationSection'
 
 export default function Doacao() {
   return (
     <ReduxProvider store={store}>
-      <div className="flex flex-col items-center">
-        <Donation />
-        <Project />
-      </div>
+      <Banner />
+      <DonationSection />
+      <CallToActionSections />
     </ReduxProvider>
   )
 }

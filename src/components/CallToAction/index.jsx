@@ -45,9 +45,10 @@ export default function CallToActionSections() {
           </Link>
 
           <Link
-            href="/donate"
+            href="/doacao"
             className="group flex h-12.5 w-75.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"
-            aria-label="Quero ser voluntário"
+            aria-label="Quero fazer uma doação"
+            target="_blank"
           >
             <span>Quero fazer uma doação</span>
             <span
