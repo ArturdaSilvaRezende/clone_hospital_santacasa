@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addValueSelected, loadCartItems } from '~/app/doacao/store'
+import {
+  addValueSelected,
+  fetchDataDonateProject,
+  loadCartItems,
+  removeValueSelected
+} from '~/app/doacao/store'
 
 import ProjectCard from './components/ProjectCard'
 import ValueButton from './components/ValueButton'
@@ -60,13 +65,18 @@ export default function DonationSection() {
     window.location.href = '/doacao-pagamento'
   }
 
+  function handleRemoveDonateValueSelected(id) {
+    dispatch(removeValueSelected(id))
+  }
+
   function handleSelectValue(item) {
     dispatch(addValueSelected(item))
   }
 
   useEffect(() => {
     dispatch(loadCartItems())
-  }, [])
+    dispatch(fetchDataDonateProject())
+  }, [dispatch])
 
   return (
     <div className="container mx-auto max-w-285 bg-gray-50 px-4 py-12">
@@ -146,59 +156,60 @@ export default function DonationSection() {
         <h2 className="mb-4 text-lg font-semibold text-[#727070]">
           Escolha um valor
         </h2>
-        <div
-          className="flex flex-wrap gap-3"
-          role="radiogroup"
-          aria-label="Selecione o valor da doação"
-        >
-          {projectList
-            .filter(item => item.personalizado == true)
-            .map((item, key) => (
-              <ValueButton
-                key={item.id}
-                value={item}
-                isSelected={valueSelected?.reference_id == item.id}
-                onSelect={() =>
-                  handleSelectValue({
-                    reference_id: item.id,
-                    descricao: item.nome,
-                    quantity: 1,
-                    preco: item.preco
-                  })
-                }
-              >
-                <span>
-                  {new Intl.NumberFormat('pt-br', {
-                    style: 'currency',
-                    currency: 'BRL'
-                  }).format(item.preco)}
+
+        <div className="flex justify-between">
+          <div
+            className="flex flex-wrap gap-3"
+            role="radiogroup"
+            aria-label="Selecione o valor da doação"
+          >
+            {projectList
+              .filter(item => item.personalizado == true)
+              .map((item, key) => (
+                <ValueButton
+                  key={item.id}
+                  value={item}
+                  isSelected={valueSelected?.reference_id == item.id}
+                  onSelect={() =>
+                    handleSelectValue({
+                      reference_id: item.id,
+                      descricao: item.nome,
+                      quantity: 1,
+                      preco: item.preco
+                    })
+                  }
+                >
+                  <span>
+                    {new Intl.NumberFormat('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL'
+                    }).format(item.preco)}
+                  </span>
+                </ValueButton>
+              ))}
+
+            <div className="flex w-45 items-center justify-center">
+              <div className="relative flex w-full max-w-xs items-center">
+                <span className="absolute left-4 text-[17px] font-bold text-[#727070] opacity-50">
+                  R$
                 </span>
-              </ValueButton>
-            ))}
 
-          <div className="flex w-45 items-center justify-center">
-            <div className="relative flex w-full max-w-xs items-center">
-              <span className="absolute left-4 text-[17px] font-bold text-[#727070] opacity-50">
-                R$
-              </span>
-
-              <input
-                type="text"
-                placeholder="Outro valor"
-                className="h-10.5 w-full rounded-full border border-gray-200 bg-white pl-11 text-lg text-black transition-all outline-none placeholder:text-gray-300 hover:border-gray-400 focus:border-gray-300 focus:ring-1 focus:ring-gray-200"
-              />
+                <input
+                  type="text"
+                  placeholder="Outro valor"
+                  className="h-10.5 w-full rounded-full border border-gray-200 bg-white pl-11 text-lg text-black transition-all outline-none placeholder:text-gray-300 hover:border-gray-400 focus:border-gray-300 focus:ring-1 focus:ring-gray-200"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="flex justify-end">
-        <button
-          onClick={handleDonation}
-          className="rounded-full bg-red-600 px-12 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-red-700 hover:shadow-xl focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
-        >
-          Doar
-        </button>
+          <button
+            onClick={handleDonation}
+            className="h-10.5 w-25.75 rounded-full bg-[#FD0003] text-lg font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-xl focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
+          >
+            Doar
+          </button>
+        </div>
       </div>
     </div>
   )

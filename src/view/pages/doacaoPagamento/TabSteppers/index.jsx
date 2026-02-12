@@ -1,7 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi'
+import { FaCheck } from 'react-icons/fa6'
+import { RiCheckDoubleLine } from 'react-icons/ri'
+import { HiOutlineCash } from 'react-icons/hi'
+import { BsPerson } from 'react-icons/bs'
+import DonationSummaryCard from './components/DonationSummaryCard'
+import PersonalInfoForm from './components/PersonalInfoForm'
 
 export default function TabSteppers() {
   const [activeStep, setActiveStep] = useState(0)
@@ -10,17 +15,17 @@ export default function TabSteppers() {
     {
       id: 0,
       label: 'Seus Dados',
-      icon: FiUser
+      icon: BsPerson
     },
     {
       id: 1,
       label: 'Pagamento',
-      icon: FiCreditCard
+      icon: HiOutlineCash
     },
     {
       id: 2,
       label: 'Confirmação',
-      icon: FiCheckCircle
+      icon: RiCheckDoubleLine
     }
   ]
 
@@ -28,14 +33,11 @@ export default function TabSteppers() {
     switch (activeStep) {
       case 0:
         return (
-          <div className="py-12 text-center">
-            <h2 className="mb-4 text-2xl font-semibold">
-              Conteúdo: Seus Dados
-            </h2>
-            <p className="text-gray-600">
-              Preencha suas informações pessoais para continuar.
-            </p>
-          </div>
+          <PersonalInfoForm
+            setActiveStep={setActiveStep}
+            steps={steps}
+            activeStep={activeStep}
+          />
         )
       case 1:
         return (
@@ -61,55 +63,55 @@ export default function TabSteppers() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-4xl p-8">
-      {/* Stepper Container */}
-      <div className="mb-8 rounded-lg bg-black p-6">
+    <div className="">
+      <div className="mb-8 bg-white py-7">
         <div
           role="tablist"
           aria-label="Progresso do checkout"
-          className="relative flex items-center justify-between"
+          className="relative container mx-auto flex items-start"
         >
           {steps.map((step, index) => (
-            <div key={step.id} className="flex flex-1 items-center">
-              {/* Step Item */}
-              <div className="relative z-10 flex flex-1 flex-col items-center">
-                {/* Icon Circle */}
+            <div
+              key={step.id}
+              className="relative flex flex-1 flex-col items-center"
+            >
+              <div className="relative z-10 flex flex-col items-center">
                 <button
                   role="tab"
                   aria-selected={activeStep === step.id}
                   aria-controls={`panel-${step.id}`}
                   onClick={() => setActiveStep(step.id)}
                   className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-all duration-300 ${
-                    activeStep === step.id
-                      ? 'bg-red-600'
-                      : 'bg-gray-100 hover:bg-gray-200'
+                    activeStep >= step.id ? 'bg-[#FD0003]' : 'bg-[#EDECEC]'
                   } `}
                 >
-                  <step.icon
-                    className={`h-6 w-6 transition-colors duration-300 ${activeStep === step.id ? 'text-white' : 'text-gray-400'} `}
-                  />
+                  {activeStep > step.id ? (
+                    <FaCheck className="h-5 w-5 text-white" />
+                  ) : (
+                    <step.icon
+                      className={`h-6 w-6 transition-colors duration-300 ${
+                        activeStep === step.id ? 'text-white' : 'text-[#535353]'
+                      } `}
+                    />
+                  )}
                 </button>
 
-                {/* Label */}
                 <span
                   onClick={() => setActiveStep(step.id)}
                   className={`mt-3 cursor-pointer text-sm font-medium transition-colors duration-300 ${
-                    activeStep === step.id
-                      ? 'text-red-600'
-                      : 'text-gray-400 hover:text-gray-300'
+                    activeStep >= step.id ? 'text-[#FD0003]' : 'text-[#727070]'
                   } `}
                 >
                   {step.label}
                 </span>
               </div>
 
-              {/* Connecting Line */}
               {index < steps.length - 1 && (
-                <div className="relative -top-6 mx-4 h-0.5 flex-1">
+                <div className="absolute top-6 left-1/2 w-full">
                   <div
-                    className={`h-full transition-colors duration-300 ${
-                      activeStep > index ? 'bg-red-600' : 'bg-gray-700'
-                    } `}
+                    className={`absolute left-12 h-0.5 w-[75%] ${
+                      activeStep > index ? 'bg-[#FD0003]' : 'bg-[#D9D9D9]'
+                    }`}
                   />
                 </div>
               )}
@@ -118,17 +120,18 @@ export default function TabSteppers() {
         </div>
       </div>
 
-      {/* Content Area */}
-      <div
-        id={`panel-${activeStep}`}
-        role="tabpanel"
-        aria-labelledby={`tab-${activeStep}`}
-        className="min-h-[300px] rounded-lg bg-white p-8 shadow-md"
-      >
-        {renderContent()}
+      <div className="container mx-auto mt-20 flex max-w-285 gap-8">
+        <div
+          id={`panel-${activeStep}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${activeStep}`}
+          className="w-full rounded-xl border border-[#7270701A] bg-white p-8"
+        >
+          {renderContent()}
+        </div>
+        <DonationSummaryCard />
       </div>
 
-      {/* Navigation Buttons */}
       <div className="mt-6 flex justify-between">
         <button
           onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
@@ -140,20 +143,6 @@ export default function TabSteppers() {
           } `}
         >
           Anterior
-        </button>
-
-        <button
-          onClick={() =>
-            setActiveStep(Math.min(steps.length - 1, activeStep + 1))
-          }
-          disabled={activeStep === steps.length - 1}
-          className={`rounded-lg px-6 py-2 font-medium transition-all ${
-            activeStep === steps.length - 1
-              ? 'cursor-not-allowed bg-gray-200 text-gray-400'
-              : 'bg-red-600 text-white hover:bg-red-700'
-          } `}
-        >
-          Próximo
         </button>
       </div>
     </div>
