@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,12 +8,14 @@ import { IMaskInput } from 'react-imask'
 import * as yup from 'yup'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchDataForgotProtocol } from '~/app/esqueci-protocolo/store'
 import SyncLoader from 'react-spinners/SyncLoader'
+import { fetchDataForgotProtocol } from '~/app/esqueci-protocolo/store'
 
-import { FaRegCopy } from 'react-icons/fa'
 import ResponseError from '~/components/CustomComponents/ResponseError'
 import { SearchProtocol } from '~/components/SearchProtocol'
+
+import { FaRegCopy } from 'react-icons/fa'
+import { IoCheckmarkCircle } from 'react-icons/io5'
 
 const objFields = {
   birth_date: 'birth_date',
@@ -28,6 +31,17 @@ const schema = yup.object({
 
 export function Form() {
   const dispatch = useDispatch()
+  const [copiedProtocol, setCopiedProtocol] = useState(null)
+
+  const handleCopy = async protocolo => {
+    await navigator.clipboard.writeText(protocolo)
+
+    setCopiedProtocol(protocolo)
+
+    setTimeout(() => {
+      setCopiedProtocol(null)
+    }, 2000)
+  }
 
   const {
     list,
@@ -178,11 +192,15 @@ export function Form() {
                 <span>{item.protocolo}</span>
                 <div>
                   <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(item.protocolo)
-                    }}
+                    type="button"
+                    onClick={() => handleCopy(item.protocolo)}
+                    className="transition-all duration-200"
                   >
-                    <FaRegCopy size={22} />
+                    {copiedProtocol === item.protocolo ? (
+                      <IoCheckmarkCircle size={22} className="text-[#20A36C]" />
+                    ) : (
+                      <FaRegCopy size={22} />
+                    )}
                   </button>
                 </div>
               </div>
