@@ -7,6 +7,7 @@ import { HiOutlineCash } from 'react-icons/hi'
 import { BsPerson } from 'react-icons/bs'
 import DonationSummaryCard from './components/DonationSummaryCard'
 import PersonalInfoForm from './components/PersonalInfoForm'
+import PaymentMethod from './components/PaymentMethod'
 
 export default function TabSteppers() {
   const [activeStep, setActiveStep] = useState(0)
@@ -41,12 +42,10 @@ export default function TabSteppers() {
         )
       case 1:
         return (
-          <div className="py-12 text-center">
-            <h2 className="mb-4 text-2xl font-semibold">Conteúdo: Pagamento</h2>
-            <p className="text-gray-600">
-              Escolha a forma de pagamento desejada.
-            </p>
-          </div>
+          <PaymentMethod
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+          />
         )
       case 2:
         return (
@@ -129,7 +128,10 @@ export default function TabSteppers() {
         >
           {renderContent()}
         </div>
-        <DonationSummaryCard />
+        <DonationSummaryCard
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
       </div>
 
       <div className="mt-6 flex justify-between">
