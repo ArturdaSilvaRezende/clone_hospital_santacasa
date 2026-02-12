@@ -4,35 +4,35 @@ import { useState } from 'react'
 import { MdPix } from 'react-icons/md'
 import { FaRegCreditCard } from 'react-icons/fa6'
 import { AiOutlineBarcode } from 'react-icons/ai'
+import { BsArrowLeft } from 'react-icons/bs'
+import { FaArrowRight } from 'react-icons/fa6'
 import Pix from './components/Pix'
+import CreditCardForm from './components/CreditCardForm'
+import BoletoAddressForm from './components/BoletoAddressForm'
 
 export default function PaymentMethod({
   activeStep = 0,
+  steps = [],
   setActiveStep = () => {}
 }) {
   const [activeTab, setActiveTab] = useState('pix')
 
+  const handleBack = () => {
+    setActiveStep(Math.max(0, activeStep - 1))
+  }
+
+  const handleNextStep = () => {
+    setActiveStep(Math.min(steps.length - 1, activeStep + 1))
+  }
+
   const renderPaymentContent = () => {
     switch (activeTab) {
       case 'pix':
-        return <Pix activeStep={activeStep} setActiveStep={setActiveStep} />
         return <Pix />
       case 'card':
-        return (
-          <div className="rounded-xl border-2 border-dashed border-gray-200 py-8 text-center">
-            <p className="font-medium text-gray-600">
-              Conteúdo: Formulário de Cartão de Crédito
-            </p>
-          </div>
-        )
+        return <CreditCardForm />
       case 'boleto':
-        return (
-          <div className="rounded-xl border-2 border-dashed border-gray-200 py-8 text-center">
-            <p className="font-medium text-gray-600">
-              Conteúdo: Gerador de Boleto Bancário
-            </p>
-          </div>
-        )
+        return <BoletoAddressForm />
       default:
         return null
     }
@@ -70,9 +70,40 @@ export default function PaymentMethod({
         })}
       </div>
 
-      {/* Tab Content Area */}
       <div className="transition-all duration-300">
         {renderPaymentContent()}
+      </div>
+
+      <div className="mt-5 flex justify-between">
+        <button
+          className="group flex h-10 w-26.75 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-normal text-[#535353] transition-colors hover:bg-gray-50"
+          aria-label="Voltar"
+          onClick={handleBack}
+        >
+          <span
+            className="transition-transform group-hover:-translate-x-1"
+            aria-hidden="true"
+          >
+            <BsArrowLeft className="text-lg" />
+          </span>
+
+          <span>Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNextStep}
+          className="group flex h-10 w-50 items-center justify-center gap-2 rounded-full bg-[#FF0909] font-bold text-white transition-all hover:bg-red-700"
+        >
+          <span> Confirmar doação</span>
+
+          <span
+            className="transition-transform group-hover:translate-x-1"
+            aria-hidden="true"
+          >
+            <FaArrowRight className="text-lg" />
+          </span>
+        </button>
       </div>
     </div>
   )

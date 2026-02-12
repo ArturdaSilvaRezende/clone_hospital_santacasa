@@ -44,6 +44,7 @@ export default function TabSteppers() {
         return (
           <PaymentMethod
             activeStep={activeStep}
+            steps={steps}
             setActiveStep={setActiveStep}
           />
         )
@@ -62,7 +63,7 @@ export default function TabSteppers() {
   }
 
   return (
-    <div className="">
+    <section aria-label="resumo da doação">
       <div className="mb-8 bg-white py-7">
         <div
           role="tablist"
@@ -128,25 +129,8 @@ export default function TabSteppers() {
         >
           {renderContent()}
         </div>
-        <DonationSummaryCard
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
-        />
+        <DonationSummaryCard />
       </div>
-
-      <div className="mt-6 flex justify-between">
-        <button
-          onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
-          disabled={activeStep === 0}
-          className={`rounded-lg px-6 py-2 font-medium transition-all ${
-            activeStep === 0
-              ? 'cursor-not-allowed bg-gray-200 text-gray-400'
-              : 'bg-gray-800 text-white hover:bg-gray-900'
-          } `}
-        >
-          Anterior
-        </button>
-      </div>
-    </div>
+    </section>
   )
 }

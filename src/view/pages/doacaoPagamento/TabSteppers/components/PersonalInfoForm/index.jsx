@@ -130,10 +130,16 @@ export default function PersonalInfoForm({
         <button
           type="button"
           onClick={handleNextStep}
-          className="ml-auto flex items-center gap-2 rounded-full bg-[#FF0909] px-8 py-3 font-bold text-white transition-all hover:bg-red-700"
+          className="group ml-auto flex h-10 w-65 items-center justify-center gap-2 rounded-full bg-[#FF0909] font-bold text-white transition-all hover:bg-red-700"
         >
-          Continuar para pagamento
-          <FaArrowRight />
+          <span> Continuar para pagamento</span>
+
+          <span
+            className="transition-transform group-hover:translate-x-1"
+            aria-hidden="true"
+          >
+            <FaArrowRight className="text-lg" />
+          </span>
         </button>
       </form>
     </>

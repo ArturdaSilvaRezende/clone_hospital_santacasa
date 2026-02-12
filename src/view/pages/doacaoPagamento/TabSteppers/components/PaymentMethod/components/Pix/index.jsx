@@ -2,14 +2,10 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { MdContentCopy } from 'react-icons/md'
-import { BsArrowLeft } from 'react-icons/bs'
 
-export default function Pix({ activeStep = 0, setActiveStep = () => {} }) {
+export default function Pix() {
   const [copied, setCopied] = useState(false)
 
-  const handleBack = () => {
-    setActiveStep(Math.max(0, activeStep - 1))
-  }
   return (
     <>
       <div className="h-42.75 w-42.75 rounded-xl border border-[#7270701A] bg-[#FAFAFA] p-3">
@@ -44,24 +40,9 @@ export default function Pix({ activeStep = 0, setActiveStep = () => {} }) {
         </button>
       </div>
 
-      <p className="mt-3 mb-7 text-[12px] font-medium text-[#535353]">
+      <p className="mt-3 text-[12px] font-medium text-[#535353]">
         Aguardando confirmação do pagamento...
       </p>
-
-      <button
-        className="group flex h-10 w-26.75 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-normal text-[#535353] transition-colors hover:bg-gray-50"
-        aria-label="Voltar"
-        onClick={handleBack}
-      >
-        <span
-          className="transition-transform group-hover:-translate-x-1"
-          aria-hidden="true"
-        >
-          <BsArrowLeft className="text-lg" />
-        </span>
-
-        <span>Voltar</span>
-      </button>
     </>
   )
 }
