@@ -57,7 +57,7 @@ export default function DonationSection() {
   } = useSelector(store => store.donate)
 
   function handleDonation() {
-    window.location.href = '/doacao-selecionada'
+    window.location.href = '/doacao-pagamento'
   }
 
   function handleSelectValue(item) {
@@ -69,7 +69,7 @@ export default function DonationSection() {
   }, [])
 
   return (
-    <div className="mx-auto w-full max-w-7xl bg-gray-50 px-4 py-12">
+    <div className="container mx-auto max-w-285 bg-gray-50 px-4 py-12">
       <div className="mb-8">
         <h1 className="mb-1 text-[22px] font-medium text-black">
           Realize de forma fácil e rápida sua doação

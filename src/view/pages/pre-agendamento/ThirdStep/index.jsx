@@ -55,9 +55,19 @@ const schema = yup.object({
   imagem_pedido: yup
     .mixed()
     .nullable()
-    .test('is-valid-type', 'Tipo de arquivo inválido!', files => {
-      if (!files[0]) return true
-      return isValidFileType(files[0] && files[0].name.toLowerCase())
+    .when('vacancy_type', {
+      is: 'Encaixe',
+      then: schema =>
+        schema
+          .required('Arquivo obrigatório para Encaixe')
+          .test('file-required', 'Arquivo obrigatório para Encaixe', value => {
+            return value && value.length > 0
+          })
+          .test('is-valid-type', 'Tipo de arquivo inválido!', files => {
+            if (!files || !files[0]) return false
+            return isValidFileType(files[0].name.toLowerCase())
+          }),
+      otherwise: schema => schema.nullable()
     })
 })
 
@@ -100,6 +110,7 @@ export function ThirdStep() {
   const [confirmScheduleIn, setConfirmScheduleIn] = useState(
     dataSaved?.type_confirm || null
   )
+
   const {
     control,
     register,
@@ -122,10 +133,10 @@ export function ThirdStep() {
 
   const uploadBoxClass = `group flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border-[1px] py-[1.5rem] duration-200 ease-in-out ${
     fileError
-      ? 'border-[#FD0003] bg-[#ffe1e1] hover:bg-[#ffbfbf]' // Estado de Erro
+      ? 'border-[#FD0003] bg-[#ffe1e1] hover:bg-[#ffbfbf]'
       : hasFile
-        ? 'border-[#20A36C] bg-[#eafff5] hover:bg-[#d7f7e8]' // Estado Sucesso (Verde)
-        : 'border-[#7D7D7D] bg-gray-50 hover:bg-gray-100' // Estado Inicial
+        ? 'border-[#20A36C] bg-[#eafff5] hover:bg-[#d7f7e8]'
+        : 'border-[#7D7D7D] bg-gray-50 hover:bg-gray-100'
   }`
 
   function handleChangeConfirmSchedule(value) {
@@ -140,19 +151,16 @@ export function ThirdStep() {
   const getFieldClass = name => {
     const baseClass =
       'h-[46px] w-full rounded-[10px] border px-4 transition-all outline-none'
-    const value = watch(name) // Monitora o valor atual
+    const value = watch(name)
 
-    // Se houver erro, fica vermelho
     if (errors[name]) {
       return `${baseClass} border-[#FD0003] text-[#FD0003] placeholder:text-[#FD0003]`
     }
 
-    // Se tiver valor e NÃO tiver erro, fica verde
     if (value && value !== '' && value !== null) {
       return `${baseClass} border-[#20A36C] text-[#262626]`
     }
 
-    // Padrão cinza
     return `${baseClass} border-[#7D7D7D] text-[#262626]`
   }
 
@@ -164,7 +172,7 @@ export function ThirdStep() {
         ...base,
         backgroundColor: 'transparent',
         padding: '0 12px',
-        // Lógica de cores: Erro (vermelho) > Tem Valor (verde) > Padrão (cinza)
+
         borderColor: errors[name]
           ? '#FD0003'
           : fieldValue && fieldValue !== ''
@@ -175,7 +183,6 @@ export function ThirdStep() {
         cursor: 'pointer',
         minHeight: '46px',
         '&:hover': {
-          // No hover, mantemos a lógica de cores
           borderColor: errors[name]
             ? '#FD0003'
             : fieldValue && fieldValue !== ''
@@ -291,7 +298,11 @@ export function ThirdStep() {
   function onChangeVacancyType(e) {
     setVacancyTypeOption(e)
 
-    setValue('vacancy_type', e.value)
+    setValue('vacancy_type', e?.value || '', {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true
+    })
   }
 
   async function loadSpecialities() {
@@ -560,7 +571,8 @@ export function ThirdStep() {
                   ></div>
                   <span>Celular</span>
                 </div>
-                <div
+
+                {/* <div
                   onClick={() =>
                     handleChangeConfirmSchedule(confirmScheduleInObj.tel_phone)
                   }
@@ -570,7 +582,8 @@ export function ThirdStep() {
                     className={`h-[30px] w-[30px] ${confirmScheduleIn == confirmScheduleInObj.tel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
                   ></div>
                   <span>Telefone Fixo</span>
-                </div>
+                </div> */}
+
                 <div
                   onClick={() =>
                     handleChangeConfirmSchedule(confirmScheduleInObj.email)

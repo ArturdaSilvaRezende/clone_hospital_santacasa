@@ -6,6 +6,7 @@ import { Steps } from '~/view/pages/pre-agendamento/Steps'
 import { store } from './store'
 import HeroSection from '~/components/HeroSection'
 import CallToActionSections from '~/components/CallToAction'
+import Link from 'next/link'
 
 export default function PreAgendamento() {
   return (
@@ -17,12 +18,14 @@ export default function PreAgendamento() {
         banner="/images/hero-section-banner.svg"
       >
         <div className="flex gap-4">
-          <button
+          <Link
+            href="/consultar-agendamento"
+            target="_blank"
             aria-label="Consultar agendamento do SUS"
             className="rounded-full bg-[#FD0003] px-8 py-3 font-semibold text-white shadow-md transition-colors duration-200 hover:bg-red-700 hover:shadow-lg"
           >
             <span> Consultar agendamento</span>
-          </button>
+          </Link>
 
           <button
             aria-label="Agendar uma consulta particular"

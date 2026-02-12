@@ -7,7 +7,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { BiCheck } from 'react-icons/bi'
 import SyncLoader from 'react-spinners/SyncLoader'
-import Image from 'next/image'
 
 import {
   changeScheduleStep,
@@ -24,7 +23,7 @@ const schema = yup.object({
   obs: yup.string(),
   term: yup
     .boolean()
-    .required('Campo obrigatório')
+    .required('Essa opção precisa ser marcada para prosseguir!')
     .isTrue('Essa opção precisa ser marcada para prosseguir!')
 })
 export function FourthStep() {
@@ -138,8 +137,6 @@ export function FourthStep() {
       formData.append('imagem_pedido', thirdStepData?.imagem_pedido[0])
     }
 
-    // console.log(thirdStepData?.vacancy_type)
-
     dispatch(
       fetchCreateSchedule({
         content: formData
@@ -184,14 +181,16 @@ export function FourthStep() {
             {/* Observações */}
             <div className="flex flex-col gap-y-2">
               <label className="text-[1rem] font-[500] text-[#262626]">
-                Observações e Sugestões<span className="text-[#FD0003]">*</span>
+                Observações e Sugestões
               </label>
               <input
                 {...register(objFields?.obs)}
                 className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
                 placeholder="Duvidas sobre o agendamento?"
               />
-              <span className="text-[#ff5d5d]">{errors?.obs?.message}</span>
+              <span className="text-[16px] font-semibold text-[#FD0003]">
+                {errors?.obs?.message}
+              </span>
             </div>
 
             <div
@@ -217,14 +216,13 @@ export function FourthStep() {
                   Dados Pessoais (LGPD)".{'"'}
                 </p>
                 {errors?.term && (
-                  <span className="mt-1 block text-[#ff5d5d]">
+                  <span className="text-[16px] font-semibold text-[#FD0003]">
                     {errors?.term?.message}
                   </span>
                 )}
               </div>
             </div>
 
-            {/* --- BLOCO CAPTCHA (AGORA DENTRO DO FLEX GAP-Y-6) --- */}
             <div className="mt-2 flex flex-col gap-y-2">
               <div className="flex w-full max-w-[305px] items-center justify-between rounded-[4px] border border-[#d3d3d3] bg-[#f9f9f9] p-[10px] shadow-sm">
                 <div
@@ -278,7 +276,7 @@ export function FourthStep() {
               <button
                 type="button"
                 onClick={handleBackStep}
-                className="h-[38px] w-max rounded-full border-[1px] border-[#262626] px-[1.5rem] text-[#262626] transition-colors hover:bg-gray-50"
+                className="h-[49px] w-[223px] rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
               >
                 Voltar
               </button>
@@ -286,7 +284,7 @@ export function FourthStep() {
             <button
               type="submit"
               disabled={create_schedule_status === 'loading'}
-              className="hover:bg-opacity-90 flex h-[38px] min-w-[120px] flex-row items-center justify-center gap-x-2 rounded-full bg-black px-[1.5rem] text-white transition-all disabled:bg-gray-400"
+              className="hover:bg-opacity-90 flex h-[49px] w-[223px] flex-row items-center justify-center gap-x-2 rounded-full bg-black px-[1.5rem] text-white transition-all hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out disabled:bg-gray-400"
             >
               <SyncLoader
                 color="#E6E6E6"

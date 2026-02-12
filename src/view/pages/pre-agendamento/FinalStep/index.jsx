@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FaRegCopy } from 'react-icons/fa6'
+import ResponseSuccess from '~/components/CustomComponents/ResponseSuccess'
 
 export function FinalStep() {
   const { protocolo } = useSelector(store => store.schedule)
@@ -29,10 +30,7 @@ export function FinalStep() {
           </button>
         </div>
         {isCopied && (
-          <div>
-            {/* <Alert severity="success"></Alert> */}
-            Protocolo copiado com sucesso!
-          </div>
+          <ResponseSuccess responseMessage="Protocolo copiado com sucesso!" />
         )}
       </div>
       <div className="mt-12 flex w-full flex-col justify-end gap-y-4 xl:flex-row xl:gap-x-4">
