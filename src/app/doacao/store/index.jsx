@@ -32,6 +32,9 @@ const donate = createSlice({
     payment_info: {}
   },
   reducers: {
+    updateContent: (state, action) => {
+      state.content = { ...state.content, ...action.payload }
+    },
     addPaymentInfo: (state, action) => {
       state.payment_info = action.payload
 
@@ -173,5 +176,6 @@ export const {
   removeValueSelected,
   changeMethodPayment,
   addPaymentInfo,
-  loadPaymentInfo
+  loadPaymentInfo,
+  updateContent
 } = donate.actions

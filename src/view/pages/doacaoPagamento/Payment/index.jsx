@@ -92,6 +92,7 @@ export function Payment() {
     value_selected: valueSelected,
     method_paymennt: methodPayment
   } = useSelector(store => store.donate)
+
   const [isLoading, setIsLoading] = useState(false)
   const {
     register,

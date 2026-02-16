@@ -8,9 +8,11 @@ import { BsPerson } from 'react-icons/bs'
 import DonationSummaryCard from './components/DonationSummaryCard'
 import PersonalInfoForm from './components/PersonalInfoForm'
 import PaymentMethod from './components/PaymentMethod'
+import Confirmation from './components/Confirmation'
 
 export default function TabSteppers() {
   const [activeStep, setActiveStep] = useState(0)
+  const [isShowConfirmation, setIsShowConfirmation] = useState(true)
 
   const steps = [
     {
@@ -46,17 +48,11 @@ export default function TabSteppers() {
             activeStep={activeStep}
             steps={steps}
             setActiveStep={setActiveStep}
+            setIsShowConfirmation={setIsShowConfirmation}
           />
         )
       case 2:
-        return (
-          <div className="py-12 text-center">
-            <h2 className="mb-4 text-2xl font-semibold">
-              Conteúdo: Confirmação
-            </h2>
-            <p className="text-gray-600">Revise e confirme suas informações.</p>
-          </div>
-        )
+        return <Confirmation />
       default:
         return null
     }
@@ -64,7 +60,7 @@ export default function TabSteppers() {
 
   return (
     <section aria-label="resumo da doação">
-      <div className="mb-8 bg-white py-7">
+      <div className="mb-8 bg-white py-5">
         <div
           role="tablist"
           aria-label="Progresso do checkout"
@@ -85,7 +81,7 @@ export default function TabSteppers() {
                     activeStep >= step.id ? 'bg-[#FD0003]' : 'bg-[#EDECEC]'
                   } `}
                 >
-                  {activeStep > step.id ? (
+                  {activeStep >= step.id ? (
                     <FaCheck className="h-5 w-5 text-white" />
                   ) : (
                     <step.icon
@@ -125,11 +121,12 @@ export default function TabSteppers() {
           id={`panel-${activeStep}`}
           role="tabpanel"
           aria-labelledby={`tab-${activeStep}`}
-          className="w-full rounded-xl border border-[#7270701A] bg-white p-8"
+          className={`rounded-xl border border-[#7270701A] bg-white ${activeStep >= 2 ? 'mx-auto w-200 p-2' : 'w-full p-8'} `}
         >
           {renderContent()}
         </div>
-        <DonationSummaryCard />
+
+        {isShowConfirmation && <DonationSummaryCard />}
       </div>
     </section>
   )
