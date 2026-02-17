@@ -17,10 +17,7 @@ export default function MainNavigationBar() {
   const headerRef = useRef(null)
 
   const menuData = {
-    servicos: {
-      title: 'Serviços',
-      items: []
-    },
+    servicos: { title: 'Serviços', items: [] },
     institucional: {
       title: 'Institucional',
       items: [
@@ -46,20 +43,22 @@ export default function MainNavigationBar() {
       title: 'Hospital Escola',
       items: ['Espaço para Graduação', 'Residência Médica', 'Biblioteca']
     },
-    ajudar: {
-      title: 'Como ajudar',
-      items: []
-    },
+    ajudar: { title: 'Como ajudar', items: [] },
     contato: {
       title: 'Contato',
       items: ['Canal de Ouvidoria', 'Canal de Denúncia']
     }
   }
 
+  const toggleMenu = menuKey => {
+    setActiveMenu(prev => (prev === menuKey ? null : menuKey))
+  }
+
   useEffect(() => {
     const handleClickOutside = event => {
       if (headerRef.current && !headerRef.current.contains(event.target)) {
         setActiveMenu(null)
+        setMobileMenuOpen(false)
       }
     }
 
@@ -70,18 +69,22 @@ export default function MainNavigationBar() {
       }
     }
 
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false)
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside)
     document.addEventListener('keydown', handleEscape)
+    window.addEventListener('resize', handleResize)
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('keydown', handleEscape)
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
-
-  const toggleMenu = menuKey => {
-    setActiveMenu(activeMenu === menuKey ? null : menuKey)
-  }
 
   return (
     <section
@@ -89,11 +92,12 @@ export default function MainNavigationBar() {
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
     >
-      <div className="container mx-auto flex h-20 max-w-285 items-center justify-between">
+      <div className="container mx-auto flex h-20 max-w-285 items-center justify-between max-sm:px-6 md:px-6">
         <Link href="/">
           <Image
             src="/images/brand-santa-casa.svg"
             alt="Santa Casa Logo"
+            loading="eager"
             width={109}
             height={48}
           />
@@ -123,15 +127,16 @@ export default function MainNavigationBar() {
               ))}
             </ul>
 
+            {/* MOBILE BUTTON */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600 lg:hidden"
             >
               {mobileMenuOpen ? (
-                'X'
+                <IoMdClose size={24} />
               ) : (
                 <svg
-                  className="h-6 w-6"
+                  className="h-7 w-7 font-semibold text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -157,6 +162,7 @@ export default function MainNavigationBar() {
             <PiCalendarCheckLight size={20} />
             <span>Pré-Agendamento SUS</span>
           </Link>
+
           <Link
             href="https://santacasago.colabore.org/doacao/single_step"
             target="_blank"
@@ -236,6 +242,75 @@ export default function MainNavigationBar() {
             </div>
           )}
       </div>
+
+      {mobileMenuOpen && (
+        <div
+          className="border-t border-gray-200 bg-white shadow-lg lg:hidden"
+          style={{
+            animation: 'fadeSlideDown 0.3s ease-out'
+          }}
+        >
+          <ul className="flex flex-col space-y-4 px-6 py-4">
+            {Object.entries(menuData).map(([key, menu]) => (
+              <li key={key}>
+                <button
+                  onClick={() => toggleMenu(key)}
+                  className="flex w-full items-center justify-between pr-3 text-left text-sm font-medium text-gray-700"
+                >
+                  {menu.title}
+                  {menu.items.length > 0 && (
+                    <FaChevronDown
+                      size={14}
+                      className={`transition-transform ${
+                        activeMenu === key ? 'rotate-180' : ''
+                      }`}
+                    />
+                  )}
+                </button>
+
+                {activeMenu === key && menu.items.length > 0 && (
+                  <ul className="mt-2 space-y-2 pl-4">
+                    {menu.items.map((item, index) => (
+                      <li key={index}>
+                        <a
+                          href="#"
+                          className="block text-sm text-gray-600"
+                          onClick={() => {
+                            setActiveMenu(null)
+                            setMobileMenuOpen(false)
+                          }}
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-col items-center gap-3 p-5 md:hidden">
+            <Link
+              href="/pre-agendamento"
+              className="flex h-10 w-full items-center justify-center gap-2 rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
+              target="_blank"
+            >
+              <PiCalendarCheckLight size={20} />
+              <span>Pré-Agendamento SUS</span>
+            </Link>
+
+            <Link
+              href="https://santacasago.colabore.org/doacao/single_step"
+              target="_blank"
+              className="flex h-10 w-full items-center justify-center gap-2 rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700"
+            >
+              <BiDonateHeart size={20} />
+              <span>Doar</span>
+            </Link>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
