@@ -4,11 +4,23 @@ import Copyright from './components/Copyright'
 
 export default function Footer() {
   return (
-    <footer className="bg-white pt-12 text-[#262626]" aria-labelledby="Rodapé">
-      <div className="container mx-auto flex max-w-285 justify-between rounded-4xl bg-[#EDECEC] px-12 py-10.5">
-        <div className="w-70.75 flex-col gap-7.5">
+    <footer
+      className="w-full bg-white pt-12 text-[#262626] max-sm:px-6 max-sm:pt-15 max-sm:pb-5 md:px-5"
+      aria-labelledby="Rodapé"
+    >
+      <div className="mx-auto flex max-w-285 rounded-4xl bg-[#EDECEC] max-sm:flex-col max-sm:p-8 max-sm:text-center md:flex-wrap md:gap-6 md:pt-10 md:px-10 md:h-168 md:text-center lg:flex-nowrap lg:justify-between lg:gap-10 lg:px-12 lg:py-10.5 lg:text-start lg:h-110">
+        <div className="flex-col gap-7.5 max-sm:mb-5 max-sm:w-full md:w-[48%] lg:w-70.75">
+          <Link href="/" className="mb-6 inline-block">
+            <Image
+              src="/images/brand-santa-casa-footer.svg"
+              alt="Logo Santa Casa Go"
+              width={160}
+              height={70}
+            />
+          </Link>
+
           <div className="mb-6">
-            <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
+            <h2 className="mb-4 flex items-center gap-2 text-lg font-bold max-sm:justify-center md:justify-center lg:justify-start">
               <Image
                 src="/icons/location-icon-black.svg"
                 alt="endereço"
@@ -24,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div className="mb-6">
-            <h3 className="mb-3 flex items-center gap-2 text-base font-bold">
+            <h3 className="mb-4 flex items-center gap-2 text-base font-bold max-sm:justify-center md:justify-center lg:justify-start">
               <Image
                 src="/icons/phone-icon-black.svg"
                 alt="telefone"
@@ -43,7 +55,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-3 flex items-center gap-2 text-base font-bold">
+            <h3 className="mb-4 flex items-center gap-2 text-base font-bold max-sm:justify-center md:justify-center lg:justify-start">
               <Image
                 src="/icons/email-icon-black.svg"
                 alt="e-mail"
@@ -62,7 +74,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex w-54.5 flex-col gap-7.5">
+        <div className="flex flex-col gap-7.5 max-sm:w-full md:w-[48%] lg:w-54.5">
           <nav aria-labelledby="links-importantes">
             <h2 id="links-importantes" className="mb-4 text-lg font-bold">
               Links Importantes
@@ -99,11 +111,11 @@ export default function Footer() {
             <h2 id="politicas" className="mb-4 text-lg font-bold">
               Políticas
             </h2>
-            <ul className="space-y-2">
+            <ul className="space-y-2 max-sm:mb-5">
               <li>
                 <Link
                   href="/politica-de-cookies"
-                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900"
+                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
                 >
                   <Image
                     src="/icons/cookie-icon-gray.svg"
@@ -117,7 +129,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/politica-de-privacidade"
-                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900"
+                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
                 >
                   <Image
                     src="/icons/key-icon-gray.svg"
@@ -132,7 +144,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="flex w-40 flex-col gap-7.5">
+        <div className="flex flex-col gap-7.5 max-sm:w-full md:w-[48%] lg:w-40">
           <nav aria-labelledby="redes-sociais">
             <h2 id="redes-sociais" className="mb-4 text-lg font-bold">
               Nossas Redes
@@ -143,7 +155,7 @@ export default function Footer() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900"
+                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
                   aria-label="Visite nosso Instagram (abre em nova aba)"
                 >
                   <Image
@@ -160,7 +172,7 @@ export default function Footer() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900"
+                  className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
                   aria-label="Visite nosso Facebook (abre em nova aba)"
                 >
                   <Image
@@ -175,41 +187,41 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div>
+          <div className="max-sm:mb-5">
             <h2 className="mb-4 text-lg font-bold">Convênios</h2>
             <p className="text-sm text-[#727070]">Ministério da Saúde</p>
           </div>
         </div>
 
-        <div className="lg:col-span-1">
+        <div className="md:w-[48%] md:relative md:-top-28 lg:top-0 lg:static lg:col-span-1 lg:w-44.25">
           <h2 className="mb-4 text-lg font-bold">Segurança</h2>
           <div className="space-y-4">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 max-sm:flex-row max-sm:items-center max-sm:justify-center">
               <Image
                 src="/images/certificado-SSL.svg"
                 alt="Site Seguro - Certificado SSL"
+                className="max-sm:mx-auto md:mx-auto lg:mx-0"
                 width={120}
                 height={40}
-                className="object-contain"
               />
 
               <Image
                 src="/images/secure-global-sign.svg"
                 alt="GlobalSign Secure"
+                className="max-sm:mx-auto md:mx-auto lg:mx-0"
                 width={120}
                 height={40}
-                className="object-contain"
               />
             </div>
 
             <div className="mt-6">
-              <h3 className="mb-3 text-base font-bold">Plataforma Brasil</h3>
+              <h3 className="mb-4 text-base font-bold">Plataforma Brasil</h3>
               <Image
                 src="/images/plataforma-brasil.svg"
                 alt="Plataforma Brasil"
                 width={140}
                 height={50}
-                className="object-contain"
+                className="max-sm:mx-auto md:mx-auto lg:mx-0"
               />
             </div>
           </div>
