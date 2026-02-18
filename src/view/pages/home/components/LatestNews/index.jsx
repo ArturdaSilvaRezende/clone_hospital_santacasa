@@ -30,7 +30,7 @@ export default function LatestNews() {
       className="bg-white pt-24 pb-14"
       aria-labelledby="Últimas Notícias"
     >
-      <div className="container mx-auto max-w-285">
+      <div className="mx-auto max-w-285 max-sm:px-5 md:px-8">
         <h2
           id="latest-news-heading"
           className="mb-8 text-3xl font-bold text-gray-900 md:text-4xl"
@@ -38,7 +38,7 @@ export default function LatestNews() {
           Últimas Notícias
         </h2>
 
-        <div className="flex justify-between gap-5">
+        <div className="flex justify-between lg:gap-5 md:gap-12 max-sm:flex-col max-sm:justify-center md:flex-wrap lg:flex-nowrap">
           {list
             .slice()
             .sort(
@@ -48,7 +48,7 @@ export default function LatestNews() {
             .map((news, index) => (
               <article
                 key={news.id}
-                className="flex w-101.75 flex-col bg-white"
+                className="flex lg:w-101.75 max-sm:w-full md:w-[42%] flex-col bg-white"
               >
                 <div className="h-48 w-full">
                   <Image
@@ -73,7 +73,7 @@ export default function LatestNews() {
                     })}
                   </time>
 
-                  <h3 className="mt-15 mb-3 line-clamp-2 text-[24px] font-semibold text-gray-900">
+                  <h3 className="mt-15 mb-3 line-clamp-2 text-[24px] max-sm:text-[20px] font-semibold text-gray-900">
                     {news.title}
                   </h3>
 
