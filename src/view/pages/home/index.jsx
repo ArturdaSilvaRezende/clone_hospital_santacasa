@@ -12,12 +12,13 @@ export default function Home() {
       <CarouselHero />
       <LatestNews />
       <TotalNumberProcedures />
-       <ServicesGrid />
+      <ServicesGrid />
+      <TeachingAndResearch />
       {/* 
     
       
      
-      <TeachingAndResearch />
+      
       <References />
       <CallToActionSections /> */}
     </>

@@ -75,7 +75,7 @@ export default function CarouselHero() {
                 />
               </div>
 
-              <div className="relative z-10 mx-auto flex h-full lg:px-20 xl:px-8 md:px-17 max-w-285 items-center max-sm:px-12">
+              <div className="relative z-10 container mx-auto flex h-full lg:px-20 xl:px-8 md:px-17  items-center max-sm:px-12">
                 <div className="grid w-full md:flex grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
                   <div className="max-w-2xl space-y-6 text-white">
                     <header>

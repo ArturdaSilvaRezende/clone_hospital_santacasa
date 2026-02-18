@@ -8,7 +8,7 @@ export default function Footer() {
       className="w-full bg-white pt-12 text-[#262626] max-sm:px-6 max-sm:pt-15 max-sm:pb-5 md:px-5"
       aria-labelledby="Rodapé"
     >
-      <div className="mx-auto flex max-w-285 rounded-4xl bg-[#EDECEC] max-sm:flex-col max-sm:p-8 max-sm:text-center md:flex-wrap md:gap-6 md:pt-10 md:px-10 md:h-168 md:text-center lg:flex-nowrap lg:justify-between lg:gap-10 lg:px-12 lg:py-10.5 lg:text-start lg:h-110">
+      <div className="container mx-auto flex rounded-4xl bg-[#EDECEC] max-sm:flex-col max-sm:p-8 max-sm:text-center md:flex-wrap md:gap-6 md:pt-10 md:px-10 md:h-168 md:text-center lg:flex-nowrap lg:justify-between lg:gap-10 lg:px-12 lg:py-10.5 lg:text-start lg:h-110">
         <div className="flex-col gap-7.5 max-sm:mb-5 max-sm:w-full md:w-[48%] lg:w-70.75">
           <Link href="/" className="mb-6 inline-block">
             <Image

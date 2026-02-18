@@ -9,7 +9,7 @@ export default function BannerSection({
   children
 }) {
   return (
-    <div className="mx-auto max-w-265 max-sm:px-5 md:px-8 lg:px-8 xl:px-0">
+    <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
       <div className="grid gap-8 max-sm:items-center md:grid-cols-2 lg:grid-cols-2 lg:items-center lg:gap-12">
         <div className="relative order-1 lg:h-83.25">
           <div className="relative overflow-hidden rounded-3xl">
