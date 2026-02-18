@@ -112,7 +112,7 @@ export default function CarouselHero() {
             alt="Slide anterior"
             width={14}
             height={7}
-            className="lg:mr-5 md:mr-3.25 ml-auto max-sm:mr-2.25"
+            className="lg:mr-5 md:mr-3.25 ml-auto max-sm:mr-2.25 w-auto h-auto"
           />
           <span className="sr-only">Ir para o slide anterior</span>
         </button>
@@ -126,7 +126,7 @@ export default function CarouselHero() {
             alt="Próximo slide"
             width={14}
             height={7}
-            className="lg:ml-5 md:ml-3.25 mr-auto max-sm:ml-2.25"
+            className="lg:ml-5 md:ml-3.25 mr-auto max-sm:ml-2.25 w-auto h-auto"
           />
           <span className="sr-only">Ir para o próximo slide</span>
         </button>

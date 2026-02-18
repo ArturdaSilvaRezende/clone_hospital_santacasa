@@ -64,19 +64,19 @@ export default function ServicesGrid() {
   ]
 
   return (
-    <section className="bg-white py-20" aria-label="Serviços Disponíveis">
-      <div className="container mx-auto max-w-285">
-        <h2 className="mb-12 text-center text-[36px] font-normal text-black">
+    <section className="bg-white py-20 max-sm:py-10" aria-label="Serviços Disponíveis">
+      <div className="mx-auto max-w-285 max-sm:px-5">
+        <h2 className="mb-12 text-center max-sm:w-[90%] text-[36px] max-sm:text-[20px] md:w-[70%] md:mx-auto lg:w-full font-normal text-black">
           Um pouquinho de tudo que temos para
           <span className="text-[#FD0003]"> você</span>
         </h2>
 
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center gap-4 ">
           {services.map((service, index) => {
             return (
               <article
                 key={service.id}
-                className="service-card group animate-fade-in-up w-66.25 cursor-pointer"
+                className="service-card group animate-fade-in-up w-62.25 cursor-pointer"
                 style={{
                   animationDelay: `${0.3 + index * 0.1}s`,
                   opacity: 0,
@@ -90,6 +90,7 @@ export default function ServicesGrid() {
                       alt={`${service.title} - ${service.description}`}
                       className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                       fill
+                    
                     />
                   </div>
 
