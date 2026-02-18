@@ -269,7 +269,12 @@ export default function MainNavigationBar() {
                 </button>
 
                 {activeMenu === key && menu.items.length > 0 && (
-                  <ul className="mt-2 space-y-2 pl-4">
+                  <ul
+                    className="mt-2 space-y-2 pl-4"
+                    style={{
+                      animation: 'fadeSlideDown 0.3s ease-out'
+                    }}
+                  >
                     {menu.items.map((item, index) => (
                       <li key={index}>
                         <a
