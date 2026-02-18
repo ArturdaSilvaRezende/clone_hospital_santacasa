@@ -59,7 +59,7 @@ export default function CarouselHero() {
       >
         {list.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <article className="relative h-full w-full">
+            <article className="relative lg:h-153.75 md:h-153.75 max-sm:h-full w-full " aria-label={`Slide ${index + 1}: ${slide.title}`}>
               <div className="absolute inset-0 h-full w-full">
                 <Image
                   src={slide.url}
@@ -75,16 +75,16 @@ export default function CarouselHero() {
                 />
               </div>
 
-              <div className="relative z-10 container mx-auto flex h-full max-w-285 items-center">
-                <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+              <div className="relative z-10 mx-auto flex h-full lg:px-20 xl:px-0 md:px-17 max-w-285 items-center max-sm:px-12">
+                <div className="grid w-full md:flex grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
                   <div className="max-w-2xl space-y-6 text-white">
                     <header>
-                      <h1 className="text-4xl text-[32px] leading-tight font-bold">
+                      <h1 className="text-4xl text-[32px] max-sm:text-[22px] leading-tight font-bold">
                         {slide.title}
                       </h1>
                     </header>
 
-                    <p className="text-lg text-[16px] leading-relaxed text-gray-200">
+                    <p className="text-lg text-[16px] text-shadow-red-950 max-sm:text-[13px] leading-relaxed text-gray-200">
                       {slide.description}
                     </p>
 
@@ -112,7 +112,7 @@ export default function CarouselHero() {
             alt="Slide anterior"
             width={14}
             height={7}
-            className="mr-5 ml-auto"
+            className="lg:mr-5 md:mr-3.25 ml-auto max-sm:mr-2.25"
           />
           <span className="sr-only">Ir para o slide anterior</span>
         </button>
@@ -123,10 +123,10 @@ export default function CarouselHero() {
         >
           <Image
             src="/icons/caret-right-icon-black.svg"
-            alt="Slide anterior"
+            alt="Próximo slide"
             width={14}
             height={7}
-            className="mr-auto ml-5"
+            className="lg:ml-5 md:ml-3.25 mr-auto max-sm:ml-2.25"
           />
           <span className="sr-only">Ir para o próximo slide</span>
         </button>

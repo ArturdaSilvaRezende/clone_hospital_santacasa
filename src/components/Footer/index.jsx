@@ -200,7 +200,7 @@ export default function Footer() {
               <Image
                 src="/images/certificado-SSL.svg"
                 alt="Site Seguro - Certificado SSL"
-                className="max-sm:mx-auto md:mx-auto lg:mx-0"
+                className="max-sm:mx-auto md:mx-auto lg:mx-0 h-auto w-auto"
                 width={120}
                 height={40}
               />
@@ -208,7 +208,7 @@ export default function Footer() {
               <Image
                 src="/images/secure-global-sign.svg"
                 alt="GlobalSign Secure"
-                className="max-sm:mx-auto md:mx-auto lg:mx-0"
+                className="max-sm:mx-auto md:mx-auto lg:mx-0 h-auto w-auto"
                 width={120}
                 height={40}
               />
@@ -221,7 +221,7 @@ export default function Footer() {
                 alt="Plataforma Brasil"
                 width={140}
                 height={50}
-                className="max-sm:mx-auto md:mx-auto lg:mx-0"
+                className="max-sm:mx-auto md:mx-auto lg:mx-0 h-auto w-auto"
               />
             </div>
           </div>

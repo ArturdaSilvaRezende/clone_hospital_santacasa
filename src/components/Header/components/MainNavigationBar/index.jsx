@@ -92,7 +92,7 @@ export default function MainNavigationBar() {
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
     >
-      <div className="container mx-auto flex h-20 max-w-285 items-center justify-between max-sm:px-6 md:px-6">
+      <div className="container mx-auto lg:gap-7 xl:gap-0 flex h-20 max-w-285 items-center justify-between max-sm:px-6 md:px-6">
         <Link href="/">
           <Image
             src="/images/brand-santa-casa.svg"
@@ -105,7 +105,7 @@ export default function MainNavigationBar() {
 
         <nav aria-label="Menu principal">
           <div className="flex items-center justify-between">
-            <ul className="hidden w-150.5 items-center justify-between space-x-1 lg:flex">
+            <ul className="hidden  w-150.5 items-center justify-between space-x-1 lg:flex">
               {Object.entries(menuData).map(([key, menu]) => (
                 <li
                   key={key}
@@ -127,7 +127,7 @@ export default function MainNavigationBar() {
               ))}
             </ul>
 
-            {/* MOBILE BUTTON */}
+          
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="rounded-lg p-2 text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600 lg:hidden"
