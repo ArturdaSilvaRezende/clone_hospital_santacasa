@@ -25,7 +25,7 @@ export default function TotalNumberProcedures() {
 
   return (
     <section
-      className="mt-16 mb-24"
+      className="lg:mt-16 lg:mb-24 max-sm:mb-14 max-sm:mt-14 md:mb-14 md:mt-14"
       aria-label="Total de Procedimentos Realizados"
     >
       <BannerSection
@@ -53,14 +53,14 @@ export default function TotalNumberProcedures() {
           </p>
 
           <p className="mt-5 mb-2 text-[22px] font-semibold text-[#FD0003]">
-            Em 2024 a Santa Casa realizou:
+            Em 2025 a Santa Casa realizou:
           </p>
         </div>
 
         <ul
           className="flex flex-wrap gap-2"
           role="list"
-          aria-label="Estatísticas de atendimento 2024"
+          aria-label="Estatísticas de atendimento 2025"
         >
           {statistics.map((stat, index) => (
             <li key={index}>

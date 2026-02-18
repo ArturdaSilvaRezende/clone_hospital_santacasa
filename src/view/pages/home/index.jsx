@@ -11,9 +11,10 @@ export default function Home() {
     <>
       <CarouselHero />
       <LatestNews />
+      <TotalNumberProcedures />
       {/* 
     
-      <TotalNumberProcedures />
+      
       <ServicesGrid />
       <TeachingAndResearch />
       <References />

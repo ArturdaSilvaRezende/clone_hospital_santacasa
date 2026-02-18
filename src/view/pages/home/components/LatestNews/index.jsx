@@ -38,7 +38,7 @@ export default function LatestNews() {
           Últimas Notícias
         </h2>
 
-        <div className="flex justify-between lg:gap-5 md:gap-12 max-sm:flex-col max-sm:justify-center md:flex-wrap lg:flex-nowrap">
+        <div className="flex justify-between max-sm:flex-col max-sm:justify-center md:flex-wrap md:gap-12 lg:flex-nowrap lg:gap-5 max-sm:gap-10">
           {list
             .slice()
             .sort(
@@ -48,7 +48,7 @@ export default function LatestNews() {
             .map((news, index) => (
               <article
                 key={news.id}
-                className="flex lg:w-101.75 max-sm:w-full md:w-[42%] flex-col bg-white"
+                className="flex flex-col bg-white max-sm:w-full md:w-[42%] lg:w-101.75"
               >
                 <div className="h-48 w-full">
                   <Image
@@ -73,7 +73,7 @@ export default function LatestNews() {
                     })}
                   </time>
 
-                  <h3 className="mt-15 mb-3 line-clamp-2 text-[24px] max-sm:text-[20px] font-semibold text-gray-900">
+                  <h3 className="mt-15 mb-3 line-clamp-2 text-[24px] font-semibold text-gray-900 max-sm:text-[20px]">
                     {news.title}
                   </h3>
 
@@ -84,7 +84,7 @@ export default function LatestNews() {
                   <div className="border-t border-[#B4B4B4] pt-5">
                     <a
                       href={`/noticias/${news.slug}`}
-                      className="group flex inline-flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
+                      className="group flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
                       aria-label={`Ler mais sobre ${news.title}`}
                     >
                       <span>Ler mais</span>
