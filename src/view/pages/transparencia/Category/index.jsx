@@ -6,6 +6,7 @@ import Skeleton from '@mui/material/Skeleton'
 import { GoChevronDown, GoChevronUp } from 'react-icons/go'
 import { api } from '~/services/api'
 import { FilesList } from '../FilesList'
+import { BiSearch } from 'react-icons/bi'
 
 const styleUI = {
   org_integrity_policy: {
@@ -216,9 +217,12 @@ export function Category() {
   const topListRef = useRef(null)
   const [idSelected, setIdSelected] = useState(null)
   const [list, setList] = useState([])
+  const [listFile, setListFile] = useState([])
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [openSubDropdown, setOpenSubDropdown] = useState(null)
   const [labelSelected, setLabelSelected] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
+  const [showAsideMobile, setShowAsideMobile] = useState(false)
+  const [searchName, setSearchName] = useState('')
 
   async function onLoad() {
     try {
@@ -229,8 +233,39 @@ export function Category() {
     }
   }
 
+  async function onLoadFiles() {
+    if (!openSubDropdown) return
+
+    try {
+      const result = await api.get(
+        `/transparencia-files/${openSubDropdown}?limit=999&name=${searchName}`
+      )
+      setListFile(result.data?.list || [])
+    } catch (err) {
+      console.error('Erro ao carregar arquivos', err)
+    }
+  }
+
+  useEffect(() => {
+    setSearchName('')
+    onLoadFiles()
+  }, [openSubDropdown])
+
   useEffect(() => {
     onLoad()
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowAsideMobile(window.innerWidth < 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const handleSelectTopic = (id, label) => {
@@ -249,80 +284,197 @@ export function Category() {
     setOpenDropdown(openDropdown === id ? null : id)
   }
 
+  const toggleSubDropdown = id => {
+    setOpenSubDropdown(openSubDropdown === id ? null : id)
+  }
+
   return (
-    <div className="container mx-auto mb-20 flex max-w-285 justify-between gap-10">
-      <aside className="min-h-screen w-100 rounded-[26px] bg-white p-6">
-        <nav className="flex flex-col gap-2">
-          {list.map(category => {
-            const isActive = openDropdown === category.id
-            const colorClass = isActive ? 'text-[#FD0003]' : 'text-[#737373]'
-            const iconColor = isActive ? '#FD0003' : '#737373'
+    <>
+      <section className="container mx-auto mb-20 flex md:px-8 justify-between gap-10 max-sm:hidden">
+        <aside className="min-h-screen w-100 md:w-80 rounded-[26px] bg-white p-6">
+          <nav className="flex flex-col gap-2">
+            {list.map(category => {
+              const isActive = openDropdown === category.id
+              const colorClass = isActive ? 'text-[#FD0003]' : 'text-[#737373]'
+              const iconColor = isActive ? '#FD0003' : '#737373'
 
-            return (
-              <div
-                key={category.id}
-                className="flex flex-col overflow-hidden rounded-xl"
-              >
-                <button
-                  onClick={() => toggleDropdown(category.id)}
-                  className={`flex items-center justify-between p-4 text-left transition-all duration-200 hover:bg-gray-50 ${isActive ? 'bg-[#fafafa]' : ''}`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-8 w-8 items-center justify-center">
-                      <span
-                        className="flex h-full w-full items-center justify-center"
-                        style={{ color: iconColor }}
-                        dangerouslySetInnerHTML={{
-                          __html: (
-                            styleUI[category.internal_code]?.icon || ''
-                          ).replace(/fill="[^"]*"/g, 'fill="currentColor"')
-                        }}
-                      />
-                    </div>
-                    <span
-                      className={`w-51.5 pl-1 text-sm font-medium transition-colors ${colorClass}`}
-                    >
-                      {category.title}
-                    </span>
-                  </div>
-
-                  {isActive ? (
-                    <GoChevronUp size={18} className="text-[#727070]" />
-                  ) : (
-                    <GoChevronDown size={18} className="text-[#727070]" />
-                  )}
-                </button>
-
+              return (
                 <div
-                  className={`flex flex-col ${isActive ? 'bg-[#fafafa]' : ''} transition-all duration-300 ease-in-out ${
-                    isActive
-                      ? 'max-h-[500px] py-2 opacity-100'
-                      : 'pointer-events-none max-h-0 opacity-0'
-                  }`}
+                  key={category.id}
+                  className="flex flex-col overflow-hidden rounded-xl"
                 >
-                  {category.topics?.map(topic => (
-                    <button
-                      key={topic.id}
-                      onClick={() => handleSelectTopic(topic.id, topic.label)}
-                      className="px-5 py-2 text-left text-sm transition-colors"
-                      style={{
-                        color: `${topic.id === idSelected ? '#FD0003' : '#737373'}`
-                      }}
-                    >
-                      <span className="text-[14px] hover:text-[#FD0003]">
-                        {topic.label}
+                  <button
+                    onClick={() => toggleDropdown(category.id)}
+                    className={`flex items-center justify-between p-4 text-left transition-all duration-200 hover:bg-gray-50 ${isActive ? 'bg-[#fafafa]' : ''}`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-8 w-8 items-center justify-center">
+                        <span
+                          className="flex h-full w-full items-center justify-center"
+                          style={{ color: iconColor }}
+                          dangerouslySetInnerHTML={{
+                            __html: (
+                              styleUI[category.internal_code]?.icon || ''
+                            ).replace(/fill="[^"]*"/g, 'fill="currentColor"')
+                          }}
+                        />
+                      </div>
+                      <span
+                        className={`w-51.5 pl-1 text-sm font-medium transition-colors ${colorClass}`}
+                      >
+                        {category.title}
                       </span>
-                    </button>
-                  ))}
+                    </div>
+
+                    {isActive ? (
+                      <GoChevronUp size={18} className="text-[#727070]" />
+                    ) : (
+                      <GoChevronDown size={18} className="text-[#727070]" />
+                    )}
+                  </button>
+
+                  <div
+                    className={`flex flex-col ${isActive ? 'bg-[#fafafa]' : ''} transition-all duration-300 ease-in-out ${
+                      isActive
+                        ? 'max-h-125 py-2 opacity-100'
+                        : 'pointer-events-none max-h-0 opacity-0'
+                    }`}
+                  >
+                    {category.topics?.map(topic => (
+                      <button
+                        key={topic.id}
+                        onClick={() => handleSelectTopic(topic.id, topic.label)}
+                        className="px-5 py-2 text-left text-sm transition-colors"
+                        style={{
+                          color: `${topic.id === idSelected ? '#FD0003' : '#737373'}`
+                        }}
+                      >
+                        <span className="text-[14px] hover:text-[#FD0003]">
+                          {topic.label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )
-          })}
-        </nav>
-      </aside>
-      <div ref={topListRef} className="flex-1 scroll-mt-10">
-        <FilesList id={idSelected} categoryTitle={labelSelected} />
-      </div>
-    </div>
+              )
+            })}
+          </nav>
+        </aside>
+        <div ref={topListRef} className="flex-1 scroll-mt-10">
+          <FilesList id={idSelected} categoryTitle={labelSelected} />
+        </div>
+      </section>
+
+      {showAsideMobile && (
+        <section className="container mx-auto mb-20 flex flex-col gap-10 px-5">
+          <aside className="w-full rounded-[26px] bg-white p-4 shadow-sm">
+            {/* {openSubDropdown && <div className="relative my-6 w-full">
+              <input
+                value={searchName}
+                onChange={e => setSearchName(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && onLoadFiles()}
+                placeholder="Pesquisar"
+                className="h-14 w-full rounded-full border border-[#7270701A] bg-white px-5 text-[13px] font-normal text-black focus:border-gray-300 focus:outline-none"
+              />
+              <button
+                onClick={onLoadFiles}
+                className="absolute inset-y-0 right-4 flex items-center"
+              >
+                <BiSearch color="#959595" size={22} />
+              </button>
+            </div>} */}
+
+            <nav className="flex flex-col gap-3">
+              {list.map(category => {
+                const isActive = openDropdown === category.id
+
+                const colorClass = isActive ? 'text-red-600' : 'text-[#737373]'
+
+                return (
+                  <div
+                    key={category.id}
+                    className="flex flex-col border-b border-gray-100 pb-2 last:border-0"
+                  >
+                    <button
+                      onClick={() => toggleDropdown(category.id)}
+                      className="flex items-center justify-between py-4 text-left transition-all"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-8 w-8 items-center justify-center">
+                          <span
+                            className="flex h-full w-full items-center justify-center"
+                            style={{ color: isActive ? '#FD0003' : '#737373' }}
+                            dangerouslySetInnerHTML={{
+                              __html: (
+                                styleUI[category.internal_code]?.icon || ''
+                              ).replace(/fill="[^"]*"/g, 'fill="currentColor"')
+                            }}
+                          />
+                        </div>
+                        <span
+                          className={`text-base font-semibold transition-colors ${colorClass}`}
+                        >
+                          {category.title}
+                        </span>
+                      </div>
+                      {isActive ? (
+                        <GoChevronUp size={20} />
+                      ) : (
+                        <GoChevronDown size={20} />
+                      )}
+                    </button>
+
+                    <div
+                      className={`flex flex-col gap-2 overflow-hidden transition-all duration-300 ${
+                        isActive
+                          ? 'mb-4 max-h-500 opacity-100'
+                          : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      {category.topics?.map(topic => {
+                        const isSubActive = openSubDropdown === topic.id
+
+                        return (
+                          <div
+                            key={topic.id}
+                            className="ml-2 flex flex-col border-t border-gray-50 first:border-0"
+                          >
+                            <button
+                              onClick={() => toggleSubDropdown(topic.id)}
+                              className="flex w-full items-center justify-between py-3 text-sm font-medium text-red-500 transition-colors hover:text-red-700"
+                            >
+                              {topic.label}
+                              <GoChevronDown
+                                size={14}
+                                className={`transition-transform duration-300 ${isSubActive ? 'rotate-180' : ''}`}
+                              />
+                            </button>
+
+                            <div
+                              className={`flex flex-col gap-2 overflow-hidden transition-all duration-300 ${
+                                isSubActive
+                                  ? 'mb-4 max-h-250 opacity-100'
+                                  : 'max-h-0 opacity-0'
+                              }`}
+                            >
+                              <div className="flex-1 scroll-mt-10">
+                                <FilesList
+                                  id={topic.id}
+                                  categoryTitle={topic.label}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
+            </nav>
+          </aside>
+        </section>
+      )}
+    </>
   )
 }
