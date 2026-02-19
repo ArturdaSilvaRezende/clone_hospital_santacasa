@@ -8,7 +8,7 @@ export default function Footer() {
       className="w-full bg-white pt-12 text-[#262626] max-sm:px-6 max-sm:pt-15 max-sm:pb-5 md:px-5"
       aria-labelledby="Rodapé"
     >
-      <div className="container mx-auto flex rounded-4xl bg-[#EDECEC] max-sm:flex-col max-sm:p-8 max-sm:text-center md:flex-wrap md:gap-6 md:pt-10 md:px-10 md:h-168 md:text-center lg:flex-nowrap lg:justify-between lg:gap-10 lg:px-12 lg:py-10.5 lg:text-start lg:h-110">
+      <div className="container mx-auto flex rounded-4xl bg-[#EDECEC] max-sm:flex-col max-sm:p-8 max-sm:text-center md:h-168 md:flex-wrap md:gap-6 md:px-10 md:pt-10 md:text-center lg:h-110 lg:flex-nowrap lg:justify-between lg:gap-10 lg:px-12 lg:py-10.5 lg:text-start">
         <div className="flex-col gap-7.5 max-sm:mb-5 max-sm:w-full md:w-[48%] lg:w-70.75">
           <Link href="/" className="mb-6 inline-block">
             <Image
@@ -193,36 +193,39 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="md:w-[48%] md:relative md:-top-28 lg:top-0 lg:static lg:col-span-1 lg:w-44.25">
+        <div className="md:relative md:-top-28 md:w-[48%] lg:static lg:top-0 lg:col-span-1 lg:w-44.25">
           <h2 className="mb-4 text-lg font-bold">Segurança</h2>
           <div className="space-y-4">
             <div className="flex flex-col gap-6 max-sm:flex-row max-sm:items-center max-sm:justify-center">
-              <Image
-                src="/images/certificado-SSL.svg"
-                alt="Site Seguro - Certificado SSL"
-                className="max-sm:mx-auto md:mx-auto lg:mx-0 h-auto w-auto"
-                width={120}
-                height={40}
-              />
+              <div className="max-sm:mx-auto md:mx-auto lg:mx-0">
+                <Image
+                  src="/images/certificado-SSL.svg"
+                  alt="Site Seguro - Certificado SSL"
+                  width={107}
+                  height={50}
+                />
+              </div>
 
-              <Image
-                src="/images/secure-global-sign.svg"
-                alt="GlobalSign Secure"
-                className="max-sm:mx-auto md:mx-auto lg:mx-0 h-auto w-auto"
-                width={120}
-                height={40}
-              />
+              <div className="max-sm:mx-auto md:mx-auto lg:mx-0">
+                <Image
+                  src="/images/secure-global-sign.svg"
+                  alt="GlobalSign Secure"
+                  width={105}
+                  height={40}
+                />
+              </div>
             </div>
 
             <div className="mt-6">
               <h3 className="mb-4 text-base font-bold">Plataforma Brasil</h3>
-              <Image
-                src="/images/plataforma-brasil.svg"
-                alt="Plataforma Brasil"
-                width={140}
-                height={50}
-                className="max-sm:mx-auto md:mx-auto lg:mx-0 h-auto w-auto"
-              />
+              <div className="max-sm:mx-auto md:mx-auto lg:mx-0 max-sm:w-[50%]">
+                <Image
+                  src="/images/plataforma-brasil.svg"
+                  alt="Plataforma Brasil"
+                  width={134}
+                  height={50}
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -105,12 +105,12 @@ export default function MainNavigationBar() {
 
         <nav aria-label="Menu principal">
           <div className="flex items-center justify-between">
-            <ul className="hidden  w-150.5 items-center justify-between space-x-1 lg:flex">
+            <ul className="hidden  w-160.5 items-center justify-between space-x-1 lg:flex">
               {Object.entries(menuData).map(([key, menu]) => (
                 <li
                   key={key}
                   onClick={() => toggleMenu(key)}
-                  className={`${activeMenu === key ? 'text-[#FD0003]' : 'text-[#727070]'} group relative flex cursor-pointer items-center gap-1 rounded-lg text-[12px] font-medium transition-colors duration-200 hover:text-[#FD0003]`}
+                  className={`${activeMenu === key ? 'text-[#FD0003]' : 'text-[#727070]'} group relative flex cursor-pointer items-center gap-1 rounded-lg text-[13px] font-medium transition-colors duration-200 hover:text-[#FD0003]`}
                   aria-haspopup="true"
                   aria-expanded={activeMenu === key}
                 >
