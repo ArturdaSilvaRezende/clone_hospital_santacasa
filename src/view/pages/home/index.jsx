@@ -15,13 +15,7 @@ export default function Home() {
       <ServicesGrid />
       <TeachingAndResearch />
       <References />
-      {/* 
-    
-      
-     
-      
-     
-      <CallToActionSections /> */}
+      <CallToActionSections />
     </>
   )
 }
