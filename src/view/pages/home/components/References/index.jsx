@@ -19,10 +19,10 @@ export default function References() {
 
   return (
     <section
-      className="w-full py-16"
+      className="py-16 max-sm:py-10"
       aria-labelledby="Referência no Estado de Goiás"
     >
-      <div className="container mx-auto max-w-285">
+      <div className="container mx-auto max-sm:px-6 md:px-8">
         <div className="mb-5 text-center">
           <p className="mb-2 text-[20px] font-medium tracking-wide text-[#A45757]">
             O nosso propósito é salvar vidas!
@@ -35,11 +35,11 @@ export default function References() {
           </h2>
         </div>
 
-        <div className="mx-auto mb-10 flex w-190.25 items-center justify-between">
+        <div className="mx-auto gap-5 mb-10 flex lg:w-190.25 max-sm:w-full items-center justify-between max-sm:flex-wrap md:flex-wrap lg:flex-no-wrap md:w-1/2 max-sm:mt-10">
           {specialties.map((specialty, index) => (
             <div
               key={index}
-              className="group flex items-center gap-3 transition-transform duration-300 hover:scale-105"
+              className="group items-center flex gap-3"
             >
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-600 shadow-lg transition-shadow duration-300 group-hover:shadow-red-600/50">
                 <Image
@@ -56,7 +56,7 @@ export default function References() {
           ))}
         </div>
 
-        <dl className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-6 lg:grid-cols-7 lg:gap-4">
+        <dl className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-6 lg:grid-cols-7 lg:gap-4 max-sm:justify-center max-sm:grid-cols-3">
           {statistics.map((stat, index) => (
             <div
               key={index}

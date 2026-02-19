@@ -14,12 +14,13 @@ export default function Home() {
       <TotalNumberProcedures />
       <ServicesGrid />
       <TeachingAndResearch />
+      <References />
       {/* 
     
       
      
       
-      <References />
+     
       <CallToActionSections /> */}
     </>
   )
