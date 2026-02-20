@@ -8,7 +8,7 @@ export default function DoacaoPagamento() {
   return (
     <ReduxProvider store={store}>
       <TabSteppers />
-      <Payment />
+      {/* <Payment /> */}
     </ReduxProvider>
   )
 }

@@ -168,14 +168,14 @@ export default function PersonalInfoForm({
   }
 
   return (
-    <div className="w-176">
+    <div className="w-176 max-sm:w-full md:w-full">
       <h2 className="mb-8 text-2xl font-bold text-gray-900">
         Informações pessoais
       </h2>
 
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="flex flex-col gap-1">
             <label className="text-[1rem] font-medium text-[#262626]">
               CPF <span className="text-[#FF0909]">*</span>
             </label>
@@ -287,11 +287,11 @@ export default function PersonalInfoForm({
         </div>
 
         <div className="mt-4">
-          <p className="mb-2 text-sm font-medium text-gray-700">
+          <p className="mb-2 text-sm max-sm:text-[12px] font-medium text-gray-700">
             Nós adoraríamos poder entrar em contato com você sobre esta e outras
             campanhas.
           </p>
-          <label className="flex items-center gap-2 text-sm text-gray-500">
+          <label className="flex items-center gap-2 text-sm max-sm:text-[11px] text-gray-500">
             <input
               type="checkbox"
               className="h-4 w-4 rounded border-gray-300 accent-[#FF0909]"
@@ -302,10 +302,10 @@ export default function PersonalInfoForm({
 
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-semibold text-gray-700">
+            <label className="text-sm max-sm:text-[12px] font-semibold text-gray-700">
               Deixe sua mensagem
             </label>
-            <label className="flex items-center gap-2 text-sm text-gray-500">
+            <label className="flex items-center gap-2 text-sm max-sm:text-[11px] text-gray-500">
               <input
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 accent-[#FF0909]"

@@ -60,16 +60,16 @@ export default function TabSteppers() {
 
   return (
     <section aria-label="resumo da doação">
-      <div className="mb-8 bg-white py-5">
+      <div className="mb-8 bg-white py-5 max-sm:py-8 md:py-8">
         <div
           role="tablist"
           aria-label="Progresso do checkout"
-          className="relative container mx-auto flex items-start"
+          className="relative flex items-start"
         >
           {steps.map((step, index) => (
             <div
               key={step.id}
-              className="relative flex flex-1 flex-col items-center"
+              className="relative flex flex-1 flex-col items-center justify-between"
             >
               <div className="relative z-10 flex flex-col items-center">
                 <button
@@ -105,7 +105,7 @@ export default function TabSteppers() {
               {index < steps.length - 1 && (
                 <div className="absolute top-6 left-1/2 w-full">
                   <div
-                    className={`absolute left-12 h-0.5 w-[75%] ${
+                    className={`absolute lg:left-0 h-0.5 w-full max-sm:left-5 md:left-8 ${
                       activeStep > index ? 'bg-[#FD0003]' : 'bg-[#D9D9D9]'
                     }`}
                   />
@@ -116,12 +116,12 @@ export default function TabSteppers() {
         </div>
       </div>
 
-      <div className="container mx-auto mt-20 flex max-w-285 gap-8">
+      <div className="container mx-auto lg:px-0 lg:my-20 md:my-10 flex flex-col md:flex-row gap-8 md:px-8">
         <div
           id={`panel-${activeStep}`}
           role="tabpanel"
           aria-labelledby={`tab-${activeStep}`}
-          className={`rounded-xl border border-[#7270701A] bg-white ${activeStep >= 2 ? 'mx-auto w-200 p-2' : 'w-full p-8'} `}
+          className={`rounded-xl border max-sm:order-2 border-[#7270701A] bg-white ${activeStep >= 2 ? 'mx-auto w-200 p-2' : 'lg:w-full md:w-[50%] max-sm:w-full p-8'} `}
         >
           {renderContent()}
         </div>

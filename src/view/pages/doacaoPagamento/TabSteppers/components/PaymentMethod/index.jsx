@@ -117,7 +117,7 @@ export default function PaymentMethod({
   }, [])
 
   return (
-    <div className="w-full">
+    <div className="w-full max-sm:order-2">
       <div className="mb-8 flex flex-wrap gap-4">
         {tabs.map(tab => {
           const isActive = activeTab === tab.id
@@ -128,7 +128,7 @@ export default function PaymentMethod({
                 setActiveTab(tab.id)
                 dispatch(changeMethodPayment(tab.id))
               }}
-              className={`flex items-center gap-3 rounded-xl border px-6 py-3 font-bold transition-all duration-200 ${
+              className={`flex items-center gap-3 rounded-xl border lag:px-6 md:px-6 max-sm:px-2 py-3 font-bold transition-all duration-200 ${
                 isActive
                   ? 'border-[#FE0908] bg-[#FE0908] text-white shadow-md'
                   : 'border-gray-100 bg-white text-gray-600 hover:border-gray-300'
