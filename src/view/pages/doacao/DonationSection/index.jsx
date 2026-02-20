@@ -90,7 +90,7 @@ export default function DonationSection() {
         </p>
       </div>
 
-      <div className="flex w-full justify-end">
+      {/* <div className="flex w-full justify-end">
         <button className="flex flex-row items-center gap-x-2 rounded-lg border border-[#727070] p-3">
           <span className="text-[#727070]">
             {new Intl.NumberFormat('pt-br', {
@@ -102,7 +102,7 @@ export default function DonationSection() {
           </span>
           <TbHeartHandshake color="#727070" size={27} />
         </button>
-      </div>
+      </div> */}
 
       <div
         className="mb-8 flex gap-3"
@@ -113,7 +113,7 @@ export default function DonationSection() {
           onClick={() => setDonationType('project')}
           role="radio"
           aria-checked={donationType === 'project'}
-          className={`rounded-full px-6 py-3 font-medium transition-all duration-300 ${
+          className={`rounded-full px-6 py-3 max-sm:px-2 font-medium transition-all duration-300 ${
             donationType === 'project'
               ? 'bg-[#FD0003] text-white'
               : 'border border-gray-300 bg-white text-gray-700 hover:border-gray-400'

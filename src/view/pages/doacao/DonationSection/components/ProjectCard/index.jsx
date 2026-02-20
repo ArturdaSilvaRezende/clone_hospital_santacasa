@@ -16,7 +16,7 @@ export default function ProjectCard({ project, isSelected, onSelect }) {
         </div>
       )}
 
-      <div className="mb-3 flex items-center gap-3">
+      <div className="mb-3 flex items-center gap-3 mt-5 max-sm:mt-6">
         <div className="flex h-9.5 w-9.5 items-center justify-center rounded-full bg-[#FFE2E2]">
           <AiOutlineHeart className="mt-1 shrink-0 text-2xl text-[#FD0003]" />
         </div>
