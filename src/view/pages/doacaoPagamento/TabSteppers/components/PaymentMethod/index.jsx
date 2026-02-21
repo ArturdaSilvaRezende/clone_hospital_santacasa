@@ -128,7 +128,7 @@ export default function PaymentMethod({
                 setActiveTab(tab.id)
                 dispatch(changeMethodPayment(tab.id))
               }}
-              className={`flex items-center gap-3 rounded-xl border lag:px-6 md:px-6 max-sm:px-2 py-3 font-bold transition-all duration-200 ${
+              className={`lag:px-6 flex items-center gap-3 rounded-xl border py-3 font-bold transition-all duration-200 max-sm:px-2 md:px-6 ${
                 isActive
                   ? 'border-[#FE0908] bg-[#FE0908] text-white shadow-md'
                   : 'border-gray-100 bg-white text-gray-600 hover:border-gray-300'
@@ -149,9 +149,9 @@ export default function PaymentMethod({
         {renderPaymentContent()}
       </div>
 
-      <div className="mt-5 flex justify-between">
+      <div className="mt-5 flex justify-between max-sm:flex-col md:flex-row lg:flex-row">
         <button
-          className="group flex h-10 w-26.75 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-normal text-[#535353] transition-colors hover:bg-gray-50"
+          className="group flex h-10 lg:w-26.75 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-normal text-[#535353] transition-colors hover:bg-gray-50 max-sm:mt-2 max-sm:mb-4 max-sm:w-full md:mt-2 md:mb-4 md:w-26.75 lg:mt-0 lg:mb-4"
           aria-label="Voltar"
           onClick={handleBack}
         >
@@ -167,8 +167,8 @@ export default function PaymentMethod({
 
         <button
           type="button"
-          onClick={handleConfirmDonation}
-          className="group flex h-10 w-50 items-center justify-center gap-2 rounded-full bg-[#FF0909] font-bold text-white transition-all hover:bg-red-700"
+          onClick={handleNextStep}
+          className="group flex h-10 lg:w-50 items-center justify-center gap-2 rounded-full bg-[#FF0909] font-bold text-white transition-all hover:bg-red-700 max-sm:w-full md:w-50"
         >
           <span> Confirmar doação</span>
 

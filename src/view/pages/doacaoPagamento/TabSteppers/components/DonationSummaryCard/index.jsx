@@ -5,7 +5,7 @@ export default function DonationSummaryCard() {
     useSelector(store => store.donate)
 
   return (
-    <div className="h-81.25 lg:w-[40%] md:w-78 max-sm:w-full rounded-xl border border-[#7270701A] bg-white px-6.5 py-5">
+    <div className="h-81.25 lg:w-[40%] md:w-78 max-sm:w-full md:ml-auto lg:ml-0 rounded-xl border border-[#7270701A] bg-white px-6.5 py-5">
       <h2 className="mb-6 text-[18px] font-medium text-black">
         Resumo da Doação
       </h2>

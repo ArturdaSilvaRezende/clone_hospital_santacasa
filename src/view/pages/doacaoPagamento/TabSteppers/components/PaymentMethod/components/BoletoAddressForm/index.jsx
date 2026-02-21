@@ -3,7 +3,7 @@
 export default function BoletoAddressForm() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-2 w-full duration-500">
-      <form className="grid grid-cols-1 gap-6 md:grid-cols-12">
+      <form className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         {/* CEP */}
         <div className="flex flex-col gap-2 md:col-span-6">
           <label className="text-sm font-semibold text-gray-700">
@@ -29,7 +29,7 @@ export default function BoletoAddressForm() {
         </div>
 
         {/* Rua */}
-        <div className="flex flex-col gap-2 md:col-span-6">
+        <div className="flex flex-col gap-2 md:col-span-4">
           <label className="text-sm font-semibold text-gray-700">
             Rua <span className="text-red-500">*</span>
           </label>
@@ -41,7 +41,7 @@ export default function BoletoAddressForm() {
         </div>
 
         {/* Número */}
-        <div className="flex flex-col gap-2 md:col-span-2">
+        <div className="flex flex-col gap-2 md:col-span-2 lg:col-span-2">
           <label className="text-sm font-semibold text-gray-700">
             Número <span className="text-red-500">*</span>
           </label>
@@ -53,7 +53,7 @@ export default function BoletoAddressForm() {
         </div>
 
         {/* Complemento */}
-        <div className="flex flex-col gap-2 md:col-span-4">
+        <div className="flex flex-col gap-2 md:col-span-6 lg:col-span-4">
           <label className="text-sm font-semibold text-gray-700">
             Complemento
           </label>

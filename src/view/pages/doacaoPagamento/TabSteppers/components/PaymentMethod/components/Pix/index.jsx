@@ -42,14 +42,14 @@ export default function Pix({ payment }) {
  
         <button
           onClick={() => handleClipBoard(payment?.code_pix)}
-          className={`flex h-10.5 w-51.25 items-center justify-center gap-2 rounded-xl border border-[#7270701A] bg-[#7270701A] py-3 font-medium transition-all active:scale-95 ${
+          className={`flex h-9.5 w-11.5 items-center justify-center gap-2 rounded-xl border border-[#7270701A] bg-[#7270701A] py-3 font-medium transition-all active:scale-95 ${
             successCopyKeyPix
               ? 'border-green-200 bg-green-50 text-green-600'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
-          <MdContentCopy className="text-xl" />
-          <span>{successCopyKeyPix ? 'Copiado!' : 'Copiar'}</span>
+          <MdContentCopy className="text-xl mx-auto" />
+          <span>{successCopyKeyPix ? 'Copiado!' : ''}</span>
         </button>
       </div>
 

@@ -15,18 +15,19 @@ export default function Confirmation() {
         <IoCheckmark className="text-3xl" />
       </div>
 
-      <h2 className="mb-2 text-3xl font-bold text-gray-900">
+      <h2 className="mb-2 text-3xl max-sm:text-[16px] font-bold text-gray-900">
         Obrigado pela sua doação!
       </h2>
-      <p className="mb-10 text-center text-lg text-gray-500">
+      <p className="mb-10 text-center text-lg max-sm:text-[12px] text-gray-500">
         Tenha certeza de que a sua ajuda será muito importante para nós.
       </p>
 
-      <div className="mb-12 w-full max-w-2xl rounded-4xl border border-[#7270701A] bg-[#FAFAFA] p-10 text-center">
-        <h3 className="mb-4 text-[21px] font-medium text-[#535353]">
+      <div className="mb-12 w-full max-w-2xl rounded-4xl border border-[#7270701A] bg-[#FAFAFA] 
+      p-10 text-center max:sm:py-2.5 max-sm:px-2">
+        <h3 className="mb-4 text-[21px] max-sm:text-[14px] font-medium text-[#535353]">
           Seu impacto importa
         </h3>
-        <p className="leading-relaxed text-[#535353]">
+        <p className="leading-relaxed text-[#535353] max-sm:text-[12px]">
           Com{' '}
           <span className="font-bold text-[#535353]">
             {new Intl.NumberFormat('pt-br', {
