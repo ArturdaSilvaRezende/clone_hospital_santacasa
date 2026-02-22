@@ -166,11 +166,13 @@ export function FourthStep() {
   }
 
   return (
-    <div className="mt-[2rem] flex w-full flex-col xl:mt-0">
+    <div className="mt-8 flex w-full flex-col xl:mt-0">
       <div className="flex flex-col gap-y-5 xl:hidden">
         <div className="flex flex-col gap-y-1">
-          <span className="text-[1rem] font-[400] text-[#A3A3A3]">Passo 4</span>
-          <span className="text-[1.2rem] font-[600] text-[#727070]">
+          <span className="text-[1rem] font-normal text-[#A3A3A3]">
+            Passo 4
+          </span>
+          <span className="text-[1.2rem] font-semibold text-[#727070]">
             Observação e Confirmação
           </span>
         </div>
@@ -178,14 +180,13 @@ export function FourthStep() {
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-y-6">
-            {/* Observações */}
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+            <div className="flex flex-col gap-y-2 max-sm:mt-5">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Observações e Sugestões
               </label>
               <input
                 {...register(objFields?.obs)}
-                className="h-[46px] w-full rounded-[6px] border-[1px] border-[#7D7D7D] px-[1rem] font-[400] text-[#262626]"
+                className="h-11.5 w-full rounded-md border border-[#7D7D7D] px-4 font-normal text-[#262626]"
                 placeholder="Duvidas sobre o agendamento?"
               />
               <span className="text-[16px] font-semibold text-[#FD0003]">
@@ -194,21 +195,22 @@ export function FourthStep() {
             </div>
 
             <div
-              className="flex cursor-pointer flex-row gap-x-5"
+              className="flex cursor-pointer gap-5 flex-col max-sm:items-start"
               onClick={handleToggleAcceptTerm}
             >
-              <div>
+              <div className="flex items-center gap-5">
                 <div
-                  className={`flex h-[28px] w-[28px] flex-col items-center justify-center rounded-[8px] transition-colors ${acceptTerms ? 'bg-[#20A36C]' : 'border-[1px] border-[#262626]'}`}
+                  className={`flex h-7 w-7 flex-col items-center justify-center rounded-lg transition-colors ${acceptTerms ? 'bg-[#20A36C]' : 'border border-[#262626]'}`}
                 >
                   <BiCheck size={27} color="#fff" />
                 </div>
-              </div>
-              <div className="text-[1rem] text-[#2E2E2E] select-none">
-                <span className="font-[600]">
+
+                <span className="font-semibold">
                   Aceito o termo e afirmo que as informações são verdadeiras.
                 </span>
-                <p className="mt-1 text-[0.9rem] leading-tight text-[#727070]">
+              </div>
+              <div className="text-[1rem] text-[#2E2E2E] select-none">
+                <p className="mt-1 mb-5 text-[0.9rem] leading-tight text-[#727070]">
                   {'"'}"Este termo visa registrar a manifestação livre,
                   informada e inequívoca pela qual o usuário concorda com o
                   tratamento de seus dados pessoais para finalidade específica,
@@ -224,17 +226,17 @@ export function FourthStep() {
             </div>
 
             <div className="mt-2 flex flex-col gap-y-2">
-              <div className="flex w-full max-w-[305px] items-center justify-between rounded-[4px] border border-[#d3d3d3] bg-[#f9f9f9] p-[10px] shadow-sm">
+              <div className="flex w-full max-w-76.25 items-center justify-between rounded-sm border border-[#d3d3d3] bg-[#f9f9f9] p-2.5 shadow-sm">
                 <div
                   className="flex cursor-pointer items-center gap-x-3 select-none"
                   onClick={handleToggleCaptcha}
                 >
                   <div
-                    className={`flex h-7 w-7 items-center justify-center rounded-[3px] border-[2px] bg-white transition-all ${isRobot ? 'border-[#20A36C]' : 'border-[#c1c1c1]'}`}
+                    className={`flex h-7 w-7 items-center justify-center rounded-[3px] border-2 bg-white transition-all ${isRobot ? 'border-[#20A36C]' : 'border-[#c1c1c1]'}`}
                   >
                     {isRobot && <BiCheck size={24} color="#20A36C" />}
                   </div>
-                  <span className="text-[14px] font-[400] text-[#2e2e2e]">
+                  <span className="text-[14px] font-normal text-[#2e2e2e]">
                     Não sou Robô
                   </span>
                 </div>
@@ -261,7 +263,6 @@ export function FourthStep() {
                 </span>
               )}
             </div>
-            {/* --- FIM DO CAPTCHA --- */}
           </div>
 
           {error && (
@@ -270,13 +271,12 @@ export function FourthStep() {
             </div>
           )}
 
-          {/* Botões de Ação */}
-          <div className="mt-[3rem] flex w-full flex-row justify-end gap-x-[1rem]">
+          <div className="mt-12 flex w-full flex-row justify-end gap-x-4">
             {currentStep !== 'first' && (
               <button
                 type="button"
                 onClick={handleBackStep}
-                className="h-[49px] w-[223px] rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
+                className="h-12.25 w-55.75 rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
               >
                 Voltar
               </button>
@@ -284,7 +284,7 @@ export function FourthStep() {
             <button
               type="submit"
               disabled={create_schedule_status === 'loading'}
-              className="hover:bg-opacity-90 flex h-[49px] w-[223px] flex-row items-center justify-center gap-x-2 rounded-full bg-black px-[1.5rem] text-white transition-all hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out disabled:bg-gray-400"
+              className="hover:bg-opacity-90 flex h-12.25 w-55.75 flex-row items-center justify-center gap-x-2 rounded-full bg-black px-6 text-white transition-all hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out disabled:bg-gray-400"
             >
               <SyncLoader
                 color="#E6E6E6"

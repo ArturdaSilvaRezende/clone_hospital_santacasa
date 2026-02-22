@@ -92,7 +92,7 @@ export default function MainNavigationBar() {
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
     >
-      <div className="container mx-auto flex h-20 items-center justify-between max-sm:px-6 md:px-8 lg:gap-7 xl:gap-0">
+      <div className="container mx-auto flex h-20 items-center justify-between max-sm:px-6 md:px-8 lg:px-0 lg:gap-7 xl:gap-0">
         <Link href="/">
           <Image
             src="/images/brand-santa-casa.svg"

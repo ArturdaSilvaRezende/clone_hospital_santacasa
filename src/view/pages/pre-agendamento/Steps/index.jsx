@@ -43,7 +43,7 @@ export function Steps() {
 
   return (
     <div className="w-full xl:w-auto">
-      <div className="relative hidden w-[250px] flex-col xl:flex">
+      <div className="relative hidden w-62.5 flex-col max-sm:w-full xl:flex">
         <div className="flex flex-col">
           {stepsConfig.map((step, index) => {
             const isCompleted = currentIndex > index
@@ -58,22 +58,22 @@ export function Steps() {
               >
                 {!isLast && (
                   <div
-                    className={`absolute top-10 right-0 h-[65px] w-px ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
+                    className={`absolute top-10 right-0 h-16.25 w-px ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
                   />
                 )}
 
                 <div className="relative pr-10">
                   <div className="flex flex-col items-end">
-                    <span className="text-[12px] font-[400] text-[#A3A3A3]">
+                    <span className="text-[12px] font-normal text-[#A3A3A3]">
                       {step.label}
                     </span>
-                    <p className="text-end text-[1rem] font-[600] text-[#727070]">
+                    <p className="text-end text-[1rem] font-semibold text-[#727070]">
                       {step.title}
                     </p>
                   </div>
 
                   <div
-                    className={`absolute top-0 right-0 -mr-[1.2rem] flex h-[38px] w-[38px] items-center justify-center rounded-full border-[5px] border-white transition-colors duration-300 ${isActive ? 'bg-[#727070]' : isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
+                    className={`absolute top-0 right-0 -mr-[1.2rem] flex h-9.5 w-9.5 items-center justify-center rounded-full border-[5px] border-white transition-colors duration-300 ${isActive ? 'bg-[#727070]' : isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
                   >
                     {isCompleted ? (
                       <IoCheckmark size={18} color="#fff" />
@@ -93,15 +93,21 @@ export function Steps() {
           {stepsConfig.slice(0, 4).map((step, index) => {
             const isCompleted = currentIndex > index
             const isLastMobile = index === 3
+            const Icon = step.icon
+
             return (
               <li
                 key={`mobile-${step.id}`}
-                className={`flex w-full items-center ${!isLastMobile ? "after:inline-block after:h-1 after:w-full after:border-4 after:border-b after:content-['']" : ''} ${isCompleted ? 'after:border-[#20A36C]' : 'after:border-[#BCBBBB]'}`}
+                className={`flex w-full items-center ${!isLastMobile ? "after:inline-block after:h-1 after:w-13.75 after:md:w-45.25 after:border-4 after:border-b after:content-['']" : ''} ${isCompleted ? 'after:border-[#20A36C]' : 'after:border-[#BCBBBB]'}`}
               >
                 <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full lg:h-12 lg:w-12 ${currentIndex >= index ? 'bg-[#727070]' : 'bg-[#BCBBBB]'}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full lg:h-12 lg:w-12 ${currentIndex >= index ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
                 >
-                  <div className="h-4 w-4 rounded-full bg-white opacity-20" />
+                  {isCompleted ? (
+                    <IoCheckmark size={18} color="#fff" />
+                  ) : (
+                    <Icon size={20} color="#fff" />
+                  )}
                 </span>
               </li>
             )

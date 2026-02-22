@@ -23,25 +23,25 @@ export function FirstStep() {
   }
 
   return (
-    <div className="mt-[2rem] flex w-full flex-col xl:mt-0">
+    <div className="mt-8 flex w-full flex-col xl:mt-0">
       <div className="flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-1 xl:hidden">
-          <span className="text-[1rem] font-[400] text-[#A3A3A3]">Passo 1</span>
-          <span className="text-[1.2rem] font-[600] text-[#727070]">
+          <span className="text-[1rem] font-normal text-[#A3A3A3]">Passo 1</span>
+          <span className="text-[1.2rem] font-semibold text-[#727070]">
             Tipo de Retorno
           </span>
         </div>
-        <h1 className="text-[1.1rem] font-[600] text-black">
+        <h1 className="text-[1.1rem] font-semibold text-black">
           Selecione o tipo de retorno:
         </h1>
       </div>
-      <div className="mt-[1rem] flex flex-col justify-center gap-x-[1rem] gap-y-[2rem] xl:mt-[3rem] xl:flex-row xl:gap-x-[2rem] xl:gap-y-0">
+      <div className="mt-4 flex flex-col md:flex-row lg:flex-row justify-center gap-x-4 gap-y-8 xl:mt-12 xl:flex-row xl:gap-x-8 xl:gap-y-0">
         <div
           onClick={() => handleChangeReturnType('return_consult')}
           className="flex cursor-pointer flex-col items-center gap-y-2 text-center xl:text-start"
         >
           <div
-            className={`rounded-2xl border-[1px] ${returnType == 'return_consult' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 flex-col items-center justify-center`}
+            className={`rounded-2xl border ${returnType == 'return_consult' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 md:w-50 lg:w-63.75 flex-col items-center justify-center`}
           >
             <svg
               className="w-15.75"
@@ -70,7 +70,7 @@ export function FirstStep() {
             </svg>
           </div>
           <p
-            className={`${returnType == 'return_consult' ? 'text-[#FD0003]' : 'text-[#878787]'} text-[0.9rem] font-[500] xl:text-[1rem]`}
+            className={`${returnType == 'return_consult' ? 'text-[#FD0003]' : 'text-[#878787]'} text-[0.9rem] font-medium xl:text-[1rem]`}
           >
             Retorno de Consulta
           </p>
@@ -80,7 +80,7 @@ export function FirstStep() {
           className="flex cursor-pointer flex-col items-center gap-y-2 text-center xl:text-start"
         >
           <div
-            className={`rounded-2xl border-[1px] ${returnType == 'return_post_hospitalization' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 flex-col items-center justify-center`}
+            className={`rounded-2xl border ${returnType == 'return_post_hospitalization' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 md:w-50 lg:w-63.75 flex-col items-center justify-center`}
           >
             <svg
               className="w-15.75"
@@ -101,7 +101,7 @@ export function FirstStep() {
             </svg>
           </div>
           <p
-            className={`${returnType == 'return_post_hospitalization' ? 'text-[#FD0003]' : 'text-[#878787]'} text-[0.9rem] font-[500] xl:text-[1rem]`}
+            className={`${returnType == 'return_post_hospitalization' ? 'text-[#FD0003]' : 'text-[#878787]'} text-[0.9rem] font-medium xl:text-[1rem]`}
           >
             Retorno Pós-Internação
           </p>
@@ -111,7 +111,7 @@ export function FirstStep() {
           className="flex cursor-pointer flex-col items-center gap-y-2 text-center xl:text-start"
         >
           <div
-            className={`rounded-2xl border-[1px] ${returnType == 'internal_routing' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 flex-col items-center justify-center`}
+            className={`rounded-2xl border ${returnType == 'internal_routing' ? 'border-[#FD0003] bg-[#FD0003]' : 'border-[#878787]'} flex h-40 w-63.75 md:w-50 lg:w-63.75 flex-col items-center justify-center`}
           >
             <svg
               className="h-15.75 w-15.75"
@@ -131,15 +131,15 @@ export function FirstStep() {
             </svg>
           </div>
           <p
-            className={`${returnType == 'internal_routing' ? 'text-[#FD0003]' : 'text-[#878787]'} text-[0.9rem] font-[500] xl:text-[1rem]`}
+            className={`${returnType == 'internal_routing' ? 'text-[#FD0003]' : 'text-[#878787]'} text-[0.9rem] font-medium xl:text-[1rem]`}
           >
             Encaminhamento Interno
           </p>
         </div>
       </div>
-      <div className="mt-[3rem] flex w-full flex-row justify-end gap-x-[1rem]">
+      <div className="mt-12 flex w-full flex-row justify-end gap-x-4">
         {currentStep !== 'first' && (
-          <button className="h-[38px] w-max rounded-full border-[1px] border-[#262626] px-[1.5rem] text-[#262626]">
+          <button className="h-9.5 w-max rounded-full border border-[#262626] px-6 text-[#262626]">
             Voltar
           </button>
         )}

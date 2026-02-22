@@ -279,6 +279,7 @@ export function SecondStep() {
                 {...register(objFields.prontuario)}
                 className={getFieldClass('prontuario')}
                 placeholder="Prontuário"
+                type="number"
               />
               {errors?.prontuario && (
                 <span className="text-[16px] font-semibold text-[#FD0003]">
@@ -303,7 +304,7 @@ export function SecondStep() {
               )}
             </div>
 
-            <div className="flex justify-between gap-x-5">
+            <div className="flex justify-between gap-x-5 max-sm:flex-col max-sm:gap-y-5">
               <div className="flex w-full flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Data nascimento<span className="text-[#FD0003]">*</span>
@@ -671,14 +672,14 @@ export function SecondStep() {
             {currentStep !== 'first' && (
               <button
                 onClick={handleBackStep}
-                className="h-[49px] w-[223px] rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
+                className="h-12.25 w-55.75 rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
               >
                 Voltar
               </button>
             )}
             <button
               type="submit"
-              className="h-[49px] w-[223px] rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
+              className="h-12.25 w-55.75 rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
             >
               Confirmar
             </button>

@@ -340,20 +340,20 @@ export function ThirdStep() {
   }
 
   return (
-    <div className="mt-[2rem] flex w-full flex-col xl:mt-0">
+    <div className="mt-8 flex w-full flex-col xl:mt-0">
       <div className="flex flex-col gap-y-5 xl:hidden">
         <div className="flex flex-col gap-y-1">
-          <span className="text-[1rem] font-[400] text-[#A3A3A3]">Passo 3</span>
-          <span className="text-[1.2rem] font-[600] text-[#727070]">
+          <span className="text-[1rem] font-normal text-[#A3A3A3]">Passo 3</span>
+          <span className="text-[1.2rem] font-semibold text-[#727070]">
             Dados Pré Agendamento
           </span>
         </div>
       </div>
-      <div className="mt-[1rem] xl:mt-0">
+      <div className="mt-4 xl:mt-0">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-y-5">
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Nome do médico<span className="text-[#FD0003]">*</span>
               </label>
               <input
@@ -366,7 +366,7 @@ export function ThirdStep() {
               </span>
             </div>
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Tipo Vaga<span className="text-[#FD0003]">*</span>
               </label>
               <Select
@@ -409,7 +409,7 @@ export function ThirdStep() {
                       </p>
                     </>
                   )}
-                  <div className="rounded-[5px] bg-black p-[0.5rem] text-[0.8rem] font-[400] text-white">
+                  <div className="rounded-[5px] bg-black p-2 text-[0.8rem] font-normal text-white">
                     <p>
                       {hasFile
                         ? 'Clique para substituir'
@@ -420,7 +420,7 @@ export function ThirdStep() {
               </div>
             )}
 
-            <div className="flex justify-between gap-10">
+            <div className="flex justify-between gap-10 max-sm:flex-col max-sm:gap-y-5">
               <div className="flex w-full flex-col gap-y-2">
                 <label className="text-[1rem] font-medium text-[#262626]">
                   Data da ultima consulta
@@ -491,7 +491,7 @@ export function ThirdStep() {
             </div>
 
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Especialidade<span className="text-[#FD0003]">*</span>
               </label>
               <Select
@@ -515,7 +515,7 @@ export function ThirdStep() {
             </div>
             {showMarcaPasso && (
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Marca passo<span className="text-[#FD0003]">*</span>
                 </label>
                 <Select
@@ -533,7 +533,7 @@ export function ThirdStep() {
             )}
             {returnType == 'internal_routing' && (
               <div className="flex flex-col gap-y-2">
-                <label className="text-[1rem] font-[500] text-[#262626]">
+                <label className="text-[1rem] font-medium text-[#262626]">
                   Nova especialidade
                 </label>
                 <Select
@@ -556,10 +556,10 @@ export function ThirdStep() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Você prefere a confirmação do agendamento por qual meio?
               </label>
-              <div className="flex flex-col items-center gap-y-3 xl:flex-row xl:gap-x-10 xl:gap-y-0">
+              <div className="flex flex-col items-center max-sm:items-start md:items-start lg:items-center gap-y-3 xl:flex-row xl:gap-x-10 xl:gap-y-0 max-sm:mt-5">
                 <div
                   onClick={() =>
                     handleChangeConfirmSchedule(confirmScheduleInObj.cel_phone)
@@ -567,7 +567,7 @@ export function ThirdStep() {
                   className="flex cursor-pointer flex-row items-center gap-x-3"
                 >
                   <div
-                    className={`h-[30px] w-[30px] ${confirmScheduleIn == confirmScheduleInObj.cel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
+                    className={`h-7.5 w-7.5 ${confirmScheduleIn == confirmScheduleInObj.cel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
                   ></div>
                   <span>Celular</span>
                 </div>
@@ -579,7 +579,7 @@ export function ThirdStep() {
                   className="flex cursor-pointer flex-row items-center gap-x-3"
                 >
                   <div
-                    className={`h-[30px] w-[30px] ${confirmScheduleIn == confirmScheduleInObj.tel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
+                    className={`h-7.5 w-7.5 ${confirmScheduleIn == confirmScheduleInObj.tel_phone ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
                   ></div>
                   <span>Telefone Fixo</span>
                 </div> */}
@@ -591,7 +591,7 @@ export function ThirdStep() {
                   className="flex cursor-pointer flex-row items-center gap-x-3"
                 >
                   <div
-                    className={`h-[30px] w-[30px] ${confirmScheduleIn == confirmScheduleInObj.email ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
+                    className={`h-7.5 w-7.5 ${confirmScheduleIn == confirmScheduleInObj.email ? 'bg-[#262626]' : 'bg-[#D9D9D9]'} rounded-full`}
                   ></div>
                   <span>E-mail</span>
                 </div>
@@ -617,7 +617,7 @@ export function ThirdStep() {
                     {field.value && <IoCheckmark size={21} color="#fff" />}
                   </div>
 
-                  <span className="text-[1rem] font-[500] text-[#262626]">
+                  <span className="text-[1rem] max-sm:text-[0.875rem] font-medium text-[#262626]">
                     Adicionar compromisso no Google Agenda.
                   </span>
                 </div>
@@ -625,18 +625,18 @@ export function ThirdStep() {
             />
           </div>
 
-          <div className="mt-[3rem] flex w-full flex-row justify-end gap-x-[1rem]">
+          <div className="mt-12 flex w-full flex-row justify-end gap-x-4">
             {currentStep !== 'first' && (
               <button
                 onClick={handleBackStep}
-                className="h-[49px] w-[223px] rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
+                className="h-12.25 w-55.75 rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
               >
                 Voltar
               </button>
             )}
             <button
               type="submit"
-              className="h-[49px] w-[223px] rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
+              className="h-12.25 w-55.75 rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
             >
               Confirmar
             </button>
