@@ -79,7 +79,12 @@ export default function TopUtilityBar() {
               <span>Portal do Paciente</span>
             </li>
 
-            <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[10px] md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
+            <li className="relative cursor-pointer text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[10px] md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
+             <Link
+                href="/banco-de-sangue"
+                target="_blank"
+                className="flex gap-2 items-center"
+              >
               <Image
                 src="/icons/bloodtype-icon-red.svg"
                 alt="Banco de Sangue"
@@ -87,7 +92,9 @@ export default function TopUtilityBar() {
                 height={22}
               />
               <span>Banco de Sangue</span>
+              </Link>
             </li>
+
 
             <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
               <Image

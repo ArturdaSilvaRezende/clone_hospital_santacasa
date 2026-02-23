@@ -1,0 +1,110 @@
+.swiper-pagination-custom {
+  pointer-events: auto;
+  position: absolute;
+  bottom: 56px !important;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet {
+  width: 48px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  background: #fff;
+  height: 219px;
+  border-radius: 50%;
+  width: 219px;
+  border: 1px solid transparent;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.swiper-button-prev-custom {
+  left: -13%;
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background: #f0f0f0;
+  border-color: #fd0003;
+}
+
+.swiper-button-next-custom {
+  right: -13%;
+}
+
+@media screen and (max-width: 767px) {
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    height: 132px;
+    width: 80px;
+  }
+  .swiper-button-next-custom {
+    right: -14%;
+  }
+
+  .swiper-button-prev-custom {
+    left: -14%;
+  }
+
+  .swiper-pagination-custom {
+    position: relative !important;
+    bottom: 40px !important;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+  }
+
+  .swiper-pagination-custom .swiper-pagination-bullet {
+    width: 32px;
+    height: 6px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    height: 132px;
+    width: 80px;
+  }
+  .swiper-button-next-custom {
+    right: -6%;
+  }
+
+  .swiper-button-prev-custom {
+    left: -6%;
+  }
+
+   .swiper-pagination-custom {
+    position: relative !important;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+   .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    height: 132px;
+    width: 100px;
+  }
+  .swiper-button-next-custom {
+    right: -6%;
+  }
+
+  .swiper-button-prev-custom {
+    left: -6%;
+  }
+}
