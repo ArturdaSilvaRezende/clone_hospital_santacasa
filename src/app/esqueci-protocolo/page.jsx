@@ -16,7 +16,7 @@ export default function EsqueciProtocolo() {
         banner="/images/hero-section-banner.svg"
       />
 
-      <div className="my-20 flex flex-col items-center">
+      <div className="max-w-274.5 mx-auto my-20 max-sm:mt-10 max-sm:mb-20 flex flex-col items-center max-sm:px-6 md:px-8 lg:px-0 md:mt-0">
         <Form />
       </div>
       <CallToActionSections />

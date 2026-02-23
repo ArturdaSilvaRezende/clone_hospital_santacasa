@@ -80,10 +80,10 @@ export function Form() {
   }
 
   return (
-    <div className="container mx-auto mt-12 flex max-w-285 flex-col items-center">
+    <div className="mt-12 flex flex-col items-center  w-full">
       <SearchProtocol />
 
-      <div className="flex w-full flex-col items-center xl:items-start">
+      <div className="flex flex-col items-center xl:items-start">
         <div className="flex flex-row items-center gap-x-3">
           <h1 className="text-[24px] font-bold xl:text-[1.5rem]">
             Esqueci o Protocolo
@@ -94,7 +94,7 @@ export function Form() {
         <div className="flex flex-col gap-y-5">
           <div className="flex flex-col gap-x-5 gap-y-5 xl:flex-row xl:gap-y-0">
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Data Nascimento<span className="text-[#FD0003]">*</span>
               </label>
               <Controller
@@ -124,7 +124,7 @@ export function Form() {
               </span>
             </div>
             <div className="flex flex-col gap-y-2">
-              <label className="text-[1rem] font-[500] text-[#262626]">
+              <label className="text-[1rem] font-medium text-[#262626]">
                 Celular<span className="text-[#FD0003]">*</span>
               </label>
               <Controller
@@ -146,7 +146,7 @@ export function Form() {
             </div>
           </div>
           <div className="flex flex-col gap-y-2">
-            <label className="text-[1rem] font-[500] text-[#262626]">
+            <label className="text-[1rem] font-medium text-[#262626]">
               Nome da mãe <span className="text-[#FD0003]">*</span>
             </label>
             <input
@@ -175,7 +175,7 @@ export function Form() {
         </div>
       </form>
       {requestStatus == 'succeeded' && (
-        <div className="w-full">
+        <div className="w-full max-sm:mt-10">
           <div className="flex w-full flex-col items-center xl:items-start">
             <div className="flex flex-row items-center gap-x-3">
               <h1 className="text-[24px] font-bold xl:text-[1.5rem]">
@@ -183,11 +183,11 @@ export function Form() {
               </h1>
             </div>
           </div>
-          <div className="mt-[2rem] flex w-full flex-col gap-y-[1rem]">
+          <div className="mt-8 flex w-full flex-col gap-y-4">
             {list?.map((item, idx) => (
               <div
                 key={idx}
-                className="flex h-[50px] w-full flex-row items-center justify-between px-[1.2rem] shadow-md"
+                className="flex h-12.5 w-full flex-row items-center justify-between px-[1.2rem] shadow-md"
               >
                 <span>{item.protocolo}</span>
                 <div>

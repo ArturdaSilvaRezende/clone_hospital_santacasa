@@ -68,7 +68,7 @@ export function FormSearchProtocol() {
       <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-y-5">
           <div className="flex flex-col gap-y-2">
-            <label className="text-[1rem] font-[500] text-[#262626]">
+            <label className="text-[1rem] font-medium text-[#262626]">
               Protocolo<span className="text-[#FD0003]">*</span>
             </label>
             <input
@@ -79,16 +79,16 @@ export function FormSearchProtocol() {
             <span className="text-[#FD0003]">{errors?.protocolo?.message}</span>
           </div>
           {responseError && <ResponseError responseMessage={responseMessage} />}
-          <div className="mt-3 flex flex-row items-center justify-between">
+          <div className="mt-3 flex flex-row items-center justify-between max-sm:flex-col">
             <button
               onClick={() => (window.location.href = '/esqueci-protocolo')}
-              className="text-[1rem] font-semibold text-[#FD0003]"
+              className="text-[1rem] font-semibold text-[#FD0003] max-sm:order-2 max-sm:mt-5"
             >
               Esqueci o Protocolo
             </button>
             <button
               type="submit"
-              className="flex h-11 w-40.75 flex-row items-center justify-center gap-x-2 rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:transition-colors hover:duration-200 hover:ease-in-out"
+              className="flex h-11 w-40.75 flex-row items-center justify-center gap-x-2 rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:transition-colors hover:duration-200 hover:ease-in-out max-sm:w-full"
             >
               <SyncLoader
                 color="#E6E6E6"

@@ -12,10 +12,10 @@ export function ConsultDetails() {
   const { content } = useSelector(store => store.appointmmentOrder)
 
   return (
-    <div className="container mx-auto flex max-w-285 flex-col items-center">
+    <div className="mx-auto max-w-285 container flex flex-col items-center">
       {content?.id > 0 && (
-        <div className="mt-[3rem] flex w-full flex-col items-center">
-          <div className="flex w-full justify-between">
+        <div className="mt-12 flex w-full flex-col items-center">
+          <div className="flex w-full max-sm:flex-col max-sm:gap-y-10 justify-between">
             <div className="flex flex-col gap-y-5">
               <div className="flex flex-col gap-y-2">
                 <label className="text-[18px] font-semibold text-black">
@@ -98,13 +98,13 @@ export function ConsultDetails() {
               </div>
             </div>
           </div>
-          <div className="mt-[3rem] w-full">
-            <ul className="relative left-5 flex flex-col gap-y-2">
-              <li className="w-[660px] list-disc text-[#707070]">
+          <div className="mt-12 w-full max-sm:px-5 md:px-8 lg:px-0">
+            <ul className="relative left-5 max-sm:left-0 md:left-0 lg:left-0 flex flex-col gap-y-2">
+              <li className="w-165 list-disc text-[#707070] max-sm:w-full">
                 <p className="text-[1rem] font-normal">
                   Acompanhe seu agendamento, ele mudara a situação para
                   CONFIRMADO juntamente com a{' '}
-                  <span className="relative -left-4">
+                  <span className="relative -left-4 max-sm:left-0">
                     DATA E HORA AGENDAMENTO.
                   </span>
                 </p>

@@ -56,7 +56,7 @@ export function SearchProtocol() {
   }
 
   return (
-    <div className="mb-20 w-full">
+    <div className="mb-10 w-full max-sm:mb-10 md:mb-20">
       <form onSubmit={handleSearch} className="flex flex-col gap-y-4">
         <div className="flex flex-col gap-y-2">
           <label className="text-[1rem] font-medium text-[#262626]">
@@ -87,8 +87,8 @@ export function SearchProtocol() {
       </form>
 
       {protocolData?.id > 0 && (
-        <div className="mt-[3rem] flex w-full flex-col items-center">
-          <div className="flex w-full justify-between">
+        <div className="mt-12 flex w-full flex-col items-center">
+          <div className="flex w-full justify-between max-sm:flex-col max-sm:gap-8">
             <div className="flex flex-col gap-y-5">
               <div className="flex flex-col gap-y-2">
                 <label className="text-[18px] font-semibold text-black">
@@ -112,7 +112,7 @@ export function SearchProtocol() {
                 </label>
                 <button
                   type="submit"
-                  className={`h-[38px] rounded-full px-[1.5rem] ${btnStatusBg[protocolData?.status_agendamento]} w-max text-white xl:mt-5`}
+                  className={`h-9.5 rounded-full px-6 ${btnStatusBg[protocolData?.status_agendamento]} w-max text-white xl:mt-5`}
                 >
                   {protocolData.status_agendamento}
                 </button>
