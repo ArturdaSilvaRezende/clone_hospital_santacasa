@@ -1,4 +1,5 @@
 import HeroSection from '~/components/HeroSection'
+import CallToActionSections from '~/components/CallToAction'
 import '~/app/globals.css'
 
 export const metadata = {
@@ -16,6 +17,7 @@ export default function Layout({ children }) {
         banner="/images/hero-section-banner.svg"
       />
       {children}
+      <CallToActionSections />
     </main>
   )
 }

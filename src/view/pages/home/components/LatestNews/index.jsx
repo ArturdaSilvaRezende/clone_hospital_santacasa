@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { api } from '~/services/api'
+import Link from 'next/link'
 
 export default function LatestNews() {
   const [list, setList] = useState([])
@@ -33,12 +34,20 @@ export default function LatestNews() {
       <div className="container mx-auto max-sm:px-6 md:px-8">
         <h2
           id="latest-news-heading"
-          className="mb-8 text-3xl font-bold text-gray-900 md:text-4xl"
+          className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl"
         >
           Últimas Notícias
         </h2>
 
-        <div className="flex justify-between max-sm:flex-col max-sm:justify-center md:flex-wrap md:gap-12 lg:flex-nowrap lg:gap-5 max-sm:gap-10">
+        <Link
+          href="/noticias"
+          className="mb-3 block text-right text-[16px] font-medium text-[#D32F2F] transition-colors hover:text-[#A45757] max-sm:mt-3"
+          aria-label="Ver todas as notícias"
+        >
+          Ver todas as notícias
+        </Link>
+
+        <div className="flex justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-12 lg:flex-nowrap lg:gap-5">
           {list
             .slice()
             .sort(
@@ -83,8 +92,8 @@ export default function LatestNews() {
                   </p>
 
                   <div className="border-t border-[#B4B4B4] pt-5">
-                    <a
-                      href={`/noticias/${news.slug}`}
+                    <Link
+                      href={`/noticias/${news.id}`}
                       className="group flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
                       aria-label={`Ler mais sobre ${news.title}`}
                     >
@@ -100,7 +109,7 @@ export default function LatestNews() {
                           height={16}
                         />
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </article>
