@@ -1,0 +1,8 @@
+.events__description {
+  p > span {
+    color: #2f2e41 !important;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+    background-color: transparent !important;
+  }
+}

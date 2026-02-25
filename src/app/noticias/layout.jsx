@@ -14,7 +14,7 @@ export default function Layout({ children }) {
         subtitle="Notícias"
         title="Confira as últimas notícias"
         description="Fique por dentro das últimas novidades, eventos e informações relevantes sobre a Santa Casa de Misericórdia de Goiânia."
-        banner="/images/hero-section-banner.svg"
+        banner="/images/banner-section-midia.svg"
       />
       {children}
       <CallToActionSections />
