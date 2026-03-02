@@ -9,6 +9,7 @@ import { api } from '~/services/api'
 import CustomLink from '~/components/CustomComponents/Link'
 
 import './styles.css'
+import Link from 'next/link'
 
 export default function CarouselHero() {
   const [list, setList] = useState([])
@@ -59,7 +60,10 @@ export default function CarouselHero() {
       >
         {list.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <article className="relative lg:h-153.75 md:h-153.75 max-sm:h-full w-full " aria-label={`Slide ${index + 1}: ${slide.title}`}>
+            <article
+              className="relative w-full max-sm:h-full md:h-153.75 lg:h-153.75"
+              aria-label={`Slide ${index + 1}: ${slide.title}`}
+            >
               <div className="absolute inset-0 h-full w-full">
                 <Image
                   src={slide.url}
@@ -67,33 +71,44 @@ export default function CarouselHero() {
                   fill
                   priority={index === 0}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="h-full w-full"
                 />
 
                 <div
-                  className="absolute inset-0 bg-black/60"
+                  className="absolute inset-0 bg-linear-to-r from-black/90 via-black/50 to-black/50"
                   aria-hidden="true"
                 />
               </div>
 
-              <div className="relative z-10 container mx-auto flex h-full lg:px-20 xl:px-8 md:px-17  items-center max-sm:px-12">
-                <div className="grid w-full md:flex grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+              <div className="relative z-10 container mx-auto flex h-full items-center max-sm:px-12 md:px-17 lg:px-20 xl:px-8">
+                <div className="grid w-full grid-cols-1 items-center gap-8 md:flex lg:grid-cols-2 lg:gap-12">
                   <div className="max-w-2xl space-y-6 text-white">
                     <header>
-                      <h1 className="text-4xl text-[32px] max-sm:text-[22px] leading-tight font-bold">
+                      <h1
+                        style={{
+                          textShadow: '2px 2px 10px rgba(0, 0, 0, 0.7)'
+                        }}
+                        className="text-4xl text-[32px] leading-tight font-bold max-sm:text-[22px] lg:w-114.5"
+                      >
                         {slide.title}
                       </h1>
                     </header>
 
-                    <p className="text-lg text-[16px] text-shadow-red-950 max-sm:text-[13px] leading-relaxed text-gray-200">
+                    <p
+                      style={{ textShadow: '2px 2px 10px #000' }}
+                      className="text-lg text-[16px] leading-relaxed text-white max-sm:text-[13px]"
+                    >
                       {slide.description}
                     </p>
 
-                    <CustomLink
+                    <Link
                       label="Acessar"
-                      //href="/contato"
-                      classNameContainer="w-[158px] bg-[#FD0003] hover:bg-red-700"
-                      classNameLink="w-full"
-                    />
+                      target='_blank'
+                      href={`/noticias/${slide.id}`}
+                      className="w-39.5 h-8.75 bg-[#FD0003] hover:bg-red-700 text-[14px] flex items-center justify-center rounded-3xl font-semibold text-white transition-colors max-sm:w-32 max-sm:h-8"
+                    >
+                      Acessar
+                    </Link>
                   </div>
 
                   <div className="hidden lg:block" aria-hidden="true" />
@@ -112,7 +127,7 @@ export default function CarouselHero() {
             alt="Slide anterior"
             width={14}
             height={7}
-            className="lg:mr-5 md:mr-3.25 ml-auto max-sm:mr-2.25 w-auto h-auto"
+            className="ml-auto h-auto w-auto max-sm:mr-2.25 md:mr-3.25 lg:mr-5"
           />
           <span className="sr-only">Ir para o slide anterior</span>
         </button>
@@ -126,7 +141,7 @@ export default function CarouselHero() {
             alt="Próximo slide"
             width={14}
             height={7}
-            className="lg:ml-5 md:ml-3.25 mr-auto max-sm:ml-2.25 w-auto h-auto"
+            className="mr-auto h-auto w-auto max-sm:ml-2.25 md:ml-3.25 lg:ml-5"
           />
           <span className="sr-only">Ir para o próximo slide</span>
         </button>

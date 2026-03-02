@@ -30,7 +30,7 @@ export default function LatestNews() {
       className="bg-white pt-24 pb-14 max-sm:pt-12"
       aria-labelledby="Últimas Notícias"
     >
-      <div className="container mx-auto max-sm:px-6 md:px-8">
+      <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-0">
         <h2
           id="latest-news-heading"
           className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl"
