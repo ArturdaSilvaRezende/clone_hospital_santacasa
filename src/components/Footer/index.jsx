@@ -16,6 +16,7 @@ export default function Footer() {
               alt="Logo Santa Casa Go"
               width={160}
               height={70}
+              
             />
           </Link>
 
