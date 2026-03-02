@@ -21,32 +21,42 @@ export default function MainNavigationBar() {
     institucional: {
       title: 'Institucional',
       items: [
-        'Quem somos',
-        'Administração',
-        'Superintendência',
-        'Estrutura Administrativa',
-        'Comissões Técnicas',
-        'Voluntariado',
-        'Parceiros',
-        'Eventos'
+        { name: 'Quem somos', route: 'quem-somos' },
+        { name: 'Administração', route: 'administracao' },
+        { name: 'Superintendência', route: 'superintendencia' },
+        { name: 'Estrutura Administrativa', route: 'estrutura-administrativa' },
+        { name: 'Comissões Técnicas', route: 'comissoes-tecnicas' },
+        { name: 'Voluntariado', route: 'voluntariado' },
+        { name: 'Especialidades', route: 'especialidades' },
+        { name: 'Eventos', route: 'eventos' }
       ]
     },
     pacientes: {
       title: 'Pacientes e Familiares',
       items: [
-        'Horário de Visitas',
-        'Agendar Consulta Particular',
-        'Agendar Consulta SUS'
+        { name: 'Horário de Visitas', route: 'horario-de-visitas' },
+        {
+          name: 'Agendar Consulta Particular',
+          route: 'agendar-consulta-particular'
+        },
+        { name: 'Agendar Consulta SUS', route: 'agendar-consulta-sus' }
       ]
     },
     hospital: {
       title: 'Hospital Escola',
-      items: ['Espaço para Graduação', 'Residência Médica', 'Biblioteca']
+      items: [
+        { name: 'Espaço para Graduação', route: 'espaco-para-graduacao' },
+        { name: 'Residência Médica', route: 'residencia-medica' },
+        { name: 'Biblioteca', route: 'biblioteca' }
+      ]
     },
     ajudar: { title: 'Como ajudar', items: [] },
     contato: {
       title: 'Contato',
-      items: ['Canal de Ouvidoria', 'Canal de Denúncia']
+      items: [
+        { name: 'Canal de Ouvidoria', route: 'canal-de-ouvidoria' },
+        { name: 'Canal de Denúncia', route: 'canal-de-denuncia' }
+      ]
     }
   }
 
@@ -92,7 +102,7 @@ export default function MainNavigationBar() {
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
     >
-      <div className="container mx-auto flex h-20 items-center justify-between max-sm:px-6 md:px-8 lg:px-0 lg:gap-7 xl:gap-0">
+      <div className="container mx-auto flex h-20 items-center justify-between max-sm:px-6 md:px-8 lg:gap-7 lg:px-0 xl:gap-0">
         <Link href="/">
           <Image
             src="/images/brand-santa-casa.svg"
@@ -203,28 +213,25 @@ export default function MainNavigationBar() {
                   <div className="lg:col-span-2">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       {menuData[activeMenu].items.map((item, index) => (
-                        <a
+                        <Link
                           key={index}
-                          href="#"
+                          target='_blank'
+                          href={`/${typeof item === 'string' ? item.toLowerCase().replace(/ /g, '-') : item.route}`}
                           className="group relative flex items-start overflow-hidden rounded-xl border border-gray-100 p-5 transition-all duration-300 hover:border-red-200 hover:bg-linear-to-br hover:from-red-50 hover:to-red-100 hover:shadow-lg"
-                          onClick={e => {
-                            e.preventDefault()
-                            setActiveMenu(null)
-                          }}
+                          onClick={() => setActiveMenu(null)} 
                         >
                           <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-700 opacity-0 transition-opacity duration-300 group-hover:opacity-5"></div>
                           <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-red-600 transition-all duration-300 group-hover:scale-150 group-hover:bg-red-700"></div>
                           <div className="relative ml-4">
                             <h3 className="mb-1 font-semibold text-gray-800 transition-colors duration-300 group-hover:text-red-600">
-                              {item}
+                              {typeof item === 'string' ? item : item.name}
                             </h3>
                             <p className="text-xs text-gray-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                               Clique para saber mais
                             </p>
                           </div>
-
                           <FaChevronDown className="ml-auto h-4 w-4 -rotate-90 transform text-gray-400 transition-transform duration-300 group-hover:translate-x-1" />
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>

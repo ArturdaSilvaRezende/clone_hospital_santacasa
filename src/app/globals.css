@@ -37,48 +37,4 @@ body {
   border: 3px solid #ccc;
 }
 
-.modal-overlay {
-  position: fixed;
-  background: #0000004d;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 999;
-}
-
-.modal-content {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
-  max-height: 92vh;
-  min-height: 30vh;
-}
-
-.modal-overlay-right {
-  position: absolute;
-  background: #030229;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.modal-content-right {
-  background: #fff;
-  border-radius: 0px;
-  height: 100vh;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
-  padding: 30px;
-}

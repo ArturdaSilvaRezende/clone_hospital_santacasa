@@ -18,11 +18,11 @@ export default function HeroSection({
             {subtitle}
           </h2>
 
-          <h1 className="mb-2 leading-tight font-bold text-black max-sm:text-[32px] md:text-[20px] lg:text-[32px]">
+          <h1 className="mb-2 leading-tight font-medium text-black max-sm:text-[28px] md:text-[20px] lg:text-[32px] lg:w-[80%] md:w-[70%] max-sm:w-full">
             {title}
           </h1>
 
-          <p className="mb-5 max-w-125 leading-relaxed font-normal text-[#727070] max-sm:text-[16px] md:text-[13px] lg:text-[16px]">
+          <p className="mb-5 lg:w-150 md:w-[90%] max-sm:w-full leading-relaxed font-normal text-[#727070] max-sm:text-[14px] md:text-[13px] lg:text-[16px]">
             {description}
           </p>
 
