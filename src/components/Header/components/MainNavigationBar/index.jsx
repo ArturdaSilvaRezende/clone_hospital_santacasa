@@ -110,6 +110,7 @@ export default function MainNavigationBar() {
             loading="eager"
             width={109}
             height={48}
+            className='object-cover'
           />
         </Link>
 

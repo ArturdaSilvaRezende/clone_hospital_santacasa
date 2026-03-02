@@ -23,7 +23,7 @@ export default function BannerSection({
             />
           </div>
 
-          <nav className="absolute left-8 max-w-59.75 rounded-2xl bg-[#FD0003] p-2 text-white max-sm:-bottom-14 md:bottom-24 lg:-bottom-14">
+          <nav className="absolute left-8 max-w-59.75 rounded-2xl bg-[#FD0003] p-2 text-white max-sm:-bottom-24 md:bottom-24 lg:-bottom-14 max-sm:left-0">
             <ul className="rounded-2xl bg-red-50/25 p-3">
               <li className="text-[24px] font-bold">{title}</li>
               <li className="mb-2 text-[16px] font-medium">{subtitle}</li>
@@ -32,7 +32,7 @@ export default function BannerSection({
           </nav>
         </div>
 
-        <div className="order-2 max-sm:pt-15">{children}</div>
+        <div className="order-2 max-sm:pt-22">{children}</div>
       </div>
     </div>
   )

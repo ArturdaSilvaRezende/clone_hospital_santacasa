@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import './styles.css'
 
@@ -8,7 +9,8 @@ export default function ServicesGrid() {
       title: 'Pré-agendamento',
       description: 'Faça seu pré-agendamento',
       action: 'Agendar agora',
-      image: '/images/thumb-pre-agendamento.svg'
+      image: '/images/thumb-pre-agendamento.svg',
+      src: '/pre-agendamento'
     },
 
     {
@@ -16,14 +18,16 @@ export default function ServicesGrid() {
       title: 'Especialidades',
       description: 'Conheça nossas áreas médicas.',
       action: 'Ver especialidades',
-      image: '/images/thumb-especialidades.svg'
+      image: '/images/thumb-especialidades.svg',
+      src: '/especialidades'
     },
     {
       id: 3,
       title: 'Pré-agendamento SUS',
       description: 'Agende sua consulta pelo SUS.',
       action: 'Agendar agora',
-      image: '/images/thumb-conecte-sus.jpg'
+      image: '/images/thumb-conecte-sus.jpg',
+      src: '/pre-agendamento-sus'
     },
 
     {
@@ -31,37 +35,46 @@ export default function ServicesGrid() {
       title: 'Exames',
       description: 'Laboratório e diagnóstico por imagem.',
       action: 'Consultar exames',
-      image: '/images/thumb-exames.svg'
+      image: '/images/thumb-exames.svg',
+      src: '/exames'
     },
     {
       id: 5,
       title: 'Trabalhe Conosco',
       description: 'Faça parte da nossa equipe.',
       action: 'Ver vagas',
-      image: '/images/thumb-trabalhe-conosco.svg'
+      image: '/images/thumb-trabalhe-conosco.svg',
+      src: '/trabalhe-conosco'
     },
     {
       id: 6,
       title: 'Ouvidoria',
       description: 'Canal de comunicação e sugestões.',
       action: 'Entrar em contato',
-      image: '/images/thumb-ouvidoria.svg'
+      image: '/images/thumb-ouvidoria.svg',
+      src: '/ouvidoria'
     },
     {
       id: 7,
       title: 'Voluntariado',
       description: 'Seja um voluntário.',
       action: 'Seja voluntário',
-      image: '/images/thumb-voluntariado.svg'
+      image: '/images/thumb-voluntariado.svg',
+      src: '/voluntariado'
     },
     {
       id: 8,
       title: 'Banco de Sangue',
       description: 'Doe sangue e salve vidas.',
       action: 'Doar sangue',
-      image: '/images/thumb-banco-de-sangue.svg'
+      image: '/images/thumb-banco-de-sangue.svg',
+      src: '/banco-de-sangue'
     }
   ]
+
+  const handleCardClick = src => {
+    window.location.href = src
+  }
 
   return (
     <section
@@ -85,6 +98,7 @@ export default function ServicesGrid() {
                   opacity: 0,
                   animationFillMode: 'forwards'
                 }}
+                onClick={() => handleCardClick(service.src)}
               >
                 <div className="relative h-47.5 overflow-hidden rounded-3xl transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
                   <div className="card-image-wrapper absolute inset-0">
@@ -103,13 +117,12 @@ export default function ServicesGrid() {
                     <p className="mb-2 text-[12px] leading-relaxed text-gray-200 transition-all duration-300 group-hover:text-white">
                       {service.description}
                     </p>
-                    <a
-                      href="#"
+                    <p
                       aria-label={`${service.action} - ${service.title}`}
-                      className="action-link inline-flex w-fit items-center gap-2 text-sm font-semibold text-white transition-all duration-300 group-hover:gap-3"
+                      className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-white transition-all duration-300 group-hover:gap-3"
                     >
                       <span>{service.action}</span>
-                    </a>
+                    </p>
                   </div>
                 </div>
               </article>

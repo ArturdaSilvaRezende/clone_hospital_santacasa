@@ -4,7 +4,7 @@ import BannerSection from '~/components/BannerSection'
 export default function Banner() {
   return (
     <section
-      className="w-full bg-white pt-15 pb-25"
+      className="w-full pt-15 pb-25 max-sm:pb-0"
       aria-label="Seção do Banner de Doação "
     >
       <BannerSection
@@ -23,9 +23,9 @@ export default function Banner() {
           Doar
         </h2>
 
-        <h1 className="text-[32px] font-medium text-black">
+        <h1 className="text-[32px] font-medium text-black max-sm:text-[28px] max-sm:mb-3 max-sm:leading-[1.1]">
           <span className="block">Cada gesto conta.</span>
-          <span className="relative -top-3">
+          <span className="relative -top-3 max-sm:static max-sm:top-0">
             Transforme vidas com sua doação!
           </span>
         </h1>
@@ -42,7 +42,7 @@ export default function Banner() {
           target="_blank"
           className="mt-5 flex h-8.75 w-60.5 items-center justify-center rounded-[40px] bg-[#FD0003] px-6 font-semibold text-white hover:bg-red-700 hover:transition-colors hover:duration-200"
         >
-          <span className="mb-1">Quero fazer uma doação</span>
+          <span>Quero fazer uma doação</span>
         </Link>
       </BannerSection>
     </section>
