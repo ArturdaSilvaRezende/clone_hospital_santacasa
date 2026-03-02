@@ -9,7 +9,7 @@ export default function TopUtilityBar() {
       className="border-b border-gray-200"
       aria-label="Informações de contato e redes sociais"
     >
-      <div className="container mx-auto flex items-center justify-between py-4 max-sm:px-6 md:px-8 lg:px-0">
+      <div className="container mx-auto flex items-center justify-between py-4 max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <nav aria-label="Redes sociais">
           <ul className="flex items-center max-sm:gap-0.5 md:gap-0.5 lg:gap-3">
             <li className="hidden text-sm text-[#A7A7A7] lg:block">

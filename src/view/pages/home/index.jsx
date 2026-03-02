@@ -9,13 +9,12 @@ import TotalNumberProcedures from './components/TotalNumberProcedures'
 export default function Home() {
   return (
     <>
-     <LatestNews />
-      {/* <CarouselHero />
-     
+      <CarouselHero />
+      <LatestNews />
       <TotalNumberProcedures />
       <ServicesGrid />
       <TeachingAndResearch />
-      <References /> */}
+      <References />
       <CallToActionSections />
     </>
   )

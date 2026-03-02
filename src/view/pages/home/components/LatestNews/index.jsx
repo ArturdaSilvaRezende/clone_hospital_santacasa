@@ -27,7 +27,7 @@ export default function LatestNews() {
 
   return (
     <section
-      className="bg-white pt-24 pb-14"
+      className="bg-white pt-24 pb-14 max-sm:pt-12"
       aria-labelledby="Últimas Notícias"
     >
       <div className="container mx-auto max-sm:px-6 md:px-8">

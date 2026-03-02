@@ -102,7 +102,7 @@ export default function MainNavigationBar() {
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
     >
-      <div className="container mx-auto flex h-20 items-center justify-between max-sm:px-6 md:px-8 lg:gap-7 lg:px-0 xl:gap-0">
+      <div className="container mx-auto flex h-20 items-center justify-between max-sm:px-6 md:px-8 lg:gap-3 lg:px-8 xl:gap-0 xl:px-0">
         <Link href="/">
           <Image
             src="/images/brand-santa-casa.svg"
@@ -115,12 +115,12 @@ export default function MainNavigationBar() {
 
         <nav aria-label="Menu principal">
           <div className="flex items-center justify-between">
-            <ul className="hidden w-160.5 items-center justify-between space-x-1 lg:flex">
+            <ul className="hidden w-160.5 items-center justify-between space-x-1 lg:flex lg:w-150 xl:w-160.5">
               {Object.entries(menuData).map(([key, menu]) => (
                 <li
                   key={key}
                   onClick={() => toggleMenu(key)}
-                  className={`${activeMenu === key ? 'text-[#FD0003]' : 'text-[#727070]'} group relative flex cursor-pointer items-center gap-1 rounded-lg text-[13px] font-medium transition-colors duration-200 hover:text-[#FD0003]`}
+                  className={`${activeMenu === key ? 'text-[#FD0003]' : 'text-[#727070]'} group relative flex cursor-pointer items-center gap-1 rounded-lg text-[13px] font-medium transition-colors duration-200 hover:text-[#FD0003] lg:text-[12px] xl:text-[13px]`}
                   aria-haspopup="true"
                   aria-expanded={activeMenu === key}
                 >
@@ -165,7 +165,7 @@ export default function MainNavigationBar() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/pre-agendamento"
-            className="flex h-10 w-45.5 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
+            className="flex h-10 w-44.5 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
             target="_blank"
           >
             <PiCalendarCheckLight size={20} />
@@ -215,10 +215,10 @@ export default function MainNavigationBar() {
                       {menuData[activeMenu].items.map((item, index) => (
                         <Link
                           key={index}
-                          target='_blank'
+                          target="_blank"
                           href={`/${typeof item === 'string' ? item.toLowerCase().replace(/ /g, '-') : item.route}`}
                           className="group relative flex items-start overflow-hidden rounded-xl border border-gray-100 p-5 transition-all duration-300 hover:border-red-200 hover:bg-linear-to-br hover:from-red-50 hover:to-red-100 hover:shadow-lg"
-                          onClick={() => setActiveMenu(null)} 
+                          onClick={() => setActiveMenu(null)}
                         >
                           <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-700 opacity-0 transition-opacity duration-300 group-hover:opacity-5"></div>
                           <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-red-600 transition-all duration-300 group-hover:scale-150 group-hover:bg-red-700"></div>
