@@ -75,7 +75,7 @@ export default function CarouselHero() {
                 />
 
                 <div
-                  className="absolute inset-0 bg-linear-to-r from-black/90 via-black/50 to-black/50"
+                  className="absolute inset-0 bg-linear-to-r from-black/80 via-black/30 to-black/30"
                   aria-hidden="true"
                 />
               </div>
@@ -104,6 +104,7 @@ export default function CarouselHero() {
                     <Link
                       label="Acessar"
                       target='_blank'
+                      rel="noopener noreferrer"
                       href={`/noticias/${slide.id}`}
                       className="w-39.5 h-8.75 bg-[#FD0003] hover:bg-red-700 text-[14px] flex items-center justify-center rounded-3xl font-semibold text-white transition-colors max-sm:w-32 max-sm:h-8"
                     >

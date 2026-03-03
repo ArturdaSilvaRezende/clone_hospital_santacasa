@@ -27,6 +27,8 @@ export default function CallToActionSections() {
         <div className="flex flex-col gap-5 max-sm:mt-7 md:mt-9 lg:mt-0 md:flex-row lg:flex-col" aria-labelledby="donation-heading">
           <Link
             href="/volunteer"
+            rel="noopener noreferrer"
+            target='_blank'
             className="group flex h-12.5 w-64.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"
             aria-label="Quero ser voluntário"
           >
@@ -48,7 +50,8 @@ export default function CallToActionSections() {
             href="/doacao"
             className="group flex h-12.5 w-75.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"
             aria-label="Quero fazer uma doação"
-            target="_blank"
+            rel="noopener noreferrer"
+            target='_blank'
           >
             <span>Quero fazer uma doação</span>
             <span

@@ -48,6 +48,8 @@ export default function ListCards({ list = [] }) {
               <div className="border-t border-[#B4B4B4] pt-5">
                 <Link
                   href={`/noticias/${news.id}`}
+                  target='_blank'
+                  rel="noopener noreferrer"
                   className="group flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
                   aria-label={`Ler mais sobre ${news.title}`}
                 >

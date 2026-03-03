@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import Image from 'next/image'
 import './styles.css'
 
@@ -73,9 +73,8 @@ export default function ServicesGrid() {
   ]
 
   const handleCardClick = src => {
-    window.location.href = src
+    window.open(src, '_blank', 'noopener,noreferrer')
   }
-
   return (
     <section
       className="bg-white py-20 max-sm:py-10"

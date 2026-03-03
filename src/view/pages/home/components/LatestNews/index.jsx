@@ -44,6 +44,8 @@ export default function LatestNews() {
 
          <Link
           href="/noticias"
+          target='_blank'
+          rel="noopener noreferrer"
           className="mt-10 block text-right text-[16px] font-medium text-[#D32F2F] transition-colors hover:text-[#A45757] max-sm:mt-3"
           aria-label="Ver todas as notícias"
         >

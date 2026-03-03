@@ -307,6 +307,7 @@ export default function MainNavigationBar() {
               href="/pre-agendamento"
               className="flex h-10 w-full items-center justify-center gap-2 rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <PiCalendarCheckLight size={20} />
               <span>Pré-Agendamento SUS</span>
@@ -315,6 +316,7 @@ export default function MainNavigationBar() {
             <Link
               href="https://santacasago.colabore.org/doacao/single_step"
               target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-full items-center justify-center gap-2 rounded-[20px] bg-[#FD0003] px-4 text-[12px] font-normal text-white transition-colors duration-200 hover:bg-red-700"
             >
               <BiDonateHeart size={20} />

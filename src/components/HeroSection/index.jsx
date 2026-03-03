@@ -22,7 +22,7 @@ export default function HeroSection({
             {title}
           </h1>
 
-          <p className="mb-5 lg:w-150 md:w-[90%] max-sm:w-full leading-relaxed font-normal text-[#727070] max-sm:text-[14px] md:text-[13px] lg:text-[16px]">
+          <p className="mb-5 lg:w-130 md:w-[90%] max-sm:w-full leading-relaxed font-normal text-[#727070] max-sm:text-[14px] md:text-[13px] lg:text-[16px]">
             {description}
           </p>
 
