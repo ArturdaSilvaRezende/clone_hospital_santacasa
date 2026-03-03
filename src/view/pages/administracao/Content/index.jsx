@@ -1,4 +1,5 @@
 import { MemberCard } from './components/MemberCard'
+import TechnicalFramework from './components/Tabs'
 
 const twoCards = [
   {
@@ -38,28 +39,30 @@ const threeCards = [
 
 export default function Content() {
   return (
-    <section
-      className="container mx-auto px-4 py-16 md:px-8 lg:px-4"
-      aria-labelledby="team-title"
-    >
-      <h2 id="team-title" className="sr-only">
-        Nossa Equipe Diretiva
-      </h2>
-
-      <div className="flex items-center justify-center gap-10 max-sm:flex-col">
-        {twoCards.map((member, index) => (
-          <MemberCard {...member} key={member.name} />
-        ))}
-      </div>
-
-      <div
-        className="mt-10 flex items-center justify-between max-sm:flex-col md:flex-wrap md:gap-5 lg:flex-nowrap lg:gap-10"
-        role="list"
+    <>
+      <section
+        className="container mx-auto px-4 py-16 max-sm:px-6 md:px-8 xl:px-0"
+        aria-label="Nossa Equipe Diretiva"
       >
-        {threeCards.map((member, index) => (
-          <MemberCard {...member} key={member.name} />
-        ))}
-      </div>
-    </section>
+        <h2 className="sr-only">Nossa Equipe Diretiva</h2>
+
+        <div className="flex items-center justify-center gap-10 max-sm:flex-col">
+          {twoCards.map((member, index) => (
+            <MemberCard {...member} key={member.name} />
+          ))}
+        </div>
+
+        <div
+          className="mt-10 flex items-center justify-between max-sm:flex-col max-sm:gap-10 md:flex-wrap md:gap-5 lg:justify-center lg:gap-10 xl:flex-nowrap xl:justify-between"
+          role="list"
+        >
+          {threeCards.map((member, index) => (
+            <MemberCard {...member} key={member.name} />
+          ))}
+        </div>
+      </section>
+
+      <TechnicalFramework />
+    </>
   )
 }

@@ -257,7 +257,7 @@ export default function MainNavigationBar() {
             animation: 'fadeSlideDown 0.3s ease-out'
           }}
         >
-          <ul className="flex flex-col space-y-4 px-6 py-4">
+          <ul className="flex flex-col space-y-4 max-sm:px-8 md:px-10 py-4">
             {Object.entries(menuData).map(([key, menu]) => (
               <li key={key}>
                 <button

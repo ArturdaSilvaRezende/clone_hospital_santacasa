@@ -12,7 +12,7 @@ export default function Layout({ children }) {
   return (
     <main>
       <section
-        className="w-full bg-white max-sm:h-max md:h-70 max-sm:md:h-75 lg:h-100"
+        className="w-full bg-white max-sm:h-max md:h-85 max-sm:md:h-75 lg:h-100"
         aria-labelledby="estrutura-administrativa"
       >
         <div className="flex items-center justify-center max-sm:flex-col">
@@ -41,7 +41,7 @@ export default function Layout({ children }) {
             </p>
           </div>
 
-          <div className="relative w-175 max-sm:h-75 max-sm:w-full md:h-70 lg:h-100">
+          <div className="relative w-175 max-sm:h-75 max-sm:w-full md:h-85 lg:h-100">
             <Image
               src="/images/banner-section-administracao.svg"
               alt="Estrutura Administrativa"
