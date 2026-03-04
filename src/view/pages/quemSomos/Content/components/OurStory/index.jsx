@@ -7,18 +7,19 @@ const TIMELINE_DATA = [
     id: 1,
     year: '1936',
     content:
-      'Fundada em 1936, logo após o nascimento de Goiânia, a Santa Casa foi idealizada por Dona Gercina Borges com o apoio de Pedro Ludovico Teixeira. Nascida da união entre instituições religiosas e a sociedade civil, o hospital consolidou-se rapidamente como referência de excelência e acolhimento humanizado em saúde para Goiás e estados vizinhos.'
+      'Fundada em 1936, logo após o nascimento de Goiânia, a Santa Casa foi idealizada por Dona Gercina Borges com o apoio de Pedro Ludovico Teixeira. Nascida da união entre instituições religiosas e a sociedade civil, o hospital consolidou-se rapidamente como referência de excelência e acolhimento humanizado em saúde para Goiás e estados vizinhos.',
+    image: '/images/nossa-historia.svg'
   },
   {
     id: 2,
-    year: '1950',
+    year: '1985',
     content:
-      'Expansão das alas de atendimento e início das atividades de ensino, marcando o compromisso com a formação de profissionais de saúde no estado.',
+      'Em 1985, a sede da SCMG foi transferida para a Rua Campinas, na Vila Americano do Brasil, onde está situada até os dias atuais. Nessa moderna estrutura, o hospital conta com 11 salas no bloco cirúrgico, 20 leitos na Unidade de Terapia Intensiva (UTI) e impressionantes 296 leitos distribuídos em dois pavimentos. Esse complexo hospitalar concede à Santa Casa a condição de maior hospital de atendimento ao Sistema Único de Saúde (SUS) na região Centro-Oeste. Assim, ao longo dos anos, a Santa Casa de Misericórdia de Goiânia tem sido uma instituição fundamental para a promoção da saúde e o bem-estar da população, cumprindo com louvor sua missão de cuidar dos pacientes com dedicação, humanidade e excelência médica, contribuindo de forma inestimável para o desenvolvimento da saúde pública na região.',
     image: '/images/nossa-historia.svg'
   },
   {
     id: 3,
-    year: '1975',
+    year: '1990',
     content:
       'Modernização das instalações e implementação de novas especialidades médicas para atender à crescente demanda da capital.',
     image: '/images/nossa-historia.svg'
@@ -26,6 +27,13 @@ const TIMELINE_DATA = [
   {
     id: 4,
     year: '2000',
+    content:
+      'Inauguração de novos centros cirúrgicos e fortalecimento da parceria com o SUS e a comunidade acadêmica.',
+    image: '/images/nossa-historia.svg'
+  },
+  {
+    id: 5,
+    year: '2025',
     content:
       'Inauguração de novos centros cirúrgicos e fortalecimento da parceria com o SUS e a comunidade acadêmica.',
     image: '/images/nossa-historia.svg'
@@ -69,7 +77,7 @@ export default function TabOurStory() {
 
   return (
     <section className="overflow-hidden py-12" aria-label="Nossa História">
-      <div className="container mx-auto mb-16 text-center">
+      <div className="container mx-auto mb-16 text-center max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <h2 className="mx-auto text-[28px] font-medium text-black">
           Uma história de dedicação e cuidado
         </h2>
@@ -80,13 +88,13 @@ export default function TabOurStory() {
         </p>
       </div>
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <div
-          className="absolute left-1/2 z-0 h-full w-px -translate-x-1/2 transform bg-[#BBBBBB]"
+          className="absolute left-1/2 z-0 h-full w-px -translate-x-1/2 transform bg-[#BBBBBB] max-sm:left-6 md:left-8 lg:left-1/2"
           aria-hidden="true"
         />
 
-        <div className="space-y-12 lg:space-y-0">
+        <div className="space-y-12 max-sm:ml-auto max-sm:w-[93%] md:ml-auto md:w-[95%] lg:ml-auto lg:w-auto lg:space-y-0 xl:ml-0">
           {TIMELINE_DATA.map((item, index) => {
             const isExpanded = expandedItems.includes(item.id)
             const isActive = activeItems.includes(item.id)
@@ -97,13 +105,13 @@ export default function TabOurStory() {
                 key={item.id}
                 ref={el => (itemRefs.current[index] = el)}
                 data-id={item.id}
-                className={`relative mb-12 flex w-full flex-col items-center justify-between lg:mb-24 lg:flex-row ${
+                className={`relative mb-12 flex w-full flex-col items-center justify-between max-sm:mb-8 lg:mb-24 lg:flex-row ${
                   !isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
               >
                 <div className="z-10 w-full lg:w-[45%]">
                   <p
-                    className={`mb-1 text-[24px] font-normal text-black ${
+                    className={`mb-1 text-[24px] font-normal text-black max-sm:pl-2 max-sm:text-left md:text-left ${
                       isEven ? 'lg:text-left' : 'lg:text-right'
                     }`}
                   >
@@ -120,13 +128,13 @@ export default function TabOurStory() {
 
                   <div className="pb-2">
                     {isExpanded && (
-                      <p className="fadeIn text-justify text-sm leading-relaxed font-normal text-[#989898]">
+                      <p className="fadeIn text-justify text-sm leading-relaxed font-normal text-[#727070]">
                         {item.content}
                       </p>
                     )}
                     <button
                       onClick={() => toggleExpand(item.id)}
-                      className={`mt-3 flex items-center gap-1 text-[14px] font-normal text-[#727070] ${
+                      className={`mt-3 flex items-center gap-1 text-[14px] font-normal text-[#727070] hover:text-gray-950 ${
                         !isEven ? 'lg:ml-auto' : 'lg:mr-auto'
                       }`}
                     >
@@ -137,7 +145,7 @@ export default function TabOurStory() {
                 </div>
 
                 <div
-                  className={`absolute left-1/2 z-20 flex h-6 w-6 -translate-x-1/2 transform items-center justify-center rounded-full border bg-white transition-all duration-500 ${
+                  className={`absolute left-1/2 z-20 flex h-6 w-6 -translate-x-1/2 transform items-center justify-center rounded-full border bg-white transition-all duration-500 max-sm:top-5 max-sm:-left-6 md:top-3 md:-left-8.75 lg:left-1/2 ${
                     isActive ? 'border-[#FD0003]' : 'border-gray-300'
                   }`}
                 >
