@@ -110,7 +110,7 @@ export default function MainNavigationBar() {
             loading="eager"
             width={109}
             height={48}
-            className='object-cover'
+            className="object-cover"
           />
         </Link>
 
@@ -257,7 +257,7 @@ export default function MainNavigationBar() {
             animation: 'fadeSlideDown 0.3s ease-out'
           }}
         >
-          <ul className="flex flex-col space-y-4 max-sm:px-8 md:px-10 py-4">
+          <ul className="flex flex-col space-y-4 py-4 max-sm:px-8 md:px-10">
             {Object.entries(menuData).map(([key, menu]) => (
               <li key={key}>
                 <button
@@ -284,16 +284,16 @@ export default function MainNavigationBar() {
                   >
                     {menu.items.map((item, index) => (
                       <li key={index}>
-                        <a
-                          href="#"
-                          className="block text-sm text-gray-600"
+                        <Link
+                          href={`/${typeof item === 'string' ? item.toLowerCase().replace(/ /g, '-') : item.route}`}
+                          className="block py-1 text-sm text-gray-600"
                           onClick={() => {
                             setActiveMenu(null)
                             setMobileMenuOpen(false)
                           }}
                         >
-                          {item}
-                        </a>
+                          {typeof item === 'string' ? item : item.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
