@@ -76,7 +76,7 @@ export default function TabOurStory() {
   }, [])
 
   return (
-    <section className="overflow-hidden py-12" aria-label="Nossa História">
+    <section className="overflow-hidden my-16" aria-label="Nossa História">
       <div className="container mx-auto mb-16 text-center max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <h2 className="mx-auto text-[28px] font-medium text-black">
           Uma história de dedicação e cuidado

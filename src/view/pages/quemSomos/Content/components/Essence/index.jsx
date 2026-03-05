@@ -23,8 +23,8 @@ export default function TabEssence() {
     }
   ]
   return (
-    <section className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0" aria-label="Nossa Essência">
-      <article className="flex flex-col items-center gap-8 py-8 lg:flex-row lg:gap-16">
+    <section className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0 my-16" aria-label="Nossa Essência">
+      <article className="flex flex-col items-center gap-8 lg:flex-row lg:gap-16">
         <Image
           src="/images/nossa-historia.svg"
           alt="Nossa História"

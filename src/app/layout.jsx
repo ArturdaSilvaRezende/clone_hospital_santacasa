@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-br" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${poppins.variable} antialiased`}
+        className={`${poppins.className} ${poppins.variable} antialiased`}
       >
         <Header />
         {children}

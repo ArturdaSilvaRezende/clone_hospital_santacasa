@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import TabEssence from './components/Essence'
 import TabOurStory from './components/OurStory'
+import InnovationAndFuture from './components/InnovationAndFuture'
 
 const TABS_CONFIG = {
   essencia: {
@@ -28,11 +29,7 @@ export default function Content() {
       case 'historia':
         return <TabOurStory />
       case 'inovacao':
-        return (
-          <section className="container mx-auto" aria-label="Inovação e Futuro">
-            Tecnologia de ponta e medicina preventiva.
-          </section>
-        )
+        return <InnovationAndFuture />
       default:
         return null
     }
