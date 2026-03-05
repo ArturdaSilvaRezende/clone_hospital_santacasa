@@ -69,7 +69,7 @@ export default function TopUtilityBar() {
           className="hidden md:block lg:relative lg:-left-1.5"
         >
           <ul className="flex items-center md:relative md:-left-4 md:gap-3 lg:static lg:left-0 lg:gap-6">
-            <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[10px] md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
+            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[11px] md:text-[10px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Image
                 src="/icons/fluent-patient-icon-red.svg"
                 alt="Portal do Paciente"
@@ -79,24 +79,24 @@ export default function TopUtilityBar() {
               <span>Portal do Paciente</span>
             </li>
 
-            <li className="relative cursor-pointer text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[10px] md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
-             <Link
+            <li className="relative cursor-pointer text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[10px] md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
+              <Link
                 href="/banco-de-sangue"
                 target="_blank"
-                className="flex gap-2 items-center"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-              <Image
-                src="/icons/bloodtype-icon-red.svg"
-                alt="Banco de Sangue"
-                width={22}
-                height={22}
-              />
-              <span>Banco de Sangue</span>
+                <Image
+                  src="/icons/bloodtype-icon-red.svg"
+                  alt="Banco de Sangue"
+                  width={22}
+                  height={22}
+                />
+                <span>Banco de Sangue</span>
               </Link>
             </li>
 
-
-            <li className="relative flex cursor-pointer items-center gap-2 text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
+            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Image
                 src="/icons/exam-result-icon-red.svg"
                 alt="Resultado de Exames"
@@ -106,10 +106,11 @@ export default function TopUtilityBar() {
               <span>Resultado de Exames</span>
             </li>
 
-            <li className="relative cursor-pointer items-center text-sm text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline md:after:right-0 md:after:hidden lg:after:-right-3 lg:after:block">
+            <li className="relative cursor-pointer items-center text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Link
                 href="/transparencia"
-                className="flex gap-2"
+                className="flex items-center gap-2"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <Image
@@ -127,6 +128,7 @@ export default function TopUtilityBar() {
         <Link
           href="https://santacasago.colabore.org/doacao/single_step"
           target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-between px-4 font-medium text-[#FD0003] transition-colors duration-200 hover:text-red-600 md:hidden"
         >
           <BiDonateHeart size={22} />

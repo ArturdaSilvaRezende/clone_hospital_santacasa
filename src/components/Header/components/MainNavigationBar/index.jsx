@@ -166,7 +166,7 @@ export default function MainNavigationBar() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/pre-agendamento"
-            className="flex h-10 w-44.5 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
+            className="flex h-10 w-44.5 lg:-44.5 xl:w-50 items-center justify-between rounded-[20px] border border-[#FD0003] px-4 text-[12px] font-normal text-[#FD0003] transition-colors duration-200 hover:bg-red-50 lg:text-[10px] xl:text-[12px]"
             target="_blank"
           >
             <PiCalendarCheckLight size={20} />
