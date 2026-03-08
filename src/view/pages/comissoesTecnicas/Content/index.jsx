@@ -86,7 +86,7 @@ export default function Content() {
   ]
 
   return (
-    <section className="my-5 w-full py-20" aria-labelledby="faq-title">
+    <section className="my-5 w-full py-20" aria-label="faq-title">
       <div className="container mx-auto space-y-4 max-sm:px-6 md:px-8 xl:px-0">
         {faqs.map(faq => {
           const isOpen = openId === faq.id

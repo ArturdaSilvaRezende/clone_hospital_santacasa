@@ -4,10 +4,10 @@ import Link from 'next/link'
 export default function CallToActionSections() {
   return (
     <section
-      className="mt-5 mb-15 w-full max-sm:px-5 md:px-8 lg:px-0"
+      className="mt-5 mb-15 w-full max-sm:px-6 md:px-8 lg:px-8 xl:px-0"
       aria-label="Chamadas para ação de voluntariado e doação"
     >
-      <div className="container mx-auto flex max-sm:flex-col md:flex-col lg:flex-row items-center justify-between rounded-[20px] bg-white px-28 py-10 max-sm:px-5">
+      <div className="container mx-auto flex max-sm:flex-col md:flex-col lg:flex-row items-center justify-between rounded-[20px] bg-white xl:px-28 py-10 max-sm:px-6 md:px-8 lg:px-8">
         <div
           className="flex flex-col gap-5"
           aria-labelledby="volunteer-heading"

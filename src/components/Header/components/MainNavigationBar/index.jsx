@@ -39,7 +39,7 @@ export default function MainNavigationBar() {
           name: 'Agendar Consulta Particular',
           route: 'agendar-consulta-particular'
         },
-        { name: 'Agendar Consulta SUS', route: 'agendar-consulta-sus' }
+        { name: 'Guia do Paciente', route: 'guia-do-paciente' }
       ]
     },
     hospital: {
