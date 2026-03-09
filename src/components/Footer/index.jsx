@@ -115,6 +115,8 @@ export default function Footer() {
               <li>
                 <Link
                   href="/politica-de-cookies"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
                 >
                   <Image
