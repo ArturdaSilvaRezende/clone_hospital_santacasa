@@ -55,7 +55,9 @@ export default function MainNavigationBar() {
       title: 'Contato',
       items: [
         { name: 'Canal de Ouvidoria', route: 'canal-de-ouvidoria' },
-        { name: 'Canal de Denúncia', route: 'canal-de-denuncia' }
+        { name: 'Central de Perguntas', route: 'central-de-perguntas' },
+        { name: 'Canal de Denúncia', route: 'canal-de-denuncia' },
+        { name: 'Telefones Úteis', route: 'telefones-uteis' }
       ]
     }
   }

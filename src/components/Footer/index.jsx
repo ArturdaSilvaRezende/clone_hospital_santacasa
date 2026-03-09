@@ -5,8 +5,8 @@ import Copyright from './components/Copyright'
 export default function Footer() {
   return (
     <footer
-      className="w-full bg-white pt-12 text-[#262626] max-sm:px-6 max-sm:pt-15 max-sm:pb-5 md:px-5"
-      aria-labelledby="Rodapé"
+      className="w-full bg-white pt-12 text-[#262626] max-sm:px-6 max-sm:pt-15 max-sm:pb-5 md:px-8"
+      aria-label="Rodapé"
     >
       <div className="container mx-auto flex rounded-4xl bg-[#EDECEC] max-sm:flex-col max-sm:p-8 max-sm:text-center md:h-168 md:flex-wrap md:gap-6 md:px-10 md:pt-10 md:text-center lg:h-110 lg:flex-nowrap lg:justify-between lg:gap-10 lg:px-12 lg:py-10.5 lg:text-start">
         <div className="flex-col gap-7.5 max-sm:mb-5 max-sm:w-full md:w-[48%] lg:w-70.75">
@@ -16,7 +16,6 @@ export default function Footer() {
               alt="Logo Santa Casa Go"
               width={160}
               height={70}
-              
             />
           </Link>
 
@@ -219,12 +218,13 @@ export default function Footer() {
 
             <div className="mt-6">
               <h3 className="mb-4 text-base font-bold">Plataforma Brasil</h3>
-              <div className="max-sm:mx-auto md:mx-auto lg:mx-0 max-sm:w-[50%]">
+              <div className="w-max max-sm:mx-auto max-sm:w-[50%] md:mx-auto lg:mx-0">
                 <Image
                   src="/images/plataforma-brasil.svg"
                   alt="Plataforma Brasil"
                   width={134}
                   height={50}
+                  priority
                 />
               </div>
             </div>
