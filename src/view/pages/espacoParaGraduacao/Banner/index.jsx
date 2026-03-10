@@ -13,7 +13,7 @@ export default function Banner() {
       className="min-h-150 w-full overflow-hidden bg-white md:flex-row"
       aria-label="Espaço para Graduação"
     >
-      <div className="container mx-auto mb-16 flex flex-col gap-20 max-sm:mb-14 md:flex-row max-sm:gap-0 md:gap-0 md:px-8 lg:gap-2 xl:px-0">
+      <div className="container mx-auto flex flex-col gap-20 max-sm:mb-14 md:flex-row max-sm:gap-0 md:gap-0 md:px-8 lg:gap-2 xl:px-0">
         <div className="flex w-full flex-col max-sm:order-2 justify-center py-10 md:w-1/2 max-sm:px-6">
           <header>
             <span className="text-[16px] font-semibold tracking-wider text-[#FD0003] uppercase">
