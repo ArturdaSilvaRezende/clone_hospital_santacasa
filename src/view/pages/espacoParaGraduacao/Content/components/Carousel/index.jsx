@@ -1,48 +1,41 @@
-import React from 'react'
+'use client'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-
-// Dados Mockados (Pexels)
 const MOCK_BOOKS = [
   {
     id: 1,
     title: 'Biblioteca Clássica',
-    url: 'https://images.pexels.com/photos/1106468/pexels-photo-1106468.jpeg'
+    url: '/banner-espaco-graduacao.png'
   },
   {
     id: 2,
     title: 'Leitura Moderna',
-    url: 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg'
+    url: '/banner-espaco-graduacao.png'
   },
   {
     id: 3,
     title: 'Estudos Acadêmicos',
-    url: 'https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg'
+    url: '/banner-espaco-graduacao.png'
   },
   {
     id: 4,
     title: 'Arquivo Histórico',
-    url: 'https://images.pexels.com/photos/2177482/pexels-photo-2177482.jpeg'
+    url: '/banner-espaco-graduacao.png'
   }
 ]
 
 export default function Carousel() {
   return (
-    <div className="group relative mx-auto w-full max-w-5xl px-4 py-8">
+    <div className="group relative max-sm:w-full md:w-[90%] lg:w-[55%]">
       <Swiper
         modules={[Navigation, Pagination, A11y, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
         loop={true}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        // Configurações de Acessibilidade
         role="region"
         aria-label="Carrossel de Livros e Bibliotecas"
         navigation={{
@@ -56,11 +49,11 @@ export default function Carousel() {
             return `<span class="${className} swiper-pagination-bullet-custom"></span>`
           }
         }}
-        className="overflow-hidden rounded-3xl shadow-2xl"
+        className="overflow-hidden rounded-3xl"
       >
         {MOCK_BOOKS.map(book => (
           <SwiperSlide key={book.id}>
-            <div className="relative aspect-video h-[400px] w-full md:h-[500px]">
+            <div className="relative aspect-auto h-100 w-full max-sm:h-50 md:h-90">
               <Image
                 src={book.url}
                 alt={book.title}
@@ -68,32 +61,29 @@ export default function Carousel() {
                 priority
                 className="object-cover transition-transform duration-500 hover:scale-105"
               />
-              {/* Overlay para facilitar a leitura se houver texto */}
+
               <div className="absolute inset-0 bg-black/20" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Botões de Navegação Customizados (Baseados na imagem) */}
       <button
-        className="swiper-button-prev-custom absolute top-1/2 left-6 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-all outline-none hover:scale-110 hover:bg-white focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        className="swiper-button-prev-custom absolute top-1/2 -left-6 z-10 flex h-12 w-12 -translate-y-[110%] items-center justify-center rounded-full border border-[#535353]/30 bg-white text-gray-800 shadow-lg transition-all outline-none hover:scale-110 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 max-sm:-left-2.5"
         aria-label="Slide anterior"
       >
         <IoIosArrowBack size={24} />
       </button>
 
       <button
-        className="swiper-button-next-custom absolute top-1/2 right-6 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-all outline-none hover:scale-110 hover:bg-white focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        className="swiper-button-next-custom absolute border border-[#535353]/30 top-1/2 -right-6 z-10 flex h-12 w-12 -translate-y-[110%] items-center justify-center rounded-full bg-white text-gray-800 shadow-lg transition-all outline-none hover:scale-110 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 disabled:opacity-50 max-sm:-right-2.5"
         aria-label="Próximo slide"
       >
         <IoIosArrowForward size={24} />
       </button>
 
-      {/* Miniaturas / Paginação Customizada */}
       <div className="swiper-pagination-custom mt-6 flex justify-center gap-2" />
 
-      {/* Estilos Globais Customizados para o Swiper */}
       <style jsx global>{`
         .swiper-pagination-bullet-custom {
           width: 80px !important;
@@ -112,7 +102,7 @@ export default function Carousel() {
           border-color: #3b82f6 !important;
           transform: scale(1.1);
         }
-        /* Mapeando as imagens do mock para os bullets (exemplo simplificado) */
+
         .swiper-pagination-bullet:nth-child(1) {
           background-image: url('${MOCK_BOOKS[0].url}');
         }
