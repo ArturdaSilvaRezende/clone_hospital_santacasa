@@ -26,7 +26,7 @@ export default function CallToActionSections() {
 
         <div className="flex flex-col gap-5 max-sm:mt-7 md:mt-9 lg:mt-0 md:flex-row lg:flex-col" aria-labelledby="donation-heading">
           <Link
-            href="/volunteer"
+            href="/voluntariado"
             rel="noopener noreferrer"
             target='_blank'
             className="group flex h-12.5 w-64.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"

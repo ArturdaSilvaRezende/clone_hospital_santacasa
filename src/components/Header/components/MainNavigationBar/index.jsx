@@ -23,13 +23,12 @@ export default function MainNavigationBar() {
       items: [
         { name: 'Quem somos', route: 'quem-somos' },
         { name: 'Administração', route: 'administracao' },
-        { name: 'Superintendência', route: 'superintendencia' },
-        { name: 'Estrutura Administrativa', route: 'estrutura-administrativa' },
+        { name: 'Assessoria de Imprensa', route: 'assessoria-de-imprensa' },
         { name: 'Comissões Técnicas', route: 'comissoes-tecnicas' },
         { name: 'Voluntariado', route: 'voluntariado' },
         { name: 'Especialidades', route: 'especialidades' },
         { name: 'Eventos', route: 'eventos' }
-      ]
+      ],
     },
     pacientes: {
       title: 'Pacientes e Familiares',
