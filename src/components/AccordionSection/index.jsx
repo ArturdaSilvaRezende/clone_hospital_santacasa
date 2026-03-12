@@ -21,7 +21,7 @@ export default function AccordionSection({ list = [] }) {
         return (
           <div
             key={item.id}
-            className="overflow-hidden rounded-2xl border border-[#7270701A]/10 bg-white transition-all duration-300"
+            className="overflow-hidden rounded-2xl border border-[#727070]/10 bg-white transition-all duration-300"
           >
             <button
               onClick={() => handleToggle(item.id)}
