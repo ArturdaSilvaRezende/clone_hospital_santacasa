@@ -28,7 +28,7 @@ export default function MainNavigationBar() {
         { name: 'Voluntariado', route: 'voluntariado' },
         { name: 'Especialidades', route: 'especialidades' },
         { name: 'Eventos', route: 'eventos' }
-      ],
+      ]
     },
     pacientes: {
       title: 'Pacientes e Familiares',
@@ -45,8 +45,7 @@ export default function MainNavigationBar() {
       title: 'Hospital Escola',
       items: [
         { name: 'Espaço para Graduação', route: 'espaco-para-graduacao' },
-        { name: 'Residência Médica', route: 'residencia-medica' },
-        { name: 'Biblioteca', route: 'biblioteca' }
+        { name: 'Residência Médica', route: 'residencia-medica' }
       ]
     },
     ajudar: { title: 'Como ajudar', items: [] },
