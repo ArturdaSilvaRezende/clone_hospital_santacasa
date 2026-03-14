@@ -227,7 +227,7 @@ export default function FrequentlyQuestionsTabs() {
             className={`grow rounded-full border px-8 py-1.75 text-sm font-semibold transition-all duration-300 ${
               activeTab === tab
                 ? 'border-[#FD0003] bg-[#FD0003] text-white hover:bg-red-700'
-                : 'border-gray-300 bg-white text-gray-600 hover:bg-gray-100'
+                : 'border-[#727070] bg-white text-[#727070] hover:bg-gray-100'
             }`}
           >
             {tab}
