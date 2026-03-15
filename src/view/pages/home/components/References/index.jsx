@@ -35,7 +35,7 @@ export default function References() {
           </h2>
         </div>
 
-        <div className="mx-auto gap-5 mb-10 flex lg:w-190.25 max-sm:w-full items-center justify-between max-sm:flex-wrap md:flex-wrap lg:flex-no-wrap md:w-1/2 max-sm:mt-10">
+        <div className="mx-auto gap-5 mb-10 flex lg:w-200 max-sm:w-full items-center justify-between max-sm:flex-wrap md:flex-wrap lg:flex-no-wrap md:w-1/2 max-sm:mt-10">
           {specialties.map((specialty, index) => (
             <div
               key={index}
