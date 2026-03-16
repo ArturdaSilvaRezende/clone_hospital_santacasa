@@ -1,22 +1,15 @@
 import Home from '~/view/pages/midia/Home'
+import { listMidia } from '~/view/pages/midia/utils'
 
-export default async function Midia({ searchParams }) {
-  const params = await searchParams
-
-  const page = Number(params.page) || 1
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/events?page=${page}`,
-    {
-      cache: 'no-store'
+export default async function Midia() {
+  const result = {
+    list: listMidia,
+    pagination: {
+      page: 1,
+      page_count: 1,
+      total_count: listMidia.length
     }
-  )
-
-  if (!res.ok) {
-    throw new Error('Erro ao buscar eventos')
   }
 
-  const result = await res.json()
-
-  return <Home initialData={result.list || []} pagination={result.pagination} />
+  return <Home initialData={result.list} pagination={result.pagination} />
 }

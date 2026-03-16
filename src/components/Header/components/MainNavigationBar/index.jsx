@@ -27,7 +27,8 @@ export default function MainNavigationBar() {
         { name: 'Comissões Técnicas', route: 'comissoes-tecnicas' },
         { name: 'Voluntariado', route: 'voluntariado' },
         { name: 'Especialidades', route: 'especialidades' },
-        { name: 'Eventos', route: 'eventos' }
+        { name: 'Eventos', route: 'eventos' },
+        { name: 'Mídia', route: 'midia' },
       ]
     },
     pacientes: {

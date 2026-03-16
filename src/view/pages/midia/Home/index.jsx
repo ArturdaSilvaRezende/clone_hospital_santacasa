@@ -19,15 +19,10 @@ export default function Home({ initialData, pagination }) {
 
     setIsLoading(true)
 
+    await new Promise(resolve => setTimeout(resolve, 800))
+
     const nextPage = currentPage + 1
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/events?page=${nextPage}`
-    )
-
-    const result = await res.json()
-
-    setNewsList(prev => [...prev, ...result.list])
     setCurrentPage(nextPage)
     setIsLoading(false)
   }
@@ -35,7 +30,7 @@ export default function Home({ initialData, pagination }) {
   const filteredNews = newsList.filter(news => {
     const matchesTitle = news.title
       .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+      .includes(debouncedSearch.toLowerCase())
 
     const matchesDate = selectedDate ? news.date.startsWith(selectedDate) : true
 
@@ -51,7 +46,7 @@ export default function Home({ initialData, pagination }) {
   }, [searchTerm])
 
   return (
-    <section className="my-24" aria-labelledby="Santa Casa em destaque">
+    <section className="my-24" aria-label="Santa Casa em destaque">
       <div className="container mx-auto flex flex-col items-center justify-center gap-y-8 max-sm:px-5 md:px-8 lg:px-0">
         <Search
           searchTerm={searchTerm}
@@ -59,12 +54,17 @@ export default function Home({ initialData, pagination }) {
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />
+
         <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:justify-center md:gap-12 lg:flex-wrap lg:justify-start lg:gap-x-5 lg:gap-y-7">
-          {filteredNews.map((news, index) => (
+          {filteredNews.map(news => (
             <article
               key={news.id}
-              className="flex flex-col max-sm:w-full md:w-[42%] lg:w-101.75"
+              className="relative flex flex-col max-sm:w-full md:w-[42%] lg:w-101.75"
             >
+              <p className="absolute top-5 left-5 rounded-full border border-[#727070CC] bg-[#727070] px-3 py-1 text-[12px] font-medium text-white">
+                <span>{news.type}</span>
+              </p>
+
               <div className="h-48 w-full">
                 <div
                   className="w-auto rounded-lg bg-cover bg-center object-cover max-sm:h-70 md:h-60 lg:h-81.5"
@@ -78,16 +78,18 @@ export default function Home({ initialData, pagination }) {
               </div>
 
               <div className="flex flex-col px-2 md:mt-0 lg:mt-22">
-                <time
-                  dateTime={news.date}
-                  className="relative top-14 mb-3 text-[16px] text-gray-500 max-sm:top-25"
-                >
-                  {new Date(news.date).toLocaleDateString('pt-BR', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                  })}
-                </time>
+                <div className="relative top-14 mb-3 flex items-center justify-between max-sm:top-25">
+                  <time
+                    dateTime={news.date}
+                    className="text-[16px] text-gray-500"
+                  >
+                    {new Date(news.date).toLocaleDateString('pt-BR', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric'
+                    })}
+                  </time>
+                </div>
 
                 <h3 className="mt-12 mb-3 line-clamp-2 text-[24px] font-semibold text-gray-900 max-sm:mt-25 max-sm:text-[20px]">
                   {news.title}
@@ -110,7 +112,7 @@ export default function Home({ initialData, pagination }) {
                     >
                       <Image
                         src="/icons/arrow-up-icon-gray.svg"
-                        alt="ícone de seta para indicar link"
+                        alt="ícone"
                         width={16}
                         height={16}
                       />
@@ -122,36 +124,26 @@ export default function Home({ initialData, pagination }) {
           ))}
 
           {isLoading &&
-            Array.from({ length: 10 }).map((_, index) => (
+            Array.from({ length: 3 }).map((_, index) => (
               <article
                 key={`skeleton-${index}`}
                 className="flex flex-col max-sm:w-full md:w-[42%] lg:w-101.75"
               >
-                <div className="h-48 w-full">
-                  <Skeleton
-                    variant="rectangular"
-                    width="100%"
-                    height={206}
-                    className="rounded-lg"
-                  />
-                </div>
-
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  height={206}
+                  className="rounded-lg"
+                />
                 <div className="mt-4 flex flex-col gap-3 px-2">
                   <Skeleton variant="text" width="40%" height={20} />
                   <Skeleton variant="text" width="90%" height={30} />
                   <Skeleton variant="text" width="80%" height={20} />
-                  <Skeleton variant="text" width="60%" height={20} />
-
-                  <Skeleton
-                    variant="rounded"
-                    width={150}
-                    height={40}
-                    className="mt-4"
-                  />
                 </div>
               </article>
             ))}
         </div>
+
         {currentPage < pagination.page_count && (
           <button
             onClick={loadMore}
