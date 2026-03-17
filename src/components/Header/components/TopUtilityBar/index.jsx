@@ -12,17 +12,15 @@ export default function TopUtilityBar() {
       <div className="container mx-auto flex items-center justify-between py-4 max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <nav aria-label="Redes sociais">
           <ul className="flex items-center max-sm:gap-0.5 md:gap-0.5 lg:gap-1">
-            <li className="hidden text-sm text-[#A7A7A7] lg:block">
+            <li className="md:hidden text-sm text-[#A7A7A7] lg:block">
               Redes Sociais
             </li>
 
-            
-
-            <li title="Instagram" className="pl-2">
+            <li title="Instagram" className="max-sm:pl-2 md:pl-0 lg:pl-0 xl:pl-2">
               <Link
-                 href="https://www.instagram.com/santacasago/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                href="https://www.instagram.com/santacasago/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:opacity-80"
               >
                 <Image

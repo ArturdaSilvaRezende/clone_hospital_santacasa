@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import BannerSection from '~/components/BannerSection'
 
 export default function TotalNumberProcedures() {
@@ -25,7 +24,7 @@ export default function TotalNumberProcedures() {
 
   return (
     <section
-      className="lg:mt-16 lg:mb-24 max-sm:mb-14 max-sm:mt-14 md:mb-14 md:mt-14"
+      className="max-sm:mt-14 max-sm:mb-14 md:mt-14 md:mb-14 lg:mt-16 lg:mb-24"
       aria-label="Total de Procedimentos Realizados"
     >
       <BannerSection
