@@ -82,15 +82,19 @@ export default function Footer() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/radio-web"
+                  href="/telefones-uteis"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-[#727070] transition-colors hover:text-gray-900"
                 >
-                  Rádio Web
+                  Telefones Úteis
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/trabalhe-conosco"
+                  href="https://santacasago.sistemapeoplenet.com.br/rh/vagas/triagem/ac5e91ad1a6743f4a843c03c83685641"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-[#727070] transition-colors hover:text-gray-900"
                 >
                   Trabalhe Conosco
@@ -99,6 +103,8 @@ export default function Footer() {
               <li>
                 <Link
                   href="/convenios"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-[#727070] transition-colors hover:text-gray-900"
                 >
                   Convênios
@@ -155,12 +161,11 @@ export default function Footer() {
             </h2>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="https://instagram.com"
+                <Link
+                  href="https://www.instagram.com/santacasago/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
-                  aria-label="Visite nosso Instagram (abre em nova aba)"
                 >
                   <Image
                     src="/icons/instagram-icon-black-gray.svg"
@@ -169,24 +174,23 @@ export default function Footer() {
                     height={22}
                   />
                   <span>Instagram</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://facebook.com"
+                <Link
+                  href="https://www.youtube.com/@HospitalSantaCasadeGoi%C3%A2nia"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-[#727070] transition-colors hover:text-gray-900 max-sm:justify-center md:justify-center lg:justify-start"
-                  aria-label="Visite nosso Facebook (abre em nova aba)"
                 >
                   <Image
-                    src="/icons/facebook-icon-black-gray.svg"
-                    alt="Facebook"
+                    src="/icons/youtube-icon-black-gray.svg"
+                    alt="YouTube"
                     width={22}
                     height={22}
                   />
-                  <span>Facebook</span>
-                </a>
+                  <span>YouTube</span>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -228,7 +232,7 @@ export default function Footer() {
                   alt="Plataforma Brasil"
                   width={134}
                   height={50}
-                  priority
+                  className="h-auto w-auto"
                 />
               </div>
             </div>

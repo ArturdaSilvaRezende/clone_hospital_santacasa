@@ -11,30 +11,18 @@ export default function TopUtilityBar() {
     >
       <div className="container mx-auto flex items-center justify-between py-4 max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <nav aria-label="Redes sociais">
-          <ul className="flex items-center max-sm:gap-0.5 md:gap-0.5 lg:gap-3">
+          <ul className="flex items-center max-sm:gap-0.5 md:gap-0.5 lg:gap-1">
             <li className="hidden text-sm text-[#A7A7A7] lg:block">
               Redes Sociais
             </li>
 
-            <li title="Facebook">
-              <a
-                href="#"
-                aria-label="Facebook da Santa Casa"
-                className="text-gray-400 hover:opacity-80"
-              >
-                <Image
-                  src="/icons/facebook-icon-gray.svg"
-                  alt="ícone de contanto"
-                  width={22}
-                  height={22}
-                />
-              </a>
-            </li>
+            
 
-            <li title="Instagram" className="max-sm:pr-1 md:pr-2">
-              <a
-                href="#"
-                aria-label="Instagram da Santa Casa"
+            <li title="Instagram" className="pl-2">
+              <Link
+                 href="https://www.instagram.com/santacasago/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className="text-gray-400 hover:opacity-80"
               >
                 <Image
@@ -43,13 +31,14 @@ export default function TopUtilityBar() {
                   width={22}
                   height={22}
                 />
-              </a>
+              </Link>
             </li>
 
             <li title="YouTube">
-              <a
-                href="#"
-                aria-label="YouTube da Santa Casa"
+              <Link
+                href="https://www.youtube.com/@HospitalSantaCasadeGoi%C3%A2nia"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:opacity-80"
               >
                 <Image
@@ -59,7 +48,7 @@ export default function TopUtilityBar() {
                   width={22}
                   height={22}
                 />
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -97,13 +86,20 @@ export default function TopUtilityBar() {
             </li>
 
             <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
-              <Image
-                src="/icons/exam-result-icon-red.svg"
-                alt="Resultado de Exames"
-                width={22}
-                height={22}
-              />
-              <span>Resultado de Exames</span>
+              <Link
+                href="https://nucleo.multlabresultados.com.br/resultado/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Image
+                  src="/icons/exam-result-icon-red.svg"
+                  alt="Resultado de Exames"
+                  width={22}
+                  height={22}
+                />
+                <span>Resultado de Exames</span>
+              </Link>
             </li>
 
             <li className="relative cursor-pointer items-center text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">

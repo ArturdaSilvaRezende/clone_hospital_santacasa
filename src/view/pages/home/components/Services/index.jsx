@@ -44,7 +44,7 @@ export default function ServicesGrid() {
       description: 'Faça parte da nossa equipe.',
       action: 'Ver vagas',
       image: '/images/thumb-trabalhe-conosco.svg',
-      src: '/trabalhe-conosco'
+      src: 'https://santacasago.sistemapeoplenet.com.br/rh/vagas/triagem/ac5e91ad1a6743f4a843c03c83685641'
     },
     {
       id: 6,

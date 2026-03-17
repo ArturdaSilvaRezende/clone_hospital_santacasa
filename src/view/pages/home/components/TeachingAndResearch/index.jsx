@@ -1,4 +1,7 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { TbIdBadge2 } from 'react-icons/tb'
+import { LuGraduationCap } from 'react-icons/lu'
 
 export default function TeachingAndResearch() {
   return (
@@ -9,7 +12,7 @@ export default function TeachingAndResearch() {
       <div className="container mx-auto max-sm:px-6 lg:px-10 xl:px-0">
         <div className="flex flex-col justify-between gap-12 lg:flex-row">
           <div
-            className="rounded-2xl bg-cover bg-center shadow-lg max-sm:h-101.5 max-sm:w-full md:mb-6 md:h-101.5 md:w-150 lg:h-165 xl:h-151 lg:w-187 md:mx-auto lg:mx-0 xl:relative xl:left-4"
+            className="rounded-2xl bg-cover bg-center shadow-lg max-sm:h-101.5 max-sm:w-full md:mx-auto md:mb-6 md:h-101.5 md:w-150 lg:mx-0 lg:h-165 lg:w-187 xl:relative xl:left-4 xl:h-151"
             style={{
               backgroundImage: "url('/images/banner-ensino-e-pesquisa.svg')",
               backgroundColor: '#BE3131'
@@ -18,7 +21,7 @@ export default function TeachingAndResearch() {
             aria-label="Médica sorrindo segurando uma prancheta vermelha"
           />
 
-          <div className="relative z-10 flex w-[95%] flex-col gap-5 rounded-[30px] bg-[#FFF0EE] p-10 shadow-sm max-sm:w-full max-sm:p-5 md:w-150 lg:-ml-20 lg:h-165 xl:h-151 lg:w-125 md:mx-auto lg:mx-0">
+          <div className="relative z-10 flex w-[95%] flex-col gap-5 rounded-[30px] bg-[#FFF0EE] p-10 shadow-sm max-sm:w-full max-sm:p-5 md:mx-auto md:w-150 lg:mx-0 lg:-ml-20 lg:h-165 lg:w-125 xl:h-151">
             <h2
               id="teaching-research-title"
               className="text-[28px] font-bold text-[#D32F2F]"
@@ -52,29 +55,33 @@ export default function TeachingAndResearch() {
 
             <div className="mt-4 flex flex-col gap-3">
               <button
-                className="flex h-11 w-fit min-w-50 items-center gap-3 rounded-full border border-[#D32F2F] px-6 text-[14px] font-semibold text-[#D32F2F] transition-all hover:bg-[#D32F2F] hover:text-white"
+                className="h-11 w-fit min-w-50 rounded-full border border-[#D32F2F] px-6 text-[14px] font-semibold text-[#D32F2F] transition-all hover:bg-[#D32F2F] hover:text-white"
                 aria-label="Acessar Residência Médica"
               >
-                <Image
-                  src="/icons/medical-residency-icon-red.svg"
-                  alt=""
-                  width={18}
-                  height={18}
-                />
-                <span>Residência Médica</span>
+                <Link
+                  href="/residencia-medica"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3"
+                >
+                  <TbIdBadge2 size={22} />
+                  <span>Residência Médica</span>
+                </Link>
               </button>
 
               <button
                 className="flex h-11 w-fit min-w-50 items-center gap-3 rounded-full border border-[#D32F2F] px-6 text-[14px] font-semibold text-[#D32F2F] transition-all hover:bg-[#D32F2F] hover:text-white"
                 aria-label="Acessar Espaço para graduação"
               >
-                <Image
-                  src="/icons/graduation-icon-red.svg"
-                  alt=""
-                  width={18}
-                  height={18}
-                />
-                <span>Espaço para graduação</span>
+                <Link
+                  href="/espaco-para-graduacao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3"
+                >
+                  <LuGraduationCap size={22} />
+                  <span>Espaço para graduação</span>
+                </Link>
               </button>
             </div>
           </div>
