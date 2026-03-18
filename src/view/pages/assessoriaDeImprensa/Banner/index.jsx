@@ -14,7 +14,7 @@ export default function Banner() {
       aria-label="Guia do Paciente"
     >
       <div className="flex items-center justify-center max-sm:flex-col lg:justify-between">
-        <div className="w-[50%] pl-4 max-sm:w-full max-sm:order-2 max-sm:px-6 max-sm:mt-10">
+        <div className="w-[50%] pl-4 md:pl-0 max-sm:w-full max-sm:order-2 max-sm:px-6 max-sm:mt-10">
           <p className="-mb-2 text-[16px] font-bold tracking-tight text-[#FD0003] uppercase">
             Assessoria de Imprensa
           </p>
