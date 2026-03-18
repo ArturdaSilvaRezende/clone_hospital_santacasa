@@ -12,7 +12,7 @@ export default function TeachingAndResearch() {
       <div className="container mx-auto max-sm:px-6 lg:px-10 xl:px-0">
         <div className="flex flex-col justify-between gap-12 lg:flex-row">
           <div
-            className="rounded-2xl bg-cover bg-center shadow-lg max-sm:h-101.5 max-sm:w-full md:mx-auto md:mb-6 md:h-101.5 md:w-150 lg:mx-0 lg:h-165 lg:w-187 xl:relative xl:left-4 xl:h-151"
+            className="rounded-2xl bg-cover bg-center shadow-lg max-sm:h-101.5 max-sm:w-full md:mx-auto md:mb-6 md:h-101.5 md:w-150 lg:mx-0 lg:h-180 lg:w-187 xl:relative xl:left-4 xl:h-151"
             style={{
               backgroundImage: "url('/images/banner-ensino-e-pesquisa.svg')",
               backgroundColor: '#BE3131'
@@ -21,7 +21,7 @@ export default function TeachingAndResearch() {
             aria-label="Médica sorrindo segurando uma prancheta vermelha"
           />
 
-          <div className="relative z-10 flex w-[95%] flex-col gap-5 rounded-[30px] bg-[#FFF0EE] p-10 shadow-sm max-sm:w-full max-sm:p-5 md:mx-auto md:w-150 lg:mx-0 lg:-ml-20 lg:h-165 lg:w-125 xl:h-151">
+          <div className="relative z-10 flex w-[95%] flex-col gap-5 rounded-[30px] bg-[#FFF0EE] p-10 shadow-sm max-sm:w-full max-sm:p-5 md:mx-auto md:w-150 lg:mx-0 lg:-ml-20 lg:h-180 lg:w-125 xl:h-151">
             <h2
               id="teaching-research-title"
               className="text-[28px] font-bold text-[#D32F2F]"

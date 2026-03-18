@@ -29,13 +29,13 @@ export default function References() {
           </p>
           <h2
             id="hospital-statistics-heading"
-            className="text-[32px] font-bold text-[#FD0003]"
+            className="text-[32px] max-sm:text-[28px] font-bold text-[#FD0003]"
           >
             Referência no Estado de Goiás em:
           </h2>
         </div>
 
-        <div className="mx-auto gap-5 mb-10 flex lg:w-200 max-sm:w-full items-center justify-between max-sm:flex-wrap md:flex-wrap lg:flex-no-wrap md:w-1/2 max-sm:mt-10">
+        <div className="mx-auto gap-5 mb-10 flex lg:w-200 max-sm:w-full items-center justify-between max-sm:flex-wrap md:flex-wrap md:w-[80%] lg:flex-no-wrap max-sm:mt-10">
           {specialties.map((specialty, index) => (
             <div
               key={index}
