@@ -6,7 +6,6 @@ import {
   FaHospital,
   FaLeaf,
   FaMicrochip,
-  FaUser
 } from 'react-icons/fa6'
 
 const pillars = [
@@ -77,7 +76,7 @@ export default function InnovationAndFuture() {
             alt="Logo Santa Casa"
             width={128}
             height={64}
-            className="my-3 object-cover"
+            className="my-3 object-cover w-auto h-auto"
           />
 
           <p className="text-[16px] leading-relaxed font-normal text-[#727070]">
