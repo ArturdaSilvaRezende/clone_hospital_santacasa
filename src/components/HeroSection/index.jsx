@@ -9,27 +9,40 @@ export default function HeroSection({
 }) {
   return (
     <section
-      className="w-full bg-white max-sm:h-max md:h-70 max-sm:md:h-75 lg:h-75"
-      aria-labelledby={title}
+      className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 lg:py-16 xl:py-0"
+      aria-label={title}
     >
       <div className="flex items-center justify-center max-sm:flex-col">
-        <div className="container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-full md:pl-9 lg:w-150.5 lg:px-5">
+        <div className="z-10 container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-[90%] lg:w-[90%] xl:w-[42%]">
           <h2 className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase">
             {subtitle}
           </h2>
 
-          <h1 className="mb-2 leading-tight font-medium text-black max-sm:text-[28px] md:text-[20px] lg:text-[32px] lg:w-[80%] md:w-[70%] max-sm:w-full">
+          <h1 className="mb-2 leading-tight font-medium max-sm:w-full max-sm:text-[28px] max-sm:text-black md:w-[80%] md:text-[20px] md:text-white lg:w-[80%] lg:text-[32px] lg:text-white xl:text-black">
             {title}
           </h1>
 
-          <p className="mb-5 lg:w-130 md:w-[90%] max-sm:w-full leading-relaxed font-normal text-[#727070] max-sm:text-[14px] md:text-[13px] lg:text-[16px]">
+          <p className="mb-5 leading-relaxed font-normal max-sm:w-full max-sm:text-[14px] max-sm:text-[#727070] md:w-[90%] md:text-[13px] md:text-white lg:w-full lg:text-[16px] lg:text-white xl:text-[#727070]">
             {description}
           </p>
 
           {children}
         </div>
 
-        <div className="relative w-175 max-sm:h-75 max-sm:w-full md:h-70 lg:h-75">
+        <div className="absolute inset-0 z-0 overflow-hidden bg-[#BE3131] max-sm:hidden xl:hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-30"
+            style={{
+              backgroundImage: `url('${banner}')`
+            }}
+            role="img"
+            aria-label={title}
+          />
+
+          <div className="absolute inset-0 bg-black/65" aria-hidden="true" />
+        </div>
+
+        <div className="relative w-175 max-sm:block max-sm:h-75 max-sm:w-full md:hidden md:h-85 lg:hidden lg:h-75 xl:block">
           <Image
             src={banner}
             alt={subtitle}

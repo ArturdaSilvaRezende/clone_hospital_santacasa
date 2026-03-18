@@ -1,25 +1,22 @@
-"use client"
-
-import React from 'react'
+import Link from 'next/link'
+import HeroSection from '~/components/HeroSection'
 
 export function Banner() {
-    return (
-        <section className="w-full flex flex-col items-center relative mt-[3rem]">
-            <div className='w-[82%] xl:w-[1120px] relative flex flex-row'>
-                <div className='flex flex-col justify-center'>
-                    <h1 className='text-[2rem] font-[500]'>Especialidades</h1>
-                    <p className='text-[1rem] font-[400] text-[#292929]'>Logo abaixo você pode consultar todas nossas especialidades e todos os nossos profissionais do corpo clínico:</p>
-
-                    <button onClick={() => window.open('https://wa.me/556232544008' ,'_blank')} className='flex flex-col w-[300px] items-center justify-center bg-c-red p-2 rounded-full my-5 '>
-                        <span className='text-white font-[400]'> Agendar Consulta Particular</span>
-                    </button>
-                </div>
-
-
-                <div className='hidden xl:block'>
-                    <img src='/images/banner-especialidades.png' />
-                </div>
-            </div>
-        </section>
-    )
+  return (
+    <HeroSection
+      subtitle="Serviços"
+      title="Mais de 30 especialidades e mais de 100 exames"
+      description="Logo abaixo você pode consultar todas nossas especialidades e nossos exames e todos os nossos profissionais do corpo clínico."
+      banner="/images/banner-section-especialidades.svg"
+    >
+      <Link
+        href="https://wa.me/556232544008"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex h-9.75 w-74.5 items-center justify-center rounded-[40px] bg-[#FD0003] px-6 font-bold text-white transition-all hover:bg-red-700"
+      >
+        <span>Agendar consulta particular</span>
+      </Link>
+    </HeroSection>
+  )
 }

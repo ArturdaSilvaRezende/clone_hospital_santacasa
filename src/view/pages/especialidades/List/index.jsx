@@ -114,7 +114,7 @@ export function List() {
   }, [specialityId, currentPage])
 
   return (
-    <section className="container mx-auto my-12 font-sans max-sm:my-8 max-sm:px-5 md:px-8 lg:px-0">
+    <section className="container mx-auto my-12 font-sans max-sm:my-8 max-sm:px-5 md:px-8 lg:px-8 xl:px-0" aria-label="Especialidades">
       {currentContent === 'specialties' && (
         <SearchSpecialties
           setSearch={setSearch}

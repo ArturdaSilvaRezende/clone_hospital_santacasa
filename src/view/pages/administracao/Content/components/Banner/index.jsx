@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function Banner() {
   return (
     <section
-      className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 max-sm:md:h-75 lg:py-16 xl:py-0"
+      className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 lg:py-16 xl:py-0"
       aria-label="estrutura-administrativa"
     >
       <div className="flex items-center justify-center max-sm:flex-col">
