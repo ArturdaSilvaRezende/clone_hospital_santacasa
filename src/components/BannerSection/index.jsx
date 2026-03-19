@@ -10,8 +10,8 @@ export default function BannerSection({
 }) {
   return (
     <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
-      <div className="grid gap-8 max-sm:items-center md:grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-12">
-        <div className="relative order-1 lg:h-83.25 mx-auto">
+      <div className="grid gap-8 max-sm:items-center md:grid-cols-1 lg:grid-cols-2 xl:items-center lg:gap-12">
+        <div className="relative order-1 lg:h-83.25">
           <div className="relative overflow-hidden rounded-3xl">
             <Image
               src={image}
@@ -19,11 +19,10 @@ export default function BannerSection({
               className="object-cover"
               width={555}
               height={333}
-              loading="eager"
             />
           </div>
 
-          <nav className="absolute left-8 md:left-0 lg:left-8 max-w-59.75 rounded-2xl bg-[#FD0003] p-2 text-white max-sm:-bottom-24 md:bottom-0 lg:-bottom-14 max-sm:left-0">
+          <nav className="absolute left-8 max-w-59.75 rounded-2xl bg-[#FD0003] p-2 text-white max-sm:-bottom-24 max-sm:left-0 md:bottom-0 md:left-0 lg:-bottom-14 lg:left-8">
             <ul className="rounded-2xl bg-red-50/25 p-3">
               <li className="text-[24px] font-bold">{title}</li>
               <li className="mb-2 text-[16px] font-medium">{subtitle}</li>

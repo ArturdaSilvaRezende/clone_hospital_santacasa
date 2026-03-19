@@ -287,11 +287,11 @@ export default function PersonalInfoForm({
         </div>
 
         <div className="mt-4">
-          <p className="mb-2 text-sm max-sm:text-[12px] font-medium text-gray-700">
+          <p className="mb-2 text-sm font-medium text-gray-700 max-sm:text-[12px]">
             Nós adoraríamos poder entrar em contato com você sobre esta e outras
             campanhas.
           </p>
-          <label className="flex items-center gap-2 text-sm max-sm:text-[11px] text-gray-500">
+          <label className="flex items-center gap-2 text-sm text-gray-500 max-sm:text-[11px]">
             <input
               type="checkbox"
               className="h-4 w-4 rounded border-gray-300 accent-[#FF0909]"
@@ -302,10 +302,10 @@ export default function PersonalInfoForm({
 
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm max-sm:text-[12px] font-semibold text-gray-700">
+            <label className="text-sm font-semibold text-gray-700 max-sm:text-[12px]">
               Deixe sua mensagem
             </label>
-            <label className="flex items-center gap-2 text-sm max-sm:text-[11px] text-gray-500">
+            <label className="flex items-center gap-2 text-sm text-gray-500 max-sm:text-[11px]">
               <input
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 accent-[#FF0909]"
@@ -346,7 +346,7 @@ export default function PersonalInfoForm({
 
         <button
           type="submit"
-          className="group ml-auto flex h-10 w-65 items-center justify-center gap-2 rounded-full bg-[#FF0909] font-bold text-white transition-all hover:bg-red-700"
+          className="group ml-auto flex h-13 w-75 items-center justify-center gap-2 rounded-full bg-[#FF0909] font-bold text-white transition-all hover:bg-red-700"
         >
           <span> Continuar para pagamento</span>
 

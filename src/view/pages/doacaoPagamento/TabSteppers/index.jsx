@@ -105,7 +105,7 @@ export default function TabSteppers() {
               {index < steps.length - 1 && (
                 <div className="absolute top-6 left-1/2 w-full">
                   <div
-                    className={`absolute lg:left-0 h-0.5 w-full max-sm:left-5 md:left-6 ${
+                    className={`absolute h-0.5 w-full max-sm:left-5 md:left-6 lg:left-0 ${
                       activeStep > index ? 'bg-[#FD0003]' : 'bg-[#D9D9D9]'
                     }`}
                   />
@@ -116,12 +116,12 @@ export default function TabSteppers() {
         </div>
       </div>
 
-      <div className="container max-sm:px-5 mx-auto lg:px-0 lg:my-20 md:my-10 flex lg:flex-row md:flex-col gap-8 md:px-8 max-sm:mb-10 max-sm:mt-4">
+      <div className="container mx-auto flex gap-8 max-sm:mt-4 max-sm:mb-10 max-sm:px-5 md:my-10 md:flex-col md:px-8 lg:my-20 max-sm:flex-col lg:flex-col xl:flex-row xl:px-0">
         <div
           id={`panel-${activeStep}`}
           role="tabpanel"
           aria-labelledby={`tab-${activeStep}`}
-          className={`rounded-xl border max-sm:order-2 md:order-2 lg:-order-1 border-[#7270701A] bg-white ${activeStep >= 2 ? 'mx-auto lg:w-200 md:w-full max-sm:w-full p-2' : 'lg:w-full md:w-full max-sm:w-full p-8 max-sm:p-5'} `}
+          className={`rounded-xl border border-[#7270701A] bg-white max-sm:order-2 md:order-2 xl:-order-1 ${activeStep >= 2 ? 'mx-auto p-2 max-sm:w-full md:w-full lg:w-200' : 'p-8 max-sm:w-full max-sm:p-5 md:w-full lg:w-full'} `}
         >
           {renderContent()}
         </div>

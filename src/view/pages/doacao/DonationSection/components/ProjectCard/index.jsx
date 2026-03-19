@@ -1,14 +1,19 @@
+'use client'
+
+import { useState } from 'react'
+import { Skeleton } from '@mui/material'
 import Image from 'next/image'
 import { AiOutlineHeart, AiOutlineCheck } from 'react-icons/ai'
 
 export default function ProjectCard({ project, isSelected, onSelect }) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
   return (
     <div
       onClick={onSelect}
       role="radio"
       aria-checked={isSelected}
       className={`order-red-600 relative w-full cursor-pointer rounded-lg border-2 bg-white p-6 text-left transition-all duration-300 hover:shadow-md ${
-        isSelected ? 'border-[#FD0003] h-full' : 'border-gray-200 h-auto'
+        isSelected ? 'h-full border-[#FD0003]' : 'h-auto border-gray-200'
       }`}
     >
       {isSelected && (
@@ -32,13 +37,27 @@ export default function ProjectCard({ project, isSelected, onSelect }) {
       )}
 
       {isSelected && (
-        <figure className="mb-4">
+        <figure className="relative mb-4">
+          {!isImageLoaded && (
+            <Skeleton
+              variant="rectangular"
+              width="100%"
+              height={160}
+              className="rounded-[20px]"
+              animation="wave"
+              sx={{ bgcolor: 'grey.100' }}
+            />
+          )}
+
           <Image
             src={project.url}
             alt={project.nome}
             height={160}
             width={310}
-            className="rounded-[20px] object-cover"
+            className={`rounded-[20px] object-cover transition-opacity duration-500 ${
+              isImageLoaded ? 'block opacity-100' : 'absolute top-0 opacity-0'
+            }`}
+            onLoad={() => setIsImageLoaded(true)}
           />
 
           <figcaption className="mt-2 line-clamp-2 text-sm text-[#727070]">

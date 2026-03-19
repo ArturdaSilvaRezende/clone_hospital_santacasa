@@ -39,8 +39,6 @@ export default function PaymentMethod({
   const [activeTab, setActiveTab] = useState('pix')
   const [isLoading, setIsLoading] = useState(false)
 
-  console.log(payment_info)
-
   const handleBack = () => {
     setActiveStep(Math.max(0, activeStep - 1))
   }
@@ -128,7 +126,7 @@ export default function PaymentMethod({
                 setActiveTab(tab.id)
                 dispatch(changeMethodPayment(tab.id))
               }}
-              className={`lag:px-6 flex items-center gap-3 rounded-xl border py-3 font-bold transition-all duration-200 max-sm:px-2 md:px-6 ${
+              className={`lag:px-6 flex items-center gap-3 rounded-xl border py-3 font-bold transition-all duration-200 max-sm:px-2 md:px-6 max-sm:w-full max-sm:justify-center ${
                 isActive
                   ? 'border-[#FE0908] bg-[#FE0908] text-white shadow-md'
                   : 'border-gray-100 bg-white text-gray-600 hover:border-gray-300'

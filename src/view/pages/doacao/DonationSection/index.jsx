@@ -6,7 +6,9 @@ import {
   addValueSelected,
   fetchDataDonateProject,
   loadCartItems,
-  removeValueSelected
+  removeValueSelected,
+  clearCart,
+  addCartItems
 } from '~/app/doacao/store'
 
 import ProjectCard from './components/ProjectCard'
@@ -35,15 +37,44 @@ export default function DonationSection() {
   } = useSelector(store => store.donate)
 
   function handleDonation() {
-    window.location.href = '/doacao-pagamento'
+
+  const hasProjectSelected = cartTotalPrice > 0;
+  const hasGeneralValueSelected = valueSelected?.preco > 0;
+
+  if (donationType === 'project' && !hasProjectSelected) {
+    alert('Por favor, selecione um projeto antes de continuar.');
+    return;
   }
 
-  function handleRemoveDonateValueSelected(id) {
-    dispatch(removeValueSelected(id))
+  if (donationType === 'general' && !hasGeneralValueSelected) {
+    alert('Por favor, selecione ou digite um valor para a doação.');
+    return;
   }
+
+  window.location.href = '/doacao-pagamento';
+}
+
+  // function handleRemoveDonateValueSelected(id) {
+  //   dispatch(removeValueSelected(id))
+  // }
 
   function handleSelectValue(item) {
     dispatch(addValueSelected(item))
+  }
+
+  function handleSelectProject(project) {
+    setSelectedProject(project.id)
+
+    dispatch(clearCart())
+
+    dispatch(
+      addCartItems({
+        reference_id: project.id,
+        descricao: project.nome,
+        quantity: 1,
+        preco: project.preco
+      })
+    )
   }
 
   useEffect(() => {
@@ -51,8 +82,16 @@ export default function DonationSection() {
     dispatch(fetchDataDonateProject())
   }, [dispatch])
 
+  useEffect(() => {
+    if (donationType === 'project') {
+      dispatch(removeValueSelected())
+    } else if (donationType === 'general') {
+      dispatch(clearCart())
+    }
+  }, [donationType, dispatch])
+
   return (
-    <div className="container mx-auto bg-gray-50 px-4 py-12">
+    <div className="container mx-auto bg-gray-50 max-sm:px-6 max-sm:py-10 md:px-8 md:py-5 lg:px-8 lg:py-12 xl:px-0">
       <div className="mb-8">
         <h1 className="mb-1 text-[22px] font-medium text-black">
           Realize de forma fácil e rápida sua doação
@@ -70,7 +109,6 @@ export default function DonationSection() {
               style: 'currency',
               currency: 'BRL'
             }).format(
-             
               Number(cartTotalPrice || 0) + Number(valueSelected?.preco || 0)
             )}
           </span>
@@ -110,69 +148,80 @@ export default function DonationSection() {
       </div>
 
       {donationType === 'project' && (
-        <div
-          className="mb-8 grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3"
-          role="radiogroup"
-          aria-label="Selecione um projeto"
-        >
-          {projectList.map(project => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              isSelected={selectedProject === project.id}
-              onSelect={() => setSelectedProject(project.id)}
-            />
-          ))}
-        </div>
-      )}
-
-      <div className="mb-8 max-sm:mb-0">
-        <h2 className="mb-4 text-lg font-semibold text-[#727070]">
-          Escolha um valor
-        </h2>
-
-        <div className="flex justify-between max-sm:flex-col max-sm:gap-4">
-          <div className="flex flex-wrap gap-3" role="radiogroup">
-            {donationValues
-              .filter(item => item.personalizado === true)
-              .map(item => (
-                <ValueButton
-                  key={item.id}
-                  value={item}
-                  isSelected={valueSelected?.reference_id === item.id}
-                  onSelect={() =>
-                    handleSelectValue({
-                      reference_id: item.id,
-                      descricao: item.nome,
-                      quantity: 1,
-                      preco: item.preco
-                    })
-                  }
-                >
-                  <span>
-                    {new Intl.NumberFormat('pt-br', {
-                      style: 'currency',
-                      currency: 'BRL',
-                      maximumFractionDigits: 0
-                    }).format(item.preco)}
-                  </span>
-                </ValueButton>
-              ))}
-
-            <CustomValueInput
-              valueSelected={valueSelected}
-              onValueChange={handleSelectValue}
-            />
+        <>
+          <div
+            className="mb-8 grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3"
+            role="radiogroup"
+            aria-label="Selecione um projeto"
+          >
+            {projectList.map(project => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                isSelected={selectedProject === project.id}
+                onSelect={() => handleSelectProject(project)}
+              />
+            ))}
           </div>
 
           <button
             onClick={handleDonation}
-            className="h-10.5 w-25.75 rounded-full bg-[#FD0003] text-lg font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-xl focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
+            className="ml-auto block h-10.5 w-25.75 rounded-full bg-[#FD0003] text-lg font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-xl focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
           >
             Doar
           </button>
+        </>
+      )}
+
+      {donationType === 'general' && (
+        <div className="mb-8 max-sm:mb-0">
+          <h2 className="mb-4 text-lg font-semibold text-[#727070]">
+            Escolha um valor
+          </h2>
+
+          <div className="flex justify-between max-sm:flex-col max-sm:gap-4">
+            <div className="flex flex-wrap gap-3" role="radiogroup">
+              {donationValues
+                .filter(item => item.personalizado === true)
+                .map(item => (
+                  <ValueButton
+                    key={item.id}
+                    value={item}
+                    isSelected={valueSelected?.reference_id === item.id}
+                    onSelect={() =>
+                      handleSelectValue({
+                        reference_id: item.id,
+                        descricao: item.nome,
+                        quantity: 1,
+                        preco: item.preco
+                      })
+                    }
+                  >
+                    <span>
+                      {new Intl.NumberFormat('pt-br', {
+                        style: 'currency',
+                        currency: 'BRL',
+                        maximumFractionDigits: 0
+                      }).format(item.preco)}
+                    </span>
+                  </ValueButton>
+                ))}
+
+              <CustomValueInput
+                valueSelected={valueSelected}
+                onValueChange={handleSelectValue}
+              />
+            </div>
+
+            <button
+              onClick={handleDonation}
+              className="h-10.5 w-25.75 rounded-full bg-[#FD0003] text-lg font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-xl focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
+            >
+              Doar
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

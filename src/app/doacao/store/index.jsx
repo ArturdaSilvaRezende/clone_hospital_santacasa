@@ -134,6 +134,11 @@ const donate = createSlice({
         state.cart_items = newDonateCartList
         state.cart_total_price = countTotalPrice(newDonateCartList)
       }
+    },
+    clearCart: state => {
+      state.cart_items = []
+      state.cart_total_price = 0
+      localStorage.removeItem('@donate_cart')
     }
   },
   extraReducers: builder => {
@@ -177,5 +182,6 @@ export const {
   changeMethodPayment,
   addPaymentInfo,
   loadPaymentInfo,
-  updateContent
+  updateContent,
+  clearCart
 } = donate.actions
