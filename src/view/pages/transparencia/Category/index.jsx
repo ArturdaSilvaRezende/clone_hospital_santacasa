@@ -257,7 +257,7 @@ export function Category() {
 
   useEffect(() => {
     const handleResize = () => {
-      setShowAsideMobile(window.innerWidth < 768)
+      setShowAsideMobile(window.innerWidth < 1280)
     }
 
     window.addEventListener('resize', handleResize)
@@ -290,7 +290,7 @@ export function Category() {
 
   return (
     <>
-      <section className="container mx-auto mb-20 flex md:px-8 justify-between gap-10 max-sm:hidden">
+      <section className="container mx-auto mb-20 flex md:px-8 justify-between gap-10 max-sm:hidden md:hidden xl:flex">
         <aside className="min-h-screen w-100 md:w-80 rounded-[26px] bg-white p-6">
           <nav className="flex flex-col gap-2">
             {list.map(category => {
@@ -366,7 +366,7 @@ export function Category() {
       </section>
 
       {showAsideMobile && (
-        <section className="container mx-auto mb-20 flex flex-col gap-10 px-5">
+        <section className="container mx-auto mb-20 flex flex-col gap-10 max-sm:px-6 md:px-8 xl:px-0">
           <aside className="w-full rounded-[26px] bg-white p-4 shadow-sm">
             {/* {openSubDropdown && <div className="relative my-6 w-full">
               <input
