@@ -51,15 +51,15 @@ export default function Home({ initialData, pagination }) {
   }, [searchTerm])
 
   return (
-    <section className="my-24" aria-labelledby="Santa Casa em destaque">
-      <div className="container mx-auto flex flex-col items-center justify-center gap-y-8 max-sm:px-5 md:px-8 lg:px-8 xl:px-0">
+    <section className="my-24" aria-label="Santa Casa em destaque">
+      <div className="container mx-auto flex flex-col items-center justify-center gap-y-8 max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <Search
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />
-        <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:justify-center md:gap-12 lg:flex-wrap xl:justify-start lg:gap-x-5 lg:gap-y-7">
+        <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:justify-center md:gap-12 lg:flex-wrap xl:justify-between lg:gap-x-5 lg:gap-y-7">
           {filteredNews.map((news, index) => (
             <article
               key={news.id}

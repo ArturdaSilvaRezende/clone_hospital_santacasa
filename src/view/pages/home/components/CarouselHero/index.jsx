@@ -3,13 +3,10 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-
+import Link from 'next/link'
 import { api } from '~/services/api'
 
-import CustomLink from '~/components/CustomComponents/Link'
-
 import './styles.css'
-import Link from 'next/link'
 
 export default function CarouselHero() {
   const [list, setList] = useState([])
@@ -104,10 +101,10 @@ export default function CarouselHero() {
 
                     <Link
                       label="Acessar"
-                      target='_blank'
+                      target="_blank"
                       rel="noopener noreferrer"
                       href={`/noticias/${slide.id}`}
-                      className="w-39.5 h-8.75 bg-[#FD0003] hover:bg-red-700 text-[14px] flex items-center justify-center rounded-3xl font-semibold text-white transition-colors max-sm:w-32 max-sm:h-8"
+                      className="flex h-8.75 w-39.5 items-center justify-center rounded-3xl bg-[#FD0003] text-[14px] font-semibold text-white transition-colors hover:bg-red-700 max-sm:h-8 max-sm:w-32"
                     >
                       Acessar
                     </Link>
