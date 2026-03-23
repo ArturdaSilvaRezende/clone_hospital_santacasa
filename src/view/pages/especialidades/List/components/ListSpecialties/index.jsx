@@ -1,43 +1,60 @@
 import Pagination from '@mui/material/Pagination'
 import CardSkeleton from '../CardSkeleton'
+import Image from 'next/image'
 
 export default function ListSpecialties({
   data,
   isLoading,
   pagination,
   currentPage,
-  setCurrentPage
+  setCurrentPage,
+  viewType,
+  ref = null
 }) {
+  const containerClass =
+    viewType === 'grid'
+      ? 'grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3'
+      : 'flex flex-col gap-4'
+
   return (
-    <div className="fadeIn flex-1">
+    <div className="fadeIn flex-1" ref={ref}>
       <h2 className="mb-6 text-xl font-bold text-[#FD0003]">Especialidades</h2>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+      <div className={containerClass}>
         {isLoading
           ? Array.from(new Array(6)).map((_, index) => (
-              <CardSkeleton key={index} />
+              <CardSkeleton key={index} viewType={viewType} />
             ))
           : data.map(doctor => (
               <div
                 key={doctor.id}
-                className="group overflow-hidden rounded-2xl border border-gray-100 bg-white transition-shadow hover:shadow-lg"
+                className={`group overflow-hidden rounded-2xl border border-gray-100 bg-white ${
+                  viewType === 'list' ? 'flex h-31.75 items-center' : ''
+                }`}
               >
-                <div className="overflow-hidden bg-gray-100">
-                  <img
+                <div
+                  className={`overflow-hidden bg-gray-100 ${viewType === 'list' ? 'h-full w-31.75' : 'h-80.5'}`}
+                >
+                  <Image
                     src={doctor.url}
                     alt={doctor.name}
-                    className="mx-auto h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    height={282}
+                    width={282}
+                    className={`mx-auto h-full w-full ${viewType === 'list' ? 'object-fill' : 'object-cover'}`}
                   />
-                </div>
-                <div className="p-5 max-sm:w-full">
                   
+                </div>
+
+                <div
+                  className={`p-5 ${viewType === 'list' ? 'flex flex-col justify-center' : 'max-sm:w-full'}`}
+                >
                   <p className="text-[14px] font-normal text-[#FD0003]">
-                   {doctor.speciality.map(spec => spec.label).join(', ')}
+                    {doctor.speciality.map(spec => spec.label).join(', ')}
                   </p>
-                  <h3 className="mt-1 line-clamp-1 font-normal text-black max-sm:w-full">
+                  <h3 className={`mt-1 line-clamp-1 font-normal text-black ${viewType === 'list' ? 'text-[22px]' : 'text-base'}`}>
                     {doctor.name}
                   </h3>
-                  <p className="mt-1 text-xs font-medium text-[#727070] uppercase max-sm:text-[16px]">
+                  <p className="mt-1 text-xs font-medium text-[#727070] uppercase">
                     CRM {doctor.crm}
                   </p>
                 </div>

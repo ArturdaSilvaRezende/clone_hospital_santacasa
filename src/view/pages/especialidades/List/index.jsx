@@ -1,17 +1,16 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { api } from '~/services/api'
 
 import NavExams from './components/NavExams'
 import NavSpecialties from './components/NavSpecialties'
 import ListSpecialties from './components/ListSpecialties'
-import SearchSpecialties from './components/SearchSpecialties'
+import Search from './components/Search'
 import ListExams from './components/ListExams'
 
 import { examsList } from './utils'
-import SearchExams from './components/SearchExams'
 
 export function List() {
   const [data, setData] = useState([])
@@ -30,6 +29,9 @@ export function List() {
     useState(false)
   const [isShowingAllExams, setIsShowingAllExams] = useState(false)
   const [currentContent, setCurrentContent] = useState('specialties')
+  const [viewType, setViewType] = useState('grid')
+
+  const topListRef = useRef(null)
 
   const categories = [
     ...new Map(examsList.map(item => [item.category, item])).values()
@@ -43,6 +45,13 @@ export function List() {
     setSpecialityId(id === specialityId ? null : id)
     setCurrentPage(1)
     setIsShowingAllSpecialities(false)
+
+    if (topListRef.current) {
+      topListRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
   }
 
   const handleSetExamsId = category => {
@@ -73,7 +82,7 @@ export function List() {
       setIsLoading(true)
       const queryId = specialityId ? specialityId : ''
       const result = await api.get(
-        `/doctors?speciality_id=${queryId}&name=${search}&limit=9&page=${currentPage}`
+        `/doctors?speciality_id=${queryId}&name=${search}&limit=6&page=${currentPage}`
       )
       setData(result.data?.list || [])
       setPagination(result.data?.pagination || {})
@@ -114,25 +123,42 @@ export function List() {
   }, [specialityId, currentPage])
 
   return (
-    <section className="container mx-auto my-12 font-sans max-sm:my-8 max-sm:px-5 md:px-8 lg:px-8 xl:px-0" aria-label="Especialidades">
+    <section
+      className="container mx-auto my-12 font-sans max-sm:my-8 max-sm:px-6 md:px-8 lg:px-8 xl:px-0"
+      aria-label="Especialidades"
+    >
       {currentContent === 'specialties' && (
-        <SearchSpecialties
+        <Search
           setSearch={setSearch}
           load={load}
-          handleShowAllSpecialities={handleShowAllSpecialities}
+          handleShowAllData={handleShowAllSpecialities}
+          viewType={viewType}
+          setViewType={setViewType}
         />
       )}
 
       {currentContent === 'exams' && (
-        <SearchExams
+        <Search
           setSearch={setSearchExams}
-          handleShowAllExams={handleShowAllExams}
+          handleShowAllData={handleShowAllExams}
+          viewType={viewType}
+          setViewType={setViewType}
         />
       )}
 
-      <div className="mt-4 flex items-center gap-2 text-sm text-[#727070] mb-5 lg:hidden">
-        <button onClick={() => setCurrentContent('specialties')}  className='border hover:bg-gray-50 border-[#727070]/10 rounded-xl w-max px-3 py-3'>Mostrar Especialidades</button>
-        <button onClick={() => setCurrentContent('exams')} className='border hover:bg-gray-50 border-[#727070]/10 rounded-xl w-max px-3 py-3'>Mostrar Exames</button>
+      <div className="mt-4 flex items-center gap-2 text-sm text-[#727070] lg:hidden">
+        <button
+          onClick={() => setCurrentContent('specialties')}
+          className="w-max rounded-xl border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
+        >
+          Mostrar Especialidades
+        </button>
+        <button
+          onClick={() => setCurrentContent('exams')}
+          className="w-max rounded-xl border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
+        >
+          Mostrar Exames
+        </button>
       </div>
 
       <div className="flex flex-col gap-8 lg:flex-row">
@@ -170,10 +196,12 @@ export function List() {
             pagination={pagination}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            viewType={viewType}
+            ref={topListRef}
           />
         )}
 
-        {currentContent === 'exams' && <ListExams data={filteredExams} />}
+        {currentContent === 'exams' && <ListExams ref={topListRef} data={filteredExams} viewType={viewType} setViewType={setViewType} />}
       </div>
     </section>
   )

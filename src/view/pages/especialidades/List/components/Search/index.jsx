@@ -1,11 +1,15 @@
 import React from 'react'
 import { GrFilter } from 'react-icons/gr'
-import { LiaSearchSolid, LiaSlidersHSolid } from 'react-icons/lia'
+import { LiaSearchSolid } from 'react-icons/lia'
+import { MdOutlineViewWeek } from 'react-icons/md'
+import { LuLayoutList } from 'react-icons/lu'
 
-export default function SearchSpecialties({
-  setSearch,
-  load,
-  handleShowAllSpecialities
+export default function Search({
+  setSearch = () => {},
+  load = () => {},
+  handleShowAllData = () => {},
+  viewType,   
+  setViewType
 }) {
   return (
     <>
@@ -24,9 +28,13 @@ export default function SearchSpecialties({
           />
         </div>
         <div className="text-[#FD0003] max-sm:hidden md:hidden lg:flex lg:gap-2">
-          <div className="cursor-pointer rounded border p-2">
-            <LiaSlidersHSolid size={20} />
-          </div>
+          <button onClick={() => setViewType('grid')}
+          className={`cursor-pointer transition-colors ${viewType === 'grid' ? 'text-[#FD0003]' : 'text-[#CCCCCC]'}`}>
+            <MdOutlineViewWeek className='text-[30px]' />
+          </button>
+          <button  className={`cursor-pointer transition-colors ${viewType === 'list' ? ' text-[#FD0003]' : 'text-[#CCCCCC]'}`} onClick={() => setViewType('list')}>
+            <LuLayoutList className='text-[26px]' />
+          </button>
         </div>
       </div>
 
@@ -46,7 +54,7 @@ export default function SearchSpecialties({
         </div>
         <button
           className="flex w-[60%] items-center justify-center gap-2 rounded-[10px] border border-[#727070]/10 px-4 py-3 text-sm text-[#727070] outline-none hover:bg-gray-200 focus:border-gray-300 max-sm:mt-4 md:w-[30%] lg:hidden"
-          onClick={handleShowAllSpecialities}
+          onClick={handleShowAllData}
         >
           <GrFilter size={20} />
           <span>Filtrar por serviços</span>
