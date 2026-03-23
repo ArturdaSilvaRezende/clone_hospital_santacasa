@@ -58,6 +58,13 @@ export function List() {
     setExamsId(prev => (prev === category ? null : category))
     setCurrentPage(1)
     setIsShowingAllExams(false)
+
+    if (topListRef.current) {
+      topListRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
   }
 
   const handleShowAllSpecialities = () => {
