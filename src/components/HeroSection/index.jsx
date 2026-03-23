@@ -13,12 +13,12 @@ export default function HeroSection({
       aria-label={title}
     >
       <div className="flex items-center justify-center max-sm:flex-col">
-        <div className="z-10 container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-[90%] lg:w-[90%] xl:w-[42%]">
+        <div className="container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-[90%] lg:w-[90%] xl:w-[42%]">
           <h2 className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase">
             {subtitle}
           </h2>
 
-          <h1 className="mb-2 leading-tight font-medium max-sm:w-full max-sm:text-[28px] max-sm:text-black md:w-[80%] md:text-[20px] md:text-white lg:w-[80%] lg:text-[32px] lg:text-white xl:text-black">
+          <h1 className="mb-2 leading-tight font-medium max-sm:w-full max-sm:text-[28px] max-sm:text-black md:w-[80%] md:text-[20px] md:text-white lg:w-full lg:text-[28px] lg:text-white xl:text-black">
             {title}
           </h1>
 

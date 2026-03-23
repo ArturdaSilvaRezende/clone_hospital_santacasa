@@ -21,18 +21,22 @@ export default function PreAgendamento() {
           <Link
             href="/consultar-agendamento"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Consultar agendamento do SUS"
-            className="rounded-full bg-[#FD0003] px-8 py-1.75 font-semibold text-white shadow-md transition-colors duration-200 hover:bg-red-700 hover:shadow-lg"
+            className="rounded-full bg-[#FD0003] px-8 h-8.75 font-semibold text-white shadow-md transition-colors duration-200 hover:bg-red-700 hover:shadow-lg flex items-center justify-center"
           >
-            <span> Consultar agendamento</span>
+            <span className='text-[14px]'> Consultar agendamento</span>
           </Link>
 
-          <button
+          <Link
+            href="/agendar-consulta-particular"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Agendar uma consulta particular"
-            className="rounded-full border-2 border-[#FD0003] bg-transparent px-8 py-1.75 font-semibold text-[#FD0003] transition-colors duration-200 hover:bg-red-50"
+            className="rounded-full border-2 border-[#FD0003] bg-transparent px-8 h-8.75 font-semibold text-[#FD0003] transition-colors duration-200 hover:bg-red-50 flex items-center justify-center"
           >
-            Agendar consulta particular
-          </button>
+            <span className='text-[14px]'>Agendar consulta particular</span>
+          </Link>
         </div>
       </HeroSection>
 
