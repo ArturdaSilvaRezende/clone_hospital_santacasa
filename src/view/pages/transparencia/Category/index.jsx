@@ -290,8 +290,8 @@ export function Category() {
 
   return (
     <>
-      <section className="container mx-auto mb-20 flex md:px-8 justify-between gap-10 max-sm:hidden md:hidden xl:flex">
-        <aside className="min-h-screen w-100 md:w-80 rounded-[26px] bg-white p-6">
+      <section className="container mx-auto mb-20 flex justify-between gap-10 max-sm:hidden md:hidden md:px-8 xl:flex">
+        <aside className="min-h-screen w-100 rounded-[26px] bg-white p-6 md:w-80">
           <nav className="flex flex-col gap-2">
             {list.map(category => {
               const isActive = openDropdown === category.id

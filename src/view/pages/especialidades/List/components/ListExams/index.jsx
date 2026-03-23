@@ -30,11 +30,14 @@ export default function ListExams({ data, isLoading, viewType, ref = null }) {
           : paginatedData.map(exam => (
               <div
                 key={exam.id}
-                className={`rounded-2xl border border-gray-100 bg-white ${viewType === 'list' ? 'flex items-center gap-4 h-31.75' : 'px-4 py-5'}`}
+                className={`rounded-2xl border border-gray-100 bg-white ${viewType === 'list' ? 'flex h-31.75 items-center gap-4' : 'px-4 py-5'}`}
               >
                 {viewType === 'list' && (
-                  <div className="flex h-31.75 w-31.75 rounded-tl-2xl rounded-bl-2xl items-center justify-center bg-[#FFE2E2] md:ml-auto lg:ml-0">
-                    <LuTestTubeDiagonal color="#FD0003" className='text-[40px] font-normal' />
+                  <div className="flex h-31.75 w-31.75 items-center justify-center rounded-tl-2xl rounded-bl-2xl bg-[#FFE2E2] md:ml-auto lg:ml-0">
+                    <LuTestTubeDiagonal
+                      color="#FD0003"
+                      className="text-[40px] font-normal"
+                    />
                   </div>
                 )}
 
@@ -54,12 +57,15 @@ export default function ListExams({ data, isLoading, viewType, ref = null }) {
                     </div>
                   </div>
 
-                  <p className={`text-[14px] font-normal text-[#727070]/80 
-                  max-sm:text-[16px] ${viewType === 'list' ? 'mt-0' : 'mt-3'}`}>
+                  <p
+                    className={`text-[14px] font-normal text-[#727070]/80 max-sm:text-[16px] ${viewType === 'list' ? 'mt-0' : 'mt-3'}`}
+                  >
                     {exam.description}
                   </p>
 
-                  <button className={`rounded-full border border-[#727070] px-2.5 py-1.5 hover:bg-[#727070]/10 ${viewType === 'list' ? 'mt-1 w-45.75 mb-2' : 'mt-5 w-full'}`}>
+                  <button
+                    className={`rounded-full border border-[#727070] px-2.5 py-1.5 hover:bg-[#727070]/10 ${viewType === 'list' ? 'mt-1 mb-2 w-45.75' : 'mt-5 w-full'}`}
+                  >
                     Como se preparar
                   </button>
                 </div>

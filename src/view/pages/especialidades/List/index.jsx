@@ -201,7 +201,14 @@ export function List() {
           />
         )}
 
-        {currentContent === 'exams' && <ListExams ref={topListRef} data={filteredExams} viewType={viewType} setViewType={setViewType} />}
+        {currentContent === 'exams' && (
+          <ListExams
+            ref={topListRef}
+            data={filteredExams}
+            viewType={viewType}
+            setViewType={setViewType}
+          />
+        )}
       </div>
     </section>
   )

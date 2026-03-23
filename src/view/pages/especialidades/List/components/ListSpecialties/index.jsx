@@ -42,7 +42,6 @@ export default function ListSpecialties({
                     width={282}
                     className={`mx-auto h-full w-full ${viewType === 'list' ? 'object-fill' : 'object-cover'}`}
                   />
-                  
                 </div>
 
                 <div
@@ -51,7 +50,9 @@ export default function ListSpecialties({
                   <p className="text-[14px] font-normal text-[#FD0003]">
                     {doctor.speciality.map(spec => spec.label).join(', ')}
                   </p>
-                  <h3 className={`mt-1 line-clamp-1 font-normal text-black ${viewType === 'list' ? 'text-[22px]' : 'text-base'}`}>
+                  <h3
+                    className={`mt-1 line-clamp-1 font-normal text-black ${viewType === 'list' ? 'text-[22px]' : 'text-base'}`}
+                  >
                     {doctor.name}
                   </h3>
                   <p className="mt-1 text-xs font-medium text-[#727070] uppercase">
