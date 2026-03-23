@@ -73,7 +73,8 @@ export default function CarouselHero() {
                 />
 
                 <div
-                  className="absolute inset-0 bg-linear-to-r from-black/80 via-black/30 to-black/30"
+                  className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 
+                  to-black/10"
                   aria-hidden="true"
                 />
               </div>
@@ -84,17 +85,17 @@ export default function CarouselHero() {
                     <header>
                       <h1
                         style={{
-                          textShadow: '2px 2px 10px rgba(0, 0, 0, 0.7)'
+                          textShadow: '2px 2px 10px rgba(0, 0, 0, 0.9)'
                         }}
-                        className="text-4xl text-[32px] leading-tight font-bold max-sm:text-[22px] lg:w-114.5"
+                        className="text-4xl text-[32px] leading-tight font-bold max-sm:text-[22px]"
                       >
                         {slide.title}
                       </h1>
                     </header>
 
                     <p
-                      style={{ textShadow: '2px 2px 10px #000' }}
-                      className="text-lg text-[16px] leading-relaxed text-white max-sm:text-[13px]"
+                      style={{ textShadow: '0 0 8px #000' }}
+                      className="text-lg text-[16px] text-white max-sm:text-[13px]"
                     >
                       {slide.description}
                     </p>

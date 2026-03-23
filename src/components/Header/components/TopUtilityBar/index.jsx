@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 import { BiDonateHeart } from 'react-icons/bi'
+import './styles.css'
 
 export default function TopUtilityBar() {
   return (
@@ -12,11 +12,14 @@ export default function TopUtilityBar() {
       <div className="container mx-auto flex items-center justify-between py-4 max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <nav aria-label="Redes sociais">
           <ul className="flex items-center max-sm:gap-0.5 md:gap-0.5 lg:gap-1">
-            <li className="md:hidden text-sm text-[#A7A7A7] lg:block">
+            <li className="text-sm text-[#A7A7A7] md:hidden lg:block">
               Redes Sociais
             </li>
 
-            <li title="Instagram" className="max-sm:pl-2 md:pl-0 lg:pl-0 xl:pl-2">
+            <li
+              title="Instagram"
+              className="max-sm:pl-2 md:pl-0 lg:pl-0 xl:pl-2"
+            >
               <Link
                 href="https://www.instagram.com/santacasago/"
                 target="_blank"
@@ -56,22 +59,29 @@ export default function TopUtilityBar() {
           className="hidden md:block lg:relative lg:-left-1.5"
         >
           <ul className="flex items-center md:relative md:-left-4 md:gap-3 lg:static lg:left-0 lg:gap-6">
-            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[11px] md:text-[10px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
-              <Image
-                src="/icons/fluent-patient-icon-red.svg"
-                alt="Portal do Paciente"
-                width={22}
-                height={22}
-              />
-              <span>Portal do Paciente</span>
+            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden max-md:text-[11px] md:text-[10px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
+              <Link
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 underlinedAnimated"
+              >
+                <Image
+                  src="/icons/fluent-patient-icon-red.svg"
+                  alt="Portal do Paciente"
+                  width={22}
+                  height={22}
+                />
+                <span>Portal do Paciente</span>
+              </Link>
             </li>
 
-            <li className="relative cursor-pointer text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline max-md:text-[10px] md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
+            <li className="relative cursor-pointer text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden max-md:text-[10px] md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Link
                 href="/banco-de-sangue"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2"
+               className="flex items-center gap-2 underlinedAnimated"
               >
                 <Image
                   src="/icons/bloodtype-icon-red.svg"
@@ -83,12 +93,12 @@ export default function TopUtilityBar() {
               </Link>
             </li>
 
-            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden hover:text-red-600 hover:underline md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
+            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Link
                 href="https://nucleo.multlabresultados.com.br/resultado/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 underlinedAnimated"
               >
                 <Image
                   src="/icons/exam-result-icon-red.svg"
@@ -100,10 +110,10 @@ export default function TopUtilityBar() {
               </Link>
             </li>
 
-            <li className="relative cursor-pointer items-center text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden hover:text-red-600 hover:underline md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
+            <li className="relative cursor-pointer items-center text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Link
                 href="/transparencia"
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 underlinedAnimated"
                 rel="noopener noreferrer"
                 target="_blank"
               >
