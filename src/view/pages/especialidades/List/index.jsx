@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { api } from '~/services/api'
 
@@ -84,7 +84,7 @@ export function List() {
     }
   }
 
-  async function load() {
+  const load = useCallback(async () => {
     try {
       setIsLoading(true)
       const queryId = specialityId ? specialityId : ''
@@ -98,7 +98,7 @@ export function List() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [specialityId, search, currentPage])
 
   async function loadStats() {
     try {
