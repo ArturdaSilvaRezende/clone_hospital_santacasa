@@ -98,7 +98,7 @@ export default function MainNavigationBar() {
   }, [])
 
   return (
-    <section
+    <div   
       ref={headerRef}
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
@@ -330,6 +330,6 @@ export default function MainNavigationBar() {
           </div>
         </div>
       )}
-    </section>
+    </div>
   )
 }

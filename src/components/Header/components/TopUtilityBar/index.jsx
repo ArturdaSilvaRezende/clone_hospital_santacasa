@@ -5,7 +5,7 @@ import './styles.css'
 
 export default function TopUtilityBar() {
   return (
-    <section
+    <div
       className="border-b border-gray-200"
       aria-label="Informações de contato e redes sociais"
     >
@@ -139,6 +139,6 @@ export default function TopUtilityBar() {
           <span className="ml-2 text-[16px]">Doar</span>
         </Link>
       </div>
-    </section>
+    </div>
   )
 }
