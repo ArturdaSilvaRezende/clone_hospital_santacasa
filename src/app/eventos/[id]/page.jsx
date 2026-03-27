@@ -85,6 +85,7 @@ export default async function Page({ params }) {
         <h3 className="mb-2 text-[24px] font-medium">
           Confira mais da Santa Casa nos eventos
         </h3>
+        
         <ListCards list={result?.list} />
       </section>
     </>

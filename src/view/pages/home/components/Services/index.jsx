@@ -59,7 +59,7 @@ export default function ServicesGrid() {
       description: 'Canal de comunicação e sugestões.',
       action: 'Entrar em contato',
       image: '/images/thumb-ouvidoria.svg',
-      src: '/ouvidoria'
+      src: '/canal-de-ouvidoria'
     },
     {
       id: 7,
@@ -109,10 +109,8 @@ export default function ServicesGrid() {
               <div className="relative h-47.5 overflow-hidden rounded-3xl transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-red-600/20">
                 {loading ? (
                   <Skeleton
-                    variant="rectangular"
                     width="100%"
                     height="100%"
-                    animation="wave"
                     sx={{ bgcolor: 'grey.200' }}
                     className="rounded-xl"
                   />

@@ -34,7 +34,7 @@ export default function CarouselHero() {
 
   return (
     <section
-      className="relative h-138.75 w-full bg-black"
+      className="relative h-138.75 md:h-100 lg:h-153.75 xl:h-138.75 w-full bg-black"
       aria-label="Banner principal"
     >
       <Swiper
@@ -58,7 +58,7 @@ export default function CarouselHero() {
         {list.map((slide, index) => (
           <SwiperSlide key={slide.id}>
             <article
-              className="relative w-full max-sm:h-full md:h-153.75 lg:h-153.75"
+              className="relative w-full max-sm:h-full md:h-100 lg:h-153.75 xl:h-138.75"
               aria-label={`Slide ${index + 1}: ${slide.title}`}
             >
               <div className="absolute inset-0 h-full w-full">

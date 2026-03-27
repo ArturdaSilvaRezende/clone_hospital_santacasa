@@ -1,6 +1,10 @@
+'use client'
+import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import CardSkeleton from '../CardSkeleton'
+import { IoClose } from 'react-icons/io5'
 import Image from 'next/image'
+import { specialtiesDetailsList } from '../../utils'
 
 export default function ListSpecialties({
   data,
@@ -11,10 +15,31 @@ export default function ListSpecialties({
   viewType,
   ref = null
 }) {
+  const [selectedSpecialty, setSelectedSpecialty] = useState(null)
   const containerClass =
     viewType === 'grid'
       ? 'grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3'
       : 'flex flex-col gap-4'
+
+  const handleOpenModal = doctor => {
+    const specLabel = doctor.speciality[0]?.label
+    const detail = specialtiesDetailsList.find(s => s.name === specLabel)
+    setSelectedSpecialty(detail)
+  }
+
+  const handleCloseModal = () => setSelectedSpecialty(null)
+
+  useEffect(() => {
+    if (selectedSpecialty) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [selectedSpecialty])
 
   return (
     <div className="fadeIn flex-1" ref={ref}>
@@ -58,10 +83,87 @@ export default function ListSpecialties({
                   <p className="mt-1 text-xs font-medium text-[#727070] uppercase">
                     CRM {doctor.crm}
                   </p>
+
+                  <button
+                    className="mt-1 font-normal text-black transition-all duration-300 hover:text-[#727070]"
+                    onClick={() => handleOpenModal(doctor)}
+                  >
+                    Saiba mais sobre a especialidade
+                  </button>
                 </div>
               </div>
             ))}
       </div>
+
+      {selectedSpecialty && (
+        <div className="fadeIn fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+          <div className="animate-in fade-in zoom-in w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl duration-200">
+            <div className="flex items-center justify-between bg-[#727070] px-6 py-4">
+              <h2 className="text-lg font-medium text-white">
+                {selectedSpecialty.name}
+              </h2>
+              <button
+                onClick={handleCloseModal}
+                className="text-white transition-transform hover:rotate-90"
+              >
+                <IoClose size={24} />
+              </button>
+            </div>
+
+            <div className="max-h-[70vh] overflow-y-auto p-8 text-left">
+              <div className="mb-6">
+                <h4 className="mb-2 text-lg font-bold text-[#444444]">
+                  Sobre a Especialidade
+                </h4>
+                <p className="mb-4 leading-relaxed text-gray-600">
+                  {selectedSpecialty.description}
+                </p>
+                <div className="space-y-1 rounded-lg border border-gray-100 bg-gray-50 p-4 text-sm text-gray-700">
+                  <p>
+                    <strong>Duração média da consulta:</strong>{' '}
+                    {selectedSpecialty.averageConsultation}
+                  </p>
+                  <p>
+                    <strong>Indicações:</strong> {selectedSpecialty.indications}
+                  </p>
+                  <p>
+                    <strong>Pós-procedimento:</strong>{' '}
+                    {selectedSpecialty.postProcedure}
+                  </p>
+                </div>
+              </div>
+
+              <hr className="mb-6 border-gray-100" />
+
+              <div>
+                <h4 className="mb-3 text-lg font-bold text-[#444444]">
+                  Orientações ao Paciente
+                </h4>
+                <ul className="space-y-2">
+                  {selectedSpecialty.preparations.map((item, index) => (
+                    <li
+                      key={index}
+                      className="flex items-start gap-2 text-gray-600"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FD0003]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-8 flex justify-end">
+                <button
+                  onClick={handleCloseModal}
+                  className="rounded-full border border-gray-400 px-10 py-2 font-medium text-gray-700 transition-colors hover:bg-[#727070]/10"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {!isLoading && data.length > 0 && (
         <div className="mt-12 flex justify-center">

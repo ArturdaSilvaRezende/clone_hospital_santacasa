@@ -45,15 +45,13 @@ export default function Home({ initialData, pagination }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDebouncedSearch(searchTerm)
-    }, 500) 
+    }, 500)
 
     return () => clearTimeout(timeout)
   }, [searchTerm])
 
- 
-
   return (
-    <section className="my-24" aria-labelledby="Últimas Notícias">
+    <section className="my-24" aria-label="Últimas Notícias">
       <div className="container mx-auto flex flex-col items-center justify-center gap-y-8 max-sm:px-5 md:px-8 lg:px-0">
         <Search
           searchTerm={searchTerm}
@@ -61,11 +59,11 @@ export default function Home({ initialData, pagination }) {
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />
-        <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-12 lg:flex-wrap lg:gap-x-5 lg:gap-y-7">
+        <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-5 md:gap-y-12 lg:flex-wrap lg:gap-x-5 lg:gap-y-7">
           {filteredNews.map((news, index) => (
             <article
               key={news.id}
-              className="flex flex-col max-sm:w-full md:w-[42%] lg:w-101.75"
+              className="flex flex-col max-sm:w-full md:w-[48%] lg:w-101.75"
             >
               <div className="h-48 w-full">
                 <Image
@@ -79,7 +77,7 @@ export default function Home({ initialData, pagination }) {
                 />
               </div>
 
-              <div className="flex flex-col px-2 md:mt-0 lg:mt-22">
+              <div className="flex flex-col px-2 md:mt-10 lg:mt-22">
                 <time
                   dateTime={news.date}
                   className="relative top-16 mb-3 text-[16px] text-gray-500"
@@ -102,7 +100,7 @@ export default function Home({ initialData, pagination }) {
                 <div className="border-t border-[#B4B4B4] pt-5">
                   <Link
                     href={`/noticias/${news.id}`}
-                    target='_blank'
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="group flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
                     aria-label={`Ler mais sobre ${news.title}`}

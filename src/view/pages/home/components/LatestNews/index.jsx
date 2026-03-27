@@ -38,15 +38,13 @@ export default function LatestNews() {
           Últimas Notícias
         </h2>
 
-       
-
         <ListCards list={list} />
 
-         <Link
+        <Link
           href="/noticias"
-          target='_blank'
+          target="_blank"
           rel="noopener noreferrer"
-          className="mt-10 block text-right text-[16px] font-medium text-gray-900 transition-colors hover:text-[#A45757] max-sm:mt-3"
+          className="mt-10 ml-auto block w-max text-right text-[16px] font-medium text-gray-900 transition-colors hover:text-gray-600"
           aria-label="Ver todas as notícias"
         >
           Ver todas as notícias

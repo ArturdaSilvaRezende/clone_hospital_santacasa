@@ -21,14 +21,16 @@ export default function MainNavigationBar() {
     institucional: {
       title: 'Institucional',
       items: [
-        { name: 'Quem somos', route: 'quem-somos' },
         { name: 'Administração', route: 'administracao' },
         { name: 'Assessoria de Imprensa', route: 'assessoria-de-imprensa' },
+        { name: 'Capelania', route: 'capelania' },
         { name: 'Comissões Técnicas', route: 'comissoes-tecnicas' },
-        { name: 'Voluntariado', route: 'voluntariado' },
         { name: 'Especialidades', route: 'especialidades' },
-        { name: 'Eventos', route: 'eventos' },
+        { name: 'Notícias', route: 'noticias' },
         { name: 'Mídia', route: 'midia' },
+        { name: 'Reciclagem', route: 'reciclagem' },
+        { name: 'Voluntariado', route: 'voluntariado' },
+        { name: 'Quem somos', route: 'quem-somos' }
       ]
     },
     pacientes: {
@@ -98,7 +100,7 @@ export default function MainNavigationBar() {
   }, [])
 
   return (
-    <div   
+    <div
       ref={headerRef}
       className="relative z-50 w-full"
       aria-label="Menu de Navegação Principal"
@@ -121,12 +123,13 @@ export default function MainNavigationBar() {
               {Object.entries(menuData).map(([key, menu]) => (
                 <li
                   key={key}
-                  onClick={() => toggleMenu(key)}
+                  onMouseEnter={() => setActiveMenu(key)}
                   className={`${activeMenu === key ? 'text-[#FD0003]' : 'text-[#727070]'} group relative flex cursor-pointer items-center gap-1 rounded-lg text-[13px] font-medium transition-colors duration-200 hover:text-[#FD0003] lg:text-[12px] xl:text-[13px]`}
                   aria-haspopup="true"
                   aria-expanded={activeMenu === key}
                 >
                   {menu.title}
+
                   {menu.items.length > 0 && (
                     <FaChevronDown
                       size={12}
@@ -135,6 +138,36 @@ export default function MainNavigationBar() {
                       }`}
                     />
                   )}
+
+                  {activeMenu === key &&
+                    menu.items.length > 0 &&
+                    !mobileMenuOpen && (
+                      <div
+                        className="absolute top-8 -left-10 z-40 min-w-max rounded-[10px] border border-gray-100 bg-white shadow-sm group-hover:block"
+                        style={{
+                          animation: 'fadeSlideDown 0.3s ease-out',
+                          cursor: 'default'
+                        }}
+                        onMouseLeave={() => setActiveMenu(null)}
+                      >
+                        <div className="flex flex-col gap-2 p-4">
+                          {menu.items.map((item, index) => (
+                            <Link
+                              key={index}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={`/${typeof item === 'string' ? item.toLowerCase().replace(/ /g, '-') : item.route}`}
+                              className="relative w-max"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <h3 className="font-medium text-[#727070] transition-colors duration-200 hover:text-[#FD0003]">
+                                {typeof item === 'string' ? item : item.name}
+                              </h3>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                 </li>
               ))}
             </ul>
@@ -185,73 +218,6 @@ export default function MainNavigationBar() {
             <span>Doar</span>
           </Link>
         </div>
-
-        {activeMenu &&
-          menuData[activeMenu].items.length > 0 &&
-          !mobileMenuOpen && (
-            <div
-              className="animate-fadeIn absolute top-full right-0 left-0 hidden border-t border-gray-200 bg-white lg:block"
-              style={{
-                animation: 'fadeSlideDown 0.3s ease-out'
-              }}
-            >
-              <div className="container mx-auto px-4 py-8 lg:px-8">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
-                  <div className="lg:col-span-1">
-                    <div className="relative overflow-hidden rounded-xl">
-                      <div className="absolute inset-0 bg-linear-to-br from-red-50 via-red-100 to-red-50"></div>
-                      <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-red-200 opacity-50 blur-3xl"></div>
-                      <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-red-300 opacity-40 blur-2xl"></div>
-                      <div className="relative p-8">
-                        <h2 className="mb-3 text-4xl font-bold text-gray-800">
-                          {menuData[activeMenu].title}
-                        </h2>
-                        <div className="mb-4 h-1 w-20 rounded-full bg-red-600"></div>
-                        <p className="text-sm leading-relaxed text-gray-600">
-                          Explore todas as opções disponíveis nesta seção
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-2">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      {menuData[activeMenu].items.map((item, index) => (
-                        <Link
-                          key={index}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={`/${typeof item === 'string' ? item.toLowerCase().replace(/ /g, '-') : item.route}`}
-                          className="group relative flex items-start overflow-hidden rounded-xl border border-gray-100 p-5 transition-all duration-300 hover:border-red-200 hover:bg-linear-to-br hover:from-red-50 hover:to-red-100 hover:shadow-lg"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-700 opacity-0 transition-opacity duration-300 group-hover:opacity-5"></div>
-                          <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-red-600 transition-all duration-300 group-hover:scale-150 group-hover:bg-red-700"></div>
-                          <div className="relative ml-4">
-                            <h3 className="mb-1 font-semibold text-gray-800 transition-colors duration-300 group-hover:text-red-600">
-                              {typeof item === 'string' ? item : item.name}
-                            </h3>
-                            <p className="text-xs text-gray-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                              Clique para saber mais
-                            </p>
-                          </div>
-                          <FaChevronDown className="ml-auto h-4 w-4 -rotate-90 transform text-gray-400 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setActiveMenu(null)}
-                  className="absolute top-4 right-4 rounded-full p-2 text-gray-500 transition-all duration-200 hover:rotate-90 hover:bg-red-50 hover:text-red-600"
-                  aria-label="Fechar menu"
-                >
-                  <IoMdClose size={20} />
-                </button>
-              </div>
-            </div>
-          )}
       </div>
 
       {mobileMenuOpen && (

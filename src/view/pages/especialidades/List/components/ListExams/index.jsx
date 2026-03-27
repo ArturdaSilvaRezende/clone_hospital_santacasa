@@ -83,8 +83,7 @@ export default function ListExams({ data, isLoading, viewType, ref = null }) {
 
                   <button
                     onClick={() => handleOpenModal(exam)}
-                    className={`rounded-full border border-[#727070] px-2.5 py-1.5 text-sm 
-                      hover:bg-[#727070]/10 ${viewType === 'list' ? 'mt-1 mb-2 w-45.75' : 'mt-5 w-full'}`}
+                    className={`rounded-full border border-[#727070] px-2.5 py-1.5 text-sm hover:bg-[#727070]/10 ${viewType === 'list' ? 'mt-1 mb-2 w-45.75' : 'mt-5 w-full'}`}
                   >
                     Como se preparar
                   </button>
@@ -119,7 +118,7 @@ export default function ListExams({ data, isLoading, viewType, ref = null }) {
       )}
 
       {selectedExam && (
-        <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div className="fadeIn fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="animate-in fade-in zoom-in w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl duration-200">
             <div className="flex items-center justify-between bg-[#727070] px-6 py-4">
               <h2 className="text-lg font-medium text-white">

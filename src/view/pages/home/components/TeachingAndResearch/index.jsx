@@ -12,7 +12,7 @@ export default function TeachingAndResearch() {
       <div className="container mx-auto max-sm:px-6 lg:px-10 xl:px-0">
         <div className="flex flex-col justify-between gap-12 lg:flex-row">
           <div
-            className="rounded-2xl bg-cover bg-center shadow-lg max-sm:h-101.5 max-sm:w-full md:mx-auto md:mb-6 md:h-101.5 md:w-150 lg:mx-0 lg:h-180 lg:w-187 xl:relative xl:left-4 xl:h-151"
+            className="rounded-2xl bg-cover bg-center shadow-lg max-sm:h-101.5 max-sm:w-full md:mx-auto md:h-101.5 md:w-150 lg:mx-0 lg:h-180 lg:w-187 xl:relative xl:left-4 xl:h-151"
             style={{
               backgroundImage: "url('/images/banner-ensino-e-pesquisa.svg')",
               backgroundColor: '#BE3131'

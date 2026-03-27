@@ -11,7 +11,7 @@ export default function BannerSection({
   return (
     <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
       <div className="grid gap-8 max-sm:items-center md:grid-cols-1 lg:grid-cols-2 xl:items-center lg:gap-12">
-        <div className="relative order-1 lg:h-83.25">
+        <div className="relative order-1 lg:h-83.25 md:mx-auto lg:mx-0">
           <div className="relative overflow-hidden rounded-3xl">
             <Image
               src={image}

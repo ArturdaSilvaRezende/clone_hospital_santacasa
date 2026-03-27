@@ -41,7 +41,7 @@ export default function TotalNumberProcedures() {
         }
       >
         <div>
-          <h2 className="mb-1 text-[22px] leading-tight font-medium text-gray-800">
+          <h2 className="mb-1 text-[22px] leading-tight font-medium text-gray-800 max-sm:mb-6 max-sm:mt-6 max-sm:text-[20px]">
             O que há de melhor para você
           </h2>
 
@@ -51,7 +51,7 @@ export default function TotalNumberProcedures() {
             comunidade.
           </p>
 
-          <p className="mt-5 mb-2 text-[22px] font-semibold text-[#FD0003]">
+          <p className="mt-5 mb-2 text-[22px] font-semibold text-[#FD0003] max-sm:mb-6 max-sm:text-[20px]">
             Em 2025 a Santa Casa realizou:
           </p>
         </div>
@@ -64,9 +64,9 @@ export default function TotalNumberProcedures() {
           {statistics.map((stat, index) => (
             <li key={index}>
               <div
-                className={`flex h-10.5 w-${stat.width} items-center gap-1 rounded-full border border-[#FD0003] px-2 transition-colors duration-200 hover:bg-red-50`}
+                className={`flex h-10.5 max-sm:w-max md:w-max lg:w-${stat.width} items-center gap-1 rounded-full border border-[#FD0003] px-2`}
               >
-                <span className="text-[18px] font-bold whitespace-nowrap text-[#FD0003]">
+                <span className="text-[18px] font-bold whitespace-nowrap text-[#FD0003] max-sm:text-[14px]">
                   {stat.number}
                 </span>
                 <span className="text-sm leading-tight text-[#111032]">

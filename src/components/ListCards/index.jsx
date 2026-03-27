@@ -1,9 +1,12 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
+import DataTime from '../CustomComponents/DataTime'
 
 export default function ListCards({ list = [] }) {
+  
   return (
-    <div className="flex justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-12 lg:flex-nowrap lg:gap-5">
+    <div className="flex justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-5 lg:flex-nowrap lg:gap-5">
       {list
         .slice()
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -11,31 +14,22 @@ export default function ListCards({ list = [] }) {
         .map((news, index) => (
           <article
             key={news.id}
-            className="flex flex-col max-sm:w-full md:w-[42%] lg:w-101.75"
+            className="flex flex-col max-sm:w-full md:w-[48%] lg:w-101.75"
           >
             <div className="h-48 w-full">
-                <div
-                  className="w-auto rounded-lg bg-cover bg-center max-sm:h-70 md:h-60 lg:h-81.5"
-                  style={{
-                    backgroundImage: `url('${news.url}')`,
-                    backgroundColor: '#BE3131'
-                  }}
-                  role="img"
-                  aria-label={news.title}
-                />
-              </div>
+              <div
+                className="w-auto rounded-lg bg-cover bg-center max-sm:h-70 md:h-60 lg:h-81.5"
+                style={{
+                  backgroundImage: `url('${news.url}')`,
+                  backgroundColor: '#BE3131'
+                }}
+                role="img"
+                aria-label={news.title}
+              />
+            </div>
 
-            <div className="lg:mt-20 flex flex-col px-2 md:mt-0 max-sm:mt-10">
-              <time
-                dateTime={news.date}
-                className="relative top-16 mb-3 text-[16px] text-gray-500"
-              >
-                {new Date(news.date).toLocaleDateString('pt-BR', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric'
-                })}
-              </time>
+            <div className="flex flex-col px-2 max-sm:mt-10 md:mt-0 lg:mt-20">
+              <DataTime data={news} />
 
               <h3 className="mt-15 mb-3 line-clamp-2 text-[24px] font-semibold text-gray-900 max-sm:text-[20px]">
                 {news.title}
@@ -48,7 +42,7 @@ export default function ListCards({ list = [] }) {
               <div className="border-t border-[#B4B4B4] pt-5">
                 <Link
                   href={`/noticias/${news.id}`}
-                  target='_blank'
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="group flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
                   aria-label={`Ler mais sobre ${news.title}`}
