@@ -26,8 +26,8 @@ export default function MainNavigationBar() {
         { name: 'Capelania', route: 'capelania' },
         { name: 'Comissões Técnicas', route: 'comissoes-tecnicas' },
         { name: 'Especialidades', route: 'especialidades' },
-        { name: 'Notícias', route: 'noticias' },
         { name: 'Mídia', route: 'midia' },
+        { name: 'Notícias', route: 'noticias' },
         { name: 'Reciclagem', route: 'reciclagem' },
         { name: 'Voluntariado', route: 'voluntariado' },
         { name: 'Quem somos', route: 'quem-somos' }

@@ -71,7 +71,7 @@ export default function Search({
           />
         </div>
         <button
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-[10px] border border-[#727070]/10 px-4 py-3 text-sm text-[#727070] outline-none hover:bg-gray-200 focus:border-gray-300 md:mt-0 md:w-[30%]"
+          className="mt-4 flex w-full bg-white items-center justify-center gap-2 rounded-[10px] border border-[#727070]/10 px-4 py-3 text-sm text-[#727070] outline-none hover:bg-gray-200 focus:border-gray-300 md:mt-0 md:w-[30%]"
           onClick={handleShowAllData}
         >
           <GrFilter size={20} />

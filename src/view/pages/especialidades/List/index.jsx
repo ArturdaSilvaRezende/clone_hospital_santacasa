@@ -156,13 +156,13 @@ export function List() {
       <div className="mt-4 flex items-center gap-2 text-sm text-[#727070] lg:hidden">
         <button
           onClick={() => setCurrentContent('specialties')}
-          className="w-max rounded-xl border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
+          className="w-max rounded-xl bg-white border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
         >
           Mostrar Especialidades
         </button>
         <button
           onClick={() => setCurrentContent('exams')}
-          className="w-max rounded-xl border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
+          className="w-max rounded-xl bg-white border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
         >
           Mostrar Exames
         </button>
