@@ -13,19 +13,18 @@ export default function Banner() {
       className="relative min-h-150 w-full overflow-hidden bg-white md:flex-row"
       aria-label="Espaço para Graduação"
     >
-      <div className="container mx-auto flex flex-col gap-20 max-sm:mb-14 max-sm:gap-0 md:flex-row md:gap-0 md:px-8 lg:gap-2 xl:px-0">
+      <div className="container mx-auto flex flex-col gap-20 max-sm:mb-14 max-sm:gap-0 md:flex-row md:gap-0 md:px-8 lg:gap-2 lg:px-10 xl:px-0">
         <div className="z-10 flex w-full flex-col justify-center py-10 max-sm:order-2 max-sm:px-6 md:w-full xl:w-[55%]">
           <header>
             <span className="text-[16px] font-semibold tracking-wider text-[#FD0003] uppercase">
               Espaço para Graduação
             </span>
-            <h2 className="mb-4 text-[32px] font-medium text-black max-sm:text-[26px] 
-            md:text-white xl:text-black">
+            <h2 className="mb-4 text-[32px] font-medium text-black max-sm:text-[26px] md:text-white xl:text-black">
               Excelência na formação
             </h2>
           </header>
 
-          <p className="mb-5 text-[16px] leading-relaxed font-normal text-[#727070] md:w-[70%] md:text-white lg:w-[55%] xl:text-[#727070] xl:w-full">
+          <p className="mb-5 text-[16px] leading-relaxed font-normal text-[#727070] md:w-[70%] md:text-white lg:w-[55%] xl:w-full xl:text-[#727070]">
             A Santa Casa de Misericórdia de Goiânia possui, no segundo andar,
             uma área de Apoio Acadêmico destinada a alunos da PUC Goiás
             matriculados nos cursos de medicina, enfermagem, psicologia,
@@ -37,7 +36,9 @@ export default function Banner() {
 
           <div className="mb-4 flex justify-between gap-4 md:w-[70%] lg:w-[55%] xl:w-full">
             <div className="text-center">
-              <p className="text-[32px] max-sm:text-left font-light text-[#FD0003]">Tipo 1</p>
+              <p className="text-left text-[32px] font-light text-[#FD0003]">
+                Tipo 1
+              </p>
               <p className="text-[14px] font-light text-black uppercase md:text-white xl:text-black">
                 Credenciamento
               </p>
@@ -56,7 +57,7 @@ export default function Banner() {
             </div>
           </div>
 
-          <p className="border-b border-gray-300 pb-8 text-[14px] font-normal text-[#727070] md:w-[70%] md:text-white lg:w-[55%] xl:text-[#727070] xl:w-full">
+          <p className="border-b border-gray-300 pb-8 text-[14px] font-normal text-[#727070] md:w-[70%] md:text-white lg:w-[55%] xl:w-full xl:text-[#727070]">
             Além de secretarias e várias salas administrativas.
           </p>
 
@@ -67,7 +68,7 @@ export default function Banner() {
           <div className="space-y-6 md:w-[70%] lg:w-[55%] xl:w-full">
             <div className="relative border-l-4 border-[#FD0003] pl-3 max-sm:pl-2">
               <address className="space-y-3 not-italic max-sm:space-y-4">
-                <div className="group flex flex-col justify-between max-sm:flex-row lg:flex-row lg:items-center">
+                <div className="group flex flex-col justify-between max-sm:flex-row md:flex-row md:items-center">
                   <p className="flex items-center gap-2 text-[#535353] md:text-white xl:text-[#535353]">
                     <MdOutlineCalendarToday
                       className="text-[24px]"
@@ -75,7 +76,7 @@ export default function Banner() {
                     />
                     <span className="text-[16px]">Segunda a Sexta</span>
                   </p>
-                  <div className="mx-4 hidden grow border-b border-dotted border-gray-300 lg:block"></div>
+                  <div className="mx-4 hidden grow border-b border-dotted border-gray-300 md:block"></div>
                   <p className="mt-1 flex items-center gap-1 text-[#535353] md:text-white xl:text-[#535353]">
                     <MdOutlineAccessTime
                       className="text-[24px]"
@@ -85,24 +86,19 @@ export default function Banner() {
                   </p>
                 </div>
 
-                <div className="flex flex-col justify-between max-sm:flex-row lg:flex-row lg:items-center">
-                  <p className="flex items-center gap-1 text-[#535353] md:text-white xl:text-[#535353] ">
+                <div className="flex flex-col justify-between max-sm:flex-row md:flex-row md:items-center">
+                  <p className="flex items-center gap-1 text-[#535353] md:text-white xl:text-[#535353]">
                     <MdOutlinePersonOutline
                       className="text-[24px]"
                       aria-hidden="true"
                     />
                     <span className="text-[16px]">Márcia Bajo</span>
                   </p>
-                  <div className="mx-4 hidden grow border-b border-dotted border-gray-300 lg:block"></div>
+                  <div className="mx-4 hidden grow border-b border-dotted border-gray-300 md:block"></div>
 
                   <p className="flex items-center gap-1 text-[#535353] md:text-white xl:text-[#535353]">
-                    <FaWhatsapp
-                      aria-hidden="true"
-                      className="text-[24px]"
-                    />
-                    <span className="text-[16px]">
-                      (62) 3941-1652
-                    </span>
+                    <FaWhatsapp aria-hidden="true" className="text-[24px]" />
+                    <span className="text-[16px]">(62) 3941-1652</span>
                   </p>
                 </div>
 
@@ -135,7 +131,7 @@ export default function Banner() {
           <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
         </div>
 
-        <div className="relative min-h-100 w-full rounded-tl-[60px] bg-red-700 md:-right-11 md:hidden md:min-h-full md:w-1/2 xl:w-1/2 lg:-right-9 xl:block">
+        <div className="relative min-h-100 w-full rounded-tl-[60px] bg-red-700 md:-right-11 md:hidden md:min-h-full md:w-1/2 lg:-right-9 xl:block xl:w-1/2">
           <Image
             src="/images/banner-section-espaco-para-graduacao.svg"
             alt="Profissional de saúde segurando uma prancheta vermelha em frente a um fundo vermelho"
