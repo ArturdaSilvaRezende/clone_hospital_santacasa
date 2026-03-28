@@ -29,19 +29,22 @@ const specialties = [
 export default function CoremeSection() {
   return (
     <section className="w-full py-16" aria-label="Coreme da Santa Casa">
-      <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
+      <div className="container mx-auto  max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <header className="mb-6 text-center">
           <h2 className="text-[32px] font-medium tracking-tight text-[#FD0003] max-sm:text-[22px]">
             A Coreme da Santa Casa dispõe dos seguintes cursos:
           </h2>
         </header>
 
-        <div className="flex flex-wrap justify-center gap-3" role="list">
+        <div
+          className="mx-auto flex lg:max-w-203.25 flex-wrap items-center justify-start gap-3"
+          role="list"
+        >
           {specialties.map((item, index) => (
             <article
               key={index}
               role="listitem"
-              className="flex min-w-75 grow items-center rounded-2xl border border-[#7270701A] bg-white px-5 py-4 max-sm:w-full nth-last-[-n+2]:md:grow-0"
+              className="flex lg:w-100 items-center md:w-86 rounded-2xl border border-[#727070]/10 bg-white px-5 py-4 max-sm:w-full"
             >
               <div
                 className="mr-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#E30613]"

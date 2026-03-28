@@ -14,6 +14,8 @@ const members = [
   { name: 'Dr. José Fernando Bastos Folgosi', role: 'Conselheiro Científico' }
 ]
 
+const marginCard = ''
+
 export default function DiretoriaCoreme() {
   return (
     <section
@@ -25,30 +27,33 @@ export default function DiretoriaCoreme() {
           Conheça a diretoria do <span className="uppercase"> Coreme</span>
         </h2>
 
-        <ul className="flex flex-wrap justify-center gap-4 md:gap-6">
-          {members.map((member, index) => (
-            <li key={index} className="max-sm:w-full md:w-[45%] lg:w-auto">
-              <div className="flex min-h-19.5 items-center gap-3 rounded-2xl border border-[#7270701A] bg-white p-4">
-                <div
-                  className="h-11.5 w-11.5 rounded-full bg-cover bg-center"
-                  style={{
-                    backgroundImage: "url('/person-diretoria.jpg')"
-                  }}
-                  role="img"
-                  aria-label="Médica sorrindo segurando uma prancheta vermelha"
-                />
+        <ul className="mx-auto flex flex-wrap items-center justify-start gap-3 md:flex-col lg:max-w-243.25 lg:flex-col xl:flex-row">
+          {members.map((member, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <li key={index} className={`${isEven ? 'md:ml-auto' : 'md:mr-auto'} max-sm:w-full md:w-120 xl:m-0`}>
+                <div className="flex items-center gap-3 rounded-2xl border border-[#727070]/10 bg-white px-5 py-4">
+                  <div
+                    className="h-11.5 w-11.5 rounded-full bg-cover bg-center"
+                    style={{
+                      backgroundImage: "url('/person-diretoria.jpg')"
+                    }}
+                    role="img"
+                    aria-label="Médica sorrindo segurando uma prancheta vermelha"
+                  />
 
-                <div className="flex flex-col">
-                  <h3 className="text-[18px] max-sm:text-[14px] leading-tight font-normal text-[#2F2E41]">
-                    {member.name}
-                  </h3>
-                  <p className="mt-1 text-[16px] max-sm:text-[12px] font-normal text-[#727070]">
-                    {member.role}
-                  </p>
+                  <div className="flex flex-col">
+                    <h3 className="leading-tight font-normal text-[#2F2E41] max-sm:text-[14px] lg:text-[18px]">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1 text-[16px] font-normal text-[#727070] max-sm:text-[12px]">
+                      {member.role}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            )
+          })}
         </ul>
       </div>
     </section>
