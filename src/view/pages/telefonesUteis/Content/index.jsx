@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const contactData = [
   {
     id: 1,
@@ -67,12 +69,18 @@ export default function UsefulPhone() {
                 <span className="text-lg font-medium text-black">
                   {item.label}
                 </span>
-                <span
-                  className="mt-1 rounded text-lg font-medium text-black/50 sm:mt-0"
-                  aria-label={`Ligar para ${item.label}: ${item.phone}`}
+                <Link
+                  href={`https://wa.me/${item.phone.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {item.phone}
-                </span>
+                  <span
+                    className="mt-1 rounded text-lg font-medium text-black/50 transition-colors ease-in-out hover:text-[#FD0003] sm:mt-0"
+                    aria-label={`Ligar para ${item.label}: ${item.phone}`}
+                  >
+                    {item.phone}
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
