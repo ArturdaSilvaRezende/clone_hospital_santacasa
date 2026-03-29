@@ -15,15 +15,13 @@ const DATA = {
     role: 'Coordenador de Operações',
     name: 'Carlos Eduardo Silva',
     description:
-      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/Ana Carolina Alves Pereira.svg'
+      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }),
   tecnicos: Array(4).fill({
     role: 'Responsável Técnico',
     name: 'Mariana Costa',
     description:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.',
-    image: '/Ana Carolina Alves Pereira.svg'
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'
   })
 }
 
@@ -78,15 +76,19 @@ export default function TechnicalFramework() {
         {DATA[activeTab].map((person, index) => (
           <article
             key={index}
-            className="flex w-61 md:w-full flex-col items-center rounded-3xl border border-[#7270701A]/10 bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md max-sm:w-full"
+            className="flex w-61 flex-col items-center rounded-3xl border border-[#7270701A]/10 bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md max-sm:w-full md:w-full"
           >
-            <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-gray-50">
-              <img
-                src={person.image}
-                alt={`Foto de ${person.name}`}
-                className="h-full w-full object-cover"
-              />
-            </div>
+            {person.image && (
+              <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-gray-50">
+                <Image
+                  src={person.image}
+                  alt={`Foto de ${person.name}`}
+                  width={128}
+                  height={128}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            )}
 
             <span className="mb-2 text-[14px] font-normal tracking-wider text-[#FD0003]">
               {person.role}

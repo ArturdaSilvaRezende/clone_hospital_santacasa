@@ -64,7 +64,7 @@ export default function TopUtilityBar() {
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 underlinedAnimated"
+                className="flex items-center gap-2 transition-all ease-in-out hover:text-red-700 hover:underline"
               >
                 <Image
                   src="/icons/fluent-patient-icon-red.svg"
@@ -81,7 +81,7 @@ export default function TopUtilityBar() {
                 href="/banco-de-sangue"
                 target="_blank"
                 rel="noopener noreferrer"
-               className="flex items-center gap-2 underlinedAnimated"
+                className="flex items-center gap-2 transition-all ease-in-out hover:text-red-700 hover:underline"
               >
                 <Image
                   src="/icons/bloodtype-icon-red.svg"
@@ -98,7 +98,7 @@ export default function TopUtilityBar() {
                 href="https://nucleo.multlabresultados.com.br/resultado/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 underlinedAnimated"
+                className="flex items-center gap-2 transition-all ease-in-out hover:text-red-700 hover:underline"
               >
                 <Image
                   src="/icons/exam-result-icon-red.svg"
@@ -113,7 +113,7 @@ export default function TopUtilityBar() {
             <li className="relative cursor-pointer items-center text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Link
                 href="/transparencia"
-                className="flex items-center gap-2 underlinedAnimated"
+                className="flex items-center gap-2 transition-all ease-in-out hover:text-red-700 hover:underline"
                 rel="noopener noreferrer"
                 target="_blank"
               >

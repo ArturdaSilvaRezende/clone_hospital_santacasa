@@ -103,9 +103,9 @@ export function ConsultDetails() {
               <li className="w-165 list-disc text-[#707070] max-sm:w-full">
                 <p className="text-[1rem] font-normal">
                   Acompanhe seu agendamento, ele mudara a situação para
-                  CONFIRMADO juntamente com a{' '}
-                  <span className="relative -left-4 max-sm:left-0">
-                    DATA E HORA AGENDAMENTO.
+                  CONFIRMADO juntamente com a {" "} 
+                  <span className="relative max-sm:left-0">
+                     DATA E HORA AGENDAMENTO.
                   </span>
                 </p>
               </li>

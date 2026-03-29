@@ -58,7 +58,7 @@ export function Steps() {
               >
                 {!isLast && (
                   <div
-                    className={`absolute top-10 right-0 h-16.25 w-px ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
+                    className={`absolute top-10 right-0 h-full w-px ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
                   />
                 )}
 
@@ -98,7 +98,7 @@ export function Steps() {
             return (
               <li
                 key={`mobile-${step.id}`}
-                className={`flex w-full items-center ${!isLastMobile ? "after:inline-block after:h-1 after:w-13.75 after:md:w-45.25 after:border-4 after:border-b after:content-['']" : ''} ${isCompleted ? 'after:border-[#20A36C]' : 'after:border-[#BCBBBB]'}`}
+                className={`flex w-full items-center ${!isLastMobile ? "after:inline-block after:h-1 after:w-13.75 after:border-4 after:border-b after:content-[''] after:md:w-45.25" : ''} ${isCompleted ? 'after:border-[#20A36C]' : 'after:border-[#BCBBBB]'}`}
               >
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full lg:h-12 lg:w-12 ${currentIndex >= index ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}

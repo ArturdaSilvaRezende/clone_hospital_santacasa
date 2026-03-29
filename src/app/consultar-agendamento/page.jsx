@@ -16,7 +16,7 @@ export default function ConsultarAgendamento() {
         description="Consulte o seu agendamento inserindo o protocolo no formulário abaixo."
         banner="/images/hero-section-banner.svg"
       />
-      <div className="my-20 md:my-0 lg:my-20 flex flex-col items-center max-sm:px-5 md:px-8 lg:px-0">
+      <div className="md:my-0 lg:my-12 flex flex-col items-center max-sm:px-5 md:px-8 lg:px-8 xl:px-0 max-sm:mb-20 max-sm:mt-5">
         <FormSearchProtocol />
         <ConsultDetails />
       </div>
