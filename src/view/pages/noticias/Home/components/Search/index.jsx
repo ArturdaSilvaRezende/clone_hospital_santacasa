@@ -1,6 +1,7 @@
 'use client'
 
 import { HiOutlineSearch, HiOutlineCalendar } from 'react-icons/hi'
+import { IMaskInput } from 'react-imask'
 
 export default function Search({
   searchTerm,
@@ -14,7 +15,6 @@ export default function Search({
         <div className="absolute left-4 text-gray-400">
           <HiOutlineSearch size={20} />
         </div>
-
         <input
           type="text"
           value={searchTerm}
@@ -24,14 +24,17 @@ export default function Search({
         />
       </div>
 
-      <div className="rounded-3xl border border-[#727070]/10 bg-white px-4 py-3.5 md:w-70.75">
-        <input
-          type="date"
+      <div className="relative flex items-center rounded-3xl border border-[#727070]/10 bg-white py-3.5 pl-12 md:w-72">
+        <div className="absolute left-4 text-gray-400">
+          <HiOutlineCalendar size={20} />
+        </div>
+        <IMaskInput
+          mask="00/00/0000"
           value={selectedDate}
-          min="1900-01-01"
-          max="9999-12-31"
-          onChange={e => setSelectedDate(e.target.value)}
-          className="w-full cursor-pointer bg-transparent text-sm text-black outline-none md:text-base"
+          onAccept={value => setSelectedDate(value)}
+          placeholder="Filtrar por data"
+          type="text"
+          className="w-full bg-transparent text-sm text-black outline-none placeholder:text-gray-400 md:text-base"
         />
       </div>
     </div>

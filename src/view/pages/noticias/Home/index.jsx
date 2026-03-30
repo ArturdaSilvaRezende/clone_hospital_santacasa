@@ -33,13 +33,21 @@ export default function Home({ initialData, pagination }) {
   }
 
   const filteredNews = newsList.filter(news => {
-    const matchesTitle = news.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+   const matchesTitle = news.title
+    .toLowerCase()
+    .includes(debouncedSearch.toLowerCase())
 
-    const matchesDate = selectedDate ? news.date.startsWith(selectedDate) : true
+    if (!selectedDate) return matchesTitle
 
-    return matchesTitle && matchesDate
+    const [day, month, year] = selectedDate.split('/')
+
+    if (year && year.length === 4) {
+      const formattedSelectedDate = `${year}-${month}-${day}`
+      const matchesDate = news.date.startsWith(formattedSelectedDate)
+      return matchesTitle && matchesDate
+    }
+
+    return matchesTitle
   })
 
   useEffect(() => {
