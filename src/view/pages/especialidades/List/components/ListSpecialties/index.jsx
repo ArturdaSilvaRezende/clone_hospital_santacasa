@@ -85,7 +85,7 @@ export default function ListSpecialties({
                   </p>
 
                   <button
-                    className="mt-1 mr-auto font-normal text-black transition-all duration-300 hover:text-[#727070]"
+                    className="mt-3 mr-auto w-full border-t border-gray-300 pt-3 font-normal text-black transition-all duration-300 hover:text-[#727070]"
                     onClick={() => handleOpenModal(doctor)}
                   >
                     Saiba mais sobre a especialidade
@@ -118,6 +118,9 @@ export default function ListSpecialties({
                 <p className="mb-4 leading-relaxed text-gray-600">
                   {selectedSpecialty.description}
                 </p>
+
+                <hr className="mb-6 border-gray-100" />
+
                 <div className="space-y-1 rounded-lg border border-gray-100 bg-gray-50 p-4 text-sm text-gray-700">
                   <p>
                     <strong>Duração média da consulta:</strong>{' '}
@@ -133,7 +136,14 @@ export default function ListSpecialties({
                 </div>
               </div>
 
-              <hr className="mb-6 border-gray-100" />
+              <hr className=" border-gray-100" />
+
+               <div className='my-3'>
+                <h4 className="mb-3 text-lg font-bold text-[#444444]">
+                  Quando procurar um especialista em {selectedSpecialty.name}?
+                </h4>
+                <p>{selectedSpecialty.when_see}</p>
+              </div>
 
               <div>
                 <h4 className="mb-3 text-lg font-bold text-[#444444]">
