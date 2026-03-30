@@ -85,7 +85,7 @@ export default function ListSpecialties({
                   </p>
 
                   <button
-                    className="mt-3 mr-auto w-full border-t border-gray-300 pt-3 font-normal text-black transition-all duration-300 hover:text-[#727070]"
+                    className="mt-3 mr-auto w-full border-t border-[#727070]/30 pt-3 font-normal text-black transition-all duration-300 hover:text-[#727070]"
                     onClick={() => handleOpenModal(doctor)}
                   >
                     Saiba mais sobre a especialidade

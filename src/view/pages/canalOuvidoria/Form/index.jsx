@@ -62,11 +62,16 @@ export default function Form() {
     handleSubmit,
     formState: { errors, dirtyFields },
     reset,
-    setValue
+    setValue,
+    watch
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: defaultValues
   })
+
+  const birthDateValue = watch('birth_date')
+  const phoneValue = watch('phone')
+
   const [isSuccessSend, setIsSuccessSend] = useState(false)
   const [failSend, setFailSend] = useState({
     show: false,
@@ -76,13 +81,17 @@ export default function Form() {
   const getFieldClass = name => {
     const baseClass =
       'py-2.5 px-4 w-full rounded-[8px] border transition-all outline-none rounded-lg font-normal'
-    if (errors[name])
-      return `${baseClass} border-[#FD0003] text-[#FD0003] placeholder:text-[#FD0003]`
-    if (dirtyFields[name])
-      return `${baseClass} border-[#20A36C] text-[#262626] placeholder:text-[#262626]`
-    return `${baseClass} border-[#7270701A] text-[#262626] placeholder:text-[#727070] placeholder:text-[12px]`
-  }
 
+    if (errors[name]) {
+      return `${baseClass} border-[#FD0003] text-[#FD0003] placeholder:text-[#FD0003]`
+    }
+
+    if (dirtyFields[name] && control._formValues[name]) {
+      return `${baseClass} border-[#20A36C] text-[#262626] placeholder:text-[#262626]`
+    }
+
+    return `${baseClass} border-[#727070]/10 text-[#262626] placeholder:text-[#727070] placeholder:text-[12px]`
+  }
   function handleChangeConfirmSchedule(value) {
     setSelectType(value)
     setValue('tipo', value)
@@ -105,7 +114,12 @@ export default function Form() {
       const result = await api.post(`/ombudsman-channel`, objData)
 
       if (result.data.success && result.status == 200) {
-        reset(defaultValues)
+        reset(defaultValues, {
+          keepDirty: false,
+          keepErrors: false,
+          keepTouched: false,
+          keepValues: false
+        })
         setSelectType(selectTypeObj.elogio)
 
         setIsSuccessSend(true)
@@ -173,15 +187,16 @@ export default function Form() {
                   name="birth_date"
                   control={control}
                   render={({ field }) => (
-                    <div className="relative">
-                      <IMaskInput
-                        {...field}
-                        mask="00/00/0000"
-                        className={getFieldClass('birth_date')}
-                        placeholder="DD/MM/YYYY"
-                        onAccept={value => field.onChange(value)}
-                      />
-                    </div>
+                    <IMaskInput
+                      {...register('birth_date')}
+                      value={birthDateValue}
+                      mask="00/00/0000"
+                      className={getFieldClass('birth_date')}
+                      placeholder="DD/MM/YYYY"
+                      onAccept={value => {
+                        setValue('birth_date', value)
+                      }}
+                    />
                   )}
                 />
                 {errors.birth_date && (
@@ -217,11 +232,14 @@ export default function Form() {
                   control={control}
                   render={({ field }) => (
                     <IMaskInput
-                      {...field}
+                      {...register('phone')}
+                      value={phoneValue}
                       mask="(00) 00000-0000"
                       className={getFieldClass('phone')}
                       placeholder="DDD + números"
-                      onAccept={value => field.onChange(value)}
+                      onAccept={value => {
+                        setValue('phone', value)
+                      }}
                     />
                   )}
                 />
@@ -408,8 +426,10 @@ export default function Form() {
         </form>
 
         <div className="mt-10 flex flex-col items-center gap-y-2">
-          <p className='text-[#FD0003] font-normal text-[18px] max-sm:text-center'>Se preferir, fale diretamente com nossos ouvidores:</p>
-          <p className="text-[#535353] font-normal text-[16px] flex items-center gap-1">
+          <p className="text-[18px] font-normal text-[#FD0003] max-sm:text-center">
+            Se preferir, fale diretamente com nossos ouvidores:
+          </p>
+          <p className="flex items-center gap-1 text-[16px] font-normal text-[#535353]">
             <FaWhatsapp size={23} />
             <span>(62) 3254-4270</span>
           </p>

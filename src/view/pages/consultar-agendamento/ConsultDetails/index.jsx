@@ -39,7 +39,7 @@ export function ConsultDetails() {
                 </label>
                 <button
                   type="submit"
-                  className={`h-[38px] rounded-full px-[1.5rem] ${btnStatusBg[content?.status_agendamento]} w-max text-white xl:mt-5`}
+                  className={`h-9.5 rounded-full px-6 ${btnStatusBg[content?.status_agendamento]} w-max text-white xl:mt-5`}
                 >
                   {content.status_agendamento}
                 </button>
