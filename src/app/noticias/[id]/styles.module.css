@@ -52,15 +52,16 @@
     padding-left: 6px !important;
   }
 
-  p a span strong {
+  p a span strong, p strong span strong  {
     font-weight: 400 !important;
-    font-size: 16px !important;
+    font-size: 15px !important;
   }
 
   p span strong {
     font-weight: 600 !important;
     font-size: 22px !important;
     background-color: transparent !important;
+    display: block !important;
   }
 
   p:last-child,
