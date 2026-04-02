@@ -7,7 +7,7 @@ import { IMaskInput } from 'react-imask'
 import * as yup from 'yup'
 import SyncLoader from 'react-spinners/SyncLoader'
 import Alert from '@mui/material/Alert'
-
+import { sendOmbudsmanAction } from './actions'
 import { api } from '~/services/api'
 
 import { GoArrowRight } from 'react-icons/go'
@@ -111,9 +111,9 @@ export default function Form() {
         mensagem: data?.message
       }
 
-      const result = await api.post(`/ombudsman-channel`, objData)
+      const result = await sendOmbudsmanAction(objData)
 
-      if (result.data.success && result.status == 200) {
+      if (result.success) {
         reset(defaultValues, {
           keepDirty: false,
           keepErrors: false,
