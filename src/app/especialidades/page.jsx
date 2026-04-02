@@ -1,5 +1,7 @@
-import { Banner } from '~/view/pages/especialidades/Banner'
-import { List } from '~/view/pages/especialidades/List'
+import { Banner } from './_components/Banner'
+import { List } from './_components/List'
+
+
 
 export default function Especialidades() {
   return (

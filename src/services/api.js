@@ -1,5 +1,3 @@
-'use client'
-
 import axios from 'axios'
 
 if (!process.env.NEXT_PUBLIC_API) {
