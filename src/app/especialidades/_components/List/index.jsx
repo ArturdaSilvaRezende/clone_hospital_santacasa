@@ -89,7 +89,7 @@ export function List() {
       setIsLoading(true)
       const queryId = specialityId ? specialityId : ''
       const result = await api.get(
-        `/doctors?speciality_id=${queryId}&name=${search}&limit=6&page=${currentPage}`
+        `/doctors?speciality_id=${queryId}&name=${search}&limit=999&page=${currentPage}`
       )
       setData(result.data?.list || [])
       setPagination(result.data?.pagination || {})

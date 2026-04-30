@@ -41,6 +41,8 @@ export default function ListSpecialties({
     }
   }, [selectedSpecialty])
 
+  
+
   return (
     <div className="fadeIn flex-1" ref={ref}>
       <h2 className="mb-6 text-xl font-bold text-[#FD0003]">Especialidades</h2>
