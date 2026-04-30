@@ -405,7 +405,7 @@ export function SecondStep() {
             )}
             <button
               type="submit"
-              className="h-12.25 w-55.75 rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
+              className="rcursor-pointer h-12.25 w-55.75 rounded-full bg-[#FD0003] px-6 text-white transition-opacity hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-[#FD0003] focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               Confirmar
             </button>

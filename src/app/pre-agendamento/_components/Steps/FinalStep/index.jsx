@@ -37,7 +37,7 @@ export function FinalStep() {
           ref={successRef}
           tabIndex={-1}
           role="alert"
-          className="mb-4 rounded-r-md border-l-4 border-[#20A36C] bg-green-50 p-4 outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          className="mb-4 rounded-r-md border-l-4 border-[#20A36C] bg-green-50 p-4 outline-none"
         >
           <h2
             id={`${id}-final-title`}
@@ -95,14 +95,14 @@ export function FinalStep() {
           onClick={() =>
             (window.location.href = `/consultar-agendamento?protocolo=${protocolo}`)
           }
-          className="flex h-12 w-full flex-row items-center justify-center gap-x-2 rounded-full bg-black px-8 text-white transition-all hover:bg-gray-800 focus:ring-2 focus:ring-black focus:ring-offset-2 sm:w-max"
+          className="h-12.25 w-55.75 rounded-full border border-[#262626] px-6 text-[#262626] hover:bg-[#262626]/10"
         >
           Consultar Status
         </button>
 
         <button
           onClick={() => (window.location.href = '/pre-agendamento')}
-          className="flex h-12 w-full flex-row items-center justify-center gap-x-2 rounded-full border-2 border-black px-8 text-black transition-all hover:bg-gray-100 focus:ring-2 focus:ring-black focus:ring-offset-2 sm:w-max"
+          className="rcursor-pointer flex h-12.25 w-55.75 items-center justify-center gap-x-2 rounded-full bg-[#FD0003] px-6 text-white transition-opacity hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-[#FD0003] focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           Novo Agendamento
         </button>

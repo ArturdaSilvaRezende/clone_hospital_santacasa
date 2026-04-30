@@ -250,7 +250,7 @@ export function FourthStep() {
           <button
             type="submit"
             disabled={createScheduleStatus === 'loading'}
-            className="hover:bg-opacity-90 flex h-12.25 w-55.75 flex-row items-center justify-center gap-x-2 rounded-full bg-black px-6 text-white transition-all hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out disabled:bg-gray-400"
+            className="rcursor-pointer flex h-12.25 w-55.75 items-center justify-center gap-x-2 rounded-full bg-[#FD0003] px-6 text-white transition-opacity hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-[#FD0003] focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <SyncLoader
               color="#E6E6E6"

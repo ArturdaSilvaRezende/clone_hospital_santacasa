@@ -134,11 +134,6 @@ export function ThirdStep() {
         : 'border-[#7D7D7D] bg-gray-50 hover:bg-gray-100'
   }`
 
-  const getErrorProps = name => ({
-    'aria-invalid': !!errors[name],
-    'aria-describedby': errors[name] ? `${id}-${name}-error` : undefined
-  })
-
   const handleChangeConfirmSchedule = value => {
     setConfirmScheduleIn(value)
     setValue('type_confirm', value, {
@@ -294,10 +289,6 @@ export function ThirdStep() {
 
   const handleBackStep = () => {
     changeScheduleStep('second')
-  }
-
-  const handleOpenFile = () => {
-    document.querySelector('.input-file').click()
   }
 
   useEffect(() => {
@@ -480,8 +471,11 @@ export function ThirdStep() {
             )}
 
             <div className="flex flex-col gap-y-2">
-              <label htmlFor={`${id}-speciality`} className="font-semibold">
-                Especialidade
+              <label
+                htmlFor={`${id}-speciality`}
+                className="text-[1rem] font-medium text-[#262626]"
+              >
+                Especialidade <span className="text-[#FD0003]">*</span>
               </label>
               <Controller
                 name="speciality"
@@ -502,7 +496,7 @@ export function ThirdStep() {
                 <span
                   id={`${id}-speciality-error`}
                   role="alert"
-                  className="text-xs text-red-500"
+                  className="text-[16px] font-semibold text-[#FD0003]"
                 >
                   {errors.speciality.message}
                 </span>
@@ -571,7 +565,7 @@ export function ThirdStep() {
                 ].map(option => (
                   <label
                     key={option.id}
-                    className="flex cursor-pointer items-center gap-x-3 rounded-lg p-1 outline-none focus-within:ring-2 focus-within:ring-black focus-within:ring-offset-2"
+                    className="flex cursor-pointer items-center gap-x-3 rounded-lg p-1 outline-none"
                   >
                     <input
                       type="radio"
@@ -579,16 +573,13 @@ export function ThirdStep() {
                       value={option.val}
                       checked={confirmScheduleIn === option.val}
                       onChange={() => handleChangeConfirmSchedule(option.val)}
-                      className="sr-only" // Input real escondido mas funcional
+                      className="sr-only"
                     />
                     <div
                       aria-hidden="true"
-                      className={`flex h-7.5 w-7.5 items-center justify-center rounded-full border-2 border-gray-300 ${confirmScheduleIn === option.val ? 'bg-[#262626]' : 'bg-[#D9D9D9]'}`}
-                    >
-                      {confirmScheduleIn === option.val && (
-                        <div className="h-3 w-3 rounded-full bg-white" />
-                      )}
-                    </div>
+                      className={`flex h-7.5 w-7.5 items-center justify-center rounded-full border-2 border-gray-300 ${confirmScheduleIn === option.val ? 'bg-[#FD0003]' : 'bg-[#D9D9D9]'}`}
+                    />
+
                     <span>{option.label}</span>
                   </label>
                 ))}
@@ -597,7 +588,7 @@ export function ThirdStep() {
                 <span
                   id={`${id}-type_confirm-error`}
                   role="alert"
-                  className="text-[14px] font-semibold text-[#FD0003]"
+                  className="text-[16px] font-semibold text-[#FD0003]"
                 >
                   {errors.type_confirm.message}
                 </span>
@@ -617,7 +608,7 @@ export function ThirdStep() {
             )}
             <button
               type="submit"
-              className="h-12.25 w-55.75 rounded-full bg-black px-6 text-white hover:bg-[#20A36C] hover:text-white hover:transition-colors hover:duration-200 hover:ease-in-out"
+              className="rcursor-pointer h-12.25 w-55.75 rounded-full bg-[#FD0003] px-6 text-white transition-opacity hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-[#FD0003] focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               Confirmar
             </button>
