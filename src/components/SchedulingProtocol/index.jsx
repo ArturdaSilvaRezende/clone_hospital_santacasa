@@ -3,11 +3,11 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import SyncLoader from 'react-spinners/SyncLoader'
+import * as yup from 'yup'
 
-import ResponseError from '~/components/CustomComponents/ResponseError'
 import { useAppointmentStore } from '~/app/consultar-agendamento/_store'
+import ResponseError from '~/components/CustomComponents/ResponseError'
 
 const objFields = {
   protocolo: 'protocolo'
@@ -17,8 +17,7 @@ const schema = yup.object({
   protocolo: yup.string().required('Campo obrigatório')
 })
 
-export function FormSearchProtocol() {
-  // 1. Selecionando estados e ações da store Zustand
+export default function SchedulingProtocol() {
   const {
     request_status: requestStatus,
     response_message: responseMessage,
@@ -35,7 +34,6 @@ export function FormSearchProtocol() {
     resolver: yupResolver(schema)
   })
 
-  // 2. Chamada direta da função (sem dispatch)
   const onSubmit = data => {
     fetchDataAppointmentOrder(data.protocolo)
   }
@@ -47,7 +45,6 @@ export function FormSearchProtocol() {
 
     if (protocoloString) {
       setValue('protocolo', protocoloString)
-      // Chamada direta também no carregamento inicial via URL
       fetchDataAppointmentOrder(protocoloString)
     }
   }

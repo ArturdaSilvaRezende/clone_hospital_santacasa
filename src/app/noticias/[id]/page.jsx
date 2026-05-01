@@ -32,9 +32,15 @@ export default async function Page({ params }) {
   const isMateria = news.url.includes('FOTOS_MATERIA')
   const isWhatsApp = news.url.includes('Whats_App')
   // const objectFitClass = isMateria ? 'object-contain' : 'object-cover'
-  const imageHeight = isMateria ? 'h-120 md:h-90 xl:h-120 w-[50%] md:w-[70%] xl:w-[50%] max-sm:h-full' : 'w-[70%] xl:h-66 md:h-50 max-sm:h-32'
-  const imageBannerHeight = isMateria ? 'xl:h-122 md:h-100 max-sm:h-60' : 'xl:h-71 md:h-50 max-sm:h-32'
-  const imageWhatsAppHeight = isWhatsApp ? 'h-110 w-[70%] max-sm:h-50' : imageHeight
+  const imageHeight = isMateria
+    ? 'h-120 md:h-90 xl:h-120 w-[50%] md:w-[70%] xl:w-[50%] max-sm:h-full'
+    : 'w-[70%] xl:h-66 md:h-50 max-sm:h-32'
+  const imageBannerHeight = isMateria
+    ? 'xl:h-122 md:h-100 max-sm:h-60'
+    : 'xl:h-71 md:h-50 max-sm:h-32'
+  const imageWhatsAppHeight = isWhatsApp
+    ? 'h-110 w-[70%] max-sm:h-50'
+    : imageHeight
   const cleanHtmlContent = news?.html_content
     ?.replace(/<[^>]+>\s*(&nbsp;)?\s*<\/[^>]+>/g, '')
     .trim()
@@ -42,7 +48,7 @@ export default async function Page({ params }) {
   return (
     <>
       <article
-        className="mx-auto my-15 flex container flex-col items-center gap-5 max-sm:mt-15 max-sm:mb-5 max-sm:px-5 md:px-8 lg:px-8 xl:px-0"
+        className="container mx-auto my-15 flex flex-col items-center gap-5 max-sm:mt-15 max-sm:mb-5 max-sm:px-5 md:px-8 lg:px-8 xl:px-0"
         aria-label={news.title}
       >
         <header>
@@ -63,7 +69,7 @@ export default async function Page({ params }) {
 
         <div>
           <div
-            className={`relative float-left mr-6 mb-4 lg:mb-10 xl:mb-4  ${imageWhatsAppHeight} max-sm:float-none max-sm:w-full`}
+            className={`relative float-left mr-6 mb-4 lg:mb-10 xl:mb-4 ${imageWhatsAppHeight} max-sm:float-none max-sm:w-full`}
           >
             {/* <Image
               src={news.url}
@@ -73,8 +79,7 @@ export default async function Page({ params }) {
               loading="eager"
             /> */}
             <div
-              className={`w-full rounded-2xl bg-cover max-sm:w-full 
-                ${isWhatsApp ? "h-110 max-sm:h-50" : imageBannerHeight}`}
+              className={`w-full rounded-2xl bg-cover max-sm:w-full ${isWhatsApp ? 'h-110 max-sm:h-50' : imageBannerHeight}`}
               style={{
                 backgroundImage: `url('${news.url}')`,
                 backgroundColor: '#BE3131'
@@ -93,7 +98,7 @@ export default async function Page({ params }) {
         </div>
       </article>
 
-      <section className="mx-auto my-15 container max-sm:px-5 md:px-8 lg:px-8 xl:px-0">
+      <section className="container mx-auto my-15 max-sm:px-5 md:px-8 lg:px-8 xl:px-0">
         <h3 className="mb-2 text-[24px] font-medium">
           Confira outras notícias
         </h3>

@@ -1,0 +1,55 @@
+import { create } from 'zustand'
+import { api } from '~/services/api'
+
+export const useAppointmentStore = create(set => ({
+  // Initial State
+  content: {},
+  request_status: 'idle',
+  response_message: null,
+  response_error: false,
+
+  fetchDataAppointmentOrder: async protocolo => {
+    set({
+      request_status: 'loading',
+      response_message: null,
+      response_error: false
+    })
+
+    try {
+      const response = await api.get(`/pre-schedule/${protocolo}`)
+      const payload = response?.data?.info || response?.data || {}
+
+      if (payload.error === true) {
+        set({
+          content: {},
+          request_status: 'failed',
+          response_message: payload.message || 'Erro ao buscar dados.',
+          response_error: true
+        })
+      } else {
+        set({
+          content: payload,
+          request_status: 'succeeded',
+          response_message: null,
+          response_error: false
+        })
+      }
+    } catch (error) {
+      set({
+        content: {},
+        request_status: 'failed',
+        response_message:
+          error.response?.data?.message || 'Tente novamente mais tarde',
+        response_error: true
+      })
+    }
+  },
+
+  resetStore: () =>
+    set({
+      content: {},
+      request_status: 'idle',
+      response_message: null,
+      response_error: false
+    })
+}))

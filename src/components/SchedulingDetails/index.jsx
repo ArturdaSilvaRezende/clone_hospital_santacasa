@@ -1,6 +1,6 @@
 'use client'
 
-import { useAppointmentStore } from '~/app/consultar-agendamento/_store'
+import { useAppointmentStore } from "~/app/consultar-agendamento/_store"
 
 const btnStatusBg = {
   Aguardando: 'bg-[#ff9419]',
@@ -9,7 +9,7 @@ const btnStatusBg = {
   pendente: 'bg-[#727070]' 
 }
 
-export function ConsultDetails() {
+export default function SchedulingDetails() {
   const content = useAppointmentStore(state => state.content)
 
   const requestStatus = useAppointmentStore(state => state.request_status)
