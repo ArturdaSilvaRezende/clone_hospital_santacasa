@@ -2938,6 +2938,11 @@ next@16.1.4:
     "@next/swc-win32-x64-msvc" "16.1.4"
     sharp "^0.34.4"
 
+nextjs-toast-notify@^1.61.0:
+  version "1.61.0"
+  resolved "https://registry.npmjs.org/nextjs-toast-notify/-/nextjs-toast-notify-1.61.0.tgz#3fde60c88f61d1e055ccccb6eed24cd747792a12"
+  integrity sha512-GNQz4d76jQ2qOmqae0hbl9RvmHVppqVYBpMfUbwNdMfXHFgtkjoWN8kutOALSUJ4KjwU97P5eCgQt6YPb6X6Lg==
+
 node-fetch@2.6.7:
   version "2.6.7"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
