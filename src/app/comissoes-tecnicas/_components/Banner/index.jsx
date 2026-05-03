@@ -1,14 +1,20 @@
 import Image from 'next/image'
+import { useId } from 'react'
 
 export default function Banner() {
+  const id = useId()
+
   return (
     <section
-      className="relative w-full bg-white max-sm:h-max md:h-auto md:py-16 lg:py-16 xl:py-0 max-sm:md:h-75 lg:auto"
-      aria-label="Comissões Técnicas"
+      className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 max-sm:md:h-75 lg:py-16 xl:py-0"
+      aria-labelledby={`${id}-comissoes-tecnicas`}
     >
       <div className="flex items-center justify-center max-sm:flex-col">
         <div className="z-10 container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-[90%] lg:w-[90%] xl:w-[42%]">
-          <h2 className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase">
+          <h2
+            className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase"
+            id={`${id}-comissoes-tecnicas`}
+          >
             Comissões Técnicas
           </h2>
 
@@ -35,8 +41,7 @@ export default function Banner() {
             className="absolute inset-0 bg-cover bg-center opacity-30"
             style={{
               backgroundImage:
-                "url('/images/banner-section-comissao-tecnica.svg')",
-             
+                "url('/images/banner-section-comissao-tecnica.svg')"
             }}
             role="img"
             aria-label="Médica sorrindo segurando uma prancheta vermelha"
@@ -45,7 +50,7 @@ export default function Banner() {
           <div className="absolute inset-0 bg-black/65" aria-hidden="true" />
         </div>
 
-        <div className="relative w-175 max-sm:h-75 max-sm:block md:hidden lg:hidden xl:block max-sm:w-full md:h-85 lg:h-100">
+        <div className="relative w-175 max-sm:block max-sm:h-75 max-sm:w-full md:hidden md:h-85 lg:hidden lg:h-100 xl:block">
           <Image
             src="/images/banner-section-comissao-tecnica.svg"
             alt="Comissões Técnicas"

@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useId, useState } from 'react'
 import Image from 'next/image'
 import { dataTabs } from '../../_utils/lists'
 
 export default function TechnicalFramework() {
   const [activeTab, setActiveTab] = useState('gerentes')
+  const id = useId()
 
   const tabs = [
     { id: 'gerentes', label: 'Gerentes' },
@@ -17,8 +18,12 @@ export default function TechnicalFramework() {
     <section
       className="container mx-auto mt-8 mb-14 font-sans max-sm:mt-0 max-sm:px-6 md:px-8 xl:px-0"
       aria-label="Quadro Técnico"
+      aria-labelledby={`${id}-quadro-tecnico`}
     >
-      <h2 className="mb-8 text-center text-3xl font-bold text-black max-sm:mb-4">
+      <h2
+        className="mb-8 text-center text-3xl font-bold text-black max-sm:mb-4"
+        id={`${id}-quadro-tecnico`}
+      >
         Quadro Técnico
       </h2>
 
