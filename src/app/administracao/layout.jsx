@@ -1,5 +1,5 @@
-import Banner from '~/view/pages/administracao/Content/components/Banner'
 import CallToActionSections from '~/components/CallToAction'
+import Banner from './_components/Banner'
 import '~/app/globals.css'
 
 export const metadata = {

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export const MemberCard = ({ name, role, imageSrc, description }) => {
+export default function MemberCard({ name, role, imageSrc, description }) {
   return (
     <article
       className="flex w-100 flex-col items-center rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all hover:shadow-md max-sm:w-full md:w-[48%] lg:w-100"
@@ -12,13 +12,12 @@ export const MemberCard = ({ name, role, imageSrc, description }) => {
           alt={`Retrato de ${name}`}
           fill
           className="object-cover"
-          
           sizes="(max-width: 768px) 100vw, 210px"
         />
       </div>
 
       <header>
-        <p className="mb-1 text-sm font-normal tracking-wide text-[#FD0003] ">
+        <p className="mb-1 text-sm font-normal tracking-wide text-[#FD0003]">
           {role}
         </p>
         <h3 className="mb-3 text-xl font-bold text-gray-900">{name}</h3>

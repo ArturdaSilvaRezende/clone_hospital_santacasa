@@ -59,23 +59,6 @@ export default function TopUtilityBar() {
           className="hidden md:block lg:relative lg:-left-1.5"
         >
           <ul className="flex items-center md:relative md:-left-4 md:gap-3 lg:static lg:left-0 lg:gap-6">
-            <li className="relative flex cursor-pointer items-center gap-2 text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden max-md:text-[11px] md:text-[10px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
-              <Link
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 transition-all ease-in-out hover:text-red-700 hover:underline"
-              >
-                <Image
-                  src="/icons/fluent-patient-icon-red.svg"
-                  alt="Portal do Paciente"
-                  width={22}
-                  height={22}
-                />
-                <span>Portal do Paciente</span>
-              </Link>
-            </li>
-
             <li className="relative cursor-pointer text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-0.5 after:-translate-y-1/2 after:bg-[#EDECEC] last:after:hidden max-md:text-[10px] md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
               <Link
                 href="/banco-de-sangue"
@@ -107,23 +90,6 @@ export default function TopUtilityBar() {
                   height={22}
                 />
                 <span>Resultado de Exames</span>
-              </Link>
-            </li>
-
-            <li className="relative cursor-pointer items-center text-[#FD0003] after:absolute after:top-1/2 after:h-4 after:w-px after:-translate-y-1/2 after:bg-[#FD0003] last:after:hidden md:text-[11px] md:after:right-0 md:after:hidden lg:text-sm lg:after:-right-3 lg:after:block">
-              <Link
-                href="/transparencia"
-                className="flex items-center gap-2 transition-all ease-in-out hover:text-red-700 hover:underline"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <Image
-                  src="/icons/search-icon-red.svg"
-                  alt="Transparência"
-                  width={22}
-                  height={22}
-                />
-                <span>Transparência</span>
               </Link>
             </li>
           </ul>

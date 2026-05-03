@@ -2,28 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-
-const DATA = {
-  gerentes: Array(10).fill({
-    role: 'Gerente de Recursos Humanos',
-    name: 'Ana Carolina Alves Pereira',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada augue iaculis bibendum tempor.',
-    image: '/Ana Carolina Alves Pereira.svg'
-  }),
-  coordenadores: Array(6).fill({
-    role: 'Coordenador de Operações',
-    name: 'Carlos Eduardo Silva',
-    description:
-      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-  }),
-  tecnicos: Array(4).fill({
-    role: 'Responsável Técnico',
-    name: 'Mariana Costa',
-    description:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'
-  })
-}
+import { dataTabs } from '../../_utils/lists'
 
 export default function TechnicalFramework() {
   const [activeTab, setActiveTab] = useState('gerentes')
@@ -73,7 +52,7 @@ export default function TechnicalFramework() {
         aria-labelledby={`tab-${activeTab}`}
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
       >
-        {DATA[activeTab].map((person, index) => (
+        {dataTabs[activeTab].map((person, index) => (
           <article
             key={index}
             className="flex w-61 flex-col items-center rounded-3xl border border-[#7270701A]/10 bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md max-sm:w-full md:w-full"

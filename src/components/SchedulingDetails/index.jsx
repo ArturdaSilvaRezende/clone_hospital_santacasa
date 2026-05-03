@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useId } from 'react'
 import { useAppointmentStore } from '~/app/consultar-agendamento/_store'
 import { useScheduleStore } from '~/app/pre-agendamento/_store'
 
@@ -8,12 +8,13 @@ const btnStatusBg = {
   Aguardando: 'bg-[#ff9419]',
   Cancelado: 'bg-[#ff1919]',
   Confirmado: 'bg-[#20A36C]',
-  pendente: 'bg-[#727070]'
+  pendente: 'bg-[#555353]' // Escurecido para melhor contraste
 }
 
 export default function SchedulingDetails() {
   const content = useAppointmentStore(state => state.content)
   const requestStatus = useAppointmentStore(state => state.request_status)
+  const headingId = useId();
 
   const fetchDataMedicalSpecialities = useScheduleStore(
     state => state.fetchDataMedicalSpecialities
@@ -31,121 +32,100 @@ export default function SchedulingDetails() {
     s => String(s.id) === String(content.especialidade_sus)
   )
 
+  // Melhora na acessibilidade do loading usando aria-live
   if (requestStatus === 'loading') {
-    return <div className="mt-10 text-center">Carregando detalhes...</div>
+    return (
+      <div 
+        role="status" 
+        aria-live="polite" 
+        className="mt-10 text-center font-medium"
+      >
+        <span>Carregando detalhes do agendamento...</span>
+      </div>
+    )
   }
 
-  if (!content || !content.id) {
-    return null
-  }
+  if (!content || !content.id) return null
 
   return (
-    <div className="container mx-auto flex max-w-285 flex-col items-center">
-      <div className="mt-12 flex w-full flex-col items-center">
-        <div className="flex w-full justify-between max-sm:flex-col max-sm:gap-y-10">
-          <div className="flex flex-col gap-y-5">
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Protocolo
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.protocolo}
-              </p>
-            </div>
+    <div className="container mx-auto flex max-w-285 flex-col items-center p-4" aria-label="Detalhes do agendamento">
+      <h2 id={headingId} className="sr-only">Detalhes do Agendamento</h2>
+      
+      <section 
+        aria-labelledby={headingId}
+        className="mt-12 flex w-full flex-col items-center"
+      >
+        {/* Usando Description List para semântica correta de chave-valor */}
+        <dl className="grid w-full grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Protocolo</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">{content.protocolo}</dd>
+          </div>
 
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Tipo da Vaga
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.tipo_vaga || 'Não informado'}
-              </p>
-            </div>
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Nome do Paciente</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">{content.nome_paciente}</dd>
+          </div>
 
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Situação
-              </label>
-              <p
-                disabled
-                className={`rounded-md px-6 ${btnStatusBg[content.status] || 'bg-gray-400'} w-max text-white`}
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Data de Nascimento</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">
+              {content.data_nascimento ? new Date(content.data_nascimento).toLocaleDateString('pt-BR') : '---'}
+            </dd>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Tipo da Vaga</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">{content.tipo_vaga || 'Não informado'}</dd>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Especialidade</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">{selectedSpeciality?.name || '---'}</dd>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Tipo Confirmação</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">{content.tipo_confirmacao_agendamento}</dd>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Situação</dt>
+            <dd>
+              <span 
+                role="status"
+                className={`inline-block rounded-md px-6 py-1 text-sm font-bold text-white ${btnStatusBg[content.status] || 'bg-gray-600'}`}
               >
                 {content.status?.toUpperCase() || 'PENDENTE'}
-              </p>
-            </div>
+              </span>
+            </dd>
           </div>
 
-          <div className="flex flex-col gap-y-5">
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Nome do Paciente
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.nome_paciente}
-              </p>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Especialidade
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {selectedSpeciality?.name}
-              </p>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Data e Hora Agendamento
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.updated_at
-                  ? new Date(content.updated_at).toLocaleString('pt-BR')
-                  : 'Aguardando definição'}
-              </p>
-            </div>
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Data e Hora Agendamento</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">
+              {content.updated_at ? new Date(content.updated_at).toLocaleString('pt-BR') : 'Aguardando definição'}
+            </dd>
           </div>
 
-          <div className="flex flex-col gap-y-5">
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Data de Nascimento
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.data_nascimento
-                  ? new Date(content.data_nascimento).toLocaleDateString(
-                      'pt-BR'
-                    )
-                  : ''}
-              </p>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <label className="text-[18px] font-semibold text-black">
-                Tipo Confirmação
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.tipo_confirmacao_agendamento}
-              </p>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <label className="w-61.25 text-[18px] font-semibold text-black">
-                Informações Adicionais
-              </label>
-              <p className="text-[1rem] font-medium text-[#727070]">
-                {content.observacao || 'Nenhuma observação'}
-              </p>
-            </div>
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Informações Adicionais</dt>
+            <dd className="text-[1rem] font-medium text-[#555353]">{content.observacao || 'Nenhuma observação'}</dd>
           </div>
-        </div>
+        </dl>
 
-        <div className="mt-12 w-full max-sm:px-5 md:px-8 lg:px-0">
-          <ul className="relative left-5 flex list-disc flex-col gap-y-2 text-[#707070]">
-            <li>
-              Acompanhe seu agendamento, ele mudará a situação para CONFIRMADO.
-            </li>
+        <footer className="mt-12 w-full border-t pt-8 text-[#555353]">
+          <h3 className="mb-4 font-bold text-black">Orientações Importantes:</h3>
+          <ul className="flex list-inside list-disc flex-col gap-y-2">
+            <li>Acompanhe seu agendamento, ele mudará a situação para <strong>CONFIRMADO</strong>.</li>
             <li>Entraremos em contato para confirmar o agendamento.</li>
-            <li>Dúvidas: (62) 3254-4200</li>
+            <li>
+              Dúvidas: <a href="tel:6232544200" className="underline hover:text-blue-700 focus:outline-dotted focus:outline-2 focus:outline-offset-2">(62) 3254-4200</a>
+            </li>
           </ul>
-        </div>
-      </div>
+        </footer>
+      </section>
     </div>
   )
 }

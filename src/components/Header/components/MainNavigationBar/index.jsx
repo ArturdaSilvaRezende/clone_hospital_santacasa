@@ -17,18 +17,14 @@ export default function MainNavigationBar() {
   const headerRef = useRef(null)
 
   const menuData = {
-    servicos: { title: 'Serviços', items: [] },
+    // servicos: { title: 'Serviços', items: [] },
     institucional: {
       title: 'Institucional',
       items: [
         { name: 'Administração', route: 'administracao' },
-        { name: 'Assessoria de Imprensa', route: 'assessoria-de-imprensa' },
-        { name: 'Capelania', route: 'capelania' },
         { name: 'Comissões Técnicas', route: 'comissoes-tecnicas' },
         { name: 'Especialidades', route: 'especialidades' },
-        { name: 'Mídia', route: 'midia' },
         { name: 'Notícias', route: 'noticias' },
-        { name: 'Reciclagem', route: 'reciclagem' },
         { name: 'Voluntariado', route: 'voluntariado' },
         { name: 'Quem somos', route: 'quem-somos' }
       ]
@@ -51,7 +47,6 @@ export default function MainNavigationBar() {
         { name: 'Residência Médica', route: 'residencia-medica' }
       ]
     },
-    ajudar: { title: 'Como ajudar', items: [] },
     contato: {
       title: 'Contato',
       items: [
