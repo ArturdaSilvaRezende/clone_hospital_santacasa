@@ -8,13 +8,14 @@ const btnStatusBg = {
   Aguardando: 'bg-[#ff9419]',
   Cancelado: 'bg-[#ff1919]',
   Confirmado: 'bg-[#20A36C]',
-  pendente: 'bg-[#555353]' // Escurecido para melhor contraste
+  pendente: 'bg-[#555353]' 
 }
 
 export default function SchedulingDetails() {
   const content = useAppointmentStore(state => state.content)
   const requestStatus = useAppointmentStore(state => state.request_status)
   const headingId = useId();
+  const API_URL = "http://localhost:3333/";
 
   const fetchDataMedicalSpecialities = useScheduleStore(
     state => state.fetchDataMedicalSpecialities
@@ -32,7 +33,6 @@ export default function SchedulingDetails() {
     s => String(s.id) === String(content.especialidade_sus)
   )
 
-  // Melhora na acessibilidade do loading usando aria-live
   if (requestStatus === 'loading') {
     return (
       <div 
@@ -47,6 +47,8 @@ export default function SchedulingDetails() {
 
   if (!content || !content.id) return null
 
+  console.log(content)
+
   return (
     <div className="container mx-auto flex max-w-285 flex-col items-center p-4" aria-label="Detalhes do agendamento">
       <h2 id={headingId} className="sr-only">Detalhes do Agendamento</h2>
@@ -55,7 +57,6 @@ export default function SchedulingDetails() {
         aria-labelledby={headingId}
         className="mt-12 flex w-full flex-col items-center"
       >
-        {/* Usando Description List para semântica correta de chave-valor */}
         <dl className="grid w-full grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
           
           <div className="flex flex-col gap-y-2">
@@ -95,7 +96,7 @@ export default function SchedulingDetails() {
             <dd>
               <span 
                 role="status"
-                className={`inline-block rounded-md px-6 py-1 text-sm font-bold text-white ${btnStatusBg[content.status] || 'bg-gray-600'}`}
+                className={`inline-block rounded-md px-6 py-1 text-sm font-normal text-white ${btnStatusBg[content.status] || 'bg-gray-600'}`}
               >
                 {content.status?.toUpperCase() || 'PENDENTE'}
               </span>
@@ -112,6 +113,16 @@ export default function SchedulingDetails() {
           <div className="flex flex-col gap-y-2">
             <dt className="text-[18px] font-bold text-black">Informações Adicionais</dt>
             <dd className="text-[1rem] font-medium text-[#555353]">{content.observacao || 'Nenhuma observação'}</dd>
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <dt className="text-[18px] font-bold text-black">Informações Adicionais</dt>
+            {content.imagem_pedido_url && (
+              <img 
+                src={`${API_URL}${content.imagem_pedido_url}`} 
+                alt="Pedido Médico" 
+                className="max-w-full h-auto rounded-lg"
+              />
+            )}
           </div>
         </dl>
 

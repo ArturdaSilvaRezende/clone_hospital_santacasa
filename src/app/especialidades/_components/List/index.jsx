@@ -90,7 +90,6 @@ export function List() {
 
       const params = new URLSearchParams()
 
-      // Se specialityId existir, ele envia o UUID para o back-end
       if (specialityId) params.append('speciality_id', specialityId)
       if (search) params.append('name', search)
 

@@ -35,12 +35,14 @@ const defaultValues = {
 }
 
 const schema = yup.object({
-  fullname: yup.string().required('Campo obrigatório'),
-  birth_date: yup.string().required('Campo obrigatório'),
-  // kinship_degree: yup.string().required('Campo obrigatório'),
-  phone: yup.string().required('Campo obrigatório'),
-  // email: yup.string().required('Campo obrigatório').email('E-mail inválido'),
-  // message: yup.string().required('Campo obrigatório'),
+  fullname: yup.string().required('Nome é obrigatório'),
+  birth_date: yup.string()
+    .matches(/^\d{2}\/\d{2}\/\d{4}$/, 'Data inválida')
+    .required('Data é obrigatória'),
+  kinship_degree: yup.string().required('Informe o grau de parentesco'),
+  phone: yup.string().min(14, 'Telefone incompleto').required('Telefone é obrigatório'),
+  email: yup.string().email('E-mail inválido').required('E-mail é obrigatório'),
+  message: yup.string().min(10, 'Mensagem muito curta').required('A mensagem é obrigatória'),
   tipo: yup.string().required('Escolha uma opção')
 })
 
@@ -101,39 +103,33 @@ export default function Form() {
     if (isLoading) return
     try {
       setIsLoading(true)
+      setIsSuccessSend(false)
+
+      const [day, month, year] = data.birth_date.split('/')
+      const formattedDate = `${year}-${month}-${day}`
+
       const objData = {
-        nome: data?.fullname,
-        data_nascimento: data?.birth_date,
-        grau_parentesco: data?.kinship_degree,
-        telefone: data?.phone,
-        email: data?.email,
-        tipo: data?.tipo,
-        mensagem: data?.message
+        name: data.fullname,
+        date_birth: formattedDate,
+        degree_kinship: data.kinship_degree || 'Próprio', 
+        phone: data.phone.replace(/\D/g, ''), 
+        email: data.email,
+        type_registration: data.tipo,
+        message: data.message
       }
 
       const result = await sendOmbudsmanAction(objData)
 
       if (result.success) {
-        reset(defaultValues, {
-          keepDirty: false,
-          keepErrors: false,
-          keepTouched: false,
-          keepValues: false
-        })
-        setSelectType(selectTypeObj.elogio)
-
         setIsSuccessSend(true)
-
-        setFailSend({
-          show: false,
-          msg: ''
-        })
+        reset(defaultValues)
+        setSelectType(selectTypeObj.elogio)
+        setFailSend({ show: false, msg: '' })
+      } else {
+        setFailSend({ show: true, msg: result.msg })
       }
     } catch (err) {
-      setFailSend({
-        show: true,
-        msg: 'Falha ao enviar!'
-      })
+      setFailSend({ show: true, msg: 'Ocorreu um erro inesperado.' })
     } finally {
       setIsLoading(false)
     }
