@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
-import TabEssence from './components/Essence'
-import TabOurStory from './components/OurStory'
-import InnovationAndFuture from './components/InnovationAndFuture'
+import { useId, useState } from 'react'
+import TabEssence from '../Essence'
+import TabOurStory from '../OurStory'
+import InnovationAndFuture from '../InnovationAndFuture'
+
 
 const TABS_CONFIG = {
   essencia: {
@@ -19,8 +20,9 @@ const TABS_CONFIG = {
   }
 }
 
-export default function Content() {
+export default function Tabs() {
   const [activeTab, setActiveTab] = useState('essencia')
+  const id = useId()
 
   const renderContent = () => {
     switch (activeTab) {
@@ -36,13 +38,13 @@ export default function Content() {
   }
 
   return (
-    <section>
+    <section aria-labelledby={`${id}-tabs-title`}>
       <div className="bg-white pt-12 max-sm:px-6 max-sm:pt-8 md:px-8 md:pt-8 lg:px-0">
         <div className="mb-10 text-center">
           <span className="text-[16px] font-bold tracking-widest text-[#FD0003] uppercase">
             Quem Somos
           </span>
-          <h2 className="text-[32px] font-medium text-black">
+          <h2 className="text-[32px] font-medium text-black" id={`${id}-tabs-title`}>
             Tradição na Saúde em Goiás
           </h2>
           <p className="text-[16px] text-[#727070]">

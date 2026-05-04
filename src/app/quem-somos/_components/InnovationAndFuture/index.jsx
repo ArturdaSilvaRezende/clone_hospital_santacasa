@@ -1,5 +1,5 @@
+import React, { useId } from 'react'
 import Image from 'next/image'
-import React from 'react'
 import { FaHeartbeat, FaUserGraduate } from 'react-icons/fa'
 import {
   FaHandshake,
@@ -46,6 +46,7 @@ const pillars = [
 ]
 
 export default function InnovationAndFuture() {
+  const id = useId()
   const fundacao = 1936
   const anoAtual = new Date().getFullYear()
   const idade = anoAtual - fundacao
@@ -53,10 +54,10 @@ export default function InnovationAndFuture() {
   return (
     <section
       className="container mx-auto mt-16 mb-14 max-sm:px-6 md:px-8 xl:px-0"
-      aria-label="Inovação e Futuro"
+      aria-labelledby={`${id}-innovation-title`}
     >
       <header className="mb-16 text-center">
-        <h1 className="text-[28px] font-medium text-black">
+        <h1 className="text-[28px] font-medium text-black" id={`${id}-innovation-title`}>
           O amanhã que construímos hoje
         </h1>
         <p className="text-[16px] text-[#727070] md:w-[80%] lg:w-full mx-auto">

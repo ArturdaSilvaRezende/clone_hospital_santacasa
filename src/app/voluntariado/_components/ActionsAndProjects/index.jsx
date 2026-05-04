@@ -1,8 +1,9 @@
 'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { HiOutlineHeart, HiOutlineExternalLink } from 'react-icons/hi'
+import { useId, useState } from 'react'
+import { HiOutlineHeart } from 'react-icons/hi'
 
 const acoes = [
   {

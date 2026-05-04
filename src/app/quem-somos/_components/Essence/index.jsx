@@ -1,7 +1,10 @@
 import Image from 'next/image'
+import { useId } from 'react'
 import { FiBook } from 'react-icons/fi'
 
 export default function TabEssence() {
+  const id = useId()
+  
   const pillars = [
     {
       title: 'Missão',
@@ -23,7 +26,8 @@ export default function TabEssence() {
     }
   ]
   return (
-    <section className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0 my-16" aria-label="Nossa Essência">
+    <section className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0 my-16" 
+    aria-labelledby={`${id}-content-title`}>
       <article className="flex flex-col items-center gap-8 xl:flex-row lg:gap-16">
         <Image
           src="/images/nossa-historia.svg"
@@ -36,7 +40,7 @@ export default function TabEssence() {
         <div className="w-full text-left xl:w-1/2">
           <header className="mb-4">
             <h3
-              id="content-title"
+              id={`${id}-content-title`}
               className="text-2xl font-bold text-slate-900 md:text-3xl"
             >
               Quem somos

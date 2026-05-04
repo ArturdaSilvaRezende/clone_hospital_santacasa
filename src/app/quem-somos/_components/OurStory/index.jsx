@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 const TIMELINE_DATA = [
@@ -44,6 +44,7 @@ export default function TabOurStory() {
   const [expandedItems, setExpandedItems] = useState([])
   const [activeItems, setActiveItems] = useState([])
   const itemRefs = useRef([])
+  const id = useId()
 
   const toggleExpand = id => {
     setExpandedItems(prev =>
@@ -76,9 +77,9 @@ export default function TabOurStory() {
   }, [])
 
   return (
-    <section className="overflow-hidden my-16" aria-label="Nossa História">
+    <section className="overflow-hidden my-16" aria-labelledby={`${id}-history-title`}>
       <div className="container mx-auto mb-16 text-center max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
-        <h2 className="mx-auto text-[28px] font-medium text-black">
+        <h2 className="mx-auto text-[28px] font-medium text-black" id={`${id}-history-title`}>
           Uma história de dedicação e cuidado
         </h2>
         <p className="mx-auto text-[16px] leading-relaxed font-normal text-[#727070] lg:max-w-180.5">

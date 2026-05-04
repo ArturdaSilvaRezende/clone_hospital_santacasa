@@ -1,10 +1,10 @@
 import CallToActionSections from '~/components/CallToAction'
-import Content from '~/view/pages/quemSomos/Content'
+import Tabs from './_components/Tabs'
 
 export default function QuemSomos() {
   return (
     <>
-      <Content />
+      <Tabs />
       <CallToActionSections />
     </>
   )
