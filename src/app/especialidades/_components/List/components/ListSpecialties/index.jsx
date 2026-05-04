@@ -22,7 +22,7 @@ export default function ListSpecialties({
       : 'flex flex-col gap-4'
 
   const handleOpenModal = doctor => {
-    const specLabel = doctor.speciality[0]?.label
+    const specLabel = doctor.specialties[0]?.label
     const detail = specialtiesDetailsList.find(s => s.name === specLabel)
     setSelectedSpecialty(detail)
   }
@@ -40,8 +40,6 @@ export default function ListSpecialties({
       document.body.style.overflow = 'auto'
     }
   }, [selectedSpecialty])
-
-  
 
   return (
     <div className="fadeIn flex-1" ref={ref}>
@@ -63,7 +61,7 @@ export default function ListSpecialties({
                   className={`overflow-hidden bg-gray-100 ${viewType === 'list' ? 'h-full w-31.75' : 'h-80.5'}`}
                 >
                   <Image
-                    src={doctor.url}
+                    src={doctor.url_image}
                     alt={doctor.name}
                     height={282}
                     width={282}
@@ -75,7 +73,7 @@ export default function ListSpecialties({
                   className={`p-5 ${viewType === 'list' ? 'flex flex-col justify-center' : 'max-sm:w-full'}`}
                 >
                   <p className="text-[14px] font-normal text-[#FD0003]">
-                    {doctor.speciality.map(spec => spec.label).join(', ')}
+                    {doctor.specialties.map(spec => spec.label).join(', ')}
                   </p>
                   <h3
                     className={`mt-1 line-clamp-1 font-normal text-black ${viewType === 'list' ? 'text-[22px]' : 'text-base'}`}
@@ -138,9 +136,9 @@ export default function ListSpecialties({
                 </div>
               </div>
 
-              <hr className=" border-gray-100" />
+              <hr className="border-gray-100" />
 
-               <div className='my-3'>
+              <div className="my-3">
                 <h4 className="mb-3 text-lg font-bold text-[#444444]">
                   Quando procurar um especialista em {selectedSpecialty.name}?
                 </h4>

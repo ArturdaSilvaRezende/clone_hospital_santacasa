@@ -19,7 +19,6 @@ export function List() {
   const [examsId, setExamsId] = useState(null)
   const [specialityId, setSpecialityId] = useState(null)
   const [specialityCounts, setSpecialityCounts] = useState({})
-  const [totalDoctors, setTotalDoctors] = useState(0)
   const [search, setSearch] = useState('')
   const [searchExams, setSearchExams] = useState('')
   const [pagination, setPagination] = useState({})
@@ -77,24 +76,33 @@ export function List() {
 
   async function loadSpecialities() {
     try {
-      const result = await api.get(`/especialidades-medicas?limit=100`)
-      setSpecialityList(result.data?.list || [])
+      const result = await api.get(`/specialties?limit=100`)
+      const specialties = result.data?.list || []
+      setSpecialityList(specialties)
     } catch (err) {
-      console.error(err)
+      console.error('Erro ao carregar especialidades:', err)
     }
   }
 
   const load = useCallback(async () => {
     try {
       setIsLoading(true)
-      const queryId = specialityId ? specialityId : ''
-      const result = await api.get(
-        `/doctors?speciality_id=${queryId}&name=${search}&limit=999&page=${currentPage}`
-      )
+
+      const params = new URLSearchParams()
+
+      // Se specialityId existir, ele envia o UUID para o back-end
+      if (specialityId) params.append('speciality_id', specialityId)
+      if (search) params.append('name', search)
+
+      params.append('limit', '9')
+      params.append('page', currentPage.toString())
+
+      const result = await api.get(`/doctors?${params.toString()}`)
+
       setData(result.data?.list || [])
       setPagination(result.data?.pagination || {})
     } catch (err) {
-      console.error(err)
+      console.error(`Erro na chamada /doctors: ${err}`)
     } finally {
       setIsLoading(false)
     }
@@ -102,14 +110,13 @@ export function List() {
 
   async function loadStats() {
     try {
-      const result = await api.get(`/doctors?limit=1000`)
+      const result = await api.get(`/doctors?limit=1000&page=1`)
       const allDoctors = result.data?.list || []
 
-      setTotalDoctors(allDoctors.length)
-
       const counts = allDoctors.reduce((acc, doctor) => {
-        doctor.speciality?.forEach(spec => {
-          acc[spec.value] = (acc[spec.value] || 0) + 1
+        doctor.specialties?.forEach(s => {
+          const key = s.label
+          if (key) acc[key] = (acc[key] || 0) + 1
         })
         return acc
       }, {})
@@ -127,7 +134,7 @@ export function List() {
 
   useEffect(() => {
     load()
-  }, [specialityId, currentPage])
+  }, [specialityId, currentPage, search])
 
   return (
     <section
@@ -156,13 +163,13 @@ export function List() {
       <div className="mt-4 flex items-center gap-2 text-sm text-[#727070] lg:hidden">
         <button
           onClick={() => setCurrentContent('specialties')}
-          className="w-max rounded-xl bg-white border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
+          className="w-max rounded-xl border border-[#727070]/10 bg-white px-3 py-3 hover:bg-gray-50"
         >
           Mostrar Especialidades
         </button>
         <button
           onClick={() => setCurrentContent('exams')}
-          className="w-max rounded-xl bg-white border border-[#727070]/10 px-3 py-3 hover:bg-gray-50"
+          className="w-max rounded-xl border border-[#727070]/10 bg-white px-3 py-3 hover:bg-gray-50"
         >
           Mostrar Exames
         </button>
@@ -174,7 +181,6 @@ export function List() {
             specialityId={specialityId}
             specialityList={specialityList}
             specialityLimit={specialityLimit}
-            totalDoctors={totalDoctors}
             specialityCounts={specialityCounts}
             isShowingAllSpecialities={isShowingAllSpecialities}
             currentContent={currentContent}
