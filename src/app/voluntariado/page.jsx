@@ -1,16 +1,16 @@
 import CallToActionSections from '~/components/CallToAction'
-import ActionsAndProjects from '~/view/pages/voluntariado/ActionsAndProjects'
-import Carousel from '~/view/pages/voluntariado/Carousel'
-import DonationSection from '~/view/pages/voluntariado/Donation'
-import MissionSection from '~/view/pages/voluntariado/OurMission'
+import Carousel from './_components/Carousel'
+import ActionsAndProjects from './_components/ActionsAndProjects'
+import OurMission from './_components/OurMission'
+import Donation from './_components/Donation'
 
 export default function Voluntariado() {
   return (
     <>
       <Carousel />
-      <MissionSection />
+      <OurMission />
       <ActionsAndProjects />
-      <DonationSection />
+      <Donation />
       <CallToActionSections />
     </>
   )

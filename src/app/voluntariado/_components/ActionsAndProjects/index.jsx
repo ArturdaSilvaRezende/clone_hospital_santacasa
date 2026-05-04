@@ -54,17 +54,20 @@ const projetos = [
 
 export default function ActionsAndProjects() {
   const [activeTab, setActiveTab] = useState('acoes')
-
+  const id = useId()
   const content = activeTab === 'acoes' ? acoes : projetos
 
   return (
-    <section className="bg-white py-16 relative md:-top-15 lg:-top-15 xl:top-0" aria-label="Ações e Projetos">
+    <section
+      className="relative bg-white py-16 md:-top-15 lg:-top-15 xl:top-0"
+      aria-labelledby={`${id}-actions-projects`}
+    >
       <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <div className="mb-4 text-center">
           <span className="text-sm font-bold tracking-widest text-[#FD0003] uppercase">
             Ações e Projetos
           </span>
-          <h2 className="text-[28px] font-bold text-black">
+          <h2 className="text-[28px] font-bold text-black" id={`${id}-actions-projects`}>
             Nosso impacto na comunidade
           </h2>
         </div>

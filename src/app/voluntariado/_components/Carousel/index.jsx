@@ -1,11 +1,15 @@
 'use client'
 
+import { useId } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import './styles.css'
 
+
 export default function Carousel() {
+  const id = useId()
+
   return (
     <section className="h-138.75 w-full" aria-label="Voluntariado">
       <Swiper
@@ -29,7 +33,7 @@ export default function Carousel() {
         <SwiperSlide>
           <article
             className="relative w-full max-sm:h-full md:h-123.75 lg:h-123.75 xl:h-153.75"
-            aria-label="Slide 1: Voluntariado"
+            aria-labelledby={`${id}-slide-1-title`}
           >
             <div className="absolute inset-0 h-full w-full">
               <div
@@ -51,10 +55,10 @@ export default function Carousel() {
             <div className="relative z-10 container mr-auto flex h-full items-center max-sm:px-12 md:h-[85%] md:w-[70%] md:px-17 lg:h-full lg:w-[55%] lg:px-20 xl:pl-20">
               <div>
                 <header className="text-white">
-                  <h2 className="text-[16px] font-medium text-[#FD0003] uppercase">
+                  <h2 className="text-[16px] font-medium text-[#FD0003] uppercase" >
                     Voluntariado
                   </h2>
-                  <h1 className="my-1 flex flex-col text-[32px] leading-[1.1] font-medium max-sm:text-[22px]">
+                  <h1 className="my-1 flex flex-col text-[32px] leading-[1.1] font-medium max-sm:text-[22px]" id={`${id}-slide-1-title`}>
                     <span>Acenda o seu melhor e</span>
                     <span>aqueça o coração do seu próximo</span>
                   </h1>

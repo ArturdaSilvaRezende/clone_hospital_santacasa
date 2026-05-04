@@ -1,8 +1,11 @@
+import React, { useId } from 'react'
 import Image from 'next/image'
-import React from 'react'
+
 import { TbMapPin2 } from 'react-icons/tb'
 
-export default function DonationSection() {
+export default function Donation() {
+  const id = useId()
+
   const itensDoacao = [
     'Fraldas Geriátricas',
     'Absorventes',
@@ -19,10 +22,10 @@ export default function DonationSection() {
   ]
 
   return (
-    <section className="my-16 max-sm:my-16 md:mt-0 md:mb-16 xl:my-16" aria-label="O que doar?">
+    <section className="my-16 max-sm:my-16 md:mt-0 md:mb-16 xl:my-16" aria-labelledby={`${id}-donation`}>
       <div className="container mx-auto text-center max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <header className="mb-6">
-          <h2 className="text-[16px] font-semibold tracking-widest text-[#FD0003] uppercase">
+          <h2 className="text-[16px] font-semibold tracking-widest text-[#FD0003] uppercase" id={`${id}-donation`}>
             Como Ajudar
           </h2>
           <p className="text-[28px] font-medium text-black">O que doar?</p>
