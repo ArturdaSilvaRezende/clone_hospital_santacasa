@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import AccordionSection from '~/components/AccordionSection'
 
 const faqHospital = [
@@ -66,14 +67,22 @@ const faqHospital = [
 ]
 
 export default function FrequentlyQuestions() {
+  const id = useId()
+
   return (
-    <section className="mb-16 bg-white py-16" aria-label="Perguntas Frequentes">
+    <section
+      className="mb-16 bg-white py-16"
+      aria-labelledby={`${id}-frequently-asked-questions`}
+    >
       <div className="container mx-auto flex flex-col max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <div className="flex flex-col items-center">
           <p className="text-[16px] font-semibold text-[#FD0003] uppercase">
             Central de Perguntas
           </p>
-          <h1 className="text-[32px] font-medium text-black max-sm:text-[26px]">
+          <h1
+            className="text-[32px] font-medium text-black max-sm:text-[26px]"
+            id={`${id}-frequently-asked-questions`}
+          >
             Perguntas Frequentes
           </h1>
           <p className="mt-2 text-[14px] font-normal text-[#727070] max-sm:text-center">

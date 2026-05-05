@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useId } from 'react'
 import { HiPlus, HiMinus } from 'react-icons/hi2'
 
 const FAQ_DATA = [
@@ -193,6 +193,7 @@ const CATEGORIES = ['Agendamento', 'Convênios', 'Visitas', 'Documentos']
 export default function FrequentlyQuestionsTabs() {
   const [activeTab, setActiveTab] = useState('Agendamento')
   const [openId, setOpenId] = useState(1)
+  const id = useId()
 
   const handleToggle = id => {
     setOpenId(openId === id ? null : id)
@@ -203,12 +204,18 @@ export default function FrequentlyQuestionsTabs() {
   }, [activeTab])
 
   return (
-    <section className="mx-auto container my-16 max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
+    <section
+      className="container mx-auto my-16 max-sm:px-6 md:px-8 lg:px-8 xl:px-0"
+      aria-labelledby={`${id}-frequently-asked-questions`}
+    >
       <div className="mb-10 flex flex-col items-center">
         <p className="text-[16px] font-semibold text-[#FD0003] uppercase">
           Central de Perguntas
         </p>
-        <h1 className="text-[32px] font-medium text-black max-sm:text-[26px]">
+        <h1
+          className="text-[32px] font-medium text-black max-sm:text-[26px]"
+          id={`${id}-frequently-asked-questions`}
+        >
           Perguntas Frequentes
         </h1>
         <p className="mt-2 text-[14px] font-normal text-[#727070] max-sm:text-center">
@@ -259,7 +266,7 @@ export default function FrequentlyQuestionsTabs() {
                 aria-controls={`content-${item.id}`}
                 id={`item-title-${item.id}`}
               >
-                <span className="pr-4 text-[18px] max-sm:text-[16px] font-medium text-black">
+                <span className="pr-4 text-[18px] font-medium text-black max-sm:text-[16px]">
                   {item.title}
                 </span>
                 <div className="shrink-0 text-[#727070] transition-transform duration-300">

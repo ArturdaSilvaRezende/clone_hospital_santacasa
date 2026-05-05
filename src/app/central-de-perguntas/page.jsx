@@ -1,6 +1,6 @@
 import CallToActionSections from '~/components/CallToAction'
-import FrequentlyQuestions from '~/view/pages/centralDePerguntas/FrequentlyQuestions'
-import FrequentlyQuestionsTabs from '~/view/pages/centralDePerguntas/FrequentlyQuestionsTabs'
+import FrequentlyQuestions from './_components/FrequentlyQuestions'
+import FrequentlyQuestionsTabs from './_components/FrequentlyQuestionsTabs'
 
 export default function CentralDePerguntas() {
   return (

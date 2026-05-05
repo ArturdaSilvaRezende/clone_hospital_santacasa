@@ -52,7 +52,6 @@ export default function MainNavigationBar() {
       items: [
         { name: 'Canal de Ouvidoria', route: 'canal-de-ouvidoria' },
         { name: 'Central de Perguntas', route: 'central-de-perguntas' },
-        { name: 'Canal de Denúncia', route: 'canal-de-denuncia' },
         { name: 'Telefones Úteis', route: 'telefones-uteis' }
       ]
     }
