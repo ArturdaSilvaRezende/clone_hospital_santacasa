@@ -1,6 +1,5 @@
 import CallToActionSections from '~/components/CallToAction'
-import PrivacyPolicy from '~/view/pages/politicaDePrivacidade/Content'
-
+import PrivacyPolicy from './_components/Content'
 
 export default function PoliDePrivacidade() {
   return (
