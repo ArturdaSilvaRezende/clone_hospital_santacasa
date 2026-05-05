@@ -1,7 +1,7 @@
 import Image from 'next/image'
+import { useId } from 'react'
 
-export default function References() {
-  const statistics = [
+const statistics = [
     { number: '+50', label: 'Especialidades Médicas' },
     { number: '+900', label: 'Colaboradores' },
     { number: '+380', label: 'Médicos' },
@@ -17,23 +17,26 @@ export default function References() {
     'Cirurgia do Aparelho Digestivo e Urologia'
   ]
 
+export default function References() {
+  const id = useId()
+
   return (
     <section
       className="py-16 max-sm:py-10"
-      aria-labelledby="Referência no Estado de Goiás"
+      aria-labelledby={`${id}-references`}
     >
       <div className="container mx-auto max-sm:px-6 md:px-8">
-        <div className="mb-5 text-center">
+        <header className="mb-5 text-center">
           <p className="mb-2 text-[20px] font-medium tracking-wide text-[#A45757]">
             O nosso propósito é salvar vidas!
           </p>
           <h2
-            id="hospital-statistics-heading"
+            id={`${id}-references`}
             className="text-[32px] max-sm:text-[28px] font-bold text-[#FD0003]"
           >
             Referência no Estado de Goiás em:
           </h2>
-        </div>
+        </header>
 
         <div className="mx-auto gap-5 mb-10 flex lg:w-200 max-sm:w-full items-center justify-between max-sm:flex-wrap md:flex-wrap md:w-[80%] lg:flex-no-wrap max-sm:mt-10">
           {specialties.map((specialty, index) => (

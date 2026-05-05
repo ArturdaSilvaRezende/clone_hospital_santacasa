@@ -1,7 +1,7 @@
+import { useId } from 'react'
 import BannerSection from '~/components/BannerSection'
 
-export default function TotalNumberProcedures() {
-  const statistics = [
+const statistics = [
     {
       number: '+593 mil',
       width: 88.5,
@@ -22,10 +22,14 @@ export default function TotalNumberProcedures() {
     }
   ]
 
+
+export default function TotalNumberProcedures() {
+  const id = useId()
+
   return (
     <section
       className="max-sm:mt-14 max-sm:mb-14 md:mt-14 md:mb-14 lg:mt-16 lg:mb-24"
-      aria-label="Total de Procedimentos Realizados"
+     aria-labelledby={`${id}-total-number-procedures-title`}
     >
       <BannerSection
         image="/images/total-number-procedures-banner.svg"
@@ -41,7 +45,10 @@ export default function TotalNumberProcedures() {
         }
       >
         <div>
-          <h2 className="mb-1 text-[22px] leading-tight font-medium text-gray-800 max-sm:mb-6 max-sm:mt-6 max-sm:text-[20px]">
+          <h2
+            id={`${id}-total-number-procedures-title`}
+            className="mb-1 text-[22px] leading-tight font-medium text-gray-800 max-sm:mb-6 max-sm:mt-6 max-sm:text-[20px]"
+          >
             O que há de melhor para você
           </h2>
 

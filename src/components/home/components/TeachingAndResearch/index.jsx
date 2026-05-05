@@ -1,13 +1,16 @@
-import Image from 'next/image'
+import { useId } from 'react'
 import Link from 'next/link'
 import { TbIdBadge2 } from 'react-icons/tb'
 import { LuGraduationCap } from 'react-icons/lu'
 
+
 export default function TeachingAndResearch() {
+  const id = useId()
+
   return (
     <section
       className="bg-white py-16"
-      aria-labelledby="teaching-research-title"
+      aria-labelledby={`${id}-teaching-research-title`}
     >
       <div className="container mx-auto max-sm:px-6 lg:px-10 xl:px-0">
         <div className="flex flex-col justify-between gap-12 lg:flex-row">
@@ -23,7 +26,7 @@ export default function TeachingAndResearch() {
 
           <div className="relative z-10 flex w-[95%] flex-col gap-5 rounded-[30px] bg-[#FFF0EE] p-10 shadow-sm max-sm:w-full max-sm:p-5 md:mx-auto md:w-150 lg:mx-0 lg:-ml-20 lg:h-180 lg:w-125 xl:h-151">
             <h2
-              id="teaching-research-title"
+              id={`${id}-teaching-research-title`}
               className="text-[28px] font-bold text-[#D32F2F]"
             >
               Ensino & Pesquisa
