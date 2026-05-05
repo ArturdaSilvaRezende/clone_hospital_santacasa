@@ -1,19 +1,25 @@
+import { useId } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Banner() {
+  const id = useId()
+
   return (
     <section
-       className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 lg:py-16 xl:py-0"
-      aria-label="Agendar Consulta Particular"
+      className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 lg:py-16 xl:py-0"
+      aria-labelledby={`${id}-private-consultation`}
     >
       <div className="flex items-center justify-center max-sm:flex-col md:container md:mx-auto xl:mx-0 xl:max-w-none">
         <div className="z-10 container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-[90%] lg:w-[90%] xl:w-[42%]">
-          <h2 className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase">
+          <h2
+            className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase"
+            id={`${id}-private-consultation`}
+          >
             Agendar Consulta Particular
           </h2>
 
-          <h1 className="mb-2 leading-tight font-medium w-full max-sm:text-[21px] max-sm:text-black md:text-[20px] md:text-white  lg:text-[32px] lg:text-white xl:text-black">
+          <h1 className="mb-2 w-full leading-tight font-medium max-sm:text-[21px] max-sm:text-black md:text-[20px] md:text-white lg:text-[32px] lg:text-white xl:text-black">
             Sua saúde em primeiro lugar, agende já sua consulta.
           </h1>
 
@@ -48,7 +54,8 @@ export default function Banner() {
           <div
             className="absolute inset-0 bg-cover bg-center opacity-30"
             style={{
-              backgroundImage: "url('/images/banner-section-agendar-consulta.svg')"
+              backgroundImage:
+                "url('/images/banner-section-agendar-consulta.svg')"
             }}
             role="img"
             aria-label="Médica sorrindo segurando uma prancheta vermelha"

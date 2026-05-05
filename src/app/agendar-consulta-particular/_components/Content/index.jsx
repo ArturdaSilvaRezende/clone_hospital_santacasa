@@ -1,15 +1,24 @@
+import { useId } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 
 export default function PrivateConsultation() {
+  const id = useId()
+
   return (
-    <section className="my-16" aria-label="Consulta Particular">
+    <section
+      className="my-16"
+      aria-labelledby={`${id}-schedule-your-appointment`}
+    >
       <div className="container mx-auto flex flex-col items-center gap-12 max-sm:px-6 md:px-8 lg:flex-row lg:gap-24 lg:px-8 xl:px-0">
         <div className="flex-1">
           <header>
             <span className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase">
               Particular e Convênio
             </span>
-            <h2 className="mb-2 leading-tight font-medium text-black max-sm:w-full max-sm:text-[28px] md:w-[70%] md:text-[20px] lg:w-[90%] lg:text-[32px]">
+            <h2
+              className="mb-2 leading-tight font-medium text-black max-sm:w-full max-sm:text-[28px] md:w-[70%] md:text-[20px] lg:w-[90%] lg:text-[32px]"
+              id={`${id}-schedule-your-appointment`}
+            >
               Agende já sua consulta
             </h2>
           </header>
