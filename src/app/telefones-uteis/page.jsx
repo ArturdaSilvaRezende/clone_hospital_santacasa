@@ -1,6 +1,6 @@
-import React from 'react'
 import CallToActionSections from '~/components/CallToAction'
-import UsefulPhone from '~/view/pages/telefonesUteis/Content'
+import UsefulPhone from './_components/Content'
+
 
 export default function TelefonesUteis() {
   return (
