@@ -1,4 +1,6 @@
+import { useId } from 'react'
 import Image from 'next/image'
+
 
 const guidelines = [
   {
@@ -20,14 +22,15 @@ const guidelines = [
 ]
 
 export default function Banner() {
+  const id = useId()
   return (
     <section
       className="lg:auto relative w-full bg-white max-sm:h-max md:h-auto md:py-16 lg:py-16 xl:py-0"
-      aria-label="Guia do Paciente"
+      aria-labelledby={`${id}-patient-guide`}
     >
       <div className="flex items-center justify-center max-sm:flex-col md:container md:mx-auto xl:mx-0 xl:max-w-none">
         <div className="z-10 container mx-auto max-sm:order-2 max-sm:mt-5 max-sm:mb-8 max-sm:w-full max-sm:px-6 md:w-[90%] lg:w-[90%] xl:w-[42%]">
-          <h2 className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase">
+          <h2 className="text-[16px] font-semibold tracking-wide text-[#FD0003] uppercase" id={`${id}-patient-guide`}>
             Guia do Paciente
           </h2>
 

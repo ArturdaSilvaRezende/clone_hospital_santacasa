@@ -1,7 +1,7 @@
 import CallToActionSections from '~/components/CallToAction'
-import Banner from '~/view/pages/guiaDoPaciente/Banner'
-import FrequentlyQuestions from '~/view/pages/guiaDoPaciente/FrequentlyQuestions'
-import HospitalMap from '~/view/pages/guiaDoPaciente/HospitalMap'
+import Banner from './_components/Banner'
+import HospitalMap from './_components/HospitalMap'
+import FrequentlyQuestions from './_components/FrequentlyQuestions'
 
 export default function GuiaDoPaciente() {
   return (

@@ -1,10 +1,19 @@
+import { useId } from 'react'
 import Image from 'next/image'
 
 export default function HospitalMap() {
+  const id = useId()
+
   return (
-    <section className="w-full bg-white py-12 mb-16" aria-label="Mapa do Hospital">
+    <section
+      className="mb-16 w-full bg-white py-12"
+      aria-labelledby={`${id}-hospital-map`}
+    >
       <div className="container mx-auto flex flex-col items-center justify-center">
-        <h2 className="mb-10 text-center text-[36px] font-semibold text-black max-sm:text-[28px]">
+        <h2
+          className="mb-10 text-center text-[36px] font-semibold text-black max-sm:text-[28px]"
+          id={`${id}-hospital-map`}
+        >
           Mapa do Hospital
         </h2>
         <div className="h- relative aspect-4/3 w-full">
