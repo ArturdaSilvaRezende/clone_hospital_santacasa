@@ -1,4 +1,5 @@
-import Home from '~/view/pages/noticias/Home'
+import Home from "./_components/noticias/Home"
+
 
 export default async function Noticias({ searchParams }) {
   const params = await searchParams
