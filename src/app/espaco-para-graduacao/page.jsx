@@ -1,6 +1,6 @@
 import CallToActionSections from '~/components/CallToAction'
-import Banner from '~/view/pages/espacoParaGraduacao/Banner'
-import Content from '~/view/pages/espacoParaGraduacao/Content'
+import Banner from './_components/Banner'
+import Content from './_components/Content'
 
 export default function EspacoParaGraduacao() {
   return (

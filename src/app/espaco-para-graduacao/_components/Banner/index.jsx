@@ -1,4 +1,6 @@
+import { useId } from 'react'
 import Image from 'next/image'
+
 import { FaWhatsapp } from 'react-icons/fa'
 import {
   MdOutlineAccessTime,
@@ -8,10 +10,11 @@ import {
 } from 'react-icons/md'
 
 export default function Banner() {
+  const id = useId()
   return (
     <section
       className="relative min-h-150 w-full overflow-hidden bg-white md:flex-row"
-      aria-label="Espaço para Graduação"
+      aria-labelledby={`${id}-graduation-space`}
     >
       <div className="container mx-auto flex flex-col gap-20 max-sm:mb-14 max-sm:gap-0 md:flex-row md:gap-0 md:px-8 lg:gap-2 lg:px-10 xl:px-0">
         <div className="z-10 flex w-full flex-col justify-center py-10 max-sm:order-2 max-sm:px-6 md:w-full xl:w-[55%]">
@@ -19,7 +22,10 @@ export default function Banner() {
             <span className="text-[16px] font-semibold tracking-wider text-[#FD0003] uppercase">
               Espaço para Graduação
             </span>
-            <h2 className="mb-4 text-[32px] font-medium text-black max-sm:text-[26px] md:text-white xl:text-black">
+            <h2
+              className="mb-4 text-[32px] font-medium text-black max-sm:text-[26px] md:text-white xl:text-black"
+              id={`${id}-graduation-space`}
+            >
               Excelência na formação
             </h2>
           </header>
