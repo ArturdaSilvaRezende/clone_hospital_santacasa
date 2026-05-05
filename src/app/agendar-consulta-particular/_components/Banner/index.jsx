@@ -1,6 +1,5 @@
 import { useId } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default function Banner() {
   const id = useId()
@@ -27,27 +26,6 @@ export default function Banner() {
             Com os melhores profissionais garantimos o que há de melhor para
             você e sua saúde. Conheça nosso corpo clínico logo abaixo:
           </p>
-
-          <Link
-            href="#"
-            className="group mt-6 flex h-10.75 w-75.75 items-center justify-center gap-2 rounded-3xl bg-[#FD0003] font-normal text-white transition-colors hover:bg-red-800"
-            aria-label="Conhecer corpo clínico"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span>Conhecer corpo clínico</span>
-            <span
-              className="transition-transform group-hover:translate-x-1"
-              aria-hidden="true"
-            >
-              <Image
-                src="/icons/arrow-top-left-icon-white.svg"
-                alt="ícone de seta para indicar link"
-                width={16}
-                height={16}
-              />
-            </span>
-          </Link>
         </div>
 
         <div className="absolute inset-0 z-0 overflow-hidden bg-[#BE3131] max-sm:hidden xl:hidden">

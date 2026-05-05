@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { HiPlus, HiMinus } from 'react-icons/hi2'
 
 export default function Faq() {
   const [openId, setOpenId] = useState('q4')
+  const id = useId()
 
   const toggleFAQ = id => {
     setOpenId(openId === id ? null : id)
@@ -41,11 +42,11 @@ export default function Faq() {
   return (
     <section
       className="mb-16 w-full bg-white px-4 py-20"
-      aria-labelledby="faq-title"
+      aria-labelledby={`${id}-faq-title`}
     >
       <div className="mx-auto max-w-4xl">
         <h2
-          id="faq-title"
+          id={`${id}-faq-title`}
           className="mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl"
         >
           Dúvidas Frequentes

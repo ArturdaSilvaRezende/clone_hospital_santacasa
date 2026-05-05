@@ -1,13 +1,13 @@
-'use client'
-
+import { useId } from 'react'
 import Image from 'next/image'
 import { FaWhatsapp, FaRegClock, FaMapMarkerAlt } from 'react-icons/fa'
 
 export default function HeroBloodBank() {
+  const id = useId()
   return (
     <section
       className="relative flex min-h-125 w-full items-center justify-center px-4 py-16"
-      aria-labelledby="hero-title"
+      aria-labelledby={`${id}-hero-title`}
     >
       <div className="absolute inset-0 z-0">
         <Image
@@ -27,7 +27,7 @@ export default function HeroBloodBank() {
             Horários de Atendimento
           </p>
           <h1
-            id="hero-title"
+            id={`${id}-hero-title`}
             className="text-3xl font-bold text-white md:text-4xl"
           >
             Visite o Banco de Sangue da SCMG

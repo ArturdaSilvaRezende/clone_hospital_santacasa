@@ -1,5 +1,6 @@
 'use client'
 
+import { useId } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -7,10 +8,12 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 import './styles.css'
 
 export default function Why() {
+  const id = useId()
+
   return (
     <section
       className="relative -top-4 h-138.75 w-full"
-      aria-label="Por que doar sangue?"
+      aria-labelledby={`${id}-donate-blood`}
     >
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
@@ -49,10 +52,13 @@ export default function Why() {
               <div className="grid w-full grid-cols-1 items-center gap-8 md:flex lg:grid-cols-2 lg:gap-12">
                 <div className="max-w-2xl space-y-4 text-white">
                   <header>
-                    <h2 className="text-[16px] font-semibold text-[#FD0003] uppercase">
+                    <h2
+                      className="text-[16px] font-semibold text-[#FD0003] uppercase"
+                      id={`${id}-donate-blood`}
+                    >
                       Banco de Sangue
                     </h2>
-                     <h1 className="flex flex-col text-[32px] leading-[1.1] font-medium max-sm:text-[22px]">
+                    <h1 className="flex flex-col text-[32px] leading-[1.1] font-medium max-sm:text-[22px]">
                       <span>Um pequeno gesto,</span>
                       <span>uma grande esperança</span>
                     </h1>
