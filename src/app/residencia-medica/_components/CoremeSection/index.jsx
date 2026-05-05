@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 import {
   MdFavorite,
   MdFace,
@@ -27,17 +27,18 @@ const specialties = [
 ]
 
 export default function CoremeSection() {
+  const id = useId()
   return (
-    <section className="w-full py-16" aria-label="Coreme da Santa Casa">
+    <section className="w-full py-16" aria-labelledby={`${id}-coreme-title`}>
       <div className="container mx-auto  max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
         <header className="mb-6 text-center">
-          <h2 className="text-[32px] font-medium tracking-tight text-[#FD0003] max-sm:text-[22px]">
+          <h2 className="text-[32px] font-medium tracking-tight text-[#FD0003] max-sm:text-[22px]" id={`${id}-coreme-title`}>
             A Coreme da Santa Casa dispõe dos seguintes cursos:
           </h2>
         </header>
 
         <div
-          className="mx-auto flex lg:max-w-203.25 flex-wrap items-center justify-start gap-3"
+          className="mx-auto flex container not-first:flex-wrap items-center justify-center gap-3"
           role="list"
         >
           {specialties.map((item, index) => (

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { useId } from 'react';
 
 const members = [
   { name: 'Dr. Evandro das M. Bittencourt Resque Jr', role: 'Coordenador' },
@@ -14,16 +14,15 @@ const members = [
   { name: 'Dr. José Fernando Bastos Folgosi', role: 'Conselheiro Científico' }
 ]
 
-const marginCard = ''
-
 export default function DiretoriaCoreme() {
+  const id = useId()
   return (
     <section
       className="mb-16 bg-white py-15"
-      aria-label="Conheça a diretoria do Coreme"
+      aria-labelledby={`${id}-diretoria-title`}
     >
       <div className="container mx-auto max-sm:px-6 md:px-8 lg:px-8 xl:px-0">
-        <h2 className="mb-6 text-center text-[32px] font-medium tracking-tight text-[#FD0003] max-sm:text-[26px]">
+        <h2 className="mb-6 text-center text-[32px] font-medium tracking-tight text-[#FD0003] max-sm:text-[26px]" id={`${id}-diretoria-title`}>
           Conheça a diretoria do <span className="uppercase"> Coreme</span>
         </h2>
 
