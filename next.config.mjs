@@ -6,7 +6,13 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.santacasago.org.br',
         pathname: '/**'
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'uytdqrjpaiatlyeyjasi.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
     ]
   }
 }

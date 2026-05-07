@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useId } from 'react'
 import { useAppointmentStore } from '~/app/consultar-agendamento/_store'
 import { useScheduleStore } from '~/app/pre-agendamento/_store'
@@ -15,7 +16,6 @@ export default function SchedulingDetails() {
   const content = useAppointmentStore(state => state.content)
   const requestStatus = useAppointmentStore(state => state.request_status)
   const headingId = useId()
-  // const API_URL = 'http://localhost:3333/'
 
   const fetchDataMedicalSpecialities = useScheduleStore(
     state => state.fetchDataMedicalSpecialities
@@ -46,6 +46,8 @@ export default function SchedulingDetails() {
   }
 
   if (!content || !content.id) return null
+
+  console.log(content)
 
   return (
     <div
@@ -135,24 +137,26 @@ export default function SchedulingDetails() {
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <dt className="text-[18px] font-bold text-black">
-              Informações Adicionais
-            </dt>
+            <dt className="text-[18px] font-bold text-black">Pedido Médico</dt>
             <dd className="text-[1rem] font-medium text-[#555353]">
               {content.observacao || 'Nenhuma observação'}
             </dd>
           </div>
-          {/* <div className="flex flex-col gap-y-2">
-            <dt className="text-[18px] font-bold text-black">Informações Adicionais</dt>
+         
+        </dl>
+
+         <div className="flex flex-col gap-y-2 relative mt-10 w-full">
+            <dt className="text-[18px] font-bold text-black">Pedido Médico</dt>
             {content.imagem_pedido_url && (
-              <img 
-                src={`${API_URL}${content.imagem_pedido_url}`} 
-                alt="Pedido Médico" 
-                className="max-w-full h-auto rounded-lg"
+              <Image
+                src={content.imagem_pedido_url}
+                alt="Pedido Médico"
+                className="h-auto max-w-full object-contain rounded-lg"
+                height={300}
+                width={1200}
               />
             )}
-          </div> */}
-        </dl>
+          </div>
 
         <footer className="mt-12 w-full border-t pt-8 text-[#555353]">
           <h3 className="mb-4 font-bold text-black">
