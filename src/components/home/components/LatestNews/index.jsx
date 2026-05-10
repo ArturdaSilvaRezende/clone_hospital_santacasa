@@ -7,9 +7,7 @@ export default function LatestNews({ newsPromise = [] }) {
   const list = use(newsPromise)
 
   if (list.length === 0) return null
-
-  console.log(list)
-
+  
   return (
     <section
       className="bg-white pt-24 pb-14 max-sm:pt-12"

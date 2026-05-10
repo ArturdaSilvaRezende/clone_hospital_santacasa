@@ -22,10 +22,10 @@ export default function DataTime({ data, top }) {
   }
 
   return (
-    <div className='max-sm:mt-28 md:mt-20 lg:mt-40 '>
+    <div className={` ${top ? top : 'max-sm:mt-28 md:mt-20 lg:mt-40'}`}>
       <time
       dateTime={rawDate}
-      className={`relative ${top ? top : 'mt-16'} mb-3 text-[16px] text-gray-500`}
+      className={`relative mb-3 text-[16px] text-gray-500`}
     >
       {dateFormatter(rawDate)}
     </time>

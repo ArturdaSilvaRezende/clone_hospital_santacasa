@@ -1,8 +1,5 @@
 import Image from 'next/image'
-import styles from './styles.module.css'
-import ListCards from '~/components/ListCards'
 import DataTime from '~/components/CustomComponents/DataTime'
-// import { BlocksRenderer } from '@strapi/block-react-render' // Se você usar o novo editor do Strapi
 
 export default async function Page({ params }) {
   const { id } = await params
@@ -12,68 +9,98 @@ export default async function Page({ params }) {
     next: { revalidate: 60 }
   })
 
-  const allRes = await fetch(`${STRAPI_URL}/api/noticias?populate=*&pagination[limit]=4`, {
-    next: { revalidate: 60 }
-  })
+  const allRes = await fetch(
+    `${STRAPI_URL}/api/noticias?populate=*&pagination[limit]=4`,
+    {
+      next: { revalidate: 60 }
+    }
+  )
 
   if (!res.ok || !allRes.ok) {
     throw new Error('Erro ao carregar dados do Strapi')
   }
 
   const responseJson = await res.json()
-  const otherNewsJson = await allRes.json()
-  
-  const data = responseJson.data
+  const data = responseJson.data || {}
 
-  const news = {
-    title: data.title, 
-    description: data.description, 
-    imageUrl: data.banner?.url ? `${STRAPI_URL}${data.banner.url}` : null,
-    publishedAt: data.publishedAt
+  const renderContent = text => {
+    if (!text) return null
+
+    return text
+      .split('\n')
+      .filter(line => line.trim() !== '')
+      .map((paragraph, index) => {
+        const trimmedPara = paragraph.trim()
+
+        if (
+          trimmedPara.length > 0 &&
+          trimmedPara.length < 60 &&
+          !trimmedPara.endsWith('.')
+        ) {
+          return (
+            <h2
+              key={index}
+              className=" text-[18px] font-bold text-gray-900"
+            >
+              {trimmedPara}
+            </h2>
+          )
+        }
+
+        if (/^\d+\./.test(trimmedPara)) {
+          return (
+            <li key={index} className="mb-1 ml-5 list-decimal text-gray-700">
+              {trimmedPara.replace(/^\d+\.\s*/, '')}
+            </li>
+          )
+        }
+
+        return (
+          <p key={index} className="mb-4">
+            {trimmedPara}
+          </p>
+        )
+      })
   }
 
-  console.log(news)
-
   return (
-    <>
-      <article className="container mx-auto my-15 flex flex-col items-center gap-5 max-sm:px-5 md:px-8 xl:px-0">
-        <header>
-          <h1 className="mx-auto mb-3 max-w-231.5 text-center text-[36px] leading-[1.1] font-medium max-sm:text-[24px]">
-            {news.title}
-          </h1>
+    <article className="container mx-auto my-15 max-sm:px-5 md:px-8 xl:px-0">
+      <header className="mb-10 flex flex-col items-center">
+        <h1 className="mx-auto mb-3 max-w-4xl text-center text-[36px] leading-[1.1] font-bold max-sm:text-[24px]">
+          {data.title}
+        </h1>
 
-          <div className="mb-5 flex justify-center gap-3">
-            <Image src="/icons/calendar-month-icon-gray.svg" alt="Calendário" height={17} width={17} />
-            {/* <DataTime data={{ createdAt: news.publishedAt }} top="top-[7px]" /> */}
-          </div>
-        </header>
+        <div className="flex items-center justify-center gap-3">
+          <Image
+            src="/icons/calendar-month-icon-gray.svg"
+            alt="Calendário"
+            height={17}
+            width={17}
+          />
 
-        <div className="w-full">
-          {news.imageUrl && (
-            <div className="relative float-left mr-6 mb-4 overflow-hidden rounded-2xl h-71 w-full md:w-[50%] max-sm:float-none">
-              <Image
-                src={news.imageUrl}
-                alt={news.title || "Banner da notícia"}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          )}
-
-          <div className={`${styles.events__description} space-y-3 text-justify text-lg`}>
-            {/* 4. RENDERIZADOR DE BLOCOS (Para aquele array de 8 itens) */}
-            {/* {news.description && <BlocksRenderer content={news.description} />} */}
-          </div>
-
-          <div className="clear-both"></div>
+          <DataTime data={{ createdAt: data.createdAt }} top="mt-1" />
         </div>
-      </article>
+      </header>
 
-      <section className="container mx-auto my-15 max-sm:px-5 md:px-8 xl:px-0">
-        <h3 className="mb-6 text-[24px] font-medium">Confira outras notícias</h3>
-        {/* <ListCards list={otherNewsJson.data} /> */}
-      </section>
-    </>
+      <div className="container mx-auto">
+        <div className="relative float-left mr-8 mb-4 h-75 w-full overflow-hidden rounded-lg md:h-100 md:w-1/2 lg:w-160.5">
+          <div
+            className="h-75 w-full rounded-lg bg-cover bg-center md:h-100 md:w-full lg:w-160.5"
+            style={{
+              backgroundImage: `url(http://localhost:1337${data.news_image.url})`,
+              backgroundColor: '#BE3131'
+            }}
+            role="img"
+            aria-label={data.title}
+          />
+        </div>
+
+        <div className="text-justify text-lg leading-relaxed whitespace-pre-line text-gray-800">
+          {renderContent(data.description)}
+        </div>
+
+        <div className="clear-both"></div>
+      </div>
+    </article>
   )
 }

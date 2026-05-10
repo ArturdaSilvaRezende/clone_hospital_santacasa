@@ -7,7 +7,7 @@ import ServicesGrid from './components/Services'
 import TeachingAndResearch from './components/TeachingAndResearch'
 import TotalNumberProcedures from './components/TotalNumberProcedures'
 
- async function getNews() {
+async function getNews() {
   const res = await fetch('http://localhost:1337/api/noticias/?populate=*', {
     next: { revalidate: 60 }
   })
@@ -16,15 +16,16 @@ import TotalNumberProcedures from './components/TotalNumberProcedures'
 }
 
 export default function Home() {
-
- const newsPromise = getNews()
+  const newsPromise = getNews()
 
   return (
     <>
-     <Suspense fallback={<div className="h-125 bg-black animate-pulse" />}>
+      <Suspense fallback={<div className="h-125 animate-pulse bg-black" />}>
         <CarouselHero newsPromise={newsPromise} />
       </Suspense>
-      <LatestNews newsPromise={newsPromise} />
+      <Suspense fallback={<div className="h-125 animate-pulse bg-black" />}>
+        <LatestNews newsPromise={newsPromise} />
+      </Suspense>
       <TotalNumberProcedures />
       <ServicesGrid />
       <TeachingAndResearch />

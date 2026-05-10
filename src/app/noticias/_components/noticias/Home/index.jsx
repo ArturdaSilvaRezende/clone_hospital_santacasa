@@ -1,96 +1,42 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-import Skeleton from '@mui/material/Skeleton'
 import Image from 'next/image'
-import Search from './components/Search'
 import Link from 'next/link'
+import { use } from 'react'
+// import Skeleton from '@mui/material/Skeleton'
 
-export default function Home({ initialData, pagination }) {
-  const [newsList, setNewsList] = useState(initialData)
-  const [currentPage, setCurrentPage] = useState(pagination.page)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedDate, setSelectedDate] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [debouncedSearch, setDebouncedSearch] = useState(searchTerm)
+export default function Home({ newsPromise = [] }) {
+  const list = use(newsPromise)
 
-  async function loadMore() {
-    if (currentPage >= pagination.page_count) return
+  const newsOnly = list.filter(item => item.is_banner === null)
 
-    setIsLoading(true)
-
-    const nextPage = currentPage + 1
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/news?page=${nextPage}`
-    )
-
-    const result = await res.json()
-
-    setNewsList(prev => [...prev, ...result.list])
-    setCurrentPage(nextPage)
-    setIsLoading(false)
-  }
-
-  const filteredNews = newsList.filter(news => {
-   const matchesTitle = news.title
-    .toLowerCase()
-    .includes(debouncedSearch.toLowerCase())
-
-    if (!selectedDate) return matchesTitle
-
-    const [day, month, year] = selectedDate.split('/')
-
-    if (year && year.length === 4) {
-      const formattedSelectedDate = `${year}-${month}-${day}`
-      const matchesDate = news.date.startsWith(formattedSelectedDate)
-      return matchesTitle && matchesDate
-    }
-
-    return matchesTitle
-  })
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDebouncedSearch(searchTerm)
-    }, 500)
-
-    return () => clearTimeout(timeout)
-  }, [searchTerm])
+  if (newsOnly.length === 0) return null
 
   return (
     <section className="my-24" aria-label="Últimas Notícias">
       <div className="container mx-auto flex flex-col items-center justify-center gap-y-8 max-sm:px-5 md:px-8 lg:px-0">
-        <Search
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-        />
         <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-5 md:gap-y-12 lg:flex-wrap lg:gap-x-5 lg:gap-y-7">
-          {filteredNews.map((news, index) => (
+          {newsOnly.map((news, index) => (
             <article
               key={news.id}
               className="flex flex-col max-sm:w-full md:w-[48%] lg:w-101.75"
             >
               <div className="h-48 w-full">
-                <Image
-                  src={news.url}
-                  alt={news.title}
-                  priority={index === 0}
-                  height={206}
-                  width={357}
-                  className="h-auto w-full rounded-lg object-cover"
-                  loading="eager"
+                <div
+                  className="w-auto rounded-lg bg-cover bg-center max-sm:h-70 md:h-60 lg:h-81.5"
+                  style={{
+                    backgroundImage: `url(http://localhost:1337${news?.news_image?.url})`,
+                    backgroundColor: '#BE3131'
+                  }}
+                  role="img"
+                  aria-label={news.title}
                 />
               </div>
 
               <div className="flex flex-col px-2 md:mt-10 lg:mt-22">
                 <time
-                  dateTime={news.date}
+                  dateTime={news.createdAt}
                   className="relative top-16 mb-3 text-[16px] text-gray-500"
                 >
-                  {new Date(news.date).toLocaleDateString('pt-BR', {
+                  {new Date(news.createdAt).toLocaleDateString('pt-BR', {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric'
@@ -107,7 +53,7 @@ export default function Home({ initialData, pagination }) {
 
                 <div className="border-t border-[#B4B4B4] pt-5">
                   <Link
-                    href={`/noticias/${news.id}`}
+                    href={`/noticias/${news.documentId}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex h-10.5 w-39.25 items-center justify-center gap-2 rounded-3xl border border-[#B4B4B4] font-semibold text-[#111032] transition-colors hover:bg-gray-100"
@@ -130,39 +76,8 @@ export default function Home({ initialData, pagination }) {
               </div>
             </article>
           ))}
-
-          {isLoading &&
-            Array.from({ length: 10 }).map((_, index) => (
-              <article
-                key={`skeleton-${index}`}
-                className="flex flex-col max-sm:w-full md:w-[42%] lg:w-101.75"
-              >
-                <div className="h-48 w-full">
-                  <Skeleton
-                    variant="rectangular"
-                    width="100%"
-                    height={206}
-                    className="rounded-lg"
-                  />
-                </div>
-
-                <div className="mt-4 flex flex-col gap-3 px-2">
-                  <Skeleton variant="text" width="40%" height={20} />
-                  <Skeleton variant="text" width="90%" height={30} />
-                  <Skeleton variant="text" width="80%" height={20} />
-                  <Skeleton variant="text" width="60%" height={20} />
-
-                  <Skeleton
-                    variant="rounded"
-                    width={150}
-                    height={40}
-                    className="mt-4"
-                  />
-                </div>
-              </article>
-            ))}
         </div>
-        {currentPage < pagination.page_count && (
+        {/* {currentPage < pagination.page_count && (
           <button
             onClick={loadMore}
             disabled={isLoading}
@@ -170,7 +85,7 @@ export default function Home({ initialData, pagination }) {
           >
             {isLoading ? 'Carregando...' : 'Carregar mais notícias'}
           </button>
-        )}
+        )} */}
       </div>
     </section>
   )
