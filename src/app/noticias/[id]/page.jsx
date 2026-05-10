@@ -2,107 +2,77 @@ import Image from 'next/image'
 import styles from './styles.module.css'
 import ListCards from '~/components/ListCards'
 import DataTime from '~/components/CustomComponents/DataTime'
+// import { BlocksRenderer } from '@strapi/block-react-render' // Se você usar o novo editor do Strapi
 
 export default async function Page({ params }) {
-  const { id, page } = await params
-  const pageNumber = Number(page) || 1
+  const { id } = await params
+  const STRAPI_URL = 'http://localhost:1337'
 
-  const allRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/news?page=${pageNumber}`,
-    {
-      next: { revalidate: 60 }
-    }
-  )
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/news/${id}`, {
+  const res = await fetch(`${STRAPI_URL}/api/noticias/${id}?populate=*`, {
     next: { revalidate: 60 }
   })
 
-  if (!res.ok) {
-    throw new Error('Erro ao buscar notícia')
+  const allRes = await fetch(`${STRAPI_URL}/api/noticias?populate=*&pagination[limit]=4`, {
+    next: { revalidate: 60 }
+  })
+
+  if (!res.ok || !allRes.ok) {
+    throw new Error('Erro ao carregar dados do Strapi')
   }
 
-  if (!allRes.ok) {
-    throw new Error('Erro ao buscar notícias')
+  const responseJson = await res.json()
+  const otherNewsJson = await allRes.json()
+  
+  const data = responseJson.data
+
+  const news = {
+    title: data.title, 
+    description: data.description, 
+    imageUrl: data.banner?.url ? `${STRAPI_URL}${data.banner.url}` : null,
+    publishedAt: data.publishedAt
   }
 
-  const result = await allRes.json()
-  const data = await res.json()
-  const news = data.info
-  const isMateria = news.url.includes('FOTOS_MATERIA')
-  const isWhatsApp = news.url.includes('Whats_App')
-  // const objectFitClass = isMateria ? 'object-contain' : 'object-cover'
-  const imageHeight = isMateria
-    ? 'h-120 md:h-90 xl:h-120 w-[50%] md:w-[70%] xl:w-[50%] max-sm:h-full'
-    : 'w-[70%] xl:h-66 md:h-50 max-sm:h-32'
-  const imageBannerHeight = isMateria
-    ? 'xl:h-122 md:h-100 max-sm:h-60'
-    : 'xl:h-71 md:h-50 max-sm:h-32'
-  const imageWhatsAppHeight = isWhatsApp
-    ? 'h-110 w-[70%] max-sm:h-50'
-    : imageHeight
-  const cleanHtmlContent = news?.html_content
-    ?.replace(/<[^>]+>\s*(&nbsp;)?\s*<\/[^>]+>/g, '')
-    .trim()
+  console.log(news)
 
   return (
     <>
-      <article
-        className="container mx-auto my-15 flex flex-col items-center gap-5 max-sm:mt-15 max-sm:mb-5 max-sm:px-5 md:px-8 lg:px-8 xl:px-0"
-        aria-label={news.title}
-      >
+      <article className="container mx-auto my-15 flex flex-col items-center gap-5 max-sm:px-5 md:px-8 xl:px-0">
         <header>
           <h1 className="mx-auto mb-3 max-w-231.5 text-center text-[36px] leading-[1.1] font-medium max-sm:text-[24px]">
             {news.title}
           </h1>
 
-          <div className="mb-5 flex justify-center gap-3 max-sm:mt-2">
-            <Image
-              src="/icons/calendar-month-icon-gray.svg"
-              alt="Calendar Icon"
-              height={17}
-              width={17}
-            />
-            <DataTime data={news} top="top-[7px]" />
+          <div className="mb-5 flex justify-center gap-3">
+            <Image src="/icons/calendar-month-icon-gray.svg" alt="Calendário" height={17} width={17} />
+            {/* <DataTime data={{ createdAt: news.publishedAt }} top="top-[7px]" /> */}
           </div>
         </header>
 
-        <div>
-          <div
-            className={`relative float-left mr-6 mb-4 lg:mb-10 xl:mb-4 ${imageWhatsAppHeight} max-sm:float-none max-sm:w-full`}
-          >
-            {/* <Image
-              src={news.url}
-              alt={news.title}
-              fill
-              className={`rounded-xl ${objectFitClass}`}
-              loading="eager"
-            /> */}
-            <div
-              className={`w-full rounded-2xl bg-cover max-sm:w-full ${isWhatsApp ? 'h-110 max-sm:h-50' : imageBannerHeight}`}
-              style={{
-                backgroundImage: `url('${news.url}')`,
-                backgroundColor: '#BE3131'
-              }}
-              role="img"
-              aria-label="Médica sorrindo segurando uma prancheta vermelha"
-            />
-          </div>
+        <div className="w-full">
+          {news.imageUrl && (
+            <div className="relative float-left mr-6 mb-4 overflow-hidden rounded-2xl h-71 w-full md:w-[50%] max-sm:float-none">
+              <Image
+                src={news.imageUrl}
+                alt={news.title || "Banner da notícia"}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
 
-          <div
-            className={`${styles.events__description} space-y-3 text-justify`}
-            dangerouslySetInnerHTML={{ __html: cleanHtmlContent }}
-          />
+          <div className={`${styles.events__description} space-y-3 text-justify text-lg`}>
+            {/* 4. RENDERIZADOR DE BLOCOS (Para aquele array de 8 itens) */}
+            {/* {news.description && <BlocksRenderer content={news.description} />} */}
+          </div>
 
           <div className="clear-both"></div>
         </div>
       </article>
 
-      <section className="container mx-auto my-15 max-sm:px-5 md:px-8 lg:px-8 xl:px-0">
-        <h3 className="mb-2 text-[24px] font-medium">
-          Confira outras notícias
-        </h3>
-        <ListCards list={result?.list} />
+      <section className="container mx-auto my-15 max-sm:px-5 md:px-8 xl:px-0">
+        <h3 className="mb-6 text-[24px] font-medium">Confira outras notícias</h3>
+        {/* <ListCards list={otherNewsJson.data} /> */}
       </section>
     </>
   )

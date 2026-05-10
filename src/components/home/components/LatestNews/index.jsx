@@ -1,29 +1,14 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { use } from 'react'
 import Link from 'next/link'
-import { api } from '~/services/api'
 import ListCards from '~/components/ListCards'
 
-export default function LatestNews() {
-  const [list, setList] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+export default function LatestNews({ newsPromise = [] }) {
+  const list = use(newsPromise)
 
-  async function load() {
-    try {
-      setIsLoading(true)
-      const result = await api.get(`/news`)
+  if (list.length === 0) return null
 
-      setList(result?.data?.list)
-    } catch (err) {
-      console.log(err.message)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    load()
-  }, [])
+  console.log(list)
 
   return (
     <section

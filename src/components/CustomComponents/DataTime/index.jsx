@@ -2,21 +2,33 @@ import { formatInTimeZone } from 'date-fns-tz'
 import { ptBR } from 'date-fns/locale'
 
 export default function DataTime({ data, top }) {
-  const dateFormatter = (date) => {
-    return formatInTimeZone(
-      date, 
-      'UTC', 
-      "d 'de' MMMM 'de' yyyy",
-      { locale: ptBR }
-    )
+  const rawDate = data.date || data.createdAt
+
+  const dateFormatter = date => {
+    if (!date) return ''
+
+    try {
+      const parsedDate = new Date(date)
+
+      if (isNaN(parsedDate.getTime())) return ''
+
+      return formatInTimeZone(parsedDate, 'UTC', "d 'de' MMMM 'de' yyyy", {
+        locale: ptBR
+      })
+    } catch (error) {
+      console.error('Erro ao formatar data:', error)
+      return ''
+    }
   }
 
   return (
-    <time
-      dateTime={data.date}
-      className={`relative ${top ? `${top}` : 'top-16'} mb-3 text-[16px] text-gray-500`}
+    <div className='max-sm:mt-28 md:mt-20 lg:mt-40 '>
+      <time
+      dateTime={rawDate}
+      className={`relative ${top ? top : 'mt-16'} mb-3 text-[16px] text-gray-500`}
     >
-      {dateFormatter(data.date)}
+      {dateFormatter(rawDate)}
     </time>
+    </div>
   )
 }
