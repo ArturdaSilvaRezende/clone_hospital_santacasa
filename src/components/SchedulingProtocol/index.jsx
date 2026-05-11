@@ -105,7 +105,7 @@ export default function SchedulingProtocol() {
             <div 
               id={errorId} 
               aria-live="assertive" 
-              className="min-h-[1.25rem] text-sm font-medium text-[#D90000]"
+              className="min-h-5 text-sm font-medium text-[#D90000]"
             >
               {errors.protocolo?.message}
             </div>

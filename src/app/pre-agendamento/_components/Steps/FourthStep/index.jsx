@@ -102,6 +102,10 @@ export function FourthStep() {
     saveFourthStepData(sanitizedData)
 
     await fetchCreateSchedule({ content: formData })
+    showToast.success('Agendamento criado com sucesso!', {
+      position: 'top-right',
+      transition: 'bounce'
+    })
   }
 
   function handleBackStep() {

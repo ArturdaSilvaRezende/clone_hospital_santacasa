@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { api } from '~/services/api'
 
 export const useAppointmentStore = create(set => ({
-  // Initial State
+ 
   content: {},
   request_status: 'idle',
   response_message: null,
