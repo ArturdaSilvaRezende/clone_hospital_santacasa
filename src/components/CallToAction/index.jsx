@@ -47,7 +47,7 @@ export default function CallToActionSections() {
           </Link>
 
           <Link
-            href="/doacao"
+            href="https://santacasago.colabore.org/doacao/single_step"
             className="group flex h-12.5 w-75.75 items-center justify-center gap-2 rounded-3xl border border-[#FD0003] font-normal text-[#FD0003] transition-colors hover:bg-red-50"
             aria-label="Quero fazer uma doação"
             rel="noopener noreferrer"

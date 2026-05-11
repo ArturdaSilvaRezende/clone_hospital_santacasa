@@ -23,6 +23,8 @@ export default async function Page({ params }) {
   const responseJson = await res.json()
   const data = responseJson.data || {}
 
+  console.log('Dados da notícia:', data)
+
   const renderContent = text => {
     if (!text) return null
 
@@ -38,10 +40,7 @@ export default async function Page({ params }) {
           !trimmedPara.endsWith('.')
         ) {
           return (
-            <h2
-              key={index}
-              className=" text-[18px] font-bold text-gray-900"
-            >
+            <h2 key={index} className="text-[18px] font-bold text-gray-900">
               {trimmedPara}
             </h2>
           )
@@ -83,17 +82,27 @@ export default async function Page({ params }) {
       </header>
 
       <div className="container mx-auto">
-        <div className="relative float-left mr-8 mb-4 h-75 w-full overflow-hidden rounded-lg md:h-100 md:w-1/2 lg:w-160.5">
-          <div
-            className="h-75 w-full rounded-lg bg-cover bg-center md:h-100 md:w-full lg:w-160.5"
-            style={{
-              backgroundImage: `url(http://localhost:1337${data.news_image.url})`,
-              backgroundColor: '#BE3131'
-            }}
+        {data.is_banner === true ? (
+          <img
+            className="w-full rounded-lg object-cover"
+            src={`http://localhost:1337${data?.banner?.url}`}
+            alt={data.title}
             role="img"
             aria-label={data.title}
           />
-        </div>
+        ) : (
+          <div className="relative float-left mr-8 mb-4 h-75 w-full overflow-hidden rounded-lg md:h-100 md:w-1/2 lg:w-160.5">
+            <div
+              className="h-75 w-full rounded-lg bg-cover bg-center md:h-100 md:w-full lg:w-160.5"
+              style={{
+                backgroundImage: `url(http://localhost:1337${data?.news_image?.url})`,
+                backgroundColor: '#BE3131'
+              }}
+              role="img"
+              aria-label={data.title}
+            />
+          </div>
+        )}
 
         <div className="text-justify text-lg leading-relaxed whitespace-pre-line text-gray-800">
           {renderContent(data.description)}

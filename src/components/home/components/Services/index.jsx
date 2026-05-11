@@ -13,14 +13,14 @@ export default function ServicesGrid() {
   }, [])
 
   const services = [
-    {
-      id: 1,
-      title: 'Pré-agendamento',
-      description: 'Faça seu pré-agendamento',
-      action: 'Agendar agora',
-      image: '/images/thumb-pre-agendamento.svg',
-      src: '/pre-agendamento'
-    },
+    // {
+    //   id: 1,
+    //   title: 'Pré-agendamento',
+    //   description: 'Faça seu pré-agendamento',
+    //   action: 'Agendar agora',
+    //   image: '/images/thumb-pre-agendamento.svg',
+    //   src: '/pre-agendamento'
+    // },
     {
       id: 2,
       title: 'Especialidades',
@@ -37,14 +37,14 @@ export default function ServicesGrid() {
       image: '/images/thumb-conecte-sus.jpg',
       src: '/pre-agendamento-sus'
     },
-    {
-      id: 4,
-      title: 'Exames',
-      description: 'Laboratório e diagnóstico por imagem.',
-      action: 'Consultar exames',
-      image: '/images/thumb-exames.svg',
-      src: '/exames'
-    },
+    // {
+    //   id: 4,
+    //   title: 'Exames',
+    //   description: 'Laboratório e diagnóstico por imagem.',
+    //   action: 'Consultar exames',
+    //   image: '/images/thumb-exames.svg',
+    //   src: ''
+    // },
     {
       id: 5,
       title: 'Trabalhe Conosco',
