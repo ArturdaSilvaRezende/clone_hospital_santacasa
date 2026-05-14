@@ -23,7 +23,6 @@ export default async function Page({ params }) {
   const responseJson = await res.json()
   const data = responseJson.data || {}
 
-  console.log('Dados da notícia:', data)
 
   const renderContent = text => {
     if (!text) return null

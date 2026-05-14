@@ -11,7 +11,7 @@ export default function Home({ newsPromise = [] }) {
   if (newsOnly.length === 0) return null
 
   return (
-    <section className="my-24" aria-label="Últimas Notícias">
+    <section className="my-24" aria-labelledby="last-news-title">
       <div className="container mx-auto flex flex-col items-center justify-center gap-y-8 max-sm:px-5 md:px-8 lg:px-0">
         <div className="flex max-sm:flex-col max-sm:justify-center max-sm:gap-10 md:flex-wrap md:gap-5 md:gap-y-12 lg:flex-wrap lg:gap-x-5 lg:gap-y-7">
           {newsOnly.map((news, index) => (
