@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { api } from '~/services/api'
 
 export const useScheduleStore = create((set, get) => ({
-  // Initial State
+
   current_step: 'first',
   return_type: 'return_consult',
   speciality_list: [],
