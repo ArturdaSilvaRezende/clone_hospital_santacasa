@@ -54,13 +54,12 @@ export default function Aside() {
             <li
               key={step.id}
               className="relative flex flex-col pb-16 last:pb-0"
-              // Informa ao leitor de tela se este é o passo atual
               aria-current={isActive ? 'step' : undefined}
             >
               {!isLast && (
                 <div
                   className={`absolute top-10 right-0 h-full w-px ${isCompleted ? 'bg-[#20A36C]' : 'bg-[#BCBBBB]'}`}
-                  aria-hidden="true" // Elementos decorativos devem ser ocultados
+                  aria-hidden="true" 
                 />
               )}
 
